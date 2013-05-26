@@ -1,1 +1,2 @@
 C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\EntityEngineV4TestBedContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBedContent\obj\x86\Debug\ResolveAssemblyReference.cache

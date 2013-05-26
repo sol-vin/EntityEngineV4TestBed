@@ -8,3 +8,13 @@ C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\Ent
 C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\EntityEngineV4.pdb
 C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TestState\font.xnb
 C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TestState\testobject.xnb
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TestState\testobject.xnb
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TestState\font.xnb
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\EntityEngineV4TestBed.exe
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\EntityEngineV4TestBed.pdb
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\EntityEngineV4.dll
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\EntityEngineV4.pdb
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\EntityEngineV4TestBed.exe
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\EntityEngineV4TestBed.pdb

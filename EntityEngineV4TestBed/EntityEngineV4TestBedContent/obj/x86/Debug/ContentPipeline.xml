@@ -2,22 +2,22 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>TestState\font.spritefont</Source>
-      <Name>TestState\font</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TestState\font.xnb</Output>
-      <Time>2013-05-25T12:09:04.2947254-07:00</Time>
-    </Item>
-    <Item>
       <Source>TestState\testobject.png</Source>
       <Name>TestState\testobject</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TestState\testobject.xnb</Output>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TestState\testobject.xnb</Output>
       <Time>2013-05-25T12:07:08.4711007-07:00</Time>
+    </Item>
+    <Item>
+      <Source>TestState\font.spritefont</Source>
+      <Name>TestState\font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TestState\font.xnb</Output>
+      <Time>2013-05-25T12:09:04.2947254-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -25,10 +25,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\EntityEngineV4TestBedContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\EntityEngineV4TestBed\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\EntityEngineV4TestBedContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Ian\Documents\GitHub\EntityEnginev4TestBedFix\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBedContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBedContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
