@@ -1,2 +1,3 @@
 Content\TestState\testobject.xnb
 Content\TestState\font.xnb
+Content\EntityEngine\font.xnb

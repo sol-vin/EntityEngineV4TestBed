@@ -19,6 +19,15 @@
       <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TestState\font.xnb</Output>
       <Time>2013-05-25T12:09:04.2947254-07:00</Time>
     </Item>
+    <Item>
+      <Source>EntityEngine\font.spritefont</Source>
+      <Name>EntityEngine\font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\EntityEngine\font.xnb</Output>
+      <Time>2013-05-26T11:13:16.4873115-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

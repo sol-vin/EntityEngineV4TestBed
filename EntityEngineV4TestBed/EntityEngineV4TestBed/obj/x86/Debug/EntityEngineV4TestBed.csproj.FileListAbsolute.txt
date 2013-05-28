@@ -18,3 +18,4 @@ C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\Entity
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\EntityEngineV4TestBed.exe
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\EntityEngineV4TestBed.pdb
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\EntityEngine\font.xnb

@@ -110,6 +110,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="States\TestState\TestControl.cs" />
+    <Compile Include="States\TestState\TestControlManager.cs" />
     <Compile Include="States\TestState\TestObject.cs" />
     <Compile Include="States\TestState\TestState.cs" />
     <Compile Include="States\TestState\TestStateManager.cs" />
