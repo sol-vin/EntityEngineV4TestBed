@@ -1,7 +1,8 @@
 #region Using Statements
 
 using EntityEngineV4.Engine;
-using EntityEngineV4TestBed.States.TestState;
+using EntityEngineV4TestBed.States.Menu;
+using EntityEngineV4TestBed.States.Test;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -18,7 +19,7 @@ namespace EntityEngineV4TestBed
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private EntityGame _eg;
-        private TestState _teststate;
+        private MenuState _menuState;
 
         public Game1()
         {
@@ -39,8 +40,8 @@ namespace EntityEngineV4TestBed
             this.IsMouseVisible = false;
 
             _eg = new EntityGame(this, graphics, spriteBatch, new Rectangle(0, 0, 800, 600));
-            _teststate = new TestState(_eg);
-            _teststate.Show();
+            _menuState = new MenuState(_eg);
+            _menuState.Show();
         }
 
         /// <summary>
@@ -62,9 +63,8 @@ namespace EntityEngineV4TestBed
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // For Mobile devices, this logic will close the Game when the Back button is pressed
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                Keyboard.GetState().IsKeyDown(Keys.Delete))
+            //Emergency kill key
+            if (Keyboard.GetState().IsKeyDown(Keys.Pause))
             {
                 Exit();
             }

@@ -5,7 +5,7 @@ using EntityEngineV4.GUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace EntityEngineV4TestBed.States.TestState
+namespace EntityEngineV4TestBed.States.Test
 {
     public class TestControl : Control
     {
@@ -16,6 +16,7 @@ namespace EntityEngineV4TestBed.States.TestState
         {
             TextRender = new TextRender(this, "TextRender", Assets.Font, name, Body);
             TextRender.Color = Color.Black;
+            Selectable = true;
         }
 
         public override void Draw(SpriteBatch sb)
@@ -34,7 +35,7 @@ namespace EntityEngineV4TestBed.States.TestState
             TextRender.Color = Color.Black;
         }
 
-        public override void OnFocusGain(Control c = null)
+        public override void OnFocusGain(Control c)
         {
             base.OnFocusGain(c);
             TextRender.Color = Color.Red;

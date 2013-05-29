@@ -4,14 +4,14 @@ using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using Microsoft.Xna.Framework;
 
-namespace EntityEngineV4TestBed.States.TestState
+namespace EntityEngineV4TestBed.States.Test
 {
-    public class TestState : EntityState
+    public class ControlTestState : TestBedState
     {
-        private TestStateManager _tsm;
+        private TestControlManager _testControlManager;
 
-        public TestState(EntityGame parent)
-            : base(parent, "TestState")
+        public ControlTestState(EntityGame parent)
+            : base(parent, "ControlTestState")
         {
             Initialize();
         }
@@ -37,15 +37,13 @@ namespace EntityEngineV4TestBed.States.TestState
                 }
             Services.Add(ch);
 
-            _tsm = new TestStateManager(this);
-            AddEntity(_tsm);
-
-            AddEntity(new TestControlManager(this, ch));
+            _testControlManager = new TestControlManager(this, ch);
+            AddEntity(_testControlManager);
         }
 
         public override void Update(GameTime gt)
         {
-            if (_tsm.Reset)
+            if (_testControlManager.Reset)
             {
                 Reset();
                 Initialize();
