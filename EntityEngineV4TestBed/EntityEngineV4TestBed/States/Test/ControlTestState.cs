@@ -1,3 +1,4 @@
+using EntityEngineV4.Components;
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
@@ -25,9 +26,9 @@ namespace EntityEngineV4TestBed.States.Test
             for (int x = 0; x < 4; x++)
                 for (int y = 0; y < 4; y++)
                 {
-                    var tc = new TestControl(this, "TC-X" + x + "Y" + y)
+                    var tc = new LinkLabel(this, "TC-X" + x + "Y" + y)
                         {
-                            Body = { Position = new Vector2(x * 200 + 50, y * 30 + 50) },
+                            Body = {Position = new Vector2(x*200 + 50, y*30 + 50)},
                             TabPosition = new Point(x, y)
                         };
                     //Set the default control.

@@ -114,7 +114,6 @@
     <Compile Include="States\Menu\MenuStateManager.cs" />
     <Compile Include="States\TestBedState.cs" />
     <Compile Include="States\TestBedStateManager.cs" />
-    <Compile Include="States\Test\TestControl.cs" />
     <Compile Include="States\Test\TestControlManager.cs" />
     <Compile Include="States\Test\ControlTestState.cs" />
   </ItemGroup>
