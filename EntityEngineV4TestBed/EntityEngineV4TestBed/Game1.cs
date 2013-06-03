@@ -2,7 +2,6 @@
 
 using EntityEngineV4.Engine;
 using EntityEngineV4TestBed.States.Menu;
-using EntityEngineV4TestBed.States.Test;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -39,7 +38,7 @@ namespace EntityEngineV4TestBed
 
             this.IsMouseVisible = false;
 
-            _eg = new EntityGame(this, graphics, spriteBatch, new Rectangle(0, 0, 800, 600));
+            _eg = new EntityGame(this, graphics, spriteBatch, new Rectangle(0, 0, 600, 600));
             _menuState = new MenuState(_eg);
             _menuState.Show();
         }

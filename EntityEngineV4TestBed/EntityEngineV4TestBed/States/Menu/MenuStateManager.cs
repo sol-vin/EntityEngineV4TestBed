@@ -12,13 +12,13 @@ namespace EntityEngineV4TestBed.States.Menu
 {
     public class MenuStateManager : Entity
     {
-        public ControlHandler ControlHandler;
+        private ControlHandler _controlHandler;
 
         private DoubleInput _upkey, _downkey, _leftkey, _rightkey, _selectkey;
 
         public MenuStateManager(EntityState stateref, ControlHandler controlHandler) : base(stateref, "MenuStateManager")
         {
-            ControlHandler = controlHandler;
+            _controlHandler = controlHandler;
             _upkey = new DoubleInput(this, "UpKey", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
             _downkey = new DoubleInput(this, "DownKey", Keys.Down, Buttons.DPadDown, PlayerIndex.One);
             _leftkey = new DoubleInput(this, "LeftKey", Keys.Left, Buttons.DPadLeft, PlayerIndex.One);
@@ -29,15 +29,15 @@ namespace EntityEngineV4TestBed.States.Menu
         public override void Update(GameTime gt)
         {
             if (_upkey.Released())
-                ControlHandler.UpControl();
+                _controlHandler.UpControl();
             else if (_downkey.Released())
-                ControlHandler.DownControl();
+                _controlHandler.DownControl();
             else if (_leftkey.Released())
-                ControlHandler.LeftControl();
+                _controlHandler.LeftControl();
             else if (_rightkey.Released())
-                ControlHandler.RightControl();
+                _controlHandler.RightControl();
             if (_selectkey.Released())
-                ControlHandler.Select();
+                _controlHandler.Select();
             
 
             base.Update(gt);

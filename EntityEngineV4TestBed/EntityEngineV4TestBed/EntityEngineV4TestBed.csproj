@@ -112,10 +112,20 @@
     <Compile Include="Game1.cs" />
     <Compile Include="States\Menu\MenuState.cs" />
     <Compile Include="States\Menu\MenuStateManager.cs" />
+    <Compile Include="States\ParticleTest\ParticleTestManager.cs" />
+    <Compile Include="States\ParticleTest\ParticleTestState.cs" />
+    <Compile Include="States\SuperTownDefence\Objects\Bomb.cs" />
+    <Compile Include="States\SuperTownDefence\Objects\Components\Gun.cs" />
+    <Compile Include="States\SuperTownDefence\Objects\Components\Targets.cs" />
+    <Compile Include="States\SuperTownDefence\Objects\Town.cs" />
+    <Compile Include="States\SuperTownDefence\STDGameState.cs" />
+    <Compile Include="States\SuperTownDefence\STDGameStateManager.cs" />
+    <Compile Include="States\SuperTownDefence\STDMenuState.cs" />
+    <Compile Include="States\SuperTownDefence\STDMenuStateManager.cs" />
     <Compile Include="States\TestBedState.cs" />
     <Compile Include="States\TestBedStateManager.cs" />
-    <Compile Include="States\Test\TestControlManager.cs" />
-    <Compile Include="States\Test\ControlTestState.cs" />
+    <Compile Include="States\TestControl\TestControlManager.cs" />
+    <Compile Include="States\TestControl\ControlTestState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
