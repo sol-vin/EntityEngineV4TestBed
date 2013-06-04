@@ -110,6 +110,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="States\CollisionTest\CollisionTestState.cs" />
     <Compile Include="States\Menu\MenuState.cs" />
     <Compile Include="States\Menu\MenuStateManager.cs" />
     <Compile Include="States\ParticleTest\ParticleTestManager.cs" />

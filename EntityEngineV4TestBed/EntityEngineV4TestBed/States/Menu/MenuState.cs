@@ -2,6 +2,7 @@
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
+using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ParticleTest;
 using EntityEngineV4TestBed.States.SuperTownDefence;
 using EntityEngineV4TestBed.States.TestControl;
@@ -45,6 +46,13 @@ namespace EntityEngineV4TestBed.States.Menu
             l.TabPosition = new Point(0, 2);
             ch.AddControl(l);
 
+            l = new LinkLabel(this, "CollisionTestStateLink");
+            l.Body.Position = new Vector2(20, 110);
+            l.Text = "Collision Test State";
+            l.Selected += control => ShowCollisionTestState();
+            l.TabPosition = new Point(0, 3);
+            ch.AddControl(l);
+
             Services.Add(ch);
 
             _menuStateManager = new MenuStateManager(this, ch);
@@ -70,6 +78,13 @@ namespace EntityEngineV4TestBed.States.Menu
             var stdMenuState = new STDMenuState(Parent);
             stdMenuState.ChangeState += Show;
             stdMenuState.Show();
+        }
+
+        public void ShowCollisionTestState()
+        {
+            var collisionTestState = new CollisionTestState(Parent);
+            collisionTestState.ChangeState += Show;
+            collisionTestState.Show();
         }
     }
 }
