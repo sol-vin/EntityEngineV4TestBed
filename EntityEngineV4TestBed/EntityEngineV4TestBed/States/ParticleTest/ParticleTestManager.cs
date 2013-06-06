@@ -94,7 +94,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     thrust = (float) _random.NextDouble()*Strength;
                 }
                 p.Physics.Thrust(thrust);
-                p.Physics.AngularVelocity = (float) _random.NextDouble()*2f;
+                p.Physics.AngularVelocity = (float) _random.NextDouble();
                 p.Physics.Acceleration = Acceleration;
                 p.TileRender.Scale = Vector2.One*3f*(float)_random.NextDouble()+Vector2.One;
                 p.TileRender.Layer = 0f;
@@ -107,13 +107,6 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             public TestParticle(EntityState stateref, IComponent parent, Emitter e) : base(stateref, parent, 3000, e)
             {
                 FadeAge = 1000;
-            }
-
-            public override void Update(GameTime gt)
-            {
-                base.Update(gt);
-                if(Body.Position.Y > EntityGame.Viewport.Height + 20)
-                    Destroy();
             }
         }
     }

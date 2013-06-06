@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EntityEngineV4.Collision;
+using EntityEngineV4.Collision.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
@@ -16,7 +17,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 {
     public class CollisionTestState : TestBedState
     {
-        private HashSet<Entity> _collided;
+        private HashSet<string> _collided;
         private Label _collidedLabel;
 
         public CollisionTestState(EntityGame eg) : base(eg, "CollisionTestState")
@@ -25,7 +26,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             Services.Add(new CollisionHandler(this));
             Services.Add(new MouseHandler(this));
 
-            _collided = new HashSet<Entity>();
+            _collided = new HashSet<string>();
             
             _collidedLabel = new Label(this, "CollidedLabel");
             _collidedLabel.Body.Position = new Vector2(10, 560);
@@ -34,8 +35,8 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             for (int x = 0; x < 3; x++)
             {
                 CollisionTestEntity c = new CollisionTestEntity(this, "A" + x);
-                c.Collision.AddGroupMask(0);
-                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent);
+                c.Collision.GroupMask.AddMask(0);
+                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
                 c.Collision.AddToHandler();
                 c.Body.Position = new Vector2(30, 80 * x + 20);
                 AddEntity(c);
@@ -43,8 +44,8 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             for (int x = 0; x < 3; x++)
             {
                 CollisionTestEntity c = new CollisionTestEntity(this, "B" + x);
-                c.Collision.AddPairMask(0);
-                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent);
+                c.Collision.PairMask.AddMask(0);
+                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
                 c.Collision.AddToHandler();
                 c.Body.Position = new Vector2(510, 80 * x + 20);
                 c.Color = Color.Orange;
@@ -59,7 +60,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             string text = "Currently collided: ";
             foreach (var c in _collided)
             {
-                text += c.Name + " ";
+                text += c + " ";
             }
             _collidedLabel.Text = text;
 
@@ -83,7 +84,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 Body = new Body(this, "Body");
                 Body.Bounds = new Vector2(70,70);
 
-                Collision = new Collision(this, "Collision", Body);
+                Collision = new Collision(this, "Collision", new AABB(), Body );
 
                 ImageRender = new ImageRender(this, "Image", Assets.Pixel, Body);
                 ImageRender.Scale =  new Vector2(70,70);

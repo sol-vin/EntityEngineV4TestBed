@@ -17,6 +17,7 @@ namespace EntityEngineV4TestBed.States.Menu
 
         public MenuState(EntityGame eg) : base(eg, "MenuState")
         {
+            Parent.ShowFPS = true;
 
             //Service init
             Services.Add(new InputHandler(this));
