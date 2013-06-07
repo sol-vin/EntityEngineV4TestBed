@@ -115,6 +115,7 @@
     <Compile Include="States\Menu\MenuStateManager.cs" />
     <Compile Include="States\ParticleTest\ParticleTestManager.cs" />
     <Compile Include="States\ParticleTest\ParticleTestState.cs" />
+    <Compile Include="States\ResolutionTest\ResolutionTestState.cs" />
     <Compile Include="States\SuperTownDefence\Objects\Bomb.cs" />
     <Compile Include="States\SuperTownDefence\Objects\Components\Gun.cs" />
     <Compile Include="States\SuperTownDefence\Objects\Components\Targets.cs" />

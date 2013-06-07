@@ -4,6 +4,7 @@ using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ParticleTest;
+using EntityEngineV4TestBed.States.ResolutionTest;
 using EntityEngineV4TestBed.States.SuperTownDefence;
 using EntityEngineV4TestBed.States.TestControl;
 using Microsoft.Xna.Framework;
@@ -54,6 +55,13 @@ namespace EntityEngineV4TestBed.States.Menu
             l.TabPosition = new Point(0, 3);
             ch.AddControl(l);
 
+            l = new LinkLabel(this, "ResolutionTestStateLink");
+            l.Body.Position = new Vector2(20, 140);
+            l.Text = "Resolution Test State";
+            l.Selected += control => ShowResolutionTestState();
+            l.TabPosition = new Point(0, 4);
+            ch.AddControl(l);
+
             Services.Add(ch);
 
             _menuStateManager = new MenuStateManager(this, ch);
@@ -86,6 +94,13 @@ namespace EntityEngineV4TestBed.States.Menu
             var collisionTestState = new CollisionTestState(Parent);
             collisionTestState.ChangeState += Show;
             collisionTestState.Show();
+        }
+
+        public void ShowResolutionTestState()
+        {
+            var resolutionTestState = new ResolutionTestState(Parent);
+            resolutionTestState.ChangeState += Show;
+            resolutionTestState.Show();
         }
     }
 }
