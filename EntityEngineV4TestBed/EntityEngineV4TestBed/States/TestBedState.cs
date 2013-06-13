@@ -10,19 +10,14 @@ namespace EntityEngineV4TestBed.States
 {
     public abstract class TestBedState : EntityState
     {
-        private TestBedStateManager _tbsm;
-
         protected TestBedState(EntityGame eg, string name) : base(eg, name)
         {
-            _tbsm = new TestBedStateManager(this, "TestBedStateManager");
-            AddEntity(_tbsm);
+            AddEntity(new TestBedStateManager(this, "TestBedStateManager"));
         }
 
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-            if(_tbsm.GoBack)
-                ChangeToState("MenuState");
         }
     }
 }

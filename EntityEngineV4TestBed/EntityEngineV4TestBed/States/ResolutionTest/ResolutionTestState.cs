@@ -41,7 +41,6 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 c.Collision.ResolutionGroupMask.AddMask(0);
                 c.Collision.ResolutionGroupMask.AddMask(1);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
-                c.Collision.AddToHandler();
                 c.Body.Position = new Vector2(30, 80 * x + 20);
                 AddEntity(c);
             }
@@ -51,7 +50,6 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.ResolutionGroupMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
-                c.Collision.AddToHandler();
                 c.Body.Position = new Vector2(510, 80 * x + 20);
                 c.Color = Color.Orange;
                 c.HoverColor = Color.Violet;
@@ -62,7 +60,15 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-            _collidedLabel.Text = "A0:" + GetEntity<ResolutionTestEntity>("A0").Body.Position + "   A1:" + GetEntity<ResolutionTestEntity>("A1").Body.Position;
+            Vector2 delta = GetEntity<ResolutionTestEntity>("A0").Physics.Velocity;
+            delta = new Vector2((float)Math.Round(delta.X, 1), (float)Math.Round(delta.Y, 1));
+            string a0delta = "A0:" + delta;
+
+            delta = GetEntity<ResolutionTestEntity>("A1").Physics.Velocity;
+            delta = new Vector2((float)Math.Round(delta.X, 1), (float)Math.Round(delta.Y, 1));
+            string a1delta = "A1:" + delta;
+
+            _collidedLabel.Text = a0delta + "   " + a1delta;
         }
 
 
@@ -90,7 +96,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 Body.Bounds = new Vector2(70, 70);
 
                 Physics = new Physics(this, "Physics", Body);
-                Physics.Drag = .9f;
+                Physics.Drag = .95f;
 
                 Collision = new Collision(this, "Collision", new AABB(), Body, Physics);
                 Collision.Mass = 10f;
@@ -136,8 +142,19 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                     _releaseposition = MouseHandler.Cursor.Position;
 
                     //Add delta to force.
-                    Physics.AddForce((_clickposition - _releaseposition)/2f);
+                    Physics.AddForce((_clickposition - _releaseposition) / 2f);
                 }
+
+                //Reset our position if it goes off screen.
+                if (Body.BoundingRect.Right < 0)
+                    Body.Position.X = EntityGame.Viewport.Width;
+                else if (Body.Position.X > EntityGame.Viewport.Width)
+                    Body.Position.X = 0 - Body.Bounds.X;
+
+                if (Body.BoundingRect.Bottom < 0)
+                    Body.Position.Y = EntityGame.Viewport.Height;
+                else if (Body.Position.Y > EntityGame.Viewport.Height)
+                    Body.Position.Y = 0 - Body.Bounds.Y;
 
                 TextBody.Position = Body.Position + Vector2.One * 10f;
             }

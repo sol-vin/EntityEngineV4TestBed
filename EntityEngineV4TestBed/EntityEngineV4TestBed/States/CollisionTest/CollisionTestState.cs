@@ -37,7 +37,6 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 CollisionTestEntity c = new CollisionTestEntity(this, "A" + x);
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
-                c.Collision.AddToHandler();
                 c.Body.Position = new Vector2(30, 80 * x + 20);
                 AddEntity(c);
             }
@@ -46,10 +45,9 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 CollisionTestEntity c = new CollisionTestEntity(this, "B" + x);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
-                c.Collision.AddToHandler();
                 c.Body.Position = new Vector2(510, 80 * x + 20);
                 c.Color = Color.Orange;
-                c.HoverColor = Color.Violet;
+                c.HoverColor = Color.Black;
                 AddEntity(c);
             }
 
