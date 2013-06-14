@@ -29,7 +29,7 @@ namespace EntityEngineV4TestBed.States.TestControl
                 {
                     var testControl = new LinkLabel(this, "TC-X" + x + "Y" + y)
                         {
-                            Body = {Position = new Vector2(x*135 + 40, y*30 + 50)},
+                            Body = { Position = new Vector2(x * 135 + 40, y * 30 + 50) },
                             TabPosition = new Point(x, y)
                         };
                     testControl.Selected += OnSelected;
@@ -41,7 +41,7 @@ namespace EntityEngineV4TestBed.States.TestControl
 
             _actionLabel = new Label(this, "TestContolLabel");
             _actionLabel.Text = "TestControlLabel";
-            _actionLabel.TabPosition = new Point(5,2);
+            _actionLabel.TabPosition = new Point(5, 2);
             _actionLabel.Body.Position = new Vector2(50, 400);
             controlHandler.AddControl(_actionLabel);
 

@@ -5,7 +5,8 @@ namespace EntityEngineV4TestBed.States.SuperTownDefence
 {
     public class STDGameState : EntityState
     {
-        public STDGameState(EntityGame eg) : base(eg, "STDGameState")
+        public STDGameState(EntityGame eg)
+            : base(eg, "STDGameState")
         {
             Services.Add(new InputHandler(this));
             AddEntity(new STDGameStateManager(this));

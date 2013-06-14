@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EntityEngineV4.Components;
+﻿using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
-using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using Microsoft.Xna.Framework;
@@ -21,7 +16,8 @@ namespace EntityEngineV4TestBed.States.ColorTest
 
         private ColorTestManager _ctm;
 
-        public ColorTestState(EntityGame eg) : base(eg, "ColorTestState")
+        public ColorTestState(EntityGame eg)
+            : base(eg, "ColorTestState")
         {
             Services.Add(new InputHandler(this));
             Services.Add(new MouseHandler(this));
@@ -33,11 +29,11 @@ namespace EntityEngineV4TestBed.States.ColorTest
         {
             base.Update(gt);
 
-            if(_ctm.UpKey.Released()) IncreaseY();
+            if (_ctm.UpKey.Released()) IncreaseY();
             else if (_ctm.DownKey.Released()) DecreaseY();
 
-            if(_ctm.RightKey.Released()) IncreaseX();
-            else if(_ctm.LeftKey.Released()) DecreaseX();
+            if (_ctm.RightKey.Released()) IncreaseX();
+            else if (_ctm.LeftKey.Released()) DecreaseX();
         }
 
         public void IncreaseX()
@@ -67,7 +63,6 @@ namespace EntityEngineV4TestBed.States.ColorTest
             _size.Y = (int)MathHelper.Clamp(_size.Y, 5, EntityGame.Viewport.Height);
             RepopulateEntities();
         }
-
 
         public void RepopulateEntities()
         {
@@ -99,7 +94,8 @@ namespace EntityEngineV4TestBed.States.ColorTest
         {
             public DoubleInput UpKey, DownKey, LeftKey, RightKey;
 
-            public ColorTestManager(EntityState stateref, string name) : base(stateref, name)
+            public ColorTestManager(EntityState stateref, string name)
+                : base(stateref, name)
             {
                 UpKey = new DoubleInput(this, "Up", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
                 DownKey = new DoubleInput(this, "Down", Keys.Down, Buttons.DPadDown, PlayerIndex.One);
@@ -115,14 +111,16 @@ namespace EntityEngineV4TestBed.States.ColorTest
             public Timer ColorIncreaseTimer;
 
             public float Hue = 0f;
-            private const float HUEINCREASE = .01f;
-            public ColorTestEntity(EntityState stateref, string name) : base(stateref, name)
+            private const float HUEINCREASE = .005f;
+
+            public ColorTestEntity(EntityState stateref, string name)
+                : base(stateref, name)
             {
                 Body = new Body(this, "Body");
 
                 Render = new ImageRender(this, "Render", Assets.Pixel, Body);
                 Render.Color = Color.Red;
-                
+
                 ColorIncreaseTimer = new Timer(this, "ColorIncreaseTimer");
                 ColorIncreaseTimer.Milliseconds = 100;
                 ColorIncreaseTimer.LastEvent += IncreaseHue;
@@ -132,10 +130,8 @@ namespace EntityEngineV4TestBed.States.ColorTest
             private void IncreaseHue()
             {
                 Hue += HUEINCREASE;
-                if (Hue >= 1)
-                    Hue = 0;
 
-                Render.Color = ColorMath.TestHSVtoRGB(Hue, 1, 1, 1);
+                Render.Color = ColorMath.HSVtoRGB(Hue, 1, 1, 1);
             }
         }
     }

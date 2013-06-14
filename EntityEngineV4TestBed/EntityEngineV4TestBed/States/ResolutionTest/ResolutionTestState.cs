@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using EntityEngineV4.Collision;
 using EntityEngineV4.Collision.Shapes;
 using EntityEngineV4.Components;
@@ -11,7 +9,6 @@ using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
-using EntityEngineV4TestBed.States.CollisionTest;
 using Microsoft.Xna.Framework;
 
 namespace EntityEngineV4TestBed.States.ResolutionTest
@@ -21,7 +18,8 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         private SortedSet<string> _collided;
         private Label _collidedLabel;
 
-        public ResolutionTestState(EntityGame eg) : base(eg, "ResolutionTestState")
+        public ResolutionTestState(EntityGame eg)
+            : base(eg, "ResolutionTestState")
         {
             Services.Add(new InputHandler(this));
             Services.Add(new CollisionHandler(this));
@@ -37,7 +35,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             {
                 ResolutionTestEntity c = new ResolutionTestEntity(this, "A" + x);
                 c.Collision.GroupMask.AddMask(0);
-                
+
                 c.Collision.ResolutionGroupMask.AddMask(0);
                 c.Collision.ResolutionGroupMask.AddMask(1);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
@@ -71,10 +69,8 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             _collidedLabel.Text = a0delta + "   " + a1delta;
         }
 
-
         private class ResolutionTestEntity : Entity
         {
-
             public Body Body;
             public Body TextBody;
             public Physics Physics;
@@ -90,7 +86,8 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             private Vector2 _releaseposition;
             private bool _hasFocus;
 
-            public ResolutionTestEntity(EntityState stateref, string name) : base(stateref, name)
+            public ResolutionTestEntity(EntityState stateref, string name)
+                : base(stateref, name)
             {
                 Body = new Body(this, "Body");
                 Body.Bounds = new Vector2(70, 70);

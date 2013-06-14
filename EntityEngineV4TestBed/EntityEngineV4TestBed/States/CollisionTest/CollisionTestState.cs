@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using EntityEngineV4.Collision;
 using EntityEngineV4.Collision.Shapes;
 using EntityEngineV4.Components;
@@ -20,14 +17,15 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         private SortedSet<string> _collided;
         private Label _collidedLabel;
 
-        public CollisionTestState(EntityGame eg) : base(eg, "CollisionTestState")
+        public CollisionTestState(EntityGame eg)
+            : base(eg, "CollisionTestState")
         {
             Services.Add(new InputHandler(this));
             Services.Add(new CollisionHandler(this));
             Services.Add(new MouseHandler(this));
 
             _collided = new SortedSet<string>();
-            
+
             _collidedLabel = new Label(this, "CollidedLabel");
             _collidedLabel.Body.Position = new Vector2(10, 560);
             AddEntity(_collidedLabel);
@@ -50,7 +48,6 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.HoverColor = Color.Black;
                 AddEntity(c);
             }
-
         }
 
         public override void Update(GameTime gt)
@@ -80,17 +77,18 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             public Color HoverColor = Color.Red;
             private bool _hasFocus;
 
-            public CollisionTestEntity(EntityState stateref, string name) : base(stateref, name)
+            public CollisionTestEntity(EntityState stateref, string name)
+                : base(stateref, name)
             {
                 Body = new Body(this, "Body");
-                Body.Bounds = new Vector2(70,70);
+                Body.Bounds = new Vector2(70, 70);
 
                 Physics = new Physics(this, "Physics", Body);
 
                 Collision = new Collision(this, "Collision", new AABB(), Body, Physics);
 
                 ImageRender = new ImageRender(this, "Image", Assets.Pixel, Body);
-                ImageRender.Scale =  new Vector2(70,70);
+                ImageRender.Scale = new Vector2(70, 70);
                 ImageRender.Layer = .5f;
 
                 TextBody = new Body(this, "TextBody");
@@ -104,10 +102,10 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
             public override void Update(GameTime gt)
             {
-                base.Update(gt); 
+                base.Update(gt);
                 //If the cursor is over the object, and the button is down
-                if (Body.BoundingRect.Contains((int) MouseHandler.Cursor.Position.X,
-                                               (int) MouseHandler.Cursor.Position.Y))
+                if (Body.BoundingRect.Contains((int)MouseHandler.Cursor.Position.X,
+                                               (int)MouseHandler.Cursor.Position.Y))
                 {
                     ImageRender.Color = HoverColor;
                     if (MouseHandler.IsMouseButtonPressed(MouseButton.LeftButton))

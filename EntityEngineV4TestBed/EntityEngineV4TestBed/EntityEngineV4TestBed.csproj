@@ -112,6 +112,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="States\CollisionTest\CollisionTestState.cs" />
     <Compile Include="States\ColorTest\ColorTestState.cs" />
+    <Compile Include="States\FancyParticleTest\FancyParticleTest.cs" />
     <Compile Include="States\Menu\MenuState.cs" />
     <Compile Include="States\ParticleTest\ParticleTestState.cs" />
     <Compile Include="States\ResolutionTest\ResolutionTestState.cs" />

@@ -4,6 +4,7 @@ using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ColorTest;
+using EntityEngineV4TestBed.States.FancyParticleTest;
 using EntityEngineV4TestBed.States.ParticleTest;
 using EntityEngineV4TestBed.States.ResolutionTest;
 using EntityEngineV4TestBed.States.SuperTownDefence;
@@ -19,8 +20,9 @@ namespace EntityEngineV4TestBed.States.Menu
 
         //Manager
         private MenuStateManager _menuStateManager;
-        
-        public MenuState(EntityGame eg) : base(eg, "MenuState")
+
+        public MenuState(EntityGame eg)
+            : base(eg, "MenuState")
         {
             Parent.ShowFPS = true;
 
@@ -33,6 +35,7 @@ namespace EntityEngineV4TestBed.States.Menu
             _menuStateManager = new MenuStateManager(this, ch);
             _menuStateManager.AddMenuItem("Control Test State", ShowControlTestState);
             _menuStateManager.AddMenuItem("Particle Test State", ShowParticleTestState);
+            _menuStateManager.AddMenuItem("Fancy Particle Test State", ShowFancyParticleTestState);
             _menuStateManager.AddMenuItem("Collision Test State", ShowCollisionTestState);
             _menuStateManager.AddMenuItem("Resolution Test State", ShowResolutionTestState);
             _menuStateManager.AddMenuItem("Color Test State", ShowColorTestState);
@@ -82,6 +85,13 @@ namespace EntityEngineV4TestBed.States.Menu
             colorTestState.Show();
         }
 
+        public void ShowFancyParticleTestState()
+        {
+            var fancyParticleTestState = new FancyParticleTestState(Parent);
+            fancyParticleTestState.ChangeState += Show;
+            fancyParticleTestState.Show();
+        }
+
         private class MenuStateManager : Entity
         {
             private ControlHandler _controlHandler;
@@ -123,11 +133,11 @@ namespace EntityEngineV4TestBed.States.Menu
                 l.Body.Position = new Vector2(20, 20 + (_lasttabposition.Y * 30));
                 l.Text = label;
                 l.Selected += control => changeStateDelegate();
-                
+
                 l.TabPosition = _lasttabposition;
                 _lasttabposition.Y++;
 
-                if(l.TabPosition == Point.Zero) l.OnFocusGain(l);
+                if (l.TabPosition == Point.Zero) l.OnFocusGain(l);
                 _controlHandler.AddControl(l);
             }
         }
