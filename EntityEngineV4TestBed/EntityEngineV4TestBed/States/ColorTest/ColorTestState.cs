@@ -20,7 +20,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
             : base(eg, "ColorTestState")
         {
             Services.Add(new InputHandler(this));
-            Services.Add(new MouseHandler(this));
+            //Services.Add(new MouseHandler(this));
 
             RepopulateEntities();
         }

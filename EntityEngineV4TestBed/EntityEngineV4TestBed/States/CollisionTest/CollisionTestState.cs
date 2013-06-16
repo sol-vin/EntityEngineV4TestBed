@@ -34,6 +34,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             {
                 CollisionTestEntity c = new CollisionTestEntity(this, "A" + x);
                 c.Collision.GroupMask.AddMask(0);
+                c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
                 c.Body.Position = new Vector2(30, 80 * x + 20);
                 AddEntity(c);
@@ -41,6 +42,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             for (int x = 0; x < 3; x++)
             {
                 CollisionTestEntity c = new CollisionTestEntity(this, "B" + x);
+                c.Collision.GroupMask.AddMask(1);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
                 c.Body.Position = new Vector2(510, 80 * x + 20);

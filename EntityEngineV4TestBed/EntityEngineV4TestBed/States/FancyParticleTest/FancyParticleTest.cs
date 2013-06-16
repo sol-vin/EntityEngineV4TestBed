@@ -7,6 +7,7 @@ using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4.Object;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.FancyParticleTest
 {
@@ -27,6 +28,8 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
             public Body MouseBody, AutoBody;
             private Random _rand = new Random();
 
+            private DoubleInput _emitkey;
+
             public FancyEntity(EntityState stateref, string name)
                 : base(stateref, name)
             {
@@ -38,7 +41,9 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 FancyEmitterAuto = new FancyEmitter(this, "FancyEmitterAuto", AutoBody);
                 FancyEmitterAuto.Color = Color.CornflowerBlue;
                 FancyEmitterAuto.AutoEmit = true;
-                FancyEmitterAuto.AutoEmitAmount = 3;
+                FancyEmitterAuto.AutoEmitAmount = 1;
+
+                _emitkey = new DoubleInput(this, "emitkey", Keys.Space, Buttons.A, PlayerIndex.One);
             }
 
             public override void Update(GameTime gt)
@@ -52,6 +57,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     MouseBody.Position = new Vector2(MouseHandler.Cursor.Position.X, MouseHandler.Cursor.Position.Y);
                     FancyEmitterMouse.Emit(1);
                 }
+                if (_emitkey.Released()) FancyEmitterAuto.AutoEmit = !FancyEmitterAuto.AutoEmit;
             }
         }
 
@@ -101,7 +107,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     ImageRender = new ImageRender(this, "ImageRender", e.Texture, Body);
                     ImageRender.Color = color;
 
-                    Emitter = new GibEmitter(this, "Emitter", Body, color);
+                    Emitter = new GibEmitter(this, "Emitter", Body, Physics, color);
                 }
 
                 public override void Update(GameTime gt)
@@ -109,6 +115,11 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     base.Update(gt);
                     if (Body.BoundingRect.Bottom > _floor)
                     {
+                        //Find penetration depth
+                        float depth = Body.Bottom - _floor;
+
+                        //Move out of the floor, add a little extra for safety
+                        Body.Position.Y -= depth + .1f;
                         Emitter.Emit(20);
                         Destroy();
                     }
@@ -116,14 +127,16 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
                 private class GibEmitter : Emitter
                 {
-                    private Random _rand = new Random();
+                    private Random _rand = new Random(DateTime.Now.Millisecond ^ DateTime.Now.Second);
                     private Body _body;
+                    private Physics _physics;
                     private Color _color;
 
-                    public GibEmitter(Entity parent, string name, Body body, Color color)
+                    public GibEmitter(Entity parent, string name, Body body, Physics physics, Color color)
                         : base(parent, name, Assets.Pixel)
                     {
                         _body = body;
+                        _physics = physics;
                         _color = color;
                     }
 
@@ -133,13 +146,10 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                         p.Body.Bounds = new Vector2(2, 2);
                         p.Body.Position = _body.Position;
 
-                        p.Body.Angle = (float)_rand.NextDouble() * MathHelper.PiOver2 - MathHelper.PiOver4 - .5f;
+                        int sign = _rand.Next(0, 2) == 0 ? -1 : 1;
+                        p.Body.Angle = (float) _rand.NextDouble()*MathHelper.PiOver2 * sign;
 
-                        float thrust = (float)_rand.NextDouble() * 4f;
-                        while (Math.Abs(thrust) < .00001f)
-                        {
-                            thrust = (float)_rand.NextDouble() * 4f + 1f;
-                        }
+                        float thrust = ((float)_rand.NextDouble() + 1f) * (_physics.Velocity.Y/4);
                         p.Physics.Thrust(thrust);
                         p.Physics.Acceleration = new Vector2(0, .1f);
                         p.ImageRender.Scale = new Vector2(2, 2);
@@ -178,7 +188,13 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
                             //Move out of the floor, add a little extra for safety
                             Body.Position.Y -= depth + .1f;
-                            Physics.Velocity.Y = -Physics.Velocity.Y * .5f; //Add restitution
+                            Physics.Velocity.Y = -Physics.Velocity.Y * .2f; //Add restitution
+                        }
+                        //Add friction if it's on the ground
+                        if (Math.Abs(Physics.Velocity.Y) < .001f && (Body.Bottom < _floor + 1))
+                        {
+                            Physics.Velocity.X *= .9f;
+                            Physics.Velocity.Y = 0;
                         }
                     }
                 }

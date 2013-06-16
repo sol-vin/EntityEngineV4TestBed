@@ -35,7 +35,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             {
                 ResolutionTestEntity c = new ResolutionTestEntity(this, "A" + x);
                 c.Collision.GroupMask.AddMask(0);
-
+                c.Collision.PairMask.AddMask(0);
                 c.Collision.ResolutionGroupMask.AddMask(0);
                 c.Collision.ResolutionGroupMask.AddMask(1);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
@@ -45,6 +45,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             for (int x = 0; x < 3; x++)
             {
                 ResolutionTestEntity c = new ResolutionTestEntity(this, "B" + x);
+                c.Collision.GroupMask.AddMask(1);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.ResolutionGroupMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);

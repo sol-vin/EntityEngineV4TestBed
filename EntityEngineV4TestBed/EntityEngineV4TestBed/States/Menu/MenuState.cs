@@ -9,6 +9,7 @@ using EntityEngineV4TestBed.States.ParticleTest;
 using EntityEngineV4TestBed.States.ResolutionTest;
 using EntityEngineV4TestBed.States.SuperTownDefence;
 using EntityEngineV4TestBed.States.TestControl;
+using EntityEngineV4TestBed.States.TilemapTest;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -39,6 +40,7 @@ namespace EntityEngineV4TestBed.States.Menu
             _menuStateManager.AddMenuItem("Collision Test State", ShowCollisionTestState);
             _menuStateManager.AddMenuItem("Resolution Test State", ShowResolutionTestState);
             _menuStateManager.AddMenuItem("Color Test State", ShowColorTestState);
+            _menuStateManager.AddMenuItem("Tilemap Test State", ShowTilemapTestState);
             _menuStateManager.AddMenuItem("Super Town Defence", ShowSTDMenuState);
             AddEntity(_menuStateManager);
         }
@@ -90,6 +92,13 @@ namespace EntityEngineV4TestBed.States.Menu
             var fancyParticleTestState = new FancyParticleTestState(Parent);
             fancyParticleTestState.ChangeState += Show;
             fancyParticleTestState.Show();
+        }
+
+        public void ShowTilemapTestState()
+        {
+            var tilemapTestState = new TilemapTestState(Parent);
+            tilemapTestState.ChangeState += Show;
+            tilemapTestState.Show();
         }
 
         private class MenuStateManager : Entity
