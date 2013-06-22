@@ -75,7 +75,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
             protected override Particle GenerateNewParticle()
             {
-                var p = new ExplodingParticle(Parent.StateRef, 2000, this, Color);
+                var p = new ExplodingParticle(Parent.StateRef, 60000, this, Color);
                 p.Body.Bounds = new Vector2(5, 5);
                 p.Body.Position = _body.Position;
 

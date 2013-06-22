@@ -36,9 +36,12 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 ResolutionTestEntity c = new ResolutionTestEntity(this, "A" + x);
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.PairMask.AddMask(0);
+                c.Collision.PairMask.AddMask(2);
                 c.Collision.ResolutionGroupMask.AddMask(0);
                 c.Collision.ResolutionGroupMask.AddMask(1);
+                c.Collision.ResolutionGroupMask.AddMask(2);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Collision.Debug = true;
                 c.Body.Position = new Vector2(30, 80 * x + 20);
                 AddEntity(c);
             }
@@ -47,11 +50,31 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 ResolutionTestEntity c = new ResolutionTestEntity(this, "B" + x);
                 c.Collision.GroupMask.AddMask(1);
                 c.Collision.PairMask.AddMask(0);
+                c.Collision.PairMask.AddMask(2);
                 c.Collision.ResolutionGroupMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Collision.Debug = true;
                 c.Body.Position = new Vector2(510, 80 * x + 20);
                 c.Color = Color.Orange;
                 c.HoverColor = Color.Violet;
+                AddEntity(c);
+            }
+
+            for (int x = 0; x < 3; x++)
+            {
+                ResolutionTestEntity c = new ResolutionTestEntity(this, "C" + x);
+                c.Collision.GroupMask.AddMask(2);
+                c.Collision.PairMask.AddMask(0);
+                c.Collision.PairMask.AddMask(1);
+                c.Collision.ResolutionGroupMask.AddMask(0);
+                c.Collision.ResolutionGroupMask.AddMask(1);
+                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Collision.Immovable = true;
+                c.Collision.Debug = true;
+                c.Body.Position = new Vector2(50+x*70,450);
+                c.Color = Color.Green;
+                c.HoverColor = Color.DarkBlue;
+                
                 AddEntity(c);
             }
         }
@@ -59,15 +82,9 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-            Vector2 delta = GetEntity<ResolutionTestEntity>("A0").Physics.Velocity;
-            delta = new Vector2((float)Math.Round(delta.X, 1), (float)Math.Round(delta.Y, 1));
-            string a0delta = "A0:" + delta;
 
-            delta = GetEntity<ResolutionTestEntity>("A1").Physics.Velocity;
-            delta = new Vector2((float)Math.Round(delta.X, 1), (float)Math.Round(delta.Y, 1));
-            string a1delta = "A1:" + delta;
-
-            _collidedLabel.Text = a0delta + "   " + a1delta;
+            string debug = GetEntity<ResolutionTestEntity>("A0").Body.Position.ToString(); 
+            _collidedLabel.Text = "A0: " + debug;
         }
 
         private class ResolutionTestEntity : Entity
@@ -86,6 +103,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             private Vector2 _clickposition;
             private Vector2 _releaseposition;
             private bool _hasFocus;
+            private bool _lastImmovable;
 
             public ResolutionTestEntity(EntityState stateref, string name)
                 : base(stateref, name)
@@ -117,7 +135,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             {
                 base.Update(gt);
 
-                if (Body.BoundingRect.Contains((int)MouseHandler.Cursor.Position.X,
+                if (!_hasFocus && Body.BoundingRect.Contains((int)MouseHandler.Cursor.Position.X,
                                                    (int)MouseHandler.Cursor.Position.Y))
                 {
                     ImageRender.Color = HoverColor;
@@ -125,6 +143,11 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                     {
                         _clickposition = MouseHandler.Cursor.Position;
                         _hasFocus = true;
+                    }
+                    if (MouseHandler.IsMouseButtonPressed(MouseButton.RightButton))
+                    {
+                        _hasFocus = true;
+                        _lastImmovable = Collision.Immovable;
                     }
                 }
                 else if (!_hasFocus)
@@ -141,6 +164,16 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
 
                     //Add delta to force.
                     Physics.AddForce((_clickposition - _releaseposition) / 2f);
+                }
+                else if (_hasFocus && MouseHandler.IsMouseButtonDown(MouseButton.RightButton))
+                {
+                    Body.Position -= new Vector2(MouseHandler.Delta.X, MouseHandler.Delta.Y);
+                    Collision.Immovable = true;
+                }
+                else if (_hasFocus && MouseHandler.IsMouseButtonUp(MouseButton.LeftButton) && MouseHandler.IsMouseButtonUp(MouseButton.RightButton))
+                {
+                    _hasFocus = false;
+                    Collision.Immovable = _lastImmovable;
                 }
 
                 //Reset our position if it goes off screen.

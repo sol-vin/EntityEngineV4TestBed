@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EntityEngineV4.Collision;
 using EntityEngineV4.Collision.Shapes;
 using EntityEngineV4.Components;
@@ -33,9 +34,12 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             for (int x = 0; x < 3; x++)
             {
                 CollisionTestEntity c = new CollisionTestEntity(this, "A" + x);
+                if (c.Name == "A0")
+                    c.Collision.CollisionDirection.BitmaskChanged += bm => BitmaskChanged();
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Collision.Debug = true;
                 c.Body.Position = new Vector2(30, 80 * x + 20);
                 AddEntity(c);
             }
@@ -48,21 +52,35 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Body.Position = new Vector2(510, 80 * x + 20);
                 c.Color = Color.Orange;
                 c.HoverColor = Color.Black;
+                c.Collision.Debug = true;
                 AddEntity(c);
             }
         }
 
         public override void Update(GameTime gt)
         {
-            string text = "Currently collided: ";
-            foreach (var c in _collided)
-            {
-                text += c + " ";
-            }
+            base.Update(gt);
+
+            Bitmask mask = GetEntity<CollisionTestEntity>("A0").Collision.CollisionDirection;
+            string text = "Collision Directions (A0): ";
+
+            if (mask.HasMatchingBit(CollisionHandler.LEFT))
+                text += "Left";
+            else if (mask.HasMatchingBit(CollisionHandler.RIGHT))
+                text += "Right";
+            else if (mask.HasMatchingBit(CollisionHandler.UP))
+                text += "Up";
+            else if (mask.HasMatchingBit(CollisionHandler.DOWN))
+                text += "Down";
+
             _collidedLabel.Text = text;
 
             _collided.Clear();
-            base.Update(gt);
+        }
+
+        public void BitmaskChanged()
+        {
+            Console.WriteLine("BITMASK CHANGED!");
         }
 
         private class CollisionTestEntity : Entity

@@ -124,10 +124,6 @@
     <Compile Include="States\TestBedStateManager.cs" />
     <Compile Include="States\TestControl\TestControlManager.cs" />
     <Compile Include="States\TestControl\ControlTestState.cs" />
-    <Compile Include="States\TilemapTest\Components\Tile.cs" />
-    <Compile Include="States\TilemapTest\Components\Tilemap.cs" />
-    <Compile Include="States\TilemapTest\Components\TilemapData.cs" />
-    <Compile Include="States\TilemapTest\Components\TilemapRender.cs" />
     <Compile Include="States\TilemapTest\TilemapTestState.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +167,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="States\TilemapTest\Components\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
