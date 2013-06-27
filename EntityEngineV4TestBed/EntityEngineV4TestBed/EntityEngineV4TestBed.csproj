@@ -110,6 +110,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="States\AutoRunnerTest\AutoRunnerGameState.cs" />
+    <Compile Include="States\AutoRunnerTest\AutoRunnerMenuState.cs" />
+    <Compile Include="States\AutoRunnerTest\Objects\Building.cs" />
+    <Compile Include="States\AutoRunnerTest\Objects\Player.cs" />
+    <Compile Include="States\CameraTest\CameraTestState.cs" />
     <Compile Include="States\CollisionTest\CollisionTestState.cs" />
     <Compile Include="States\ColorTest\ColorTestState.cs" />
     <Compile Include="States\FancyParticleTest\FancyParticleTest.cs" />
@@ -117,9 +122,7 @@
     <Compile Include="States\ParticleTest\ParticleTestState.cs" />
     <Compile Include="States\ResolutionTest\ResolutionTestState.cs" />
     <Compile Include="States\SuperTownDefence\STDGameState.cs" />
-    <Compile Include="States\SuperTownDefence\STDGameStateManager.cs" />
     <Compile Include="States\SuperTownDefence\STDMenuState.cs" />
-    <Compile Include="States\SuperTownDefence\STDMenuStateManager.cs" />
     <Compile Include="States\TestBedState.cs" />
     <Compile Include="States\TestBedStateManager.cs" />
     <Compile Include="States\TestControl\TestControlManager.cs" />

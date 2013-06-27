@@ -18,7 +18,11 @@ namespace EntityEngineV4TestBed.States
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-            if (_backkey.Released()) StateRef.ChangeToState("MenuState");
+            if (_backkey.Released()) 
+            {
+                StateRef.Destroy();
+                StateRef.ChangeToState("MenuState");
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.SuperTownDefence
 {
@@ -41,6 +42,24 @@ namespace EntityEngineV4TestBed.States.SuperTownDefence
             AddEntity(new STDMenuStateManager(this));
 
             Services.Add(ch);
+        }
+        private class STDMenuStateManager : Entity
+        {
+            private DoubleInput _startkey;
+
+            public STDMenuStateManager(EntityState stateref)
+                : base(stateref, "STDMenuStateManager")
+            {
+                _startkey = new DoubleInput(this, "StartKey", Keys.Enter, Buttons.Start, PlayerIndex.One);
+            }
+
+            public override void Update(GameTime gt)
+            {
+                base.Update(gt);
+
+                if (_startkey.Released())
+                    StateRef.ChangeToState("STDGameState");
+            }
         }
     }
 }

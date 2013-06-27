@@ -39,6 +39,8 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Body.Bounds = new Vector2(50,100);
+                c.ImageRender.Scale = c.Body.Bounds;
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(30, 80 * x + 20);
                 AddEntity(c);
@@ -50,6 +52,8 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
                 c.Body.Position = new Vector2(510, 80 * x + 20);
+                c.Body.Bounds = new Vector2(100,50);
+                c.ImageRender.Scale = c.Body.Bounds;
                 c.Color = Color.Orange;
                 c.HoverColor = Color.Black;
                 c.Collision.Debug = true;
@@ -61,6 +65,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         {
             base.Update(gt);
 
+            if (Destroyed) return;
             Bitmask mask = GetEntity<CollisionTestEntity>("A0").Collision.CollisionDirection;
             string text = "Collision Directions (A0): ";
 

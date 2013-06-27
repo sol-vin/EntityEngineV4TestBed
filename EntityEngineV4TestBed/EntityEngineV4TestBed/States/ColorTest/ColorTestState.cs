@@ -28,40 +28,6 @@ namespace EntityEngineV4TestBed.States.ColorTest
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-
-            if (_ctm.UpKey.Released()) IncreaseY();
-            else if (_ctm.DownKey.Released()) DecreaseY();
-
-            if (_ctm.RightKey.Released()) IncreaseX();
-            else if (_ctm.LeftKey.Released()) DecreaseX();
-        }
-
-        public void IncreaseX()
-        {
-            _size.X += sizechange;
-            _size.X = (int)MathHelper.Clamp(_size.X, 5, EntityGame.Viewport.Width);
-            RepopulateEntities();
-        }
-
-        public void DecreaseX()
-        {
-            _size.X -= sizechange;
-            _size.X = (int)MathHelper.Clamp(_size.X, 5, EntityGame.Viewport.Width);
-            RepopulateEntities();
-        }
-
-        public void IncreaseY()
-        {
-            _size.Y += sizechange;
-            _size.Y = (int)MathHelper.Clamp(_size.Y, 5, EntityGame.Viewport.Height);
-            RepopulateEntities();
-        }
-
-        public void DecreaseY()
-        {
-            _size.Y -= sizechange;
-            _size.Y = (int)MathHelper.Clamp(_size.Y, 5, EntityGame.Viewport.Height);
-            RepopulateEntities();
         }
 
         public void RepopulateEntities()

@@ -2,6 +2,8 @@
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
+using EntityEngineV4TestBed.States.AutoRunnerTest;
+using EntityEngineV4TestBed.States.CameraTest;
 using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ColorTest;
 using EntityEngineV4TestBed.States.FancyParticleTest;
@@ -34,6 +36,7 @@ namespace EntityEngineV4TestBed.States.Menu
             Services.Add(ch);
 
             _menuStateManager = new MenuStateManager(this, ch);
+            _menuStateManager.AddMenuItem("Camera Test State", ShowCameraTestState);
             _menuStateManager.AddMenuItem("Control Test State", ShowControlTestState);
             _menuStateManager.AddMenuItem("Particle Test State", ShowParticleTestState);
             _menuStateManager.AddMenuItem("Fancy Particle Test State", ShowFancyParticleTestState);
@@ -42,6 +45,7 @@ namespace EntityEngineV4TestBed.States.Menu
             _menuStateManager.AddMenuItem("Color Test State", ShowColorTestState);
             _menuStateManager.AddMenuItem("Tilemap Test State", ShowTilemapTestState);
             _menuStateManager.AddMenuItem("Super Town Defence", ShowSTDMenuState);
+            _menuStateManager.AddMenuItem("Auto Runner", ShowAutoRunnerMenuState);
             AddEntity(_menuStateManager);
         }
 
@@ -99,6 +103,20 @@ namespace EntityEngineV4TestBed.States.Menu
             var tilemapTestState = new TilemapTestState(Parent);
             tilemapTestState.ChangeState += Show;
             tilemapTestState.Show();
+        }
+
+        public void ShowCameraTestState()
+        {
+            var cameraTestState = new CameraTestState(Parent);
+            cameraTestState.ChangeState += Show;
+            cameraTestState.Show();
+        }
+
+        public void ShowAutoRunnerMenuState()
+        {
+            var cameraTestState = new AutoRunnerMenuState(Parent);
+            cameraTestState.ChangeState += Show;
+            cameraTestState.Show();
         }
 
         private class MenuStateManager : Entity

@@ -82,6 +82,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         public override void Update(GameTime gt)
         {
             base.Update(gt);
+            if (Destroyed) return;
 
             string debug = GetEntity<ResolutionTestEntity>("A0").Body.Position.ToString(); 
             _collidedLabel.Text = "A0: " + debug;
