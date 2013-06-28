@@ -139,8 +139,9 @@
       <Name>EntityEngineV4</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntityEngineV4TestBedContent\EntityEngineV4TestBedContent.contentproj">
-      <Name>EntityEngineV4TestBedContent</Name>
+      <Name>EntityEngineV4TestBedContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{04EFF616-8AF4-42C1-B33B-12C13F951DB2}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

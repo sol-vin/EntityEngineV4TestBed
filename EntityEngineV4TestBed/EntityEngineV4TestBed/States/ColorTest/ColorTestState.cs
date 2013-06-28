@@ -12,7 +12,6 @@ namespace EntityEngineV4TestBed.States.ColorTest
     public class ColorTestState : TestBedState
     {
         private Point _size = new Point(30, 30);
-        private int sizechange = 5;
 
         private ColorTestManager _ctm;
 

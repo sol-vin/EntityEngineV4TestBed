@@ -8,6 +8,7 @@ using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4TestBed.States.AutoRunnerTest.Objects;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.AutoRunnerTest
 {
@@ -20,15 +21,30 @@ namespace EntityEngineV4TestBed.States.AutoRunnerTest
             Services.Add(new InputHandler(this));
             Services.Add(new MouseHandler(this));
             Services.Add(new CollisionHandler(this));
-
+            AddEntity(new AutoRunnerGameManager(this));
             _player= new Player(this);
             AddEntity(_player);
 
             b = new Building(this, "Building");
-            //b.Body.Position = new Vector2(10, 570);
-            //b.Body.Bounds.X = 500;
-            //b.Image.Scale = b.Body.Bounds;
             AddEntity(b);
+        }
+
+        public class AutoRunnerGameManager : Entity
+        {
+            public DoubleInput BackKey;
+            public AutoRunnerGameManager(EntityState stateref) : base(stateref, "AutoRunnerGameManager")
+            {
+                BackKey = new DoubleInput(this, "BackKey", Keys.Back, Buttons.Back, PlayerIndex.One);
+            }
+
+            public override void Update(GameTime gt)
+            {
+                if (BackKey.Released())
+                {
+                    StateRef.Show("AutoRunnerMenuState");
+                }
+                base.Update(gt);
+            }
         }
     }
 }

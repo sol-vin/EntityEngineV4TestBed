@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="984ffa1e-cd20-4b72-a3f3-0060d9badb62" name="SnooperSnayk@SNOOPERSNAYK-PC 2013-06-27 19:21:58" runUser="SnooperSnayk-PC\SnooperSnayk" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="c1d964d1-5453-408b-ba45-eca3a32d2ee7">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="SnooperSnayk_SNOOPERSNAYK-PC 2013-06-27 19_21_58">
+      <DeploymentItem filename="C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4\EntityEngineV4\bin\Debug\EntityEngineV4.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-06-27T19:21:58.3939812-07:00" queuing="2013-06-27T19:21:59.5774022-07:00" start="2013-06-27T19:21:59.6242023-07:00" finish="2013-06-27T19:22:00.0298030-07:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="2" executed="2" passed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CollideAABBvsAABB2" storage="c:\users\snoopersnayk\documents\github\entityenginev4testbed\entityenginev4test\bin\debug\entityenginev4test.dll" id="ecbe2d02-9b35-4cbd-91c6-ac81a9c26913">
+      <Execution id="45e51c2c-7561-4fd3-98a4-4afb3be7c312" />
+      <TestMethod codeBase="C:/Users/SnooperSnayk/Documents/GitHub/EntityEngineV4TestBed/EntityEngineV4Test/bin/Debug/EntityEngineV4Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="EntityEngineV4Test.CollisionTest, EntityEngineV4Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CollideAABBvsAABB2" />
+    </UnitTest>
+    <UnitTest name="CollideAABBvsAABB1" storage="c:\users\snoopersnayk\documents\github\entityenginev4testbed\entityenginev4test\bin\debug\entityenginev4test.dll" id="6e81cd68-0f75-7438-2fe3-16d64e678ee5">
+      <Execution id="e0707912-d51e-4088-8eca-c2886c11ffb1" />
+      <TestMethod codeBase="C:/Users/SnooperSnayk/Documents/GitHub/EntityEngineV4TestBed/EntityEngineV4Test/bin/Debug/EntityEngineV4Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="EntityEngineV4Test.CollisionTest, EntityEngineV4Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CollideAABBvsAABB1" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="6e81cd68-0f75-7438-2fe3-16d64e678ee5" executionId="e0707912-d51e-4088-8eca-c2886c11ffb1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ecbe2d02-9b35-4cbd-91c6-ac81a9c26913" executionId="45e51c2c-7561-4fd3-98a4-4afb3be7c312" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="e0707912-d51e-4088-8eca-c2886c11ffb1" testId="6e81cd68-0f75-7438-2fe3-16d64e678ee5" testName="CollideAABBvsAABB1" computerName="SNOOPERSNAYK-PC" duration="00:00:00.0561327" startTime="2013-06-27T19:21:59.6242023-07:00" endTime="2013-06-27T19:21:59.9674029-07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e0707912-d51e-4088-8eca-c2886c11ffb1">
+    </UnitTestResult>
+    <UnitTestResult executionId="45e51c2c-7561-4fd3-98a4-4afb3be7c312" testId="ecbe2d02-9b35-4cbd-91c6-ac81a9c26913" testName="CollideAABBvsAABB2" computerName="SNOOPERSNAYK-PC" duration="00:00:00.0159089" startTime="2013-06-27T19:21:59.9674029-07:00" endTime="2013-06-27T19:21:59.9830029-07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="45e51c2c-7561-4fd3-98a4-4afb3be7c312">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Fail failed. </Message>
+          <StackTrace>   at EntityEngineV4Test.CollisionTest.CollideAABBvsAABB2() in c:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\CollisionTest.cs:line 100
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

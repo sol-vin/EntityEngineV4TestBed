@@ -21,7 +21,7 @@ namespace EntityEngineV4TestBed.States.AutoRunnerTest.Objects
 
         public Building(EntityState stateref, string name) : base(stateref, name)
         {
-            Random rand = new Random(DateTime.Now.Millisecond^DateTime.Now.Second*Id);
+            Random rand = new Random(DateTime.Now.Millisecond^DateTime.Now.Second*(int)Id);
             Body = new Body(this, "Body");
             Body.Position = new Vector2(0, 550);
             Body.Bounds = new Vector2(3000, 100);
