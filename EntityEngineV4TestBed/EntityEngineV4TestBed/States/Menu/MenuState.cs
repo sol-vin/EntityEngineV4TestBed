@@ -9,6 +9,7 @@ using EntityEngineV4TestBed.States.ColorTest;
 using EntityEngineV4TestBed.States.FancyParticleTest;
 using EntityEngineV4TestBed.States.ParticleTest;
 using EntityEngineV4TestBed.States.ResolutionTest;
+using EntityEngineV4TestBed.States.SourceRectangleTest;
 using EntityEngineV4TestBed.States.SuperTownDefence;
 using EntityEngineV4TestBed.States.TestControl;
 using EntityEngineV4TestBed.States.TilemapTest;
@@ -44,6 +45,7 @@ namespace EntityEngineV4TestBed.States.Menu
             _menuStateManager.AddMenuItem("Resolution Test State", ShowResolutionTestState);
             _menuStateManager.AddMenuItem("Color Test State", ShowColorTestState);
             _menuStateManager.AddMenuItem("Tilemap Test State", ShowTilemapTestState);
+            _menuStateManager.AddMenuItem("Render Test State", ShowRenderTestState);
             _menuStateManager.AddMenuItem("Super Town Defence", ShowSTDMenuState);
             _menuStateManager.AddMenuItem("Auto Runner", ShowAutoRunnerMenuState);
             AddEntity(_menuStateManager);
@@ -117,6 +119,13 @@ namespace EntityEngineV4TestBed.States.Menu
             var cameraTestState = new AutoRunnerMenuState(Parent);
             cameraTestState.ChangeState += Show;
             cameraTestState.Show();
+        }
+
+        public void ShowRenderTestState()
+        {
+            var sourceTestState = new RenderTestState(Parent);
+            sourceTestState.ChangeState += Show;
+            sourceTestState.Show();
         }
 
         private class MenuStateManager : Entity

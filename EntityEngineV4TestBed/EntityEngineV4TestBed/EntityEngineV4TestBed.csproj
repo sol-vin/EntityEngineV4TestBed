@@ -121,6 +121,7 @@
     <Compile Include="States\Menu\MenuState.cs" />
     <Compile Include="States\ParticleTest\ParticleTestState.cs" />
     <Compile Include="States\ResolutionTest\ResolutionTestState.cs" />
+    <Compile Include="States\SourceRectangleTest\RenderTestState.cs" />
     <Compile Include="States\SuperTownDefence\STDGameState.cs" />
     <Compile Include="States\SuperTownDefence\STDMenuState.cs" />
     <Compile Include="States\TestBedState.cs" />
@@ -132,6 +133,9 @@
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
+    <Content Include="States\SourceRectangleTest\sourcerectangles.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\EntityEngineV4\EntityEngineV4\EntityEngineV4.csproj">

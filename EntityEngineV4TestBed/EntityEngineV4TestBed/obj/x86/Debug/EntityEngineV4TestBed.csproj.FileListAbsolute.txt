@@ -60,3 +60,5 @@ C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestB
 C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\EntityEngineV4.pdb
 C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SourceAnimationTest\scott.xnb
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\States\SourceRectangleTest\sourcerectangles.xml

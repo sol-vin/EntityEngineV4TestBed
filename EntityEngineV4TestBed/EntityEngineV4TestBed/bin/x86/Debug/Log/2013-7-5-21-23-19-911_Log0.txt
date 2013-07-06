@@ -1,0 +1,21 @@
+Starting Log @ 2013-7-5 | 21:23:19:912
+===========================================
+[7-5 : 21:23:19:931931] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[7-5 : 21:23:19:950950] - [Info] - [Sender: MenuState] - Entity MenuStateManager added with ID6
+[7-5 : 21:23:21:386386] - [Info] - [Sender: RenderTestState] - Entity TestBedStateManager added with ID0
+[7-5 : 21:23:21:415415] - [Info] - [Sender: RenderTestState] - Entity Animation added with ID5
+[7-5 : 21:23:25:250250] - [Info] - [Sender: RenderTestState] - Entity TestBedStateManager removed with ID0
+[7-5 : 21:23:25:251251] - [Info] - [Sender: RenderTestState->TestBedStateManager->BackKey] - Destroyed
+[7-5 : 21:23:25:252252] - [Info] - [Sender: RenderTestState->TestBedStateManager->BackKeykey] - Destroyed
+[7-5 : 21:23:25:252252] - [Info] - [Sender: RenderTestState->TestBedStateManager->BackKeygamepad] - Destroyed
+[7-5 : 21:23:25:252252] - [Info] - [Sender: RenderTestState->TestBedStateManager] - Destroyed
+[7-5 : 21:23:25:252252] - [Info] - [Sender: RenderTestState] - Entity Animation removed with ID5
+[7-5 : 21:23:25:253253] - [Info] - [Sender: RenderTestState->Animation->Body] - Destroyed
+[7-5 : 21:23:25:253253] - [Info] - [Sender: RenderTestState->Animation->Source] - Destroyed
+[7-5 : 21:23:25:253253] - [Info] - [Sender: RenderTestState->Animation->Source.FrameTimer] - Destroyed
+[7-5 : 21:23:25:253253] - [Info] - [Sender: RenderTestState->Animation] - Destroyed
+[7-5 : 21:23:25:254254] - [Info] - [Sender: RenderTestState->InputHandler] - Destroyed
+[7-5 : 21:23:25:255255] - [Info] - [Sender: RenderTestState] - Destoyed
+[7-5 : 21:23:25:256256] - [Info] - [Sender: MenuState] - Shown
+[7-5 : 21:23:25:256256] - [Info] - [Sender: RenderTestState] - Changed to state MenuState
+[7-5 : 21:23:37:2727] - [Info] - [Sender: RenderTestState] - Entity TestBedStateManager added with ID0

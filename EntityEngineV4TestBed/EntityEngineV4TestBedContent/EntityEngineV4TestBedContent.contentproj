@@ -55,8 +55,17 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <None Include="SourceAnimationTest\level.png">
+      <Name>level</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </None>
+    <Compile Include="SourceAnimationTest\scott.png">
+      <Name>scott</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="SuperTownDefence\game\background.png">
       <Name>background</Name>
       <Importer>TextureImporter</Importer>
