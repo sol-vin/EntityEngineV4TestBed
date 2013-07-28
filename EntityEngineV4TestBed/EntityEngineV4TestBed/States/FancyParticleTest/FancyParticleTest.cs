@@ -68,7 +68,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
             public Color Color = Color.White;
 
             public FancyEmitter(Entity e, string name, Body body)
-                : base(e, name, Assets.Pixel)
+                : base(e, name)
             {
                 _body = body;
             }
@@ -88,7 +88,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 }
                 p.Physics.Thrust(thrust);
                 p.Physics.Acceleration = new Vector2(0, .1f);
-                p.ImageRender.Scale = new Vector2(5, 5);
+                p.RectRender.Scale = new Vector2(5, 5);
                 return p;
             }
 
@@ -97,15 +97,16 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 private int _floor = EntityGame.Viewport.Height - 20;
 
                 public Physics Physics;
-                public ImageRender ImageRender;
+                public ImageRender RectRender;
 
                 public ExplodingParticle(EntityState stateref, int ttl, Emitter e, Color color)
                     : base(stateref, ttl, e)
                 {
                     Physics = new Physics(this, "Physics", Body);
 
-                    ImageRender = new ImageRender(this, "ImageRender", e.Texture, Body);
-                    ImageRender.Color = color;
+                    //TODO: Fix this test
+                    RectRender = new ImageRender(this, "RectRender", null, Body);
+                    RectRender.Color = color;
 
                     Emitter = new GibEmitter(this, "Emitter", Body, Physics, color);
                 }
@@ -133,7 +134,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     private Color _color;
 
                     public GibEmitter(Entity parent, string name, Body body, Physics physics, Color color)
-                        : base(parent, name, Assets.Pixel)
+                        : base(parent, name)
                     {
                         _body = body;
                         _physics = physics;
@@ -170,7 +171,8 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     {
                         FadeAge = TimeToLive / 5 * 4;
                         Physics = new Physics(this, "Physics", Body);
-                        ImageRender = new ImageRender(this, "ImageRender", e.Texture, Body);
+                        //TODO: Fix this
+                        ImageRender = new ImageRender(this, "RectRender", null, Body);
                         Render = ImageRender;
                     }
 

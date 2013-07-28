@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EntityEngineV4.Components.Rendering.Primitives;
 using EntityEngineV4.Engine;
 using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
@@ -22,6 +23,22 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             AddLine(10, 14, 50, 110, 3, Color.Orange);
             AddLine(10,60, 60, 10, 2, Color.Yellow);
             AddTriangle(new Vector2(300, 300), new Vector2(370, 280), new Vector2(335, 360), 1, Color.Crimson);
+
+            _primitiveHandler.AddPrimitive(new DrawingTools.Rectangle(400, 400, 40, 20)
+                {
+                    Thickness = 1,
+                    Color = Color.LimeGreen,
+                    Fill = true
+                });
+
+            _primitiveHandler.AddPrimitive(new DrawingTools.Rectangle(400, 300, 40, 20)
+            {
+                Thickness = 10,
+                Color = Color.Red,
+                Fill = false
+            });
+
+            AddEntity(new PrimitiveTestEntity(this, "test1"));
         }
 
         public override void Draw(SpriteBatch sb)
@@ -37,6 +54,19 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
         public void AddTriangle(Vector2 p1, Vector2 p2, Vector2 p3, float thickness, Color color)
         {
             _primitiveHandler.AddPrimitive(new DrawingTools.Triangle(p1,p2,p3,color) { Thickness = thickness});
+        }
+
+        private class PrimitiveTestEntity : Entity
+        {
+            public DrawTypes.Rectangle Rectangle;
+
+            public PrimitiveTestEntity(EntityState stateref, string name) : base(stateref, name)
+            {
+                Rectangle = new DrawTypes.Rectangle(this, "Rect", 100,200, 40, 60);
+                Rectangle.Thickness = 3;
+                Rectangle.Color = Color.MediumAquamarine;
+                Rectangle.Angle = MathHelper.PiOver4;
+            }
         }
     }
 }

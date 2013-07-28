@@ -2,6 +2,7 @@
 using System.Linq;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
+using EntityEngineV4.Components.Rendering.Primitives;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
@@ -199,15 +200,17 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 public Vector2 Acceleration = new Vector2(0, .2f);
 
                 public TestEmitter(Entity e, string name)
-                    : base(e, name, Assets.Pixel)
+                    : base(e, name)
                 {
                 }
 
                 protected override Particle GenerateNewParticle()
                 {
                     var p = new TestParticle(Parent.StateRef, this);
-                    p.ImageRender.Color = MathTools.Color.HSVtoRGB((float)_random.NextDouble(), 1, 1, 1);
+                    p.RectRender.Color = MathTools.Color.HSVtoRGB((float)_random.NextDouble(), 1, 1, 1);
                     p.Body.Position = new Vector2(MouseHandler.Cursor.Position.X, MouseHandler.Cursor.Position.Y);
+                    p.Body.Width = 4; //_random.Next(1, 4);
+                    p.Body.Height = 4; // _random.Next(1, 4);
                     p.Body.Angle = (float)_random.NextDouble() * MathHelper.TwoPi;
 
                     float thrust = (float)_random.NextDouble() * Strength;
@@ -219,23 +222,36 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     p.Physics.AngularVelocity = (float)_random.NextDouble();
                     p.Physics.Acceleration = Acceleration;
 
-                    p.ImageRender.Scale = Vector2.One * 6f * (float)_random.NextDouble() + Vector2.One;
-                    p.ImageRender.Layer = 0f;
+                   // p.RectRender.Scale = Vector2.One * 6f * (float)_random.NextDouble() + Vector2.One;
+                    p.RectRender.Layer = 0f;
                     return p;
                 }
 
                 private class TestParticle : FadeParticle
                 {
                     public Physics Physics;
-                    public ImageRender ImageRender;
+                    public DrawTypes.Rectangle RectRender;
 
                     public TestParticle(EntityState stateref, Emitter e)
                         : base(stateref, 3000, e)
                     {
                         Physics = new Physics(this, "Physics", Body);
-                        ImageRender = new ImageRender(this, "ImageRender", e.Texture, Body);
-                        Render = ImageRender;
+                        RectRender = new DrawTypes.Rectangle(this, "RectRender", Body.X, Body.Y, Body.Bounds.X,
+                                                             Body.Bounds.Y, false);
+                        RectRender.Thickness = 1;
+                        Render = RectRender;
                         FadeAge = 1000;
+                    }
+
+                    public override void Update(GameTime gt)
+                    {
+                        base.Update(gt);
+
+                        RectRender.X = Body.X;
+                        RectRender.Y = Body.Y;
+                        RectRender.Width = Body.Width;
+                        RectRender.Height = Body.Height;
+                        RectRender.Angle = Body.Angle;
                     }
                 }
             }

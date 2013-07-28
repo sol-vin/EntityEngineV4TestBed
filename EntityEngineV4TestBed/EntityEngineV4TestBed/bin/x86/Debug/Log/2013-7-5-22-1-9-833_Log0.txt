@@ -1,6 +1,0 @@
-Starting Log @ 2013-7-5 | 22:1:9:833
-===========================================
-[7-5 : 22:1:9:851851] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
-[7-5 : 22:1:9:869869] - [Info] - [Sender: MenuState] - Entity MenuStateManager added with ID6
-[7-5 : 22:1:10:809809] - [Info] - [Sender: RenderTestState] - Entity TestBedStateManager added with ID0
-[7-5 : 22:1:10:832832] - [Info] - [Sender: RenderTestState] - Entity Animation added with ID5
