@@ -4,6 +4,7 @@ using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
+using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -96,7 +97,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
             {
                 Hue += HUEINCREASE;
 
-                Render.Color = ColorMath.HSVtoRGB(Hue, 1, 1, 1);
+                Render.Color = MathTools.Color.HSVtoRGB(Hue, 1, 1, 1);
             }
         }
     }

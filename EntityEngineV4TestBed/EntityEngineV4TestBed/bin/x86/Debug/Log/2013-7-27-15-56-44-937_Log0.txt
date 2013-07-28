@@ -1,0 +1,12 @@
+Starting Log @ 2013-7-27 | 15:56:44:938
+===========================================
+[7-27 : 15:56:44:955955] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[7-27 : 15:56:44:971971] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem0 added
+[7-27 : 15:56:44:971971] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem1 added
+[7-27 : 15:56:44:971971] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem2 added
+[7-27 : 15:56:44:971971] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem3 added
+[7-27 : 15:56:44:972972] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem4 added
+[7-27 : 15:56:44:972972] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem5 added
+[7-27 : 15:56:44:972972] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem6 added
+[7-27 : 15:56:44:972972] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem7 added
+[7-27 : 15:56:44:972972] - [Info] - [Sender: MenuSt

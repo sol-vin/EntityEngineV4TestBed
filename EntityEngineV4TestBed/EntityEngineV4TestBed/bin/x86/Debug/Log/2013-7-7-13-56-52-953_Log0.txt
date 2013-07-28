@@ -1,0 +1,6 @@
+Starting Log @ 2013-7-7 | 13:56:52:953
+===========================================
+[7-7 : 13:56:52:970970] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[7-7 : 13:56:52:988988] - [Info] - [Sender: MenuState] - Entity MenuStateManager added with ID6
+[7-7 : 13:56:54:116116] - [Info] - [Sender: RenderTestState] - Entity TestBedStateManager added with ID0
+[7-7 : 13:56:54:146146] - [Info] - [Sender: RenderTestState] - Entity SourceAnimation added with ID5

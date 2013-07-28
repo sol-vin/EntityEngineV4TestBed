@@ -1,0 +1,28 @@
+Starting Log @ 2013-7-25 | 22:47:3:452
+===========================================
+[7-25 : 22:47:3:470470] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[7-25 : 22:47:3:488488] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem0 added
+[7-25 : 22:47:3:489489] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem1 added
+[7-25 : 22:47:3:489489] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem2 added
+[7-25 : 22:47:3:489489] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem3 added
+[7-25 : 22:47:3:490490] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem4 added
+[7-25 : 22:47:3:490490] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem5 added
+[7-25 : 22:47:3:490490] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem6 added
+[7-25 : 22:47:3:491491] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem7 added
+[7-25 : 22:47:3:491491] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem8 added
+[7-25 : 22:47:3:491491] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem9 added
+[7-25 : 22:47:3:492492] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem10 added
+[7-25 : 22:47:3:492492] - [Warning] - [Sender: MenuState] - Entity MenuStateManager added with ID6
+[7-25 : 22:47:3:494494] - [Info] - [Sender: MenuState] - Shown
+[7-25 : 22:47:6:140140] - [Warning] - [Sender: ResolutionTestState] - Entity TestBedStateManager added with ID0
+[7-25 : 22:47:6:145145] - [Warning] - [Sender: ResolutionTestState] - Entity CollidedLabel added with ID10
+[7-25 : 22:47:6:151151] - [Warning] - [Sender: ResolutionTestState] - Entity A0 added with ID13
+[7-25 : 22:47:6:153153] - [Warning] - [Sender: ResolutionTestState] - Entity A1 added with ID20
+[7-25 : 22:47:6:154154] - [Warning] - [Sender: ResolutionTestState] - Entity A2 added with ID27
+[7-25 : 22:47:6:154154] - [Warning] - [Sender: ResolutionTestState] - Entity B0 added with ID34
+[7-25 : 22:47:6:155155] - [Warning] - [Sender: ResolutionTestState] - Entity B1 added with ID41
+[7-25 : 22:47:6:155155] - [Warning] - [Sender: ResolutionTestState] - Entity B2 added with ID48
+[7-25 : 22:47:6:155155] - [Warning] - [Sender: ResolutionTestState] - Entity C0 added with ID55
+[7-25 : 22:47:6:156156] - [Warning] - [Sender: ResolutionTestState] - Entity C1 added with ID62
+[7-25 : 22:47:6:156156] - [Warning] - [Sender: ResolutionTestState] - Entity C2 added with ID69
+[7-25 : 22:47:6:158158] - [Info] - [Sender: ResolutionTestState] - Shown

@@ -1,0 +1,34 @@
+Starting Log @ 2013-7-25 | 23:21:15:157
+===========================================
+[7-25 : 23:21:15:173173] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[7-25 : 23:21:15:189189] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem0 added
+[7-25 : 23:21:15:189189] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem1 added
+[7-25 : 23:21:15:190190] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem2 added
+[7-25 : 23:21:15:190190] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem3 added
+[7-25 : 23:21:15:190190] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem4 added
+[7-25 : 23:21:15:190190] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem5 added
+[7-25 : 23:21:15:190190] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem6 added
+[7-25 : 23:21:15:190190] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem7 added
+[7-25 : 23:21:15:190190] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem8 added
+[7-25 : 23:21:15:190190] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem9 added
+[7-25 : 23:21:15:190190] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem10 added
+[7-25 : 23:21:15:191191] - [Warning] - [Sender: MenuState] - Entity MenuStateManager added with ID6
+[7-25 : 23:21:15:191191] - [Info] - [Sender: MenuState] - Shown
+[7-25 : 23:21:30:958958] - [Warning] - [Sender: STDMenuState] - Entity TestBedStateManager added with ID0
+[7-25 : 23:21:30:959959] - [Warning] - [Sender: STDGameState] - Entity STDGameStateManager added with ID1
+[7-25 : 23:21:30:979979] - [Info] - [Sender: STDMenuState->ControlHandler] - Control BGImage added
+[7-25 : 23:21:30:979979] - [Info] - [Sender: STDMenuState->ControlHandler] - Control StartText added
+[7-25 : 23:21:30:980980] - [Warning] - [Sender: STDMenuState] - Entity STDMenuStateManager added with ID12
+[7-25 : 23:21:30:980980] - [Info] - [Sender: STDMenuState] - Shown
+[7-25 : 23:22:7:800800] - [Warning] - [Sender: STDMenuState] - Entity TestBedStateManager removed with ID0
+[7-25 : 23:22:7:801801] - [Warning] - [Sender: STDMenuState] - Entity STDMenuStateManager removed with ID12
+[7-25 : 23:22:7:803803] - [Info] - [Sender: STDMenuState->InputHandler] - Destroyed
+[7-25 : 23:22:7:803803] - [Info] - [Sender: STDMenuState->ControlHandler] - Destroyed
+[7-25 : 23:22:7:803803] - [Info] - [Sender: STDMenuState] - Destoyed
+[7-25 : 23:22:7:804804] - [Info] - [Sender: MenuState] - Shown
+[7-25 : 23:22:7:804804] - [Info] - [Sender: STDMenuState] - Changed to state MenuState
+[7-25 : 23:22:10:436436] - [Warning] - [Sender: CollisionTestState] - Entity TestBedStateManager added with ID0
+[7-25 : 23:22:10:441441] - [Warning] - [Sender: CollisionTestState] - Entity CollidedLabel added with ID10
+[7-25 : 23:22:10:447447] - [Warning] - [Sender: CollisionTestState] - Entity A0 added with ID13
+[7-25 : 23:22:10:449449] - [Warning] - [Sender: CollisionTestState] - Entity A1 added with ID20
+[7-25 : 23:22:10:

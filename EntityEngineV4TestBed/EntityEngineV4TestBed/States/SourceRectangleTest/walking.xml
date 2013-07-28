@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<walking>
+  <R1>
+    <X>1</X>
+    <Y>85</Y>
+    <Width>43</Width>
+    <Height>60</Height>
+  </R1>
+  <R2>
+    <X>45</X>
+    <Y>85</Y>
+    <Width>43</Width>
+    <Height>60</Height>
+  </R2>
+</walking>

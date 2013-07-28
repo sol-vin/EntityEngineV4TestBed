@@ -8,6 +8,7 @@ using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4.Object;
+using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -205,7 +206,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 protected override Particle GenerateNewParticle()
                 {
                     var p = new TestParticle(Parent.StateRef, this);
-                    p.ImageRender.Color = ColorMath.HSVtoRGB((float)_random.NextDouble(), 1, 1, 1);
+                    p.ImageRender.Color = MathTools.Color.HSVtoRGB((float)_random.NextDouble(), 1, 1, 1);
                     p.Body.Position = new Vector2(MouseHandler.Cursor.Position.X, MouseHandler.Cursor.Position.Y);
                     p.Body.Angle = (float)_random.NextDouble() * MathHelper.TwoPi;
 

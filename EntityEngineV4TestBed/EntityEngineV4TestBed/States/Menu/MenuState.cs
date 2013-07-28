@@ -8,6 +8,7 @@ using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ColorTest;
 using EntityEngineV4TestBed.States.FancyParticleTest;
 using EntityEngineV4TestBed.States.ParticleTest;
+using EntityEngineV4TestBed.States.PrimitiveTest;
 using EntityEngineV4TestBed.States.ResolutionTest;
 using EntityEngineV4TestBed.States.SourceRectangleTest;
 using EntityEngineV4TestBed.States.SuperTownDefence;
@@ -46,8 +47,7 @@ namespace EntityEngineV4TestBed.States.Menu
             _menuStateManager.AddMenuItem("Color Test State", ShowColorTestState);
             _menuStateManager.AddMenuItem("Tilemap Test State", ShowTilemapTestState);
             _menuStateManager.AddMenuItem("Render Test State", ShowRenderTestState);
-            _menuStateManager.AddMenuItem("Super Town Defence", ShowSTDMenuState);
-            _menuStateManager.AddMenuItem("Auto Runner", ShowAutoRunnerMenuState);
+            _menuStateManager.AddMenuItem("Primitives Test State", ShowPrimitiveTestState);
             AddEntity(_menuStateManager);
         }
 
@@ -63,13 +63,6 @@ namespace EntityEngineV4TestBed.States.Menu
             var controlTestState = new ControlTestState(Parent);
             controlTestState.ChangeState += Show;
             controlTestState.Show();
-        }
-
-        public void ShowSTDMenuState()
-        {
-            var stdMenuState = new STDMenuState(Parent);
-            stdMenuState.ChangeState += Show;
-            stdMenuState.Show();
         }
 
         public void ShowCollisionTestState()
@@ -114,16 +107,16 @@ namespace EntityEngineV4TestBed.States.Menu
             cameraTestState.Show();
         }
 
-        public void ShowAutoRunnerMenuState()
-        {
-            var cameraTestState = new AutoRunnerMenuState(Parent);
-            cameraTestState.ChangeState += Show;
-            cameraTestState.Show();
-        }
-
         public void ShowRenderTestState()
         {
             var sourceTestState = new RenderTestState(Parent);
+            sourceTestState.ChangeState += Show;
+            sourceTestState.Show();
+        }
+
+        public void ShowPrimitiveTestState()
+        {
+            var sourceTestState = new PrimitiveTestState(Parent);
             sourceTestState.ChangeState += Show;
             sourceTestState.Show();
         }
@@ -166,8 +159,10 @@ namespace EntityEngineV4TestBed.States.Menu
             public void AddMenuItem(string label, ChangeStateDelegate changeStateDelegate)
             {
                 LinkLabel l = new LinkLabel(StateRef, "MenuItem" + (_lasttabposition.X ^ _lasttabposition.Y));
-                l.Body.Position = new Vector2(20, 20 + (_lasttabposition.Y * 30));
+                
                 l.Text = label;
+                l.Body.Position = new Vector2(20, (_lasttabposition.Y * l.Body.Height + 5));
+
                 l.Selected += control => changeStateDelegate();
 
                 l.TabPosition = _lasttabposition;

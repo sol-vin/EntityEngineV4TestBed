@@ -91,19 +91,19 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         private class ResolutionTestEntity : Entity
         {
             public Body Body;
-            public Body TextBody;
-            public Physics Physics;
+            private Body _textBody;
+            private Physics _physics;
 
             public Collision Collision;
-            public ImageRender ImageRender;
-            public TextRender TextRender;
+            private ImageRender _imageRender;
+            private TextRender _textRender;
 
             public Color Color = Color.Blue;
             public Color HoverColor = Color.Red;
 
             private Vector2 _clickposition;
             private Vector2 _releaseposition;
-            private bool _hasFocus;
+            public bool HasFocus;
             private bool _lastImmovable;
 
             public ResolutionTestEntity(EntityState stateref, string name)
@@ -112,83 +112,86 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 Body = new Body(this, "Body");
                 Body.Bounds = new Vector2(70, 70);
 
-                Physics = new Physics(this, "Physics", Body);
-                Physics.Drag = .95f;
+                _physics = new Physics(this, "_physics", Body);
+                _physics.Drag = .95f;
 
-                Collision = new Collision(this, "Collision", new AABB(), Body, Physics);
+                Collision = new Collision(this, "Collision", new AABB(), Body, _physics);
                 Collision.Mass = 10f;
                 Collision.Restitution = .5f;
 
-                ImageRender = new ImageRender(this, "Image", Assets.Pixel, Body);
-                ImageRender.Scale = new Vector2(70, 70);
-                ImageRender.Layer = .5f;
+                _imageRender = new ImageRender(this, "Image", Assets.Pixel, Body);
+                _imageRender.Scale = new Vector2(70, 70);
+                _imageRender.Layer = .5f;
 
-                TextBody = new Body(this, "TextBody");
+                _textBody = new Body(this, "_textBody");
 
-                TextRender = new TextRender(this, "TextRender", TextBody);
-                TextRender.Color = Color.White;
-                TextRender.Font = Assets.Font;
-                TextRender.Text = Name;
-                TextRender.Layer = 1f;
+                _textRender = new TextRender(this, "_textRender", _textBody);
+                _textRender.Color = Color.White;
+                _textRender.Font = Assets.Font;
+                _textRender.Text = Name;
+                _textRender.Layer = 1f;
             }
 
             public override void Update(GameTime gt)
             {
                 base.Update(gt);
 
-                if (!_hasFocus && Body.BoundingRect.Contains((int)MouseHandler.Cursor.Position.X,
+                if (!HasFocus && Body.BoundingRect.Contains((int)MouseHandler.Cursor.Position.X,
                                                    (int)MouseHandler.Cursor.Position.Y))
                 {
-                    ImageRender.Color = HoverColor;
+                    _imageRender.Color = HoverColor;
                     if (MouseHandler.IsMouseButtonPressed(MouseButton.LeftButton))
                     {
                         _clickposition = MouseHandler.Cursor.Position;
-                        _hasFocus = true;
+                        HasFocus = true;
                     }
                     if (MouseHandler.IsMouseButtonPressed(MouseButton.RightButton))
                     {
-                        _hasFocus = true;
+                        HasFocus = true;
                         _lastImmovable = Collision.Immovable;
                     }
+                    _textRender.Text = Name + Environment.NewLine +
+                                       "X:" + Math.Round(Body.X, 2) + Environment.NewLine +
+                                       "Y" + Math.Round(Body.Y, 2);
                 }
-                else if (!_hasFocus)
+                else if (!HasFocus)
                 {
                     //_clickposition = Vector2.Zero;
                     //_releaseposition = Vector2.Zero;
-                    ImageRender.Color = Color;
+                    _imageRender.Color = Color;
                 }
 
-                if (_hasFocus && MouseHandler.IsMouseButtonReleased(MouseButton.LeftButton))
+                if (HasFocus && MouseHandler.IsMouseButtonReleased(MouseButton.LeftButton))
                 {
-                    _hasFocus = false;
+                    HasFocus = false;
                     _releaseposition = MouseHandler.Cursor.Position;
 
                     //Add delta to force.
-                    Physics.AddForce((_clickposition - _releaseposition) / 2f);
+                    _physics.AddForce((_clickposition - _releaseposition) / 2f);
                 }
-                else if (_hasFocus && MouseHandler.IsMouseButtonDown(MouseButton.RightButton))
+                else if (HasFocus && MouseHandler.IsMouseButtonDown(MouseButton.RightButton))
                 {
                     Body.Position -= new Vector2(MouseHandler.Delta.X, MouseHandler.Delta.Y);
                     Collision.Immovable = true;
                 }
-                else if (_hasFocus && MouseHandler.IsMouseButtonUp(MouseButton.LeftButton) && MouseHandler.IsMouseButtonUp(MouseButton.RightButton))
+                else if (HasFocus && MouseHandler.IsMouseButtonUp(MouseButton.LeftButton) && MouseHandler.IsMouseButtonUp(MouseButton.RightButton))
                 {
-                    _hasFocus = false;
+                    HasFocus = false;
                     Collision.Immovable = _lastImmovable;
                 }
 
                 //Reset our position if it goes off screen.
-                if (Body.BoundingRect.Right < 0)
-                    Body.Position.X = EntityGame.Viewport.Width;
-                else if (Body.Position.X > EntityGame.Viewport.Width)
-                    Body.Position.X = 0 - Body.Bounds.X;
+                if (Body.Right < 0)
+                    Body.X = EntityGame.Viewport.Width;
+                else if (Body.Left > EntityGame.Viewport.Width)
+                    Body.X = 0 - Body.Width;
 
-                if (Body.BoundingRect.Bottom < 0)
-                    Body.Position.Y = EntityGame.Viewport.Height;
-                else if (Body.Position.Y > EntityGame.Viewport.Height)
-                    Body.Position.Y = 0 - Body.Bounds.Y;
+                if (Body.Bottom < 0)
+                    Body.Y = EntityGame.Viewport.Height;
+                else if (Body.Top > EntityGame.Viewport.Height)
+                    Body.Y = 0 - Body.Bounds.Y;
 
-                TextBody.Position = Body.Position + Vector2.One * 10f;
+                _textBody.Position = Body.Position + Vector2.One * 3;
             }
         }
     }

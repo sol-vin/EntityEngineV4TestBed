@@ -120,6 +120,7 @@
     <Compile Include="States\FancyParticleTest\FancyParticleTest.cs" />
     <Compile Include="States\Menu\MenuState.cs" />
     <Compile Include="States\ParticleTest\ParticleTestState.cs" />
+    <Compile Include="States\PrimitiveTest\PrimitiveTestState.cs" />
     <Compile Include="States\ResolutionTest\ResolutionTestState.cs" />
     <Compile Include="States\SourceRectangleTest\RenderTestState.cs" />
     <Compile Include="States\SuperTownDefence\STDGameState.cs" />
@@ -133,8 +134,12 @@
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
-    <Content Include="States\SourceRectangleTest\sourcerectangles.xml">
+    <Content Include="States\SourceRectangleTest\standing.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="States\SourceRectangleTest\walking.xml">
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
