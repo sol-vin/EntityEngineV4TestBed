@@ -21,16 +21,16 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         public ResolutionTestState(EntityGame eg)
             : base(eg, "ResolutionTestState")
         {
-            Services.Add(new InputHandler(this));
-            Services.Add(new CollisionHandler(this));
-            Services.Add(new MouseHandler(this));
+            AddService(new CollisionHandler(this));
+            AddService(new MouseHandler(this));
+            ControlHandler ch = new ControlHandler(this);
+            AddService(ch);
 
             _collided = new SortedSet<string>();
 
-            _collidedLabel = new Label(this, "CollidedLabel");
+            _collidedLabel = new Label(ch, "CollidedLabel");
             _collidedLabel.Body.Position = new Vector2(10, 560);
-            AddEntity(_collidedLabel);
-
+            ch.AddControl(_collidedLabel);
             for (int x = 0; x < 3; x++)
             {
                 ResolutionTestEntity c = new ResolutionTestEntity(this, "A" + x);

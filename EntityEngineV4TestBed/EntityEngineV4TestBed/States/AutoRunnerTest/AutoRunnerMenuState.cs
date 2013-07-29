@@ -15,12 +15,11 @@ namespace EntityEngineV4TestBed.States.AutoRunnerTest
     {
         public AutoRunnerMenuState(EntityGame eg) : base(eg, "AutoRunnerMenuState")
         {
-            Services.Add(new InputHandler(this));
-            Services.Add(new MouseHandler(this));
+            AddService(new MouseHandler(this));
             var ch = new ControlHandler(this);
-            Services.Add(ch);
+            AddService(ch);
 
-            LinkLabel l = new LinkLabel(this, "GoForwardLabel");
+            LinkLabel l = new LinkLabel(ch, "GoForwardLabel");
             l.Text = "Press Enter To Begin!";
             l.Selected += control => ShowGameState();
             l.Body.Position.X = EntityGame.Viewport.Width/2f - l.Body.Bounds.X/2;
@@ -29,7 +28,7 @@ namespace EntityEngineV4TestBed.States.AutoRunnerTest
             l.OnFocusGain(l);
             ch.AddControl(l);
 
-            Label instructions = new Label(this, "Instructionslbl");
+            Label instructions = new Label(ch, "Instructionslbl");
             instructions.Text = "Welcome to AutoRunner!\n" +
                                 "Instructions are as follows!\n" +
                                 "Press Space to jump\n" +
@@ -46,7 +45,7 @@ namespace EntityEngineV4TestBed.States.AutoRunnerTest
 
         private void ShowGameState()
         {
-            var game = new AutoRunnerGameState(Parent);
+            var game = new AutoRunnerGameState(GameRef);
             game.ChangeState += Show;
             game.Show();
         }
@@ -59,7 +58,7 @@ namespace EntityEngineV4TestBed.States.AutoRunnerTest
             public MenuStateManager(EntityState stateref) : base(stateref, "MenuStateManager")
             {
                 _select = new DoubleInput(this, "Select", Keys.Space, Buttons.A, PlayerIndex.One);
-                _ch = StateRef.GetService<ControlHandler>();
+                _ch = EntityGame.CurrentState.GetService<ControlHandler>();
             }
 
             public override void Update(GameTime gt)

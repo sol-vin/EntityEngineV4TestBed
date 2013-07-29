@@ -23,7 +23,7 @@ namespace EntityEngineV4Test
             
             //Invoke the collision handler
             CollisionHandler ch = new CollisionHandler(es);
-            es.Services.Add(ch);
+            es.AddService(ch);
 
             //create our testentity and components
             Entity e = new Entity(es, "Entity");
@@ -66,7 +66,7 @@ namespace EntityEngineV4Test
 
             //Invoke the collision handler
             CollisionHandler ch = new CollisionHandler(es);
-            es.Services.Add(ch);
+            es.AddService(ch);
 
             //create our testentity and components
             Entity e = new Entity(es, "Entity");

@@ -32,91 +32,90 @@ namespace EntityEngineV4TestBed.States.ParticleTest
         public ParticleTestState(EntityGame eg)
             : base(eg, "ParticleTestState")
         {
-            Services.Add(new MouseHandler(this));
-            Services.Add(new InputHandler(this));
+            AddService(new MouseHandler(this));
 
             ControlHandler ch = new ControlHandler(this);
 
             _ptm = new ParticleTestManager(this, ch);
             AddEntity(_ptm);
 
-            _screeninfo = new Label(this, "ScreenInfo");
+            _screeninfo = new Label(ch, "ScreenInfo");
             _screeninfo.Body.Position = Vector2.One * 20;
             ch.AddControl(_screeninfo);
 
-            _strengthText = new Label(this, "StrengthText");
+            _strengthText = new Label(ch, "StrengthText");
             _strengthText.Text = "Strength:";
             _strengthText.Body.Position = new Vector2(20, 50);
             _strengthText.TabPosition = new Point(0, 1);
             ch.AddControl(_strengthText);
 
-            _strengthDown = new LinkLabel(this, "StrengthDown");
+            _strengthDown = new LinkLabel(ch, "StrengthDown");
             _strengthDown.Text = "<-";
             _strengthDown.TabPosition = new Point(1, 1);
             _strengthDown.Body.Position = new Vector2(_strengthText.Body.BoundingRect.Right + 5, 50);
             _strengthDown.Selected += control => _ptm.Emitter.Strength -= STRENGTHSTEP;
             ch.AddControl(_strengthDown);
 
-            _strengthValue = new Label(this, "StrengthValue");
+            _strengthValue = new Label(ch, "StrengthValue");
             _strengthValue.Text = _ptm.Emitter.Strength.ToString();
             _strengthValue.Body.Position = new Vector2(_strengthDown.Body.BoundingRect.Right + 5, 50);
             _strengthValue.TabPosition = new Point(2, 1);
             ch.AddControl(_strengthValue);
 
-            _strengthUp = new LinkLabel(this, "StrengthUp");
+            _strengthUp = new LinkLabel(ch, "StrengthUp");
             _strengthUp.Text = "->";
             _strengthUp.TabPosition = new Point(3, 1);
             _strengthUp.Body.Position = new Vector2(_strengthValue.Body.BoundingRect.Right + 5, 50);
             _strengthUp.Selected += control => _ptm.Emitter.Strength += STRENGTHSTEP;
             ch.AddControl(_strengthUp);
 
-            _gravityText = new Label(this, "GravityText");
+            _gravityText = new Label(ch, "GravityText");
             _gravityText.Text = "Gravity:";
             _gravityText.Body.Position = new Vector2(20, 80);
             _gravityText.TabPosition = new Point(0, 2);
             ch.AddControl(_gravityText);
 
-            _gravityXDown = new LinkLabel(this, "GravityXDown");
+            _gravityXDown = new LinkLabel(ch, "GravityXDown");
             _gravityXDown.Text = "<-";
             _gravityXDown.TabPosition = new Point(1, 2);
             _gravityXDown.Body.Position = new Vector2(_gravityText.Body.BoundingRect.Right + 5, 80);
             _gravityXDown.Selected += control => _ptm.Emitter.Acceleration.X -= GRAVITYSTEP;
             ch.AddControl(_gravityXDown);
 
-            _gravityXValue = new Label(this, "GravityXValue");
+            _gravityXValue = new Label(ch, "GravityXValue");
             _gravityXValue.Text = "X:" + _ptm.Emitter.Acceleration.X.ToString();
             _gravityXValue.TabPosition = new Point(2, 2);
             _gravityXValue.Body.Position = new Vector2(_gravityXDown.Body.BoundingRect.Right + 5, 80);
             ch.AddControl(_gravityXValue);
 
-            _gravityXUp = new LinkLabel(this, "GravityXUp");
+            _gravityXUp = new LinkLabel(ch, "GravityXUp");
             _gravityXUp.Text = "->";
             _gravityXUp.TabPosition = new Point(3, 2);
             _gravityXUp.Body.Position = new Vector2(_gravityXValue.Body.BoundingRect.Right + 5, 80);
             _gravityXUp.Selected += control => _ptm.Emitter.Acceleration.X += GRAVITYSTEP;
             ch.AddControl(_gravityXUp);
 
-            _gravityYDown = new LinkLabel(this, "GravityYDown");
+            _gravityYDown = new LinkLabel(ch, "GravityYDown");
             _gravityYDown.Text = "<-";
             _gravityYDown.TabPosition = new Point(1, 3);
             _gravityYDown.Body.Position = new Vector2(_gravityText.Body.BoundingRect.Right + 5, 110);
             _gravityYDown.Selected += control => _ptm.Emitter.Acceleration.Y -= GRAVITYSTEP;
             ch.AddControl(_gravityYDown);
 
-            _gravityYValue = new Label(this, "GravityYValue");
+            _gravityYValue = new Label(ch, "GravityYValue");
             _gravityYValue.Text = "Y:" + _ptm.Emitter.Acceleration.Y.ToString();
             _gravityYValue.TabPosition = new Point(2, 3);
             _gravityYValue.Body.Position = new Vector2(_gravityYDown.Body.BoundingRect.Right + 5, 110);
             ch.AddControl(_gravityYValue);
 
-            _gravityYUp = new LinkLabel(this, "GravityYUp");
+            _gravityYUp = new LinkLabel(ch, "GravityYUp");
             _gravityYUp.Text = "->";
             _gravityYUp.TabPosition = new Point(3, 3);
             _gravityYUp.Body.Position = new Vector2(_gravityYValue.Body.BoundingRect.Right + 5, 110);
             _gravityYUp.Selected += control => _ptm.Emitter.Acceleration.Y += GRAVITYSTEP;
             ch.AddControl(_gravityYUp);
 
-            Services.Add(ch);
+            AddService(ch);
         }
 
         public override void Update(GameTime gt)
@@ -206,7 +205,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
                 protected override Particle GenerateNewParticle()
                 {
-                    var p = new TestParticle(Parent.StateRef, this);
+                    var p = new TestParticle(this);
                     p.RectRender.Color = MathTools.Color.HSVtoRGB((float)_random.NextDouble(), 1, 1, 1);
                     p.Body.Position = new Vector2(MouseHandler.Cursor.Position.X, MouseHandler.Cursor.Position.Y);
                     p.Body.Width = 4; //_random.Next(1, 4);
@@ -230,13 +229,13 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 private class TestParticle : FadeParticle
                 {
                     public Physics Physics;
-                    public DrawTypes.Rectangle RectRender;
+                    public ShapeTypes.Rectangle RectRender;
 
-                    public TestParticle(EntityState stateref, Emitter e)
-                        : base(stateref, 3000, e)
+                    public TestParticle(Emitter e)
+                        : base(e, 3000)
                     {
                         Physics = new Physics(this, "Physics", Body);
-                        RectRender = new DrawTypes.Rectangle(this, "RectRender", Body.X, Body.Y, Body.Bounds.X,
+                        RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body.X, Body.Y, Body.Bounds.X,
                                                              Body.Bounds.Y, false);
                         RectRender.Thickness = 1;
                         Render = RectRender;

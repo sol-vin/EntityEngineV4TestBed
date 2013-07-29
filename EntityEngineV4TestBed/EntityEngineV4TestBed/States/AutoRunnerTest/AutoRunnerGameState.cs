@@ -18,9 +18,9 @@ namespace EntityEngineV4TestBed.States.AutoRunnerTest
         private Building b;
         public AutoRunnerGameState(EntityGame eg) : base(eg, "AutoRunnerGameState")
         {
-            Services.Add(new InputHandler(this));
-            Services.Add(new MouseHandler(this));
-            Services.Add(new CollisionHandler(this));
+            AddService(new InputHandler(this));
+            AddService(new MouseHandler(this));
+            AddService(new CollisionHandler(this));
             AddEntity(new AutoRunnerGameManager(this));
             _player= new Player(this);
             AddEntity(_player);
@@ -41,7 +41,11 @@ namespace EntityEngineV4TestBed.States.AutoRunnerTest
             {
                 if (BackKey.Released())
                 {
-                    StateRef.Show("AutoRunnerMenuState");
+                    if (Parent == null) throw new Exception("Parent is null!");
+                    else
+                    {
+                        (Parent as EntityState).Show("AutoRunnerMenuState");
+                    }
                 }
                 base.Update(gt);
             }

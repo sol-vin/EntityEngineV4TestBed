@@ -16,8 +16,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
         public FancyParticleTestState(EntityGame eg)
             : base(eg, "FancyParticleTest")
         {
-            Services.Add(new InputHandler(this));
-            Services.Add(new MouseHandler(this));
+            AddService(new MouseHandler(this));
 
             AddEntity(new FancyEntity(this, "FE"));
         }
@@ -75,7 +74,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
             protected override Particle GenerateNewParticle()
             {
-                var p = new ExplodingParticle(Parent.StateRef, 60000, this, Color);
+                var p = new ExplodingParticle(this, 60000, Color);
                 p.Body.Bounds = new Vector2(5, 5);
                 p.Body.Position = _body.Position;
 
@@ -99,13 +98,13 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 public Physics Physics;
                 public ImageRender RectRender;
 
-                public ExplodingParticle(EntityState stateref, int ttl, Emitter e, Color color)
-                    : base(stateref, ttl, e)
+                public ExplodingParticle(Emitter e, int ttl, Color color)
+                    : base(e, ttl)
                 {
                     Physics = new Physics(this, "Physics", Body);
 
                     //TODO: Fix this test
-                    RectRender = new ImageRender(this, "RectRender", null, Body);
+                    RectRender = new ImageRender(this, "RectRender", Assets.Pixel, Body);
                     RectRender.Color = color;
 
                     Emitter = new GibEmitter(this, "Emitter", Body, Physics, color);
@@ -143,7 +142,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
                     protected override Particle GenerateNewParticle()
                     {
-                        var p = new GibParticle(Parent.StateRef, this);
+                        var p = new GibParticle(this);
                         p.Body.Bounds = new Vector2(2, 2);
                         p.Body.Position = _body.Position;
 
@@ -166,13 +165,13 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     public Physics Physics;
                     public ImageRender ImageRender;
 
-                    public GibParticle(EntityState stateref, Emitter e)
-                        : base(stateref, 3000, e)
+                    public GibParticle(Emitter e)
+                        : base(e, 3000)
                     {
                         FadeAge = TimeToLive / 5 * 4;
                         Physics = new Physics(this, "Physics", Body);
                         //TODO: Fix this
-                        ImageRender = new ImageRender(this, "RectRender", null, Body);
+                        ImageRender = new ImageRender(this, "RectRender", Assets.Pixel, Body);
                         Render = ImageRender;
                     }
 

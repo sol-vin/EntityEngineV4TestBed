@@ -18,9 +18,7 @@ namespace EntityEngineV4TestBed.States.TilemapTest
         private Tilemap _tm;
         public TilemapTestState(EntityGame eg) : base(eg, "TilemapTest")
         {
-            Services.Add(new InputHandler(this));
-            
-            _tm = new Tilemap(this, this, "Tilemap", EntityGame.Game.Content.Load<Texture2D>(@"TilemapTest/tiles"), MakeTiles(30,30), new Point(16,16));
+            _tm = new Tilemap(this, "Tilemap", EntityGame.Game.Content.Load<Texture2D>(@"TilemapTest/tiles"), MakeTiles(30,30), new Point(16,16));
             _tm.Data.Scale = new Vector2(1.5f,1.5f);
             AddEntity(_tm);
             AddEntity( new CameraController(this, "CamCon"));
@@ -46,7 +44,7 @@ namespace EntityEngineV4TestBed.States.TilemapTest
         private class CameraController : Entity
         {
             private DoubleInput _up, _down, _left, _right, _zoomIn, _zoomOut, _rotateLeft, _rotateRight;
-            private Camera _camera = new Camera();
+            private Camera _camera;
 
             public CameraController(EntityState stateref, string name)
                 : base(stateref, name)
@@ -59,6 +57,8 @@ namespace EntityEngineV4TestBed.States.TilemapTest
                 _zoomOut = new DoubleInput(this, "ZoomOut", Keys.S, Buttons.LeftTrigger, PlayerIndex.One);
                 _rotateLeft = new DoubleInput(this, "RotateLeft", Keys.A, Buttons.RightShoulder, PlayerIndex.One);
                 _rotateRight = new DoubleInput(this, "RotateRight", Keys.D, Buttons.RightTrigger, PlayerIndex.One);
+
+                _camera = new Camera(this, "Camera");
                 _camera.View();
             }
 
@@ -82,7 +82,7 @@ namespace EntityEngineV4TestBed.States.TilemapTest
             public override void Destroy(IComponent i = null)
             {
                 base.Destroy(i);
-                Camera c = new Camera();
+                Camera c = new Camera(this, "Camera");
                 c.View();
             }
         }

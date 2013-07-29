@@ -29,13 +29,13 @@ namespace EntityEngineV4TestBed.States.Menu
         public MenuState(EntityGame eg)
             : base(eg, "MenuState")
         {
-            Parent.ShowFPS = true;
+            EntityGame.ShowFPS = true;
 
             //Service init
-            Services.Add(new InputHandler(this));
-            Services.Add(new MouseHandler(this));
+            AddService(new InputHandler(this));
+            AddService(new MouseHandler(this));
             var ch = new ControlHandler(this);
-            Services.Add(ch);
+            AddService(ch);
 
             _menuStateManager = new MenuStateManager(this, ch);
             _menuStateManager.AddMenuItem("Camera Test State", ShowCameraTestState);
@@ -53,70 +53,70 @@ namespace EntityEngineV4TestBed.States.Menu
 
         public void ShowParticleTestState()
         {
-            var particleTestState = new ParticleTestState(Parent);
+            var particleTestState = new ParticleTestState(Parent as EntityGame);
             particleTestState.ChangeState += Show;
             particleTestState.Show();
         }
 
         public void ShowControlTestState()
         {
-            var controlTestState = new ControlTestState(Parent);
+            var controlTestState = new ControlTestState(Parent as EntityGame);
             controlTestState.ChangeState += Show;
             controlTestState.Show();
         }
 
         public void ShowCollisionTestState()
         {
-            var collisionTestState = new CollisionTestState(Parent);
+            var collisionTestState = new CollisionTestState(Parent as EntityGame);
             collisionTestState.ChangeState += Show;
             collisionTestState.Show();
         }
 
         public void ShowResolutionTestState()
         {
-            var resolutionTestState = new ResolutionTestState(Parent);
+            var resolutionTestState = new ResolutionTestState(Parent as EntityGame);
             resolutionTestState.ChangeState += Show;
             resolutionTestState.Show();
         }
 
         public void ShowColorTestState()
         {
-            var colorTestState = new ColorTestState(Parent);
+            var colorTestState = new ColorTestState(Parent as EntityGame);
             colorTestState.ChangeState += Show;
             colorTestState.Show();
         }
 
         public void ShowFancyParticleTestState()
         {
-            var fancyParticleTestState = new FancyParticleTestState(Parent);
+            var fancyParticleTestState = new FancyParticleTestState(Parent as EntityGame);
             fancyParticleTestState.ChangeState += Show;
             fancyParticleTestState.Show();
         }
 
         public void ShowTilemapTestState()
         {
-            var tilemapTestState = new TilemapTestState(Parent);
+            var tilemapTestState = new TilemapTestState(Parent as EntityGame);
             tilemapTestState.ChangeState += Show;
             tilemapTestState.Show();
         }
 
         public void ShowCameraTestState()
         {
-            var cameraTestState = new CameraTestState(Parent);
+            var cameraTestState = new CameraTestState(Parent as EntityGame);
             cameraTestState.ChangeState += Show;
             cameraTestState.Show();
         }
 
         public void ShowRenderTestState()
         {
-            var sourceTestState = new RenderTestState(Parent);
+            var sourceTestState = new RenderTestState(Parent as EntityGame);
             sourceTestState.ChangeState += Show;
             sourceTestState.Show();
         }
 
         public void ShowPrimitiveTestState()
         {
-            var sourceTestState = new PrimitiveTestState(Parent);
+            var sourceTestState = new PrimitiveTestState(Parent as EntityGame);
             sourceTestState.ChangeState += Show;
             sourceTestState.Show();
         }
@@ -158,7 +158,7 @@ namespace EntityEngineV4TestBed.States.Menu
 
             public void AddMenuItem(string label, ChangeStateDelegate changeStateDelegate)
             {
-                LinkLabel l = new LinkLabel(StateRef, "MenuItem" + (_lasttabposition.X ^ _lasttabposition.Y));
+                LinkLabel l = new LinkLabel(_controlHandler, "MenuItem" + (_lasttabposition.X ^ _lasttabposition.Y));
                 
                 l.Text = label;
                 l.Body.Position = new Vector2(20, (_lasttabposition.Y * l.Body.Height + 5));

@@ -10,7 +10,7 @@ namespace EntityEngineV4TestBed.States.SuperTownDefence
         public STDGameState(EntityGame eg)
             : base(eg, "STDGameState")
         {
-            Services.Add(new InputHandler(this));
+            AddService(new InputHandler(this));
             AddEntity(new STDGameStateManager(this));
         }
 
@@ -29,7 +29,7 @@ namespace EntityEngineV4TestBed.States.SuperTownDefence
                 base.Update(gt);
 
                 if (_menukey.Released())
-                    StateRef.ChangeToState("STDMenuState");
+                    EntityGame.CurrentState.ChangeToState("STDMenuState");
             }
         }
     }

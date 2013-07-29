@@ -23,7 +23,7 @@ namespace EntityEngineV4TestBed.States.AutoRunnerTest.Objects
 
         public DoubleInput Up, Down, Left, Right, ZoomIn, ZoomOut, CameraModifier;
 
-        public Camera Camera = new Camera();
+        public Camera Camera;
 
         public bool CanJump
         {
@@ -50,6 +50,7 @@ namespace EntityEngineV4TestBed.States.AutoRunnerTest.Objects
             Collision.Debug = true;
 
             //Camera.Position= new Vector2(Body.Position.X + EntityGame.Viewport.Width/2f - 30, -200);
+            Camera = new Camera(this, "Camera");
             Camera.View();
 
             //TODO: Remove these

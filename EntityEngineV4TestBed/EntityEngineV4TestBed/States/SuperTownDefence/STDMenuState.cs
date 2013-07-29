@@ -17,21 +17,21 @@ namespace EntityEngineV4TestBed.States.SuperTownDefence
         public STDMenuState(EntityGame eg)
             : base(eg, "STDMenuState")
         {
-            _stdGameState = new STDGameState(Parent);
+            _stdGameState = new STDGameState(Parent as EntityGame);
             _stdGameState.ChangeState += Show;
             ChangeState += _stdGameState.Show;
 
-            Services.Add(new InputHandler(this));
+            AddService(new InputHandler(this));
             ControlHandler ch = new ControlHandler(this);
             ch.UseMouse = false;
 
-            _backgroundImage = new Image(this, "BGImage", EntityGame.Game.Content.Load<Texture2D>(@"SuperTownDefence/menu/background"));
+            _backgroundImage = new Image(ch, "BGImage", EntityGame.Game.Content.Load<Texture2D>(@"SuperTownDefence/menu/background"));
             _backgroundImage.ImageRender.Scale = Vector2.One * 6;
             _backgroundImage.TabPosition = new Point(0, 0);
             _backgroundImage.ImageRender.Layer = 0.5f;
             ch.AddControl(_backgroundImage);
 
-            _startText = new Label(this, "StartText");
+            _startText = new Label(ch, "StartText");
             _startText.TextRender.Color = Color.White;
             _startText.Text = "Press Start to begin the game!";
             _startText.TabPosition = new Point(0, 1);
@@ -41,7 +41,7 @@ namespace EntityEngineV4TestBed.States.SuperTownDefence
 
             AddEntity(new STDMenuStateManager(this));
 
-            Services.Add(ch);
+            AddService(ch);
         }
         private class STDMenuStateManager : Entity
         {
@@ -58,7 +58,7 @@ namespace EntityEngineV4TestBed.States.SuperTownDefence
                 base.Update(gt);
 
                 if (_startkey.Released())
-                    StateRef.ChangeToState("STDGameState");
+                    EntityGame.CurrentState.ChangeToState("STDGameState");
             }
         }
     }

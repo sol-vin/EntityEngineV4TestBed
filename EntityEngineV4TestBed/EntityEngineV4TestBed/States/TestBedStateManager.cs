@@ -20,8 +20,8 @@ namespace EntityEngineV4TestBed.States
             base.Update(gt);
             if (_backkey.Released()) 
             {
-                StateRef.Destroy();
-                StateRef.ChangeToState("MenuState");
+                EntityGame.CurrentState.Destroy();
+                EntityGame.CurrentState.ChangeToState("MenuState");
             }
         }
     }

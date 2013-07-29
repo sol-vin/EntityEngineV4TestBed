@@ -18,8 +18,6 @@ namespace EntityEngineV4TestBed.States.CameraTest
         private CameraTestEntity _cte;
         public CameraTestState(EntityGame eg) : base(eg, "CameraState")
         {
-            Services.Add(new InputHandler(this));
-
             _cte = new CameraTestEntity(this, "CTE");
             AddEntity(_cte);
             
@@ -29,7 +27,7 @@ namespace EntityEngineV4TestBed.States.CameraTest
         private class CameraTestEntity : Entity
         {
             private DoubleInput _up, _down, _left, _right, _zoomIn, _zoomOut, _rotateLeft, _rotateRight;
-            private Camera _camera = new Camera();
+            private Camera _camera;
 
             public CameraTestEntity(EntityState stateref, string name) : base(stateref, name)
             {
@@ -41,6 +39,8 @@ namespace EntityEngineV4TestBed.States.CameraTest
                 _zoomOut = new DoubleInput(this, "ZoomOut", Keys.S, Buttons.LeftTrigger, PlayerIndex.One);
                 _rotateLeft = new DoubleInput(this, "RotateLeft", Keys.A, Buttons.RightShoulder, PlayerIndex.One);
                 _rotateRight = new DoubleInput(this, "RotateRight", Keys.D, Buttons.RightTrigger, PlayerIndex.One);
+
+                _camera = new Camera(this, "Camera");
                 _camera.View();
             }
 
@@ -64,7 +64,7 @@ namespace EntityEngineV4TestBed.States.CameraTest
             public override void Destroy(IComponent i = null)
             {
                 base.Destroy(i);
-                Camera c = new Camera();
+                Camera c = new Camera(this, "DefaultCamera");
                 c.View();
             }
         }

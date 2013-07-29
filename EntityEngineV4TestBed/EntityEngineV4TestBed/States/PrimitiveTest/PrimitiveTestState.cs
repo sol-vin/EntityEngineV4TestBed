@@ -17,7 +17,7 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
         public PrimitiveTestState(EntityGame eg) : base(eg, "PrimitiveTestState")
         {
             _primitiveHandler = new DrawingTools.PrimitiveHandler(this);
-            Services.Add(_primitiveHandler);
+            AddService(_primitiveHandler);
 
             AddLine(10, 10, 80, 80, 4, Color.Red);
             AddLine(10, 14, 50, 110, 3, Color.Orange);
@@ -58,11 +58,11 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
 
         private class PrimitiveTestEntity : Entity
         {
-            public DrawTypes.Rectangle Rectangle;
+            public ShapeTypes.Rectangle Rectangle;
 
             public PrimitiveTestEntity(EntityState stateref, string name) : base(stateref, name)
             {
-                Rectangle = new DrawTypes.Rectangle(this, "Rect", 100,200, 40, 60);
+                Rectangle = new ShapeTypes.Rectangle(this, "Rect", 100,200, 40, 60);
                 Rectangle.Thickness = 3;
                 Rectangle.Color = Color.MediumAquamarine;
                 Rectangle.Angle = MathHelper.PiOver4;

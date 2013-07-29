@@ -21,13 +21,12 @@ namespace EntityEngineV4TestBed.States.TestControl
         public void Initialize()
         {
             //Add our services
-            Services.Add(new InputHandler(this));
-            Services.Add(new MouseHandler(this));
+            AddService(new MouseHandler(this));
             var controlHandler = new ControlHandler(this);
             for (int x = 0; x < 4; x++)
                 for (int y = 0; y < 4; y++)
                 {
-                    var testControl = new LinkLabel(this, "TC-X" + x + "Y" + y)
+                    var testControl = new LinkLabel(controlHandler, "TC-X" + x + "Y" + y)
                         {
                             Body = { Position = new Vector2(x * 135 + 40, y * 30 + 50) },
                             TabPosition = new Point(x, y)
@@ -39,13 +38,13 @@ namespace EntityEngineV4TestBed.States.TestControl
                     controlHandler.AddControl(testControl);
                 }
 
-            _actionLabel = new Label(this, "TestContolLabel");
+            _actionLabel = new Label(controlHandler, "TestContolLabel");
             _actionLabel.Text = "TestControlLabel";
             _actionLabel.TabPosition = new Point(5, 2);
             _actionLabel.Body.Position = new Vector2(50, 400);
             controlHandler.AddControl(_actionLabel);
 
-            Services.Add(controlHandler);
+            AddService(controlHandler);
 
             _testControlManager = new TestControlManager(this, controlHandler);
             AddEntity(_testControlManager);

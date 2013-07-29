@@ -19,8 +19,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
         public ColorTestState(EntityGame eg)
             : base(eg, "ColorTestState")
         {
-            Services.Add(new InputHandler(this));
-            //Services.Add(new MouseHandler(this));
+            //AddService(new MouseHandler(this));
 
             RepopulateEntities();
         }

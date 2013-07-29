@@ -20,8 +20,6 @@ namespace EntityEngineV4TestBed.States.SourceRectangleTest
 
         public RenderTestState(EntityGame eg) : base(eg, "RenderTestState")
         {
-            Services.Add(new InputHandler(this));
-
             _animation = new AnimationTestEntity(this, "Animation");
             AddEntity(_animation);
 
