@@ -1,0 +1,24 @@
+Starting Log @ 2013-7-28 | 23:25:12:426
+===========================================
+[7-28 : 23:25:12:444444] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[7-28 : 23:25:12:461461] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem0 added
+[7-28 : 23:25:12:461461] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem1 added
+[7-28 : 23:25:12:462462] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem2 added
+[7-28 : 23:25:12:462462] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem3 added
+[7-28 : 23:25:12:462462] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem4 added
+[7-28 : 23:25:12:462462] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem5 added
+[7-28 : 23:25:12:462462] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem6 added
+[7-28 : 23:25:12:462462] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem7 added
+[7-28 : 23:25:12:462462] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem8 added
+[7-28 : 23:25:12:462462] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem9 added
+[7-28 : 23:25:12:463463] - [Info] - [Sender: MenuState] - Shown
+[7-28 : 23:25:17:882882] - [Info] - [Sender: PrimitiveTestState] - Shown
+[7-28 : 23:25:20:6161] - [Info] - [Sender: PrimitiveTestState->InputHandler] - Destroyed
+[7-28 : 23:25:20:6161] - [Info] - [Sender: PrimitiveTestState->PrimitiveHandler] - Destroyed
+[7-28 : 23:25:20:6161] - [Info] - [Sender: PrimitiveTestState] - Destoyed
+[7-28 : 23:25:20:6262] - [Info] - [Sender: MenuState] - Shown
+[7-28 : 23:25:20:6262] - [Info] - [Sender: PrimitiveTestState] - Changed to state MenuState
+[7-28 : 23:25:22:512512] - [Info] - [Sender: FancyParticleTest] - Shown
+[7-28 : 23:26:10:190190] - [Info] - [Sender: FancyParticleTest->InputHandler] - Destroyed
+[7-28 : 23:26:10:190190] - [Info] - [Sender: FancyParticleTest->MouseHandler] - Destroyed
+[7-28 : 23:26:10:190190] - [Info] - [Sender: FancyParticleTest] - De

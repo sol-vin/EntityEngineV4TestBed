@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EntityEngineV4.Components.Rendering.Primitives;
+using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
@@ -13,6 +14,7 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
     public class PrimitiveTestState : TestBedState
     {
         private DrawingTools.PrimitiveHandler _primitiveHandler;
+        private Path _path = new Path();
 
         public PrimitiveTestState(EntityGame eg) : base(eg, "PrimitiveTestState")
         {
@@ -39,11 +41,17 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             });
 
             AddEntity(new PrimitiveTestEntity(this, "test1"));
+
+            _path.AddPoint(new PathPoint(200,300));
+            _path.AddPoint(new PathPoint(300,300));
+            _path.AddPoint(new PathPoint(300,350));
+            _path.AddPoint(new PathPoint(200,300));
         }
 
         public override void Draw(SpriteBatch sb)
         {
             base.Draw(sb);
+            _path.DrawDebug(sb);
         }
 
         public void AddLine(int x1, int y1, int x2, int y2, float thickness, Color color)
