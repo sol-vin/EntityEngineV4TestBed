@@ -32,6 +32,13 @@ namespace EntityEngineV4TestBed.States.ParticleTest
         public ParticleTestState(EntityGame eg)
             : base(eg, "ParticleTestState")
         {
+            
+        }
+
+        public override void Create()
+        {
+            base.Create();
+
             AddService(new MouseHandler(this));
 
             ControlHandler ch = new ControlHandler(this);
@@ -221,7 +228,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     p.Physics.AngularVelocity = (float)_random.NextDouble();
                     p.Physics.Acceleration = Acceleration;
 
-                   // p.RectRender.Scale = Vector2.One * 6f * (float)_random.NextDouble() + Vector2.One;
+                    p.RectRender.Scale = Vector2.One * (float)_random.NextDouble() + Vector2.One;
                     p.RectRender.Layer = 0f;
                     return p;
                 }

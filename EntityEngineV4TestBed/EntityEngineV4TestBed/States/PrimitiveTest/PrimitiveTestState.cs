@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering.Primitives;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
+using EntityEngineV4.GUI;
 using EntityEngineV4.PowerTools;
+
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -13,67 +17,135 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
 {
     public class PrimitiveTestState : TestBedState
     {
-        private DrawingTools.PrimitiveHandler _primitiveHandler;
-        private Path _path = new Path();
+        //DrawingTools.Primitives
+        private DrawingTools.Rectangle _r1;
+        private DrawingTools.Line _lx1, _lx2, _lx3, _ly1, _ly2, _ly3;
+        private DrawingTools.Triangle _triangleEquilateral, _triangleIsosoles, _triangleRight;
+
+        //GUI
+        private Label _drawingtoolsTitle, _renderTitle;
+        private DrawingTools.Line _middleLine;
 
         public PrimitiveTestState(EntityGame eg) : base(eg, "PrimitiveTestState")
         {
-            _primitiveHandler = new DrawingTools.PrimitiveHandler(this);
-            AddService(_primitiveHandler);
+        }
 
-            AddLine(10, 10, 80, 80, 4, Color.Red);
-            AddLine(10, 14, 50, 110, 3, Color.Orange);
-            AddLine(10,60, 60, 10, 2, Color.Yellow);
-            AddTriangle(new Vector2(300, 300), new Vector2(370, 280), new Vector2(335, 360), 1, Color.Crimson);
+        public override void Create()
+        {
+            base.Create();
 
-            _primitiveHandler.AddPrimitive(new DrawingTools.Rectangle(400, 400, 40, 20)
-                {
-                    Thickness = 1,
-                    Color = Color.LimeGreen,
-                    Fill = true
-                });
+            ControlHandler ch = new ControlHandler(this);
+            AddService(ch);
 
-            _primitiveHandler.AddPrimitive(new DrawingTools.Rectangle(400, 300, 40, 20)
-            {
-                Thickness = 10,
-                Color = Color.Red,
-                Fill = false
-            });
+            //Add our labels to the top
+            _drawingtoolsTitle = new Label(ch, "drawingtoolsTitle");
+            _drawingtoolsTitle.Text = "DrawingTools.Primitives";
+            _drawingtoolsTitle.Body.Position = new Vector2(EntityGame.Viewport.Width/4 - _drawingtoolsTitle.TextRender.DrawRect.Width/2, 15);
+            _drawingtoolsTitle.TabPosition = new Point(0,0);
+            ch.AddControl(_drawingtoolsTitle);
 
-            AddEntity(new PrimitiveTestEntity(this, "test1"));
+            _renderTitle = new Label(ch, "renderTitle");
+            _renderTitle.Text = "Rendering.Primitives";
+            _renderTitle.Body.Position = new Vector2( EntityGame.Viewport.Width - (EntityGame.Viewport.Width / 4) - _renderTitle.TextRender.DrawRect.Width / 2, 15);
+            _renderTitle.TabPosition = new Point(1, 0);
+            ch.AddControl(_renderTitle);
 
-            _path.AddPoint(new PathPoint(200,300));
-            _path.AddPoint(new PathPoint(300,300));
-            _path.AddPoint(new PathPoint(300,350));
-            _path.AddPoint(new PathPoint(200,300));
+            _middleLine = new DrawingTools.Line(new Vector2(EntityGame.Viewport.Width/2f, 10), new Vector2(EntityGame.Viewport.Width/2f, EntityGame.Viewport.Height-10) );
+
+            //Setup our prmitives
+            _r1 = new DrawingTools.Rectangle(20,40, 260,60);
+            _r1.Color = Color.Salmon;
+            _r1.Fill = true;
+
+            //Horizontal Lines
+            _lx1 = new DrawingTools.Line(new Vector2(20, 105), new Vector2(270, 105), Color.Red);
+            _lx1.Thickness = 1;
+
+            _lx2 = new DrawingTools.Line(new Vector2(20, 110), new Vector2(270, 110), Color.Orange);
+            _lx2.Thickness = 2;
+
+            _lx3 = new DrawingTools.Line(new Vector2(20, 115), new Vector2(270, 115), Color.Yellow);
+            _lx3.Thickness = 3;
+
+            _ly1 = new DrawingTools.Line(new Vector2(270, 120), new Vector2(270, 290), Color.MediumPurple);
+            _ly1.Thickness = 1;
+
+            _ly2 = new DrawingTools.Line(new Vector2(275, 120), new Vector2(275, 290), Color.DodgerBlue);
+            _ly2.Thickness = 2;
+
+            _ly3 = new DrawingTools.Line(new Vector2(280, 120), new Vector2(280, 290), Color.LawnGreen);
+            _ly3.Thickness = 3;
+
+            //Add component based classes
+            AddEntity(new SpinningRect(this, "Spinning", EntityGame.Viewport.Width/2f + 75, 200, 30, 30));
+            AddEntity(new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f +150 + 75, 200, 30, 30, true));
+        }
+
+        public override void Update(GameTime gt)
+        {
+            base.Update(gt);
         }
 
         public override void Draw(SpriteBatch sb)
         {
             base.Draw(sb);
-            _path.DrawDebug(sb);
-        }
 
-        public void AddLine(int x1, int y1, int x2, int y2, float thickness, Color color)
-        {
-            _primitiveHandler.AddPrimitive(new DrawingTools.Line(new Vector2(x1, y1), new Vector2(x2, y2), color){Thickness = thickness});
-        }
+            //Draw GUI Elements
+            _middleLine.Draw(sb);
 
-        public void AddTriangle(Vector2 p1, Vector2 p2, Vector2 p3, float thickness, Color color)
-        {
-            _primitiveHandler.AddPrimitive(new DrawingTools.Triangle(p1,p2,p3,color) { Thickness = thickness});
+            //Draw Primitives
+            _r1.Draw(sb);
+
+            //Horizontal Lines
+            _lx1.Draw(sb);
+            _lx2.Draw(sb);
+            _lx3.Draw(sb);
+
+            //Vertical Lines
+            _ly1.Draw(sb);
+            _ly2.Draw(sb);
+            _ly3.Draw(sb);
         }
 
         private class PrimitiveTestEntity : Entity
         {
-            public ShapeTypes.Rectangle Rectangle;
+            public Body Body;
+            public Physics Physics;
 
-            public PrimitiveTestEntity(EntityState stateref, string name) : base(stateref, name)
+            public PrimitiveTestEntity(IComponent parent, string name) : base(parent, name)
             {
-                Rectangle = new ShapeTypes.Rectangle(this, "Rect", 100,200, 40, 60);
-                Rectangle.Thickness = 3;
-                Rectangle.Color = Color.MediumAquamarine;
-                Rectangle.Angle = MathHelper.PiOver4;
+
+                Body = new Body(this, "Body");
+                Physics = new Physics(this, "Physics", Body);
+                Physics.AngularVelocity = .05f;
+            }
+
+            public override void Update(GameTime gt)
+            {
+                base.Update(gt);
+            }
+        }
+
+        private class SpinningRect : PrimitiveTestEntity
+        {
+            private ShapeTypes.Rectangle Rectangle;
+
+            public SpinningRect(IComponent parent, string name, float x, float y, float width, float height, bool fill = false ) : base(parent, name)
+            {
+                Rectangle = new ShapeTypes.Rectangle(this, "Rectangle", x, y,width,height,fill);
+                Body.X = x;
+                Body.Y = y;
+                Body.Width = width;
+                Body.Height = height;
+            }
+
+            public override void Update(GameTime gt)
+            {
+                base.Update(gt);
+
+                Rectangle.X = Body.X;
+                Rectangle.Y = Body.Y;
+                Rectangle.Angle = Body.Angle;
             }
         }
     }

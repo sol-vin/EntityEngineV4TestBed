@@ -21,6 +21,12 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         public ResolutionTestState(EntityGame eg)
             : base(eg, "ResolutionTestState")
         {
+        }
+
+        public override void Create()
+        {
+            base.Create();
+
             AddService(new CollisionHandler(this));
             AddService(new MouseHandler(this));
             ControlHandler ch = new ControlHandler(this);
@@ -71,10 +77,10 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
                 c.Collision.Immovable = true;
                 c.Collision.Debug = true;
-                c.Body.Position = new Vector2(50+x*70,450);
+                c.Body.Position = new Vector2(50 + x * 70, 450);
                 c.Color = Color.Green;
                 c.HoverColor = Color.DarkBlue;
-                
+
                 AddEntity(c);
             }
         }

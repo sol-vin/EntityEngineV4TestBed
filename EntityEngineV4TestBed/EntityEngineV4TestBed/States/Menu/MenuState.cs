@@ -29,6 +29,13 @@ namespace EntityEngineV4TestBed.States.Menu
         public MenuState(EntityGame eg)
             : base(eg, "MenuState")
         {
+            
+        }
+
+        public override void Create()
+        {
+            base.Create();
+
             EntityGame.ShowFPS = true;
 
             //Service init
@@ -49,6 +56,7 @@ namespace EntityEngineV4TestBed.States.Menu
             _menuStateManager.AddMenuItem("Render Test State", ShowRenderTestState);
             _menuStateManager.AddMenuItem("Primitives Test State", ShowPrimitiveTestState);
             AddEntity(_menuStateManager);
+
         }
 
         public void ShowParticleTestState()

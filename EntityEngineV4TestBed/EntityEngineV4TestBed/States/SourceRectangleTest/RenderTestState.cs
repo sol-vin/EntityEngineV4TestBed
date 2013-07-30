@@ -39,6 +39,13 @@ namespace EntityEngineV4TestBed.States.SourceRectangleTest
                 StandingAnim.ReadXml(@"States\SourceRectangleTest\standing.xml");
                 StandingAnim.Start();
             }
+
+            public override void Update(GameTime gt)
+            {
+                base.Update(gt);
+
+                Body.Angle += .05f;
+            }
         }
     }
 }

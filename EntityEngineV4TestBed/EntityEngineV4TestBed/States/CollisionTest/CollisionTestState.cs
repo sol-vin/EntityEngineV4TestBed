@@ -21,6 +21,14 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         public CollisionTestState(EntityGame eg)
             : base(eg, "CollisionTestState")
         {
+           
+        }
+
+        public override void Create()
+        {
+            base.Create();
+
+            CollisionHandler colhand = new CollisionHandler(this);
             AddService(new CollisionHandler(this));
             AddService(new MouseHandler(this));
             ControlHandler ch = new ControlHandler(this);
@@ -30,6 +38,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
             _collidedLabel = new Label(ch, "CollidedLabel");
             _collidedLabel.Body.Position = new Vector2(10, 560);
+            ch.AddControl(_collidedLabel);
 
             for (int x = 0; x < 3; x++)
             {
@@ -39,7 +48,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
-                c.Body.Bounds = new Vector2(50,100);
+                c.Body.Bounds = new Vector2(50, 100);
                 c.ImageRender.Scale = c.Body.Bounds;
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(30, 80 * x + 20);
@@ -52,7 +61,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
                 c.Body.Position = new Vector2(510, 80 * x + 20);
-                c.Body.Bounds = new Vector2(100,50);
+                c.Body.Bounds = new Vector2(100, 50);
                 c.ImageRender.Scale = c.Body.Bounds;
                 c.Color = Color.Orange;
                 c.HoverColor = Color.Black;
