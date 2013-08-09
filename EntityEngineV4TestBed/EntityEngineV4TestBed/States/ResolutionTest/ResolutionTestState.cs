@@ -7,7 +7,6 @@ using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
-using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using Microsoft.Xna.Framework;
 
@@ -18,8 +17,8 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         private SortedSet<string> _collided;
         private Label _collidedLabel;
 
-        public ResolutionTestState(EntityGame eg)
-            : base(eg, "ResolutionTestState")
+        public ResolutionTestState()
+            : base("ResolutionTestState")
         {
         }
 
@@ -27,10 +26,8 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         {
             base.Create();
 
-            AddService(new CollisionHandler(this));
-            AddService(new MouseHandler(this));
+            new CollisionHandler(this);
             ControlHandler ch = new ControlHandler(this);
-            AddService(ch);
 
             _collided = new SortedSet<string>();
 
@@ -49,7 +46,6 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(30, 80 * x + 20);
-                AddEntity(c);
             }
             for (int x = 0; x < 3; x++)
             {
@@ -63,7 +59,6 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 c.Body.Position = new Vector2(510, 80 * x + 20);
                 c.Color = Color.Orange;
                 c.HoverColor = Color.Violet;
-                AddEntity(c);
             }
 
             for (int x = 0; x < 3; x++)
@@ -80,8 +75,6 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 c.Body.Position = new Vector2(50 + x * 70, 450);
                 c.Color = Color.Green;
                 c.HoverColor = Color.DarkBlue;
-
-                AddEntity(c);
             }
         }
 
@@ -90,7 +83,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             base.Update(gt);
             if (Destroyed) return;
 
-            string debug = GetEntity<ResolutionTestEntity>("A0").Body.Position.ToString(); 
+            string debug = GetEntity<ResolutionTestEntity>("A0").Body.Position.ToString();
             _collidedLabel.Text = "A0: " + debug;
         }
 

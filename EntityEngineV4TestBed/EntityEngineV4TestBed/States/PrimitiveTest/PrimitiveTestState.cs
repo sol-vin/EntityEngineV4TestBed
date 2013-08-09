@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EntityEngineV4.Components;
+﻿using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering.Primitives;
-using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
+using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4.PowerTools;
-
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,14 +14,17 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
     {
         //DrawingTools.Primitives
         private DrawingTools.Rectangle _r1;
+
         private DrawingTools.Line _lx1, _lx2, _lx3, _ly1, _ly2, _ly3;
         private DrawingTools.Triangle _triangleEquilateral, _triangleIsosoles, _triangleRight;
 
         //GUI
         private Label _drawingtoolsTitle, _renderTitle;
+
         private DrawingTools.Line _middleLine;
 
-        public PrimitiveTestState(EntityGame eg) : base(eg, "PrimitiveTestState")
+        public PrimitiveTestState()
+            : base("PrimitiveTestState")
         {
         }
 
@@ -35,25 +33,24 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             base.Create();
 
             ControlHandler ch = new ControlHandler(this);
-            AddService(ch);
 
             //Add our labels to the top
             _drawingtoolsTitle = new Label(ch, "drawingtoolsTitle");
             _drawingtoolsTitle.Text = "DrawingTools.Primitives";
-            _drawingtoolsTitle.Body.Position = new Vector2(EntityGame.Viewport.Width/4 - _drawingtoolsTitle.TextRender.DrawRect.Width/2, 15);
-            _drawingtoolsTitle.TabPosition = new Point(0,0);
+            _drawingtoolsTitle.Body.Position = new Vector2(EntityGame.Viewport.Width / 4 - _drawingtoolsTitle.TextRender.DrawRect.Width / 2, 15);
+            _drawingtoolsTitle.TabPosition = new Point(0, 0);
             ch.AddControl(_drawingtoolsTitle);
 
             _renderTitle = new Label(ch, "renderTitle");
             _renderTitle.Text = "Rendering.Primitives";
-            _renderTitle.Body.Position = new Vector2( EntityGame.Viewport.Width - (EntityGame.Viewport.Width / 4) - _renderTitle.TextRender.DrawRect.Width / 2, 15);
+            _renderTitle.Body.Position = new Vector2(EntityGame.Viewport.Width - (EntityGame.Viewport.Width / 4) - _renderTitle.TextRender.DrawRect.Width / 2, 15);
             _renderTitle.TabPosition = new Point(1, 0);
             ch.AddControl(_renderTitle);
 
-            _middleLine = new DrawingTools.Line(new Vector2(EntityGame.Viewport.Width/2f, 10), new Vector2(EntityGame.Viewport.Width/2f, EntityGame.Viewport.Height-10) );
+            _middleLine = new DrawingTools.Line(new Vector2(EntityGame.Viewport.Width / 2f, 10), new Vector2(EntityGame.Viewport.Width / 2f, EntityGame.Viewport.Height - 10));
 
             //Setup our prmitives
-            _r1 = new DrawingTools.Rectangle(20,40, 260,60);
+            _r1 = new DrawingTools.Rectangle(20, 40, 260, 60);
             _r1.Color = Color.Salmon;
             _r1.Fill = true;
 
@@ -77,8 +74,15 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             _ly3.Thickness = 3;
 
             //Add component based classes
-            AddEntity(new SpinningRect(this, "Spinning", EntityGame.Viewport.Width/2f + 75, 200, 30, 30));
-            AddEntity(new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f +150 + 75, 200, 30, 30, true));
+            new SpinningRect(this, "Spinning", EntityGame.Viewport.Width/2f + 75, 200, 30, 30, false, 3);
+            new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 75, 200, 30, 30, false, 2);
+            new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 75, 200, 30, 30, false, 1);
+            new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 150 + 75, 200, 30, 30, true);
+
+            new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 75, 300, 70, 30, false, 3);
+            new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 75, 300, 70, 30, false, 2);
+            new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 75, 300, 70, 30, false, 1);
+            new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 150 + 75, 300, 30, 70, true);
         }
 
         public override void Update(GameTime gt)
@@ -112,12 +116,12 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             public Body Body;
             public Physics Physics;
 
-            public PrimitiveTestEntity(IComponent parent, string name) : base(parent, name)
+            public PrimitiveTestEntity(IComponent parent, string name)
+                : base(parent, name)
             {
-
                 Body = new Body(this, "Body");
                 Physics = new Physics(this, "Physics", Body);
-                Physics.AngularVelocity = .05f;
+                Physics.AngularVelocity = .01f;
             }
 
             public override void Update(GameTime gt)
@@ -130,22 +134,22 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
         {
             private ShapeTypes.Rectangle Rectangle;
 
-            public SpinningRect(IComponent parent, string name, float x, float y, float width, float height, bool fill = false ) : base(parent, name)
+            public SpinningRect(IComponent parent, string name, float x, float y, float width, float height, bool fill = false, float thickness = 3)
+                : base(parent, name)
             {
-                Rectangle = new ShapeTypes.Rectangle(this, "Rectangle", x, y,width,height,fill);
                 Body.X = x;
                 Body.Y = y;
                 Body.Width = width;
                 Body.Height = height;
+                Rectangle = new ShapeTypes.Rectangle(this, "Rectangle", Body, fill);
+
+                Rectangle.Thickness = thickness;
+                Rectangle.Debug = true;
             }
 
             public override void Update(GameTime gt)
             {
                 base.Update(gt);
-
-                Rectangle.X = Body.X;
-                Rectangle.Y = Body.Y;
-                Rectangle.Angle = Body.Angle;
             }
         }
     }

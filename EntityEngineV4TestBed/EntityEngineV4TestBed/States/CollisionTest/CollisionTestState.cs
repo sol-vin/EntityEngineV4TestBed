@@ -7,7 +7,6 @@ using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
-using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using Microsoft.Xna.Framework;
 
@@ -18,10 +17,9 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         private SortedSet<string> _collided;
         private Label _collidedLabel;
 
-        public CollisionTestState(EntityGame eg)
-            : base(eg, "CollisionTestState")
+        public CollisionTestState()
+            : base("CollisionTestState")
         {
-           
         }
 
         public override void Create()
@@ -29,16 +27,15 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             base.Create();
 
             CollisionHandler colhand = new CollisionHandler(this);
-            AddService(new CollisionHandler(this));
-            AddService(new MouseHandler(this));
             ControlHandler ch = new ControlHandler(this);
-            AddService(ch);
 
             _collided = new SortedSet<string>();
 
             _collidedLabel = new Label(ch, "CollidedLabel");
             _collidedLabel.Body.Position = new Vector2(10, 560);
             ch.AddControl(_collidedLabel);
+
+            Random rand = new Random();
 
             for (int x = 0; x < 3; x++)
             {
@@ -48,11 +45,11 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
-                c.Body.Bounds = new Vector2(50, 100);
+                c.Body.Bounds = new Vector2(50 + rand.Next(1, 100), 50 + rand.Next(1, 100));
                 c.ImageRender.Scale = c.Body.Bounds;
                 c.Collision.Debug = true;
-                c.Body.Position = new Vector2(30, 80 * x + 20);
-                AddEntity(c);
+                c.Body.Position = new Vector2(30, 100 * x + 20);
+                //AddEntity(c);
             }
             for (int x = 0; x < 3; x++)
             {
@@ -61,12 +58,12 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
                 c.Body.Position = new Vector2(510, 80 * x + 20);
-                c.Body.Bounds = new Vector2(100, 50);
+                c.Body.Bounds = new Vector2(50 + rand.Next(1, 100), 50 + rand.Next(1, 100));
                 c.ImageRender.Scale = c.Body.Bounds;
                 c.Color = Color.Orange;
                 c.HoverColor = Color.Black;
                 c.Collision.Debug = true;
-                AddEntity(c);
+                //AddEntity(c);
             }
         }
 
@@ -79,13 +76,13 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             string text = "Collision Directions (A0): ";
 
             if (mask.HasMatchingBit(CollisionHandler.LEFT))
-                text += "Left";
-            else if (mask.HasMatchingBit(CollisionHandler.RIGHT))
-                text += "Right";
-            else if (mask.HasMatchingBit(CollisionHandler.UP))
-                text += "Up";
-            else if (mask.HasMatchingBit(CollisionHandler.DOWN))
-                text += "Down";
+                text += "Left ";
+            if (mask.HasMatchingBit(CollisionHandler.RIGHT))
+                text += "Right ";
+            if (mask.HasMatchingBit(CollisionHandler.UP))
+                text += "Up ";
+            if (mask.HasMatchingBit(CollisionHandler.DOWN))
+                text += "Down ";
 
             _collidedLabel.Text = text;
 
@@ -97,10 +94,18 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             Console.WriteLine("BITMASK CHANGED!");
         }
 
+        /// <summary>
+        /// Simple entity to test collisions
+        /// </summary>
         private class CollisionTestEntity : Entity
         {
             public Body Body;
+
+            /// <summary>
+            /// Body used to describe TextRender's body
+            /// </summary>
             public Body TextBody;
+
             public Physics Physics;
 
             public Collision Collision;
@@ -109,8 +114,17 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
             public Color Color = Color.Blue;
             public Color HoverColor = Color.Red;
+
+            /// <summary>
+            /// Whether or not it has the mouse's attention
+            /// </summary>
             private bool _hasFocus;
 
+            /// <summary>
+            /// /Creates a new CollisionTestEntity
+            /// </summary>
+            /// <param name="stateref"></param>
+            /// <param name="name"></param>
             public CollisionTestEntity(EntityState stateref, string name)
                 : base(stateref, name)
             {

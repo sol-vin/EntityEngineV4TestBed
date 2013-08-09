@@ -1,8 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using EntityEngineV4.Collision;
+﻿using EntityEngineV4.Collision;
 using EntityEngineV4.Collision.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Engine;
@@ -17,10 +13,16 @@ namespace EntityEngineV4Test
         [TestMethod]
         public void CollideAABBvsAABB1()
         {
-            
+            Game g = new Game();
+            GraphicsDeviceManager gdm = new GraphicsDeviceManager(g);
+            gdm.ApplyChanges();
+
+            EntityGame.MakeGame(g, null);
+
             //Create a teststate
-            EntityState es = new EntityState(null, "State");
-            
+            EntityState es = new EntityState("State");
+            es.Show();
+
             //Invoke the collision handler
             CollisionHandler ch = new CollisionHandler(es);
             es.AddService(ch);
@@ -31,15 +33,15 @@ namespace EntityEngineV4Test
 
             Body abody = new Body(e, "BodyA");
             abody.Position = new Vector2(50, 50);
-            abody.Bounds = new Vector2(300,100);
+            abody.Bounds = new Vector2(300, 100);
 
             a = new Collision(e, "CollisionA", new AABB(), abody);
             a.PairMask.AddMask(0);
             a.GroupMask.AddMask(0);
 
             Body bbody = new Body(e, "BodyB");
-            bbody.Position = new Vector2(100,90);
-            bbody.Bounds = new Vector2(100,100);
+            bbody.Position = new Vector2(100, 90);
+            bbody.Bounds = new Vector2(100, 100);
             b = new Collision(e, "CollisionB", new AABB(), bbody);
             b.GroupMask.AddMask(0);
             b.PairMask.AddMask(0);
@@ -48,7 +50,6 @@ namespace EntityEngineV4Test
 
             bool aCollisionDirection = m.A.CollisionDirection.HasMatchingBit(CollisionHandler.DOWN);
             bool bCollisionDirection = m.B.CollisionDirection.HasMatchingBit(CollisionHandler.UP);
-
 
             //Start testing and ensuring that our values are as expected
             if (!(m.AreColliding && aCollisionDirection && bCollisionDirection))
@@ -60,10 +61,9 @@ namespace EntityEngineV4Test
         [TestMethod]
         public void CollideAABBvsAABB2()
         {
-
             //Create a teststate
-            EntityState es = new EntityState(null, "State");
-
+            EntityState es = new EntityState("State");
+            es.Show();
             //Invoke the collision handler
             CollisionHandler ch = new CollisionHandler(es);
             es.AddService(ch);
@@ -92,13 +92,11 @@ namespace EntityEngineV4Test
             bool aCollisionDirection = m.A.CollisionDirection.HasMatchingBit(CollisionHandler.LEFT);
             bool bCollisionDirection = m.B.CollisionDirection.HasMatchingBit(CollisionHandler.RIGHT);
 
-
             //Start testing and ensuring that our values are as expected
             if (!(m.AreColliding && aCollisionDirection && bCollisionDirection))
             {
                 Assert.Fail();
             }
-
         }
     }
 }

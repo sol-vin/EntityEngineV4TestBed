@@ -1,15 +1,17 @@
 ﻿using EntityEngineV4.Engine;
 using EntityEngineV4.Input;
+using EntityEngineV4.Input.MouseInput;
 using Microsoft.Xna.Framework;
 
 namespace EntityEngineV4TestBed.States
 {
     public abstract class TestBedState : EntityState
     {
-        protected TestBedState(EntityGame eg, string name)
-            : base(eg, name)
+        protected TestBedState(string name)
+            : base(name)
         {
-            AddService(new InputHandler(this));
+            new InputHandler(this);
+            new MouseHandler(this);
             AddEntity(new TestBedStateManager(this, "TestBedStateManager"));
         }
 

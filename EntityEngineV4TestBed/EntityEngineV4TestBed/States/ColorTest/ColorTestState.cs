@@ -3,7 +3,6 @@ using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.Input;
-using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -16,26 +15,18 @@ namespace EntityEngineV4TestBed.States.ColorTest
 
         private ColorTestManager _ctm;
 
-        public ColorTestState(EntityGame eg)
-            : base(eg, "ColorTestState")
+        public ColorTestState()
+            : base("ColorTestState")
         {
-            //AddService(new MouseHandler(this));
-
-            RepopulateEntities();
         }
 
-        public override void Update(GameTime gt)
+        public override void Create()
         {
-            base.Update(gt);
-        }
-
-        public void RepopulateEntities()
-        {
-            Clear();
+            base.Create();
             _ctm = new ColorTestManager(this, "ColorTestManager");
-            AddEntity(_ctm);
-
-            AddEntity(new TestBedStateManager(this, "TestBedManager"));
+            //AddEntity(_ctm);
+            new TestBedStateManager(this, "TestBedManager");
+            //AddEntity(new TestBedStateManager(this, "TestBedManager"));
 
             int maxx = EntityGame.Viewport.Width / _size.X + 1;
             int maxy = EntityGame.Viewport.Height / _size.Y + 1;
@@ -50,7 +41,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
                     cte.Body.Bounds = new Vector2(_size.X, _size.Y);
                     cte.Render.Scale = new Vector2(_size.X, _size.Y);
                     cte.Hue = huefraction * ((y * maxx) + x);
-                    AddEntity(cte);
+                    //AddEntity(cte);
                 }
             }
         }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.Input;
@@ -14,24 +11,26 @@ namespace EntityEngineV4TestBed.States.TilemapTest
 {
     public class TilemapTestState : TestBedState
     {
-        Random _rand = new Random();
+        private Random _rand = new Random();
         private Tilemap _tm;
-        public TilemapTestState(EntityGame eg) : base(eg, "TilemapTest")
+
+        public TilemapTestState()
+            : base("TilemapTest")
         {
-            _tm = new Tilemap(this, "Tilemap", EntityGame.Game.Content.Load<Texture2D>(@"TilemapTest/tiles"), MakeTiles(30,30), new Point(16,16));
-            _tm.Data.Scale = new Vector2(1.5f,1.5f);
-            AddEntity(_tm);
-            AddEntity( new CameraController(this, "CamCon"));
+            _tm = new Tilemap(this, "Tilemap", EntityGame.Game.Content.Load<Texture2D>(@"TilemapTest/tiles"), MakeTiles(30, 30), new Point(16, 16));
+            _tm.Data.Scale = new Vector2(1.5f, 1.5f);
+            
+            new CameraController(this, "CamCon");
         }
 
         public Tile[,] MakeTiles(int sizex, int sizey)
         {
-            Tile[,] tiles = new Tile[sizex,sizey];
+            Tile[,] tiles = new Tile[sizex, sizey];
             for (int x = 0; x < sizex; x++)
             {
                 for (int y = 0; y < sizey; y++)
                 {
-                    tiles[x,y] = new Tile((short)_rand.Next(0, 3));
+                    tiles[x, y] = new Tile((short)_rand.Next(0, 3));
                 }
             }
             return tiles;
@@ -41,6 +40,7 @@ namespace EntityEngineV4TestBed.States.TilemapTest
         {
             base.Update(gt);
         }
+
         private class CameraController : Entity
         {
             private DoubleInput _up, _down, _left, _right, _zoomIn, _zoomOut, _rotateLeft, _rotateRight;
@@ -86,6 +86,5 @@ namespace EntityEngineV4TestBed.States.TilemapTest
                 c.View();
             }
         }
-
     }
 }

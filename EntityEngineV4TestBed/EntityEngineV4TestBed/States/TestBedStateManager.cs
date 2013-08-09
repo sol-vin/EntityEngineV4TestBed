@@ -1,5 +1,6 @@
 ﻿using EntityEngineV4.Engine;
 using EntityEngineV4.Input;
+using EntityEngineV4TestBed.States.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -18,10 +19,10 @@ namespace EntityEngineV4TestBed.States
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-            if (_backkey.Released()) 
+            if (_backkey.Released())
             {
-                EntityGame.CurrentState.Destroy();
-                EntityGame.CurrentState.ChangeToState("MenuState");
+                EntityGame.ActiveState.Destroy();
+                EntityGame.SwitchState(new MenuState());
             }
         }
     }

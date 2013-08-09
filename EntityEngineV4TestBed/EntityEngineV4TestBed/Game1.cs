@@ -17,7 +17,7 @@ namespace EntityEngineV4TestBed
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private EntityGame _eg;
+
         private MenuState _menuState;
 
         public Game1()
@@ -38,8 +38,8 @@ namespace EntityEngineV4TestBed
 
             this.IsMouseVisible = false;
 
-            _eg = new EntityGame(this, graphics, spriteBatch, new Rectangle(0, 0, 600, 600));
-            _menuState = new MenuState(_eg);
+            EntityGame.MakeGame(this, graphics, spriteBatch, new Rectangle(0, 0, 600, 600));
+            _menuState = new MenuState();
             _menuState.Show();
         }
 
@@ -63,9 +63,9 @@ namespace EntityEngineV4TestBed
             //Emergency kill key
             if (Keyboard.GetState().IsKeyDown(Keys.Pause))
             {
-                Exit();
+                EntityGame.Exit();
             }
-            _eg.Update(gameTime);
+            EntityGame.Self.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -77,7 +77,7 @@ namespace EntityEngineV4TestBed
         {
             graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _eg.Draw();
+            EntityGame.Self.Draw();
 
             base.Draw(gameTime);
         }

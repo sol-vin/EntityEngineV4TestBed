@@ -1,11 +1,11 @@
 ﻿using System;
 using EntityEngineV4.Components;
-using EntityEngineV4.Components.Rendering;
-using EntityEngineV4.Data;
+using EntityEngineV4.Components.Rendering.Primitives;
+
 using EntityEngineV4.Engine;
 using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
-using EntityEngineV4.Object;
+using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -13,12 +13,17 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 {
     public class FancyParticleTestState : TestBedState
     {
-        public FancyParticleTestState(EntityGame eg)
-            : base(eg, "FancyParticleTest")
+        public FancyParticleTestState()
+            : base("FancyParticleTest")
         {
-            AddService(new MouseHandler(this));
+            //AddEntity(new FancyEntity(this, "FE"));
+        }
 
-            AddEntity(new FancyEntity(this, "FE"));
+        public override void Create()
+        {
+            base.Create();
+
+            new FancyEntity(this, "FE");
         }
 
         private class FancyEntity : Entity
@@ -87,7 +92,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 }
                 p.Physics.Thrust(thrust);
                 p.Physics.Acceleration = new Vector2(0, .1f);
-                p.RectRender.Scale = new Vector2(5, 5);
+                //p.RectRender.Scale = new Vector2(0);
                 return p;
             }
 
@@ -95,24 +100,28 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
             {
                 private int _floor = EntityGame.Viewport.Height - 20;
 
+                public Body Body;
                 public Physics Physics;
-                public ImageRender RectRender;
+                public ShapeTypes.Rectangle RectRender;
+                public Emitter GibEmit;
 
                 public ExplodingParticle(Emitter e, int ttl, Color color)
                     : base(e, ttl)
                 {
+                    Body = new Body(this, "Body");
                     Physics = new Physics(this, "Physics", Body);
-
-                    //TODO: Fix this test
-                    RectRender = new ImageRender(this, "RectRender", Assets.Pixel, Body);
+                    RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body, true);
                     RectRender.Color = color;
 
-                    Emitter = new GibEmitter(this, "Emitter", Body, Physics, color);
+                    GibEmit = new GibEmitter(this, "GibEmitter", Body, Physics, color);
                 }
 
                 public override void Update(GameTime gt)
                 {
                     base.Update(gt);
+
+                    Physics.FaceVelocity();
+
                     if (Body.BoundingRect.Bottom > _floor)
                     {
                         //Find penetration depth
@@ -120,7 +129,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
                         //Move out of the floor, add a little extra for safety
                         Body.Position.Y -= depth + .1f;
-                        Emitter.Emit(20);
+                        GibEmit.Emit(20);
                         Destroy();
                     }
                 }
@@ -147,14 +156,19 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                         p.Body.Position = _body.Position;
 
                         int sign = _rand.Next(0, 2) == 0 ? -1 : 1;
-                        p.Body.Angle = (float) _rand.NextDouble()*MathHelper.PiOver2 * sign;
+                        p.Body.Angle = (float)_rand.NextDouble() * MathHelper.PiOver2 * sign;
 
-                        float thrust = ((float)_rand.NextDouble() + 1f) * (_physics.Velocity.Y/4);
+                        float thrust = ((float)_rand.NextDouble() + 1f) * (_physics.Velocity.Y / 4);
                         p.Physics.Thrust(thrust);
                         p.Physics.Acceleration = new Vector2(0, .1f);
-                        p.ImageRender.Scale = new Vector2(2, 2);
-                        p.ImageRender.Color = _color;
+                        //p.RectRender.Scale = new Vector2(0);
+                        p.RectRender.Color = _color;
                         return p;
+                    }
+
+                    public override void Emit(int amount)
+                    {
+                        base.Emit(amount);
                     }
                 }
 
@@ -162,24 +176,28 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 {
                     private int _floor = EntityGame.Viewport.Height - 20;
 
+                    public Body Body;
                     public Physics Physics;
-                    public ImageRender ImageRender;
+                    public ShapeTypes.Rectangle RectRender;
 
                     public GibParticle(Emitter e)
                         : base(e, 3000)
                     {
                         FadeAge = TimeToLive / 5 * 4;
+                        Body = new Body(this, "Body");
                         Physics = new Physics(this, "Physics", Body);
-                        //TODO: Fix this
-                        ImageRender = new ImageRender(this, "RectRender", Assets.Pixel, Body);
-                        Render = ImageRender;
+
+                        RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body, true);
+                        Render = RectRender;
                     }
 
                     public override void Update(GameTime gt)
                     {
                         base.Update(gt);
 
-                        if (!EntityGame.Viewport.Intersects(Body.BoundingRect))
+                        Physics.FaceVelocity();
+
+                        if (Body.Right < EntityGame.Camera.ScreenSpace.Left || Body.Left > EntityGame.Camera.ScreenSpace.Right)
                             Destroy();
 
                         if (Body.BoundingRect.Bottom > _floor)

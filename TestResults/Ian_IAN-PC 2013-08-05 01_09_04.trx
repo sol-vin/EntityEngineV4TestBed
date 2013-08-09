@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="3ecdc9a2-10c1-4683-a490-8e49fd910fc3" name="Ian@IAN-PC 2013-08-05 01:09:04" runUser="Ian-PC\Ian" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="c1d964d1-5453-408b-ba45-eca3a32d2ee7">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Ian_IAN-PC 2013-08-05 01_09_04">
+      <DeploymentItem filename="C:\Users\Ian\Documents\GitHub\EntityEngineV4\EntityEngineV4\bin\Debug\EntityEngineV4.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-08-05T01:09:04.7083531-07:00" queuing="2013-08-05T01:09:07.3965069-07:00" start="2013-08-05T01:09:07.4685110-07:00" finish="2013-08-05T01:09:18.1391213-07:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="2" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="1" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="IAN-PC" outcome="Error" timestamp="2013-08-05T01:09:18.1381212-07:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CollideAABBvsAABB2" storage="c:\users\ian\documents\github\entityenginev4testbed\entityenginev4test\bin\debug\entityenginev4test.dll" id="ecbe2d02-9b35-4cbd-91c6-ac81a9c26913">
+      <Execution id="de872ce0-4bd7-4db3-bee3-b51ce30cbdc6" />
+      <TestMethod codeBase="C:/Users/Ian/Documents/GitHub/EntityEngineV4TestBed/EntityEngineV4Test/bin/Debug/EntityEngineV4Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="EntityEngineV4Test.CollisionTest, EntityEngineV4Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CollideAABBvsAABB2" />
+    </UnitTest>
+    <UnitTest name="CollideAABBvsAABB1" storage="c:\users\ian\documents\github\entityenginev4testbed\entityenginev4test\bin\debug\entityenginev4test.dll" id="6e81cd68-0f75-7438-2fe3-16d64e678ee5">
+      <Execution id="7f4d914b-f1e5-46e1-aa5b-0b336f7f1ade" />
+      <TestMethod codeBase="C:/Users/Ian/Documents/GitHub/EntityEngineV4TestBed/EntityEngineV4Test/bin/Debug/EntityEngineV4Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="EntityEngineV4Test.CollisionTest, EntityEngineV4Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CollideAABBvsAABB1" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="6e81cd68-0f75-7438-2fe3-16d64e678ee5" executionId="7f4d914b-f1e5-46e1-aa5b-0b336f7f1ade" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ecbe2d02-9b35-4cbd-91c6-ac81a9c26913" executionId="de872ce0-4bd7-4db3-bee3-b51ce30cbdc6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="7f4d914b-f1e5-46e1-aa5b-0b336f7f1ade" testId="6e81cd68-0f75-7438-2fe3-16d64e678ee5" testName="CollideAABBvsAABB1" computerName="IAN-PC" duration="00:00:10.5506034" startTime="2013-08-05T01:09:07.5875178-07:00" endTime="2013-08-05T01:09:18.1381212-07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7f4d914b-f1e5-46e1-aa5b-0b336f7f1ade">
+    </UnitTestResult>
+    <UnitTestResult executionId="de872ce0-4bd7-4db3-bee3-b51ce30cbdc6" testId="ecbe2d02-9b35-4cbd-91c6-ac81a9c26913" testName="CollideAABBvsAABB2" computerName="IAN-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="de872ce0-4bd7-4db3-bee3-b51ce30cbdc6">
+    </UnitTestResult>
+  </Results>
+</TestRun>

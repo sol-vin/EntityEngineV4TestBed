@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Linq;
 using EntityEngineV4.Components;
-using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Components.Rendering.Primitives;
-using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
-using EntityEngineV4.Object;
 using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -29,17 +26,16 @@ namespace EntityEngineV4TestBed.States.ParticleTest
         private const float GRAVITYSTEP = .1f;
         private ParticleTestManager _ptm;
 
-        public ParticleTestState(EntityGame eg)
-            : base(eg, "ParticleTestState")
+        public static Random Random = new Random();
+
+        public ParticleTestState()
+            : base("ParticleTestState")
         {
-            
         }
 
         public override void Create()
         {
             base.Create();
-
-            AddService(new MouseHandler(this));
 
             ControlHandler ch = new ControlHandler(this);
 
@@ -121,15 +117,13 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             _gravityYUp.Body.Position = new Vector2(_gravityYValue.Body.BoundingRect.Right + 5, 110);
             _gravityYUp.Selected += control => _ptm.Emitter.Acceleration.Y += GRAVITYSTEP;
             ch.AddControl(_gravityYUp);
-
-            AddService(ch);
         }
 
         public override void Update(GameTime gt)
         {
             base.Update(gt);
 
-            _screeninfo.Text = "Active: " + this.Count() + "\n";
+            _screeninfo.Text = "Active: " + (this.Count()-15) + "\n";
 
             _strengthValue.Text = Math.Round(_ptm.Emitter.Strength, 1).ToString();
             _strengthUp.Body.Position.X = _strengthValue.Body.BoundingRect.Right + 5;
@@ -191,7 +185,6 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
             public class TestEmitter : Emitter
             {
-                private Random _random = new Random();
                 private float _stength = 3;
 
                 public float Strength
@@ -213,37 +206,38 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 protected override Particle GenerateNewParticle()
                 {
                     var p = new TestParticle(this);
-                    p.RectRender.Color = MathTools.Color.HSVtoRGB((float)_random.NextDouble(), 1, 1, 1);
+                    p.RectRender.Color = MathTools.Color.HSVtoRGB((float)Random.NextDouble(), 1, 1, 1);
                     p.Body.Position = new Vector2(MouseHandler.Cursor.Position.X, MouseHandler.Cursor.Position.Y);
-                    p.Body.Width = 4; //_random.Next(1, 4);
-                    p.Body.Height = 4; // _random.Next(1, 4);
-                    p.Body.Angle = (float)_random.NextDouble() * MathHelper.TwoPi;
+                    p.Body.Width = Random.Next(3, 10);
+                    p.Body.Height = p.Body.Width;
+                    p.Body.Angle = (float)Random.NextDouble() * MathHelper.TwoPi;
 
-                    float thrust = (float)_random.NextDouble() * Strength;
+                    float thrust = (float)Random.NextDouble() * Strength;
                     while (Math.Abs(thrust) < .00001f)
                     {
-                        thrust = (float)_random.NextDouble() * Strength;
+                        thrust = (float)Random.NextDouble() * Strength;
                     }
                     p.Physics.Thrust(thrust);
-                    p.Physics.AngularVelocity = (float)_random.NextDouble();
+                    p.Physics.AngularVelocity = (float)Random.NextDouble() / 3f;
                     p.Physics.Acceleration = Acceleration;
 
-                    p.RectRender.Scale = Vector2.One * (float)_random.NextDouble() + Vector2.One;
+                    //p.RectRender.Scale = Vector2.One * (float)_random.NextDouble() + Vector2.One;
                     p.RectRender.Layer = 0f;
                     return p;
                 }
 
                 private class TestParticle : FadeParticle
                 {
+                    public Body Body;
                     public Physics Physics;
                     public ShapeTypes.Rectangle RectRender;
 
                     public TestParticle(Emitter e)
                         : base(e, 3000)
                     {
+                        Body = new Body(this, "Body");
                         Physics = new Physics(this, "Physics", Body);
-                        RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body.X, Body.Y, Body.Bounds.X,
-                                                             Body.Bounds.Y, false);
+                        RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body, Random.RandomBool());
                         RectRender.Thickness = 1;
                         Render = RectRender;
                         FadeAge = 1000;

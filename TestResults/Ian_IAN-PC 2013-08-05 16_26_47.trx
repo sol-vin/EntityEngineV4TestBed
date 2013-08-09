@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="af99520f-65a3-4b53-8065-54d9d8c77705" name="Ian@IAN-PC 2013-08-05 16:26:47" runUser="Ian-PC\Ian" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="c1d964d1-5453-408b-ba45-eca3a32d2ee7">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Ian_IAN-PC 2013-08-05 16_26_47">
+      <DeploymentItem filename="C:\Users\Ian\Documents\GitHub\EntityEngineV4\EntityEngineV4\bin\Debug\EntityEngineV4.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-08-05T16:26:47.0363429-07:00" queuing="2013-08-05T16:26:47.0783453-07:00" start="2013-08-05T16:26:47.0833456-07:00" finish="2013-08-05T16:26:47.2633559-07:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CollideAABBvsAABB1" storage="c:\users\ian\documents\github\entityenginev4testbed\entityenginev4test\bin\debug\entityenginev4test.dll" id="6e81cd68-0f75-7438-2fe3-16d64e678ee5">
+      <Execution id="b2a85431-a731-4cc5-b159-ba697fcd922e" />
+      <TestMethod codeBase="C:/Users/Ian/Documents/GitHub/EntityEngineV4TestBed/EntityEngineV4Test/bin/Debug/EntityEngineV4Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="EntityEngineV4Test.CollisionTest, EntityEngineV4Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CollideAABBvsAABB1" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="6e81cd68-0f75-7438-2fe3-16d64e678ee5" executionId="b2a85431-a731-4cc5-b159-ba697fcd922e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="b2a85431-a731-4cc5-b159-ba697fcd922e" testId="6e81cd68-0f75-7438-2fe3-16d64e678ee5" testName="CollideAABBvsAABB1" computerName="IAN-PC" duration="00:00:00.0383009" startTime="2013-08-05T16:26:47.0843457-07:00" endTime="2013-08-05T16:26:47.2543554-07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b2a85431-a731-4cc5-b159-ba697fcd922e">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method EntityEngineV4Test.CollisionTest.CollideAABBvsAABB1 threw exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at EntityEngineV4.Data.Assets.LoadConent(Game game) in c:\Users\Ian\Documents\GitHub\EntityEngineV4\EntityEngineV4\Data\Assets.cs:line 13
+   at EntityEngineV4.Engine.EntityGame..ctor(Game game, SpriteBatch spriteBatch) in c:\Users\Ian\Documents\GitHub\EntityEngineV4\EntityEngineV4\Engine\EntityGame.cs:line 63
+   at EntityEngineV4Test.CollisionTest.CollideAABBvsAABB1() in c:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\CollisionTest.cs:line 20
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -1,6 +1,5 @@
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
-using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using Microsoft.Xna.Framework;
 
@@ -12,8 +11,8 @@ namespace EntityEngineV4TestBed.States.TestControl
         private Label _actionLabel;
         private string _actionLabelText = "ActionLabelText";
 
-        public ControlTestState(EntityGame parent)
-            : base(parent, "ControlTestState")
+        public ControlTestState()
+            : base("ControlTestState")
         {
             Initialize();
         }
@@ -21,7 +20,6 @@ namespace EntityEngineV4TestBed.States.TestControl
         public void Initialize()
         {
             //Add our services
-            AddService(new MouseHandler(this));
             var controlHandler = new ControlHandler(this);
             for (int x = 0; x < 4; x++)
                 for (int y = 0; y < 4; y++)
@@ -43,8 +41,6 @@ namespace EntityEngineV4TestBed.States.TestControl
             _actionLabel.TabPosition = new Point(5, 2);
             _actionLabel.Body.Position = new Vector2(50, 400);
             controlHandler.AddControl(_actionLabel);
-
-            AddService(controlHandler);
 
             _testControlManager = new TestControlManager(this, controlHandler);
             AddEntity(_testControlManager);
