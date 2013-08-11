@@ -115,6 +115,7 @@
     <Compile Include="States\ColorTest\ColorTestState.cs" />
     <Compile Include="States\FancyParticleTest\FancyParticleTest.cs" />
     <Compile Include="States\FireworkTest\FireworkTestState.cs" />
+    <Compile Include="States\GameOfLife\GameOfLifeState.cs" />
     <Compile Include="States\Menu\MenuState.cs" />
     <Compile Include="States\ParticleTest\ParticleTestState.cs" />
     <Compile Include="States\PrimitiveTest\PrimitiveTestState.cs" />

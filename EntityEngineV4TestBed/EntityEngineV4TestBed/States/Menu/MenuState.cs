@@ -7,6 +7,7 @@ using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ColorTest;
 using EntityEngineV4TestBed.States.FancyParticleTest;
 using EntityEngineV4TestBed.States.FireworkTest;
+using EntityEngineV4TestBed.States.GameOfLife;
 using EntityEngineV4TestBed.States.ParticleTest;
 using EntityEngineV4TestBed.States.PrimitiveTest;
 using EntityEngineV4TestBed.States.ResolutionTest;
@@ -43,6 +44,7 @@ namespace EntityEngineV4TestBed.States.Menu
             var ch = new ControlHandler(this);
 
             _menuStateManager = new MenuStateManager(this, ch);
+            _menuStateManager.AddMenuItem("Game of Life", () => EntityGame.SwitchState(new GameOfLifeState()));
             _menuStateManager.AddMenuItem("Camera Test State", () => EntityGame.SwitchState(new CameraTestState()));
             _menuStateManager.AddMenuItem("Control Test State", () => EntityGame.SwitchState(new ControlTestState()));
             _menuStateManager.AddMenuItem("Particle Test State", () => EntityGame.SwitchState(new ParticleTestState()));

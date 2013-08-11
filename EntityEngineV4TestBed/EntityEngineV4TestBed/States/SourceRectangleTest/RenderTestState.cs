@@ -13,6 +13,12 @@ namespace EntityEngineV4TestBed.States.SourceRectangleTest
         public RenderTestState()
             : base("RenderTestState")
         {
+           
+        }
+
+        public override void Create()
+        {
+            base.Create();
             new AnimationTestEntity(this, "Animation");
         }
 

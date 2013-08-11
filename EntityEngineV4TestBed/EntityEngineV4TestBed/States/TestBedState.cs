@@ -10,6 +10,12 @@ namespace EntityEngineV4TestBed.States
         protected TestBedState(string name)
             : base(name)
         {
+
+        }
+
+        public override void Create()
+        {
+            base.Create();
             new InputHandler(this);
             new MouseHandler(this);
             AddEntity(new TestBedStateManager(this, "TestBedStateManager"));

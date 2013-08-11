@@ -2,6 +2,7 @@
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.Input;
+using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,10 +18,19 @@ namespace EntityEngineV4TestBed.States.TilemapTest
         public TilemapTestState()
             : base("TilemapTest")
         {
+
+        }
+
+        public override void Create()
+        {
+            base.Create();
+
             _tm = new Tilemap(this, "Tilemap", EntityGame.Game.Content.Load<Texture2D>(@"TilemapTest/tiles"), MakeTiles(30, 30), new Point(16, 16));
-            _tm.Data.Scale = new Vector2(1.5f, 1.5f);
-            
-            new CameraController(this, "CamCon");
+            _tm.Render.Scale = new Vector2(1.5f, 1.5f);
+            _tm.Render.Layer = .5f;
+
+            CameraController c = new CameraController(this, "CamCon");
+            _tm.TileSelected += c.OnTileSelect;
         }
 
         public Tile[,] MakeTiles(int sizex, int sizey)
@@ -55,8 +65,8 @@ namespace EntityEngineV4TestBed.States.TilemapTest
                 _right = new DoubleInput(this, "Right", Keys.Right, Buttons.DPadRight, PlayerIndex.One);
                 _zoomIn = new DoubleInput(this, "ZoomIn", Keys.W, Buttons.LeftShoulder, PlayerIndex.One);
                 _zoomOut = new DoubleInput(this, "ZoomOut", Keys.S, Buttons.LeftTrigger, PlayerIndex.One);
-                _rotateLeft = new DoubleInput(this, "RotateLeft", Keys.A, Buttons.RightShoulder, PlayerIndex.One);
-                _rotateRight = new DoubleInput(this, "RotateRight", Keys.D, Buttons.RightTrigger, PlayerIndex.One);
+                _rotateLeft = new DoubleInput(this, "RotateLeft", Keys.A, Buttons.LeftShoulder, PlayerIndex.One);
+                _rotateRight = new DoubleInput(this, "RotateRight", Keys.D, Buttons.RightShoulder, PlayerIndex.One);
 
                 _camera = new Camera(this, "Camera");
                 _camera.View();
@@ -84,6 +94,12 @@ namespace EntityEngineV4TestBed.States.TilemapTest
                 base.Destroy(i);
                 Camera c = new Camera(this, "Camera");
                 c.View();
+            }
+
+            public void OnTileSelect(Tile t)
+            {
+                t.Index++;
+                if (t.Index > 2) t.Index = 0;
             }
         }
     }

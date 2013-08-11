@@ -56,7 +56,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
                 AutoBody.Position = new Vector2(_rand.Next(40, EntityGame.Viewport.Width - 40), -30);
 
-                if (MouseHandler.IsMouseButtonDown(MouseButton.RightButton))
+                if (MouseHandler.Cursor.Down())
                 {
                     MouseBody.Position = new Vector2(MouseHandler.Cursor.Position.X, MouseHandler.Cursor.Position.Y);
                     FancyEmitterMouse.Emit(1);

@@ -14,11 +14,11 @@ namespace EntityEngineV4TestBed.States.TestControl
         public ControlTestState()
             : base("ControlTestState")
         {
-            Initialize();
         }
 
-        public void Initialize()
+        public override void Create()
         {
+            base.Create();
             //Add our services
             var controlHandler = new ControlHandler(this);
             for (int x = 0; x < 4; x++)
