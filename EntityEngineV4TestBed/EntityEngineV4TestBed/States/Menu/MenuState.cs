@@ -45,6 +45,8 @@ namespace EntityEngineV4TestBed.States.Menu
 
             _menuStateManager = new MenuStateManager(this, ch);
             _menuStateManager.AddMenuItem("Game of Life", () => EntityGame.SwitchState(new GameOfLifeState()));
+            _menuStateManager.AddMenuItem("Color Game of Life", () => EntityGame.SwitchState(new ColorGameOfLifeState()));
+
             _menuStateManager.AddMenuItem("Camera Test State", () => EntityGame.SwitchState(new CameraTestState()));
             _menuStateManager.AddMenuItem("Control Test State", () => EntityGame.SwitchState(new ControlTestState()));
             _menuStateManager.AddMenuItem("Particle Test State", () => EntityGame.SwitchState(new ParticleTestState()));
@@ -105,7 +107,7 @@ namespace EntityEngineV4TestBed.States.Menu
 
                 l.Text = label;
                 l.Body.Position = new Vector2(20, (_lasttabposition.Y * l.Body.Height + 5));
-
+                l.TextRender.Layer = .2f;
                 l.Selected += control => changeStateDelegate();
 
                 l.TabPosition = _lasttabposition;

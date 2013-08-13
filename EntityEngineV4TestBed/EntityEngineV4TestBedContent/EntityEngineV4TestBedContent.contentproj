@@ -149,7 +149,13 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="GameOfLife\tilesSmall.png">
+      <Name>tilesSmall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="GameOfLife\tiles.png">
       <Name>tiles</Name>

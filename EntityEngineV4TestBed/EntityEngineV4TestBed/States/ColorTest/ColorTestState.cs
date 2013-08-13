@@ -41,7 +41,6 @@ namespace EntityEngineV4TestBed.States.ColorTest
                     cte.Body.Bounds = new Vector2(_size.X, _size.Y);
                     cte.Render.Scale = new Vector2(_size.X, _size.Y);
                     cte.Hue = huefraction * ((y * maxx) + x);
-                    //AddEntity(cte);
                 }
             }
         }
@@ -86,8 +85,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
             private void IncreaseHue()
             {
                 Hue += HUEINCREASE;
-
-                Render.Color = MathTools.Color.HSVtoRGB(Hue, 1, 1, 1);
+                Render.Color = ColorMath.HSVtoRGB(Hue, 1, 1, 1);
             }
         }
     }

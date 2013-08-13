@@ -137,6 +137,24 @@
       <Time>2013-06-16T01:41:21.0551024-07:00</Time>
     </Item>
     <Item>
+      <Source>GameOfLife\tilesSmall.png</Source>
+      <Name>GameOfLife\tilesSmall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\GameOfLife\tilesSmall.xnb</Output>
+      <Time>2013-08-11T13:15:53.1029653-07:00</Time>
+    </Item>
+    <Item>
+      <Source>GameOfLife\tiles.png</Source>
+      <Name>GameOfLife\tiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\GameOfLife\tiles.xnb</Output>
+      <Time>2013-08-11T13:03:22.7370468-07:00</Time>
+    </Item>
+    <Item>
       <Source>SuperTownDefence\game\sounds\explode.wav</Source>
       <Name>SuperTownDefence\game\sounds\explode</Name>
       <Importer>WavImporter</Importer>
@@ -171,15 +189,6 @@
       <Options>None</Options>
       <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\sounds\soldierhit.xnb</Output>
       <Time>2012-12-23T17:15:00.1002109-08:00</Time>
-    </Item>
-    <Item>
-      <Source>GameOfLife\tiles.png</Source>
-      <Name>GameOfLife\tiles</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\GameOfLife\tiles.xnb</Output>
-      <Time>2013-08-10T19:38:26.0475534-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
