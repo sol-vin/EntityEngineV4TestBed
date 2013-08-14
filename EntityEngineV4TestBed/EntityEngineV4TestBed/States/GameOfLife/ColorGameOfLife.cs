@@ -360,10 +360,10 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                                 newhue += minhue;
                             }
                             Tile newtile = new Tile(ALIVE);
-                            newtile.Color = ColorMath.HSVtoRGB(newhue, 1, 1, 1);
+                            newtile.Color = ColorMath.HSVtoRGB(new HSVColor(newhue, 1, 1, 1, ColorOutOfBoundsAction.WrapAround));
                             Cells.SetTile(x, y, newtile);
                         }
-                        else
+                        else if(Cells.GetTile(x,y).Index == ALIVE)
                         {
                             //Get our tile's color
                             HSVColor tilecolor = ColorMath.RGBtoHSV(_tiles[x, y].Color);
@@ -385,7 +385,8 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                             newhue += tilecolor.H;
 
                             Tile newtile = new Tile(ALIVE);
-                            newtile.Color = ColorMath.HSVtoRGB(newhue, 1, 1, 1);
+                            newtile.Color = ColorMath.HSVtoRGB(new HSVColor(newhue, 1, 1, 1));
+                            newtile.Color.Action = ColorOutOfBoundsAction.WrapAround;
                             Cells.SetTile(x, y, newtile);
 
                         }

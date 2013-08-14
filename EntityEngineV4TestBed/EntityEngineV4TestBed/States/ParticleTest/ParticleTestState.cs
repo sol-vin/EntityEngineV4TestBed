@@ -212,7 +212,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 protected override Particle GenerateNewParticle()
                 {
                     var p = new TestParticle(this);
-                    p.RectRender.Color = ColorMath.HSVtoRGB((float)Random.NextDouble(), 1, 1, 1);
+                    p.RectRender.Color = ColorMath.HSVtoRGB(new HSVColor((float)Random.NextDouble(), 1, 1, 1));
                     p.Body.Position = new Vector2(MouseHandler.Cursor.Position.X, MouseHandler.Cursor.Position.Y);
                     p.Body.Width = Random.Next(3, 10);
                     p.Body.Height = p.Body.Width;
