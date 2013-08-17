@@ -35,7 +35,7 @@ namespace EntityEngineV4TestBed.States.TestControl
             else if (_rightkey.Released())
                 ControlHandler.RightControl();
             if (_selectkey.Released())
-                ControlHandler.Select();
+                ControlHandler.Release();
 
             base.Update(gt);
         }

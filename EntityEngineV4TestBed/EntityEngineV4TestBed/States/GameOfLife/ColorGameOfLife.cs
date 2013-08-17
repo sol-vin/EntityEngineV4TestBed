@@ -67,68 +67,87 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             _tiles = Cells.CloneTiles();
 
             //GUI
-            LinkLabel startLink = new LinkLabel(this, "StartLink");
-            startLink.Body.Position = new Vector2(Cells.Body.X, 500);
-            startLink.TabPosition = new Point(0, 0);
-            startLink.OnFocusGain(startLink);
-            startLink.Text = "Start";
-            startLink.Selected += control => _manager.Start();
-            startLink.AttachToControlHandler();
+            TextButton startTextButton = new TextButton(this, "StartButton", new Vector2(Cells.Body.X, 500), Color.White.ToRGBColor());
+            startTextButton.TabPosition = new Point(0, 0);
+            startTextButton.OnFocusGain(startTextButton);
+            startTextButton.Text = "Start";
+            startTextButton.MakeDefault();
+            startTextButton.OnReleased += control => _manager.Start();
+            startTextButton.AttachToControlHandler();
 
             LinkLabel stopLink = new LinkLabel(this, "StopLink");
-            stopLink.Body.Position = new Vector2(Cells.Body.X, startLink.Body.Bottom);
+            stopLink.Body.Position = new Vector2(Cells.Body.X, startTextButton.Body.Bottom);
             stopLink.TabPosition = new Point(0, 1);
             stopLink.Text = "Stop";
-            stopLink.Selected += control => _manager.Stop();
+            stopLink.OnReleased += control => _manager.Stop();
             stopLink.AttachToControlHandler();
 
             LinkLabel resetLink = new LinkLabel(this, "ResetLink");
             resetLink.Body.Position = new Vector2(Cells.Body.X, stopLink.Body.Bottom);
             resetLink.TabPosition = new Point(0, 2);
             resetLink.Text = "Reset";
-            resetLink.Selected += control => ResetCells();
+            resetLink.OnReleased += control => ResetCells();
             resetLink.AttachToControlHandler();
 
             LinkLabel downMillisecondsLink = new LinkLabel(this, "downMillisecondsLink");
-            downMillisecondsLink.Body.Position = new Vector2(Cells.Body.X + 100, startLink.Body.Bottom);
+            downMillisecondsLink.Body.Position = new Vector2(Cells.Body.X + 100, startTextButton.Body.Bottom);
             downMillisecondsLink.TabPosition = new Point(1, 0);
             downMillisecondsLink.Text = "<-";
-            downMillisecondsLink.Selected += control => _manager.UpdateTimer.Milliseconds -= 50;
+            downMillisecondsLink.OnDown += control => _manager.UpdateTimer.Milliseconds -= 50;
             downMillisecondsLink.AttachToControlHandler();
 
             _millisecondsText = new Label(this, "millisecondsText");
-            _millisecondsText.Body.Position = new Vector2(downMillisecondsLink.Body.Right + 2, startLink.Body.Bottom);
+            _millisecondsText.Body.Position = new Vector2(downMillisecondsLink.Body.Right + 2, startTextButton.Body.Bottom);
             _millisecondsText.TabPosition = new Point(2, 0);
             _millisecondsText.Text = _manager.UpdateTimer.Milliseconds.ToString();
             _millisecondsText.AttachToControlHandler();
 
             LinkLabel upMillisecondsLink = new LinkLabel(this, "upMillisecondsLink");
-            upMillisecondsLink.Body.Position = new Vector2(_millisecondsText.Body.Right + 25, startLink.Body.Bottom);
+            upMillisecondsLink.Body.Position = new Vector2(_millisecondsText.Body.Right + 25, startTextButton.Body.Bottom);
             upMillisecondsLink.TabPosition = new Point(3, 0);
             upMillisecondsLink.Text = "->";
-            upMillisecondsLink.Selected += control => _manager.UpdateTimer.Milliseconds += 50;
+            upMillisecondsLink.OnDown += control => _manager.UpdateTimer.Milliseconds += 50;
             upMillisecondsLink.AttachToControlHandler();
 
-            LinkLabel redColorLink = new LinkLabel(this, "redColorLink");
-            redColorLink.Body.Position = new Vector2(_millisecondsText.X, stopLink.Body.Bottom);
-            redColorLink.TabPosition = new Point(1, 1);
-            redColorLink.Text = "Red";
-            redColorLink.Selected += control => _currentColor = Color.Red;
-            redColorLink.AttachToControlHandler();
+            //Button redColorTextButton = new Button(this, "redColorTextButton", new Vector2(_millisecondsText.X, stopLink.Body.Bottom), new Vector2(20,20), Color.Red.ToRGBColor());
+            //redColorTextButton.TabPosition = new Point(1, 1);
+            //redColorTextButton.OnReleased += control => _currentColor = Color.Red;
+            //redColorTextButton.AttachToControlHandler();
 
-            LinkLabel blueColorLink = new LinkLabel(this, "blueColorLink");
-            blueColorLink.Body.Position = new Vector2(redColorLink.Body.Right + 3, stopLink.Body.Bottom);
-            blueColorLink.TabPosition = new Point(2, 1);
-            blueColorLink.Text = "Blue";
-            blueColorLink.Selected += control => _currentColor = Color.Blue;
-            blueColorLink.AttachToControlHandler();
+            //Button blueColorLink = new Button(this, "blueColorLink", new Vector2(redColorTextButton.Body.Right + 3, stopLink.Body.Bottom), new Vector2(20,20), Color.Blue.ToRGBColor());
+            //blueColorLink.TabPosition = new Point(2, 1);
+            //blueColorLink.OnReleased += control => _currentColor = Color.Blue;
+            //blueColorLink.AttachToControlHandler();
 
-            LinkLabel yellowColorLink = new LinkLabel(this, "yellowColorLink");
-            yellowColorLink.Body.Position = new Vector2(blueColorLink.Body.Right + 3, stopLink.Body.Bottom);
-            yellowColorLink.TabPosition = new Point(3, 1);
-            yellowColorLink.Text = "Yellow";
-            yellowColorLink.Selected += control => _currentColor = Color.Yellow;
-            yellowColorLink.AttachToControlHandler();
+            //Button yellowColorLink = new Button(this, "yellowColorLink", new Vector2(blueColorLink.Body.Right + 3, stopLink.Body.Bottom), new Vector2(20,20), Color.Yellow.ToRGBColor());
+            //yellowColorLink.TabPosition = new Point(3, 1);
+            //yellowColorLink.OnReleased += control => _currentColor = Color.Yellow;
+            //yellowColorLink.AttachToControlHandler();
+
+            MakeNextColorButton(Color.Red.ToRGBColor());
+            MakeNextColorButton(Color.Orange.ToRGBColor());
+            MakeNextColorButton(Color.Yellow.ToRGBColor());
+            MakeNextColorButton(Color.Green.ToRGBColor());
+            MakeNextColorButton(Color.LightBlue.ToRGBColor());
+            MakeNextColorButton(Color.Blue.ToRGBColor());
+            MakeNextColorButton(Color.Purple.ToRGBColor());
+            MakeNextColorButton(Color.Magenta.ToRGBColor());
+        }
+
+
+        private int _lastX = 160;
+        private Point _lastTab = new Point(1,1);
+
+        public void MakeNextColorButton(RGBColor color)
+        {
+            Button button = new Button(this, "button" + _lastX.ToString(), new Vector2(_lastX, 539), new Vector2(20,20), color);
+            button.TabPosition = _lastTab;
+            button.OnReleased += control => _currentColor = color;
+            button.DownColor = Color.White.ToRGBColor();
+            button.AttachToControlHandler();
+
+            _lastX += 25;
+            _lastTab.X++;
         }
 
         public void ResetCells()

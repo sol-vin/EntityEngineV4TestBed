@@ -56,7 +56,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             _strengthDown.Text = "<-";
             _strengthDown.TabPosition = new Point(1, 1);
             _strengthDown.Body.Position = new Vector2(_strengthText.Body.BoundingRect.Right + 5, 50);
-            _strengthDown.Selected += control => _ptm.Emitter.Strength -= STRENGTHSTEP;
+            _strengthDown.OnDown += control => _ptm.Emitter.Strength -= STRENGTHSTEP;
             _strengthDown.AttachToControlHandler();
 
             _strengthValue = new Label(ch, "StrengthValue");
@@ -69,7 +69,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             _strengthUp.Text = "->";
             _strengthUp.TabPosition = new Point(3, 1);
             _strengthUp.Body.Position = new Vector2(_strengthValue.Body.BoundingRect.Right + 5, 50);
-            _strengthUp.Selected += control => _ptm.Emitter.Strength += STRENGTHSTEP;
+            _strengthUp.OnDown += control => _ptm.Emitter.Strength += STRENGTHSTEP;
            _strengthUp.AttachToControlHandler();
 
             _gravityText = new Label(ch, "GravityText");
@@ -82,7 +82,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             _gravityXDown.Text = "<-";
             _gravityXDown.TabPosition = new Point(1, 2);
             _gravityXDown.Body.Position = new Vector2(_gravityText.Body.BoundingRect.Right + 5, 80);
-            _gravityXDown.Selected += control => _ptm.Emitter.Acceleration.X -= GRAVITYSTEP;
+            _gravityXDown.OnDown += control => _ptm.Emitter.Acceleration.X -= GRAVITYSTEP;
             _gravityXDown.AttachToControlHandler();
 
             _gravityXValue = new Label(ch, "GravityXValue");
@@ -95,14 +95,14 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             _gravityXUp.Text = "->";
             _gravityXUp.TabPosition = new Point(3, 2);
             _gravityXUp.Body.Position = new Vector2(_gravityXValue.Body.BoundingRect.Right + 5, 80);
-            _gravityXUp.Selected += control => _ptm.Emitter.Acceleration.X += GRAVITYSTEP;
+            _gravityXUp.OnDown += control => _ptm.Emitter.Acceleration.X += GRAVITYSTEP;
             _gravityXUp.AttachToControlHandler();
 
             _gravityYDown = new LinkLabel(ch, "GravityYDown");
             _gravityYDown.Text = "<-";
             _gravityYDown.TabPosition = new Point(1, 3);
             _gravityYDown.Body.Position = new Vector2(_gravityText.Body.BoundingRect.Right + 5, 110);
-            _gravityYDown.Selected += control => _ptm.Emitter.Acceleration.Y -= GRAVITYSTEP;
+            _gravityYDown.OnDown += control => _ptm.Emitter.Acceleration.Y -= GRAVITYSTEP;
             _gravityYDown.AttachToControlHandler();
 
             _gravityYValue = new Label(ch, "GravityYValue");
@@ -115,7 +115,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             _gravityYUp.Text = "->";
             _gravityYUp.TabPosition = new Point(3, 3);
             _gravityYUp.Body.Position = new Vector2(_gravityYValue.Body.BoundingRect.Right + 5, 110);
-            _gravityYUp.Selected += control => _ptm.Emitter.Acceleration.Y += GRAVITYSTEP;
+            _gravityYUp.OnDown += control => _ptm.Emitter.Acceleration.Y += GRAVITYSTEP;
             _gravityYUp.AttachToControlHandler();
         }
 
@@ -186,7 +186,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 else if (_rightkey.Released())
                     _controlHandler.RightControl();
                 if (_selectkey.Released())
-                    _controlHandler.Select();
+                    _controlHandler.Release();
             }
 
             public class TestEmitter : Emitter

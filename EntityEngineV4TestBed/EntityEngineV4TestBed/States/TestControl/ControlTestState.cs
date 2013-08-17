@@ -11,6 +11,7 @@ namespace EntityEngineV4TestBed.States.TestControl
         private Label _actionLabel;
         private string _actionLabelText = "ActionLabelText";
 
+        //TODO: Write this to test more controls!
         public ControlTestState()
             : base("ControlTestState")
         {
@@ -29,7 +30,7 @@ namespace EntityEngineV4TestBed.States.TestControl
                             Body = { Position = new Vector2(x * 135 + 40, y * 30 + 50) },
                             TabPosition = new Point(x, y)
                         };
-                    testControl.Selected += OnSelected;
+                    testControl.OnReleased += OnSelected;
                     //Set the default control.
                     if (x == 0 && y == 0)
                         testControl.OnFocusGain(testControl);

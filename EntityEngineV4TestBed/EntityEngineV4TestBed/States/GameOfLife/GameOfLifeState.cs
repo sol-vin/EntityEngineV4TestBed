@@ -69,28 +69,28 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             startLink.TabPosition = new Point(0,0);
             startLink.OnFocusGain(startLink);
             startLink.Text = "Start";
-            startLink.Selected += control => _manager.Start();
+            startLink.OnReleased += control => _manager.Start();
             startLink.AttachToControlHandler();
 
             LinkLabel stopLink = new LinkLabel(this, "StopLink");
             stopLink.Body.Position = new Vector2(Cells.Body.X, startLink.Body.Bottom);
             stopLink.TabPosition = new Point(0, 1);
             stopLink.Text = "Stop";
-            stopLink.Selected += control => _manager.Stop();
+            stopLink.OnReleased += control => _manager.Stop();
             stopLink.AttachToControlHandler();
 
             LinkLabel resetLink = new LinkLabel(this, "ResetLink");
             resetLink.Body.Position = new Vector2(Cells.Body.X, stopLink.Body.Bottom);
             resetLink.TabPosition = new Point(0, 2);
             resetLink.Text = "Reset";
-            resetLink.Selected += control => ResetCells();
+            resetLink.OnReleased += control => ResetCells();
             resetLink.AttachToControlHandler();
 
             LinkLabel downMillisecondsLink = new LinkLabel(this, "downMillisecondsLink");
             downMillisecondsLink.Body.Position = new Vector2(Cells.Body.X + 100, startLink.Body.Bottom);
             downMillisecondsLink.TabPosition = new Point(1, 0);
             downMillisecondsLink.Text = "<-";
-            downMillisecondsLink.Selected += control => _manager.UpdateTimer.Milliseconds -= 50;
+            downMillisecondsLink.OnDown += control => _manager.UpdateTimer.Milliseconds -= 50;
             downMillisecondsLink.AttachToControlHandler();
 
             _millisecondsText = new Label(this, "millisecondsText");
@@ -103,7 +103,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             upMillisecondsLink.Body.Position = new Vector2(_millisecondsText.Body.Right + 25, startLink.Body.Bottom);
             upMillisecondsLink.TabPosition = new Point(3, 0);
             upMillisecondsLink.Text = "->";
-            upMillisecondsLink.Selected += control => _manager.UpdateTimer.Milliseconds += 50;
+            upMillisecondsLink.OnDown += control => _manager.UpdateTimer.Milliseconds += 50;
             upMillisecondsLink.AttachToControlHandler();
         }
 
