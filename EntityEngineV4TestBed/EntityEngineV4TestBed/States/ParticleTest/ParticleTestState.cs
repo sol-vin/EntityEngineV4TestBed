@@ -244,6 +244,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                         Body = new Body(this, "Body");
                         Physics = new Physics(this, "Physics", Body);
                         RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body, Random.RandomBool());
+                        RectRender.Origin = new Vector2(.5f,.5f);
                         RectRender.Thickness = 1;
                         Render = RectRender;
                         FadeAge = 1000;

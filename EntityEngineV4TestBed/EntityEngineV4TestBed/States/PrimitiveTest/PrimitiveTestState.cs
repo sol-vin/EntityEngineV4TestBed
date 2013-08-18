@@ -142,9 +142,10 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
                 Body.Width = width;
                 Body.Height = height;
                 Rectangle = new ShapeTypes.Rectangle(this, "Rectangle", Body, fill);
-
+                //Rectangle.Origin = fill ? new Vector2(Body.Width / 2f, Body.Height / 2f) : new Vector2(.5f, .5f);
+                Rectangle.Origin = new Vector2(.5f/thickness, .5f/thickness);
                 Rectangle.Thickness = thickness;
-                Rectangle.Debug = true;
+                Rectangle.Debug = false;
             }
 
             public override void Update(GameTime gt)
