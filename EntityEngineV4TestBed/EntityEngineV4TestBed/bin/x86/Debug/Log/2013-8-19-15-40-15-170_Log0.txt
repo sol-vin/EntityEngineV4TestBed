@@ -1,0 +1,68 @@
+Starting Log @ 2013-8-19 | 15:40:15:170
+===========================================
+[8-19 : 15:40:15:194194] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[8-19 : 15:40:15:202202] - [Info] - [Sender: MenuState] - Added service InputHandler
+[8-19 : 15:40:15:215215] - [Info] - [Sender: MenuState] - Added service MouseHandler
+[8-19 : 15:40:15:222222] - [Info] - [Sender: MouseHandler->MouseHandler.MouseCursor] - Got focus!
+[8-19 : 15:40:15:225225] - [Info] - [Sender: MenuState] - Added service ControlHandler
+[8-19 : 15:40:15:232232] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem0 added
+[8-19 : 15:40:15:233233] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem1 added
+[8-19 : 15:40:15:233233] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem2 added
+[8-19 : 15:40:15:233233] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem3 added
+[8-19 : 15:40:15:233233] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem4 added
+[8-19 : 15:40:15:233233] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem5 added
+[8-19 : 15:40:15:233233] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem6 added
+[8-19 : 15:40:15:234234] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem7 added
+[8-19 : 15:40:15:234234] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem8 added
+[8-19 : 15:40:15:234234] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem9 added
+[8-19 : 15:40:15:234234] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem10 added
+[8-19 : 15:40:15:234234] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem11 added
+[8-19 : 15:40:15:234234] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem12 added
+[8-19 : 15:40:15:234234] - [Info] - [Sender: MenuState] - Shown
+[8-19 : 15:40:16:911911] - [Info] - [Sender: FancyParticleTest] - Added service InputHandler
+[8-19 : 15:40:16:911911] - [Info] - [Sender: FancyParticleTest] - Added service MouseHandler
+[8-19 : 15:40:16:912912] - [Info] - [Sender: MouseHandler->MouseHandler.MouseCursor] - Got focus!
+[8-19 : 15:40:16:913913] - [Info] - [Sender: FancyParticleTest] - Added service ControlHandler
+[8-19 : 15:40:16:920920] - [Info] - [Sender: FancyParticleTest->ControlHandler] - Control countlabel added
+[8-19 : 15:40:16:921921] - [Info] - [Sender: FancyParticleTest] - Shown
+[8-19 : 15:40:22:108108] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle3304] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:23:4343] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle8865] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:23:245245] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle10072] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:23:942942] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle14583] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:24:208208] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle16575] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:25:7878] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle22775] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:25:243243] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle24090] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:25:291291] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle24513] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:25:690690] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle28887] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:27:719719] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle44739] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:29:206206] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle53578] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:29:371371] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle54948] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:31:518518] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle70832] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:32:368368] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle79973] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:32:429429] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle80897] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:32:550550] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle82184] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:33:769769] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle90972] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:40:145145] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle152153] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:40:206206] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle152832] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:322322] - [Warning] - [Sender: GibEmitter->GibEmitter.Particle167057] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:635635] - [Info] - [Sender: ] - Beginning Exit
+[8-19 : 15:40:42:637637] - [Info] - [Sender: FancyParticleTest] - Removed service InputHandler
+[8-19 : 15:40:42:637637] - [Info] - [Sender: FancyParticleTest->InputHandler] - Destroyed
+[8-19 : 15:40:42:638638] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:638638] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:638638] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:638638] - [Info] - [Sender: FancyParticleTest] - Removed service MouseHandler
+[8-19 : 15:40:42:638638] - [Info] - [Sender: FancyParticleTest->MouseHandler] - Destroyed
+[8-19 : 15:40:42:639639] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:639639] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:639639] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:639639] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:639639] - [Warning] - [Sender: FancyParticleTest->TestBedStateManager] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:640640] - [Info] - [Sender: FancyParticleTest] - Removed service ControlHandler
+[8-19 : 15:40:42:640640] - [Info] - [Sender: FancyParticleTest->ControlHandler] - Destroyed
+[8-19 : 15:40:42:640640] - [Warning] - [Sender: FancyParticleTest->countlabel] - RemoveEntity was called but no methods were subscribed
+[8-19 : 15:40:42:773773] - [Info] - [Sender: FancyParticleTest] - Destoyed
+[8-19 : 15:40:42:773773] - [Info] - [Sender: ] - Exited
+[8-19 : 15:40:42:783783] - [Info] - [Sender: ] - Beginning Exit
+[8-19 : 15:40:42:783783] - [Info] - [Sender: FancyParticleTest] - Destoyed
+[8-19 : 15:40:42:784784] - [Info] - [Sender: ] - Exited

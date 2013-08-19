@@ -3,6 +3,7 @@ using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering.Primitives;
 
 using EntityEngineV4.Engine;
+using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4.PowerTools;
@@ -16,14 +17,25 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
         public FancyParticleTestState()
             : base("FancyParticleTest")
         {
-            //AddEntity(new FancyEntity(this, "FE"));
         }
 
         public override void Create()
         {
             base.Create();
 
+            //Init services
+            new ControlHandler(this);
+
             new FancyEntity(this, "FE");
+
+            //GUI
+            var countlabel = new Label(this, "countlabel");
+            countlabel.TabPosition = new Point(0,0);
+            countlabel.X = 0;
+            countlabel.Y = EntityGame.Viewport.Height - countlabel.Height;
+            AddEntityEvent += e => countlabel.Text = "Active: " + (Count-5);
+            RemoveEntityEvent += e => countlabel.Text = "Active: " + (Count-5); 
+            countlabel.AttachToControlHandler();
         }
 
         private class FancyEntity : Entity
@@ -43,7 +55,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 FancyEmitterMouse.Color = Color.Red;
 
                 FancyEmitterAuto = new FancyEmitter(this, "FancyEmitterAuto", AutoBody);
-                FancyEmitterAuto.Color = Color.CornflowerBlue;
+                FancyEmitterAuto.Color = Color.Blue;
                 FancyEmitterAuto.AutoEmit = true;
                 FancyEmitterAuto.AutoEmitAmount = 1;
 
@@ -210,7 +222,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                             Physics.Velocity.Y = -Physics.Velocity.Y * .2f; //Add restitution
                         }
                         //Add friction if it's on the ground
-                        if (Math.Abs(Physics.Velocity.Y) < .001f && (Body.Bottom < _floor + 1))
+                        if (Math.Abs(Physics.Velocity.Y) < .01f && (Body.Bottom < _floor + 1))
                         {
                             Physics.Velocity.X *= .9f;
                             Physics.Velocity.Y = 0;

@@ -134,7 +134,9 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             Button button = new Button(this, "button" + _lastX.ToString(), new Vector2(_lastX, 539), new Vector2(20,20), rgb);
             button.TabPosition = _lastTab;
             button.OnReleased += control => _currentColor = rgb;
-            button.DownColor = Color.White.ToRGBColor();
+            button.OnDown += c => button.RGBColor = Color.White.ToRGBColor();
+            button.FocusLost += c => button.RGBColor = color;
+            button.FocusGain += c => button.RGBColor = color;
             button.AttachToControlHandler();
 
             _lastX += 25;

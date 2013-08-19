@@ -1,0 +1,48 @@
+Starting Log @ 2013-8-19 | 14:8:46:623
+===========================================
+[8-19 : 14:8:46:640640] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[8-19 : 14:8:46:640640] - [Info] - [Sender: MenuState] - Added service InputHandler
+[8-19 : 14:8:46:656656] - [Info] - [Sender: MenuState] - Added service MouseHandler
+[8-19 : 14:8:46:656656] - [Info] - [Sender: MouseHandler->MouseHandler.MouseCursor] - Got focus!
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState] - Added service ControlHandler
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem0 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem1 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem2 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem3 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem4 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem5 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem6 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem7 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem8 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem9 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem10 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem11 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem12 added
+[8-19 : 14:8:46:672672] - [Info] - [Sender: MenuState] - Shown
+[8-19 : 14:8:49:433433] - [Info] - [Sender: FancyParticleTest] - Added service InputHandler
+[8-19 : 14:8:49:433433] - [Info] - [Sender: FancyParticleTest] - Added service MouseHandler
+[8-19 : 14:8:49:433433] - [Info] - [Sender: MouseHandler->MouseHandler.MouseCursor] - Got focus!
+[8-19 : 14:8:49:433433] - [Info] - [Sender: FancyParticleTest] - Added service ControlHandler
+[8-19 : 14:8:49:448448] - [Info] - [Sender: FancyParticleTest->ControlHandler] - Control countlabel added
+[8-19 : 14:8:49:448448] - [Info] - [Sender: FancyParticleTest] - Shown
+[8-19 : 14:9:22:971971] - [Info] - [Sender: ] - Beginning Exit
+[8-19 : 14:9:22:987987] - [Info] - [Sender: FancyParticleTest] - Removed service InputHandler
+[8-19 : 14:9:22:987987] - [Info] - [Sender: FancyParticleTest->InputHandler] - Destroyed
+[8-19 : 14:9:22:987987] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 14:9:22:987987] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 14:9:22:987987] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 14:9:22:987987] - [Info] - [Sender: FancyParticleTest] - Removed service MouseHandler
+[8-19 : 14:9:22:987987] - [Info] - [Sender: FancyParticleTest->MouseHandler] - Destroyed
+[8-19 : 14:9:22:987987] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 14:9:22:987987] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 14:9:22:987987] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 14:9:22:987987] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[8-19 : 14:9:22:987987] - [Warning] - [Sender: FancyParticleTest->TestBedStateManager] - RemoveEntity was called but no methods were subscribed
+[8-19 : 14:9:22:987987] - [Info] - [Sender: FancyParticleTest] - Removed service ControlHandler
+[8-19 : 14:9:22:987987] - [Info] - [Sender: FancyParticleTest->ControlHandler] - Destroyed
+[8-19 : 14:9:22:987987] - [Warning] - [Sender: FancyParticleTest->countlabel] - RemoveEntity was called but no methods were subscribed
+[8-19 : 14:9:23:33] - [Info] - [Sender: FancyParticleTest] - Destoyed
+[8-19 : 14:9:23:33] - [Info] - [Sender: ] - Exited
+[8-19 : 14:9:23:8181] - [Info] - [Sender: ] - Beginning Exit
+[8-19 : 14:9:23:8181] - [Info] - [Sender: FancyParticleTest] - Destoyed
+[8-19 : 14:9:23:8181] - [Info] - [Sender: ] - Exited
