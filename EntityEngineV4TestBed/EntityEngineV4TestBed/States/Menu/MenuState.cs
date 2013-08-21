@@ -1,7 +1,6 @@
 ﻿using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
-using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4TestBed.States.CameraTest;
 using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ColorTest;
@@ -35,7 +34,7 @@ namespace EntityEngineV4TestBed.States.Menu
         {
             base.Create();
 
-            EntityGame.ShowFPS = true;
+            EntityGame.ShowDebugInfo = true;
 
             //Service init
             new InputHandler(this);

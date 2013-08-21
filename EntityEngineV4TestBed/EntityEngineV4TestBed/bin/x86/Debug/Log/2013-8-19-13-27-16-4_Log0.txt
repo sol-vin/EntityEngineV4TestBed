@@ -1,7 +1,0 @@
-Starting Log @ 2013-8-19 | 13:27:16:5
-===========================================
-[8-19 : 13:27:16:2727] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
-[8-19 : 13:27:16:3636] - [Info] - [Sender: MenuState] - Added service InputHandler
-[8-19 : 13:27:16:4545] - [Info] - [Sender: MenuState] - Added service MouseHandler
-[8-19 : 13:27:16:5252] - [Info] - [Sender: MouseHandler->MouseHandler.MouseCursor] - Got focus!
-[8-19 : 13:27:16:5555] - [Info] - [Sender: MenuState] - Added service ControlHandler

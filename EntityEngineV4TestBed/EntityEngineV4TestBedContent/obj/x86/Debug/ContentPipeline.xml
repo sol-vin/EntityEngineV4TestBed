@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\EntityEngine\font.xnb</Output>
-      <Time>2013-08-17T18:48:35.6149727-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\EntityEngine\font.xnb</Output>
+      <Time>2013-08-20T23:58:45.9594733-07:00</Time>
     </Item>
     <Item>
       <Source>ParticleTestState\particles.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\ParticleTestState\particles.xnb</Output>
-      <Time>2013-08-17T18:48:35.6279734-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\ParticleTestState\particles.xnb</Output>
+      <Time>2013-08-20T23:58:45.9614734-07:00</Time>
     </Item>
     <Item>
       <Source>SourceAnimationTest\scott.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SourceAnimationTest\scott.xnb</Output>
-      <Time>2013-08-17T18:48:35.637974-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SourceAnimationTest\scott.xnb</Output>
+      <Time>2013-08-20T23:58:45.9684738-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\background.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\background.xnb</Output>
-      <Time>2013-08-17T18:48:35.638974-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\background.xnb</Output>
+      <Time>2013-08-20T23:58:45.9694739-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\bomb.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\bomb.xnb</Output>
-      <Time>2013-08-17T18:48:35.6399741-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\bomb.xnb</Output>
+      <Time>2013-08-20T23:58:45.9694739-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\cursor.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\cursor.xnb</Output>
-      <Time>2013-08-17T18:48:35.6399741-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\cursor.xnb</Output>
+      <Time>2013-08-20T23:58:45.9694739-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\deadcity.png</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\deadcity.xnb</Output>
-      <Time>2013-08-17T18:48:35.6409742-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\deadcity.xnb</Output>
+      <Time>2013-08-20T23:58:45.970474-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\explosion.png</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\explosion.xnb</Output>
-      <Time>2013-08-17T18:48:35.6419742-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\explosion.xnb</Output>
+      <Time>2013-08-20T23:58:45.970474-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\explosionparticle.png</Source>
@@ -79,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\explosionparticle.xnb</Output>
-      <Time>2013-08-17T18:48:35.6419742-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\explosionparticle.xnb</Output>
+      <Time>2013-08-20T23:58:45.971474-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\helicopter.png</Source>
@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\helicopter.xnb</Output>
-      <Time>2013-08-17T18:48:35.6429743-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\helicopter.xnb</Output>
+      <Time>2013-08-20T23:58:45.971474-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\soldier.png</Source>
@@ -97,8 +97,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\soldier.xnb</Output>
-      <Time>2013-08-17T18:48:35.6429743-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\soldier.xnb</Output>
+      <Time>2013-08-20T23:58:45.971474-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\soldiergibs.png</Source>
@@ -106,8 +106,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\soldiergibs.xnb</Output>
-      <Time>2013-08-17T18:48:35.6429743-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\soldiergibs.xnb</Output>
+      <Time>2013-08-20T23:58:45.971474-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\town.png</Source>
@@ -115,8 +115,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\town.xnb</Output>
-      <Time>2013-08-17T18:48:35.6469745-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\town.xnb</Output>
+      <Time>2013-08-20T23:58:45.9744742-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\menu\background.png</Source>
@@ -124,8 +124,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\menu\background.xnb</Output>
-      <Time>2013-08-17T18:48:35.6479746-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\menu\background.xnb</Output>
+      <Time>2013-08-20T23:58:45.9744742-07:00</Time>
     </Item>
     <Item>
       <Source>TilemapTest\tiles.png</Source>
@@ -133,8 +133,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TilemapTest\tiles.xnb</Output>
-      <Time>2013-08-17T18:48:35.6479746-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\TilemapTest\tiles.xnb</Output>
+      <Time>2013-08-20T23:58:45.9744742-07:00</Time>
     </Item>
     <Item>
       <Source>GameOfLife\tilesSmall.png</Source>
@@ -142,8 +142,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\GameOfLife\tilesSmall.xnb</Output>
-      <Time>2013-08-17T18:48:35.6269734-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\GameOfLife\tilesSmall.xnb</Output>
+      <Time>2013-08-20T23:58:45.9604734-07:00</Time>
     </Item>
     <Item>
       <Source>GameOfLife\tiles.png</Source>
@@ -151,8 +151,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\GameOfLife\tiles.xnb</Output>
-      <Time>2013-08-17T18:48:35.6269734-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\GameOfLife\tiles.xnb</Output>
+      <Time>2013-08-20T23:58:45.9604734-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\sounds\explode.wav</Source>
@@ -160,8 +160,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\sounds\explode.xnb</Output>
-      <Time>2013-08-17T18:48:35.6449744-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\sounds\explode.xnb</Output>
+      <Time>2013-08-20T23:58:45.9724741-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\sounds\firebomb.wav</Source>
@@ -169,8 +169,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\sounds\firebomb.xnb</Output>
-      <Time>2013-08-17T18:48:35.6449744-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\sounds\firebomb.xnb</Output>
+      <Time>2013-08-20T23:58:45.9734741-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\sounds\soldierattack.wav</Source>
@@ -178,8 +178,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\sounds\soldierattack.xnb</Output>
-      <Time>2013-08-17T18:48:35.6459744-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\sounds\soldierattack.xnb</Output>
+      <Time>2013-08-20T23:58:45.9734741-07:00</Time>
     </Item>
     <Item>
       <Source>SuperTownDefence\game\sounds\soldierhit.wav</Source>
@@ -187,8 +187,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\sounds\soldierhit.xnb</Output>
-      <Time>2013-08-17T18:48:35.6469745-07:00</Time>
+      <Output>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SuperTownDefence\game\sounds\soldierhit.xnb</Output>
+      <Time>2013-08-20T23:58:45.9734741-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -196,10 +196,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBedContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBedContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBedContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBedContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -228,7 +228,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2013-06-27T16:19:26.157164-07:00</Value>
+        <Value>2012-07-23T19:41:00.8015187-07:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

@@ -1,12 +1,7 @@
-﻿using EntityEngineV4.Components;
-using EntityEngineV4.Components.Rendering;
-using EntityEngineV4.Data;
+﻿using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
-using EntityEngineV4.Input;
-using EntityEngineV4.PowerTools;
 using EntityEngineV4.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.ColorTest
 {

@@ -2,7 +2,6 @@
 using EntityEngineV4.Components.Rendering.Primitives;
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
-using EntityEngineV4.Input.MouseInput;
 using EntityEngineV4.PowerTools;
 
 using Microsoft.Xna.Framework;

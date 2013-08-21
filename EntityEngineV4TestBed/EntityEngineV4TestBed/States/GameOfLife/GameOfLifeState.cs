@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using EntityEngineV4.Components;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
-using EntityEngineV4.Input.MouseInput;
-using EntityEngineV4.PowerTools;
 using EntityEngineV4.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

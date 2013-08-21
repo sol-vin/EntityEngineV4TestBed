@@ -12,7 +12,6 @@ C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\Entity
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\EntityEngineV4TestBed.pdb
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\EntityEngineV4.dll
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\EntityEngineV4.pdb
-C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\EntityEngineV4TestBed.exe
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\EntityEngineV4TestBed.pdb
@@ -68,3 +67,4 @@ C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestB
 C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\SourceAnimationTest\scott.xnb
 C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\GameOfLife\tilesSmall.xnb
 C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\bin\x86\Debug\Content\GameOfLife\tiles.xnb
+C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed\obj\x86\Debug\EntityEngineV4TestBed.csprojResolveAssemblyReference.cache

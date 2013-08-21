@@ -1,6 +1,4 @@
-using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
-using EntityEngineV4.Input.MouseInput;
 using Microsoft.Xna.Framework;
 
 namespace EntityEngineV4TestBed.States.TestControl

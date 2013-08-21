@@ -7,7 +7,7 @@ using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
-using EntityEngineV4.Input.MouseInput;
+using EntityEngineV4.Input;
 using Microsoft.Xna.Framework;
 
 namespace EntityEngineV4TestBed.States.CollisionTest
