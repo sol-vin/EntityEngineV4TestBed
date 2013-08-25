@@ -124,8 +124,9 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
         public void MakeNextColorButton(RGBColor color)
         {
-            //Change the color to the correct HSV values
+            //Change the color to the base hue value
             HSVColor hsv = ColorMath.RGBtoHSV(color);
+            //make the color the purest possible
             hsv.S = 1;
             hsv.V = 1;
             RGBColor rgb = hsv.ToRGBColor();
@@ -134,8 +135,8 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             button.TabPosition = _lastTab;
             button.OnReleased += control => _currentColor = rgb;
             button.OnDown += c => button.RGBColor = Color.White.ToRGBColor();
-            button.FocusLost += c => button.RGBColor = color;
-            button.FocusGain += c => button.RGBColor = color;
+            button.FocusLost += c => button.RGBColor = rgb;
+            button.FocusGain += c => button.RGBColor = rgb;
             button.AttachToControlHandler();
 
             _lastX += 25;
