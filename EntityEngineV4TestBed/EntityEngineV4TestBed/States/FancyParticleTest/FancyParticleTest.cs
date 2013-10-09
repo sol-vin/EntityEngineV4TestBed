@@ -120,7 +120,9 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     : base(e, ttl)
                 {
                     Body = new Body(this, "Body");
-                    Physics = new Physics(this, "Physics", Body);
+                    Physics = new Physics(this, "Physics");
+                    Physics.Link(Physics.DEPENDENCY_BODY, Body);
+
                     RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body, true);
                     RectRender.Color = color;
 
@@ -196,7 +198,9 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     {
                         FadeAge = TimeToLive / 5 * 4;
                         Body = new Body(this, "Body");
-                        Physics = new Physics(this, "Physics", Body);
+                        Physics = new Physics(this, "Physics");
+                        Physics.Link(Physics.DEPENDENCY_BODY, Body);
+
 
                         RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body, true);
                         Render = RectRender;

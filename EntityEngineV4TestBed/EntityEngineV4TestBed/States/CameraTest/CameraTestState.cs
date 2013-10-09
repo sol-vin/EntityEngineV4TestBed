@@ -91,7 +91,8 @@ namespace EntityEngineV4TestBed.States.CameraTest
                 : base(stateref, name)
             {
                 Body = new Body(this, "Body", new Vector2(EntityGame.Viewport.Width / 2f, EntityGame.Viewport.Height / 2f));
-                Image = new ImageRender(this, "Image", Assets.Pixel, Body);
+                Image = new ImageRender(this, "Image", Assets.Pixel);
+                Image.Link(ImageRender.DEPENDENCY_BODY, Body);
                 Image.Scale = new Vector2(50, 100);
                 Image.Color = Color.Red;
             }

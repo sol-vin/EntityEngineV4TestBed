@@ -11,3 +11,16 @@ C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\Microsoft.Xna.Framework.Game.xml
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\Microsoft.Xna.Framework.Graphics.xml
 C:\Users\Ian\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\obj\Debug\EntityEngineV4Test.csprojResolveAssemblyReference.cache
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\EntityEngineV4Test.dll
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\EntityEngineV4Test.pdb
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\EntityEngineV4.dll
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\Microsoft.Xna.Framework.dll
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\EntityEngineV4.pdb
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\Microsoft.Xna.Framework.xml
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\Microsoft.Xna.Framework.Game.xml
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\bin\Debug\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\obj\Debug\EntityEngineV4Test.csprojResolveAssemblyReference.cache
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\obj\Debug\EntityEngineV4Test.dll
+C:\Users\SnooperSnayk\Documents\GitHub\EntityEngineV4TestBed\EntityEngineV4Test\obj\Debug\EntityEngineV4Test.pdb

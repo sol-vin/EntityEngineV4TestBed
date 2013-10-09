@@ -242,7 +242,9 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                         : base(e, 3000)
                     {
                         Body = new Body(this, "Body");
-                        Physics = new Physics(this, "Physics", Body);
+                        Physics = new Physics(this, "Physics");
+                        Physics.Link(Physics.DEPENDENCY_BODY, Body);
+
                         RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body, Random.RandomBool());
                         RectRender.Origin = new Vector2(.5f,.5f);
                         RectRender.Thickness = 1;

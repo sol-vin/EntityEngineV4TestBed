@@ -1,0 +1,5 @@
+Starting Log @ 2013-10-9 | 14:0:14:958
+===========================================
+[10-9 : 14:0:16:590590] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[10-9 : 14:0:16:596596] - [Info] - [Sender: MenuState] - Added service InputHandler
+[10-9 : 14:0:16:604604] - [Info] - [Sender: MenuState] - Added service MouseHandler

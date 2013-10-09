@@ -32,7 +32,8 @@ namespace EntityEngineV4TestBed.States.SourceRectangleTest
             {
                 Body = new Body(this, "Body");
                 Body.Position = new Vector2(100, 400);
-                StandingAnim = new SourceAnimation(this, "StandingAnim", EntityGame.Game.Content.Load<Texture2D>(@"SourceAnimationTest/scott"), new Vector2(36, 59), 8, Body);
+                StandingAnim = new SourceAnimation(this, "StandingAnim", EntityGame.Game.Content.Load<Texture2D>(@"SourceAnimationTest/scott"), new Vector2(36, 59), 8);
+                StandingAnim.Link(SourceAnimation.DEPENDENCY_BODY, Body);
                 StandingAnim.Scale = Vector2.One;
                 StandingAnim.ReadXml(@"States\SourceRectangleTest\standing.xml");
                 StandingAnim.Start();

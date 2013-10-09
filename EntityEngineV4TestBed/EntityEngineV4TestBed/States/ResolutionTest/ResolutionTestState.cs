@@ -111,14 +111,17 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 Body = new Body(this, "Body");
                 Body.Bounds = new Vector2(70, 70);
 
-                _physics = new Physics(this, "_physics", Body);
+                _physics = new Physics(this, "_physics");
+                _physics.Link(Physics.DEPENDENCY_BODY, Body);
+
                 _physics.Drag = .95f;
 
                 Collision = new Collision(this, "Collision", new AABB(), Body, _physics);
                 Collision.Mass = 10f;
                 Collision.Restitution = .5f;
 
-                _imageRender = new ImageRender(this, "Image", Assets.Pixel, Body);
+                _imageRender = new ImageRender(this, "Image", Assets.Pixel);
+                _imageRender.Link(ImageRender.DEPENDENCY_BODY, Body);
                 _imageRender.Scale = new Vector2(70, 70);
                 _imageRender.Layer = .5f;
 

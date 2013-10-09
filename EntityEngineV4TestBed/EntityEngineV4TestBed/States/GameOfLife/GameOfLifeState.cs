@@ -54,7 +54,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             Cells.Render.Scale = new Vector2(16,16);
             Cells.SetAllTiles(new Tile(DEAD) {Color = Color.Red.ToRGBColor()});
             //Position Tilemap to center
-            Cells.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - Cells.Body.Width/2f * Cells.Render.Scale.X, 10);
+            Cells.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - Cells.Width/2f * Cells.Render.Scale.X, 10);
 
             Cells.TileSelected += OnTileSelected;
             _tiles = Cells.CloneTiles();

@@ -1,0 +1,234 @@
+Starting Log @ 2013-10-9 | 13:6:8:60
+===========================================
+[10-9 : 13:6:11:379379] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[10-9 : 13:6:11:385385] - [Info] - [Sender: MenuState] - Added service InputHandler
+[10-9 : 13:6:11:393393] - [Info] - [Sender: MenuState] - Added service MouseHandler
+[10-9 : 13:6:11:396396] - [Info] - [Sender: MouseHandler->MouseHandler.MouseCursor] - Got focus!
+[10-9 : 13:6:11:399399] - [Info] - [Sender: MenuState] - Added service ControlHandler
+[10-9 : 13:6:11:404404] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem0 added
+[10-9 : 13:6:11:404404] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem1 added
+[10-9 : 13:6:11:404404] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem2 added
+[10-9 : 13:6:11:405405] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem3 added
+[10-9 : 13:6:11:405405] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem4 added
+[10-9 : 13:6:11:405405] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem5 added
+[10-9 : 13:6:11:405405] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem6 added
+[10-9 : 13:6:11:405405] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem7 added
+[10-9 : 13:6:11:405405] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem8 added
+[10-9 : 13:6:11:406406] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem9 added
+[10-9 : 13:6:11:406406] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem10 added
+[10-9 : 13:6:11:406406] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem11 added
+[10-9 : 13:6:11:406406] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem12 added
+[10-9 : 13:6:11:406406] - [Info] - [Sender: MenuState] - Shown
+[10-9 : 13:6:14:469469] - [Info] - [Sender: GameOfLifeState] - Added service InputHandler
+[10-9 : 13:6:14:470470] - [Info] - [Sender: GameOfLifeState] - Added service MouseHandler
+[10-9 : 13:6:14:471471] - [Info] - [Sender: MouseHandler->MouseHandler.MouseCursor] - Got focus!
+[10-9 : 13:6:14:471471] - [Info] - [Sender: GameOfLifeState] - Added service ControlHandler
+[10-9 : 13:6:14:489489] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control StartButton added
+[10-9 : 13:6:14:489489] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control StopLink added
+[10-9 : 13:6:14:490490] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control ResetLink added
+[10-9 : 13:6:14:490490] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control downMillisecondsLink added
+[10-9 : 13:6:14:491491] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control millisecondsText added
+[10-9 : 13:6:14:491491] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control upMillisecondsLink added
+[10-9 : 13:6:14:498498] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control button160 added
+[10-9 : 13:6:14:498498] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control button185 added
+[10-9 : 13:6:14:498498] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control button210 added
+[10-9 : 13:6:14:498498] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control button235 added
+[10-9 : 13:6:14:499499] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control button260 added
+[10-9 : 13:6:14:499499] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control button285 added
+[10-9 : 13:6:14:499499] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control button310 added
+[10-9 : 13:6:14:499499] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Control button335 added
+[10-9 : 13:6:14:500500] - [Info] - [Sender: GameOfLifeState] - Shown
+[10-9 : 13:7:16:592592] - [Info] - [Sender: GameOfLifeState] - Removed service InputHandler
+[10-9 : 13:7:16:592592] - [Info] - [Sender: GameOfLifeState->InputHandler] - Destroyed
+[10-9 : 13:7:16:595595] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:596596] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:596596] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:596596] - [Info] - [Sender: GameOfLifeState] - Removed service MouseHandler
+[10-9 : 13:7:16:596596] - [Info] - [Sender: GameOfLifeState->MouseHandler] - Destroyed
+[10-9 : 13:7:16:597597] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:597597] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:597597] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:597597] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:598598] - [Warning] - [Sender: GameOfLifeState->TestBedStateManager] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:598598] - [Info] - [Sender: GameOfLifeState] - Removed service ControlHandler
+[10-9 : 13:7:16:598598] - [Info] - [Sender: GameOfLifeState->ControlHandler] - Destroyed
+[10-9 : 13:7:16:598598] - [Warning] - [Sender: GameOfLifeState->StartButton] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:598598] - [Warning] - [Sender: GameOfLifeState->StopLink] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:599599] - [Warning] - [Sender: GameOfLifeState->ResetLink] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:599599] - [Warning] - [Sender: GameOfLifeState->downMillisecondsLink] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:599599] - [Warning] - [Sender: GameOfLifeState->millisecondsText] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:599599] - [Warning] - [Sender: GameOfLifeState->upMillisecondsLink] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:599599] - [Warning] - [Sender: GameOfLifeState->button160] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:600600] - [Warning] - [Sender: GameOfLifeState->button185] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:600600] - [Warning] - [Sender: GameOfLifeState->button210] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:600600] - [Warning] - [Sender: GameOfLifeState->button235] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:600600] - [Warning] - [Sender: GameOfLifeState->button260] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:600600] - [Warning] - [Sender: GameOfLifeState->button285] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:601601] - [Warning] - [Sender: GameOfLifeState->button310] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:601601] - [Warning] - [Sender: GameOfLifeState->button335] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:16:601601] - [Info] - [Sender: GameOfLifeState] - Destoyed
+[10-9 : 13:7:16:601601] - [Info] - [Sender: MenuState] - Added service InputHandler
+[10-9 : 13:7:16:602602] - [Info] - [Sender: MenuState] - Added service MouseHandler
+[10-9 : 13:7:16:603603] - [Info] - [Sender: MouseHandler->MouseHandler.MouseCursor] - Got focus!
+[10-9 : 13:7:16:603603] - [Info] - [Sender: MenuState] - Added service ControlHandler
+[10-9 : 13:7:16:603603] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem0 added
+[10-9 : 13:7:16:603603] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem1 added
+[10-9 : 13:7:16:604604] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem2 added
+[10-9 : 13:7:16:604604] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem3 added
+[10-9 : 13:7:16:604604] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem4 added
+[10-9 : 13:7:16:604604] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem5 added
+[10-9 : 13:7:16:605605] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem6 added
+[10-9 : 13:7:16:605605] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem7 added
+[10-9 : 13:7:16:605605] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem8 added
+[10-9 : 13:7:16:606606] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem9 added
+[10-9 : 13:7:16:606606] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem10 added
+[10-9 : 13:7:16:606606] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem11 added
+[10-9 : 13:7:16:606606] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem12 added
+[10-9 : 13:7:16:606606] - [Info] - [Sender: MenuState] - Shown
+[10-9 : 13:7:19:145145] - [Info] - [Sender: ParticleTestState] - Added service InputHandler
+[10-9 : 13:7:19:145145] - [Info] - [Sender: ParticleTestState] - Added service MouseHandler
+[10-9 : 13:7:19:146146] - [Info] - [Sender: MouseHandler->MouseHandler.MouseCursor] - Got focus!
+[10-9 : 13:7:19:146146] - [Info] - [Sender: ParticleTestState] - Added service ControlHandler
+[10-9 : 13:7:19:148148] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control ScreenInfo added
+[10-9 : 13:7:19:148148] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control StrengthText added
+[10-9 : 13:7:19:149149] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control StrengthDown added
+[10-9 : 13:7:19:149149] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control StrengthValue added
+[10-9 : 13:7:19:150150] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control StrengthUp added
+[10-9 : 13:7:19:150150] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control GravityText added
+[10-9 : 13:7:19:150150] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control GravityXDown added
+[10-9 : 13:7:19:151151] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control GravityXValue added
+[10-9 : 13:7:19:151151] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control GravityXUp added
+[10-9 : 13:7:19:151151] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control GravityYDown added
+[10-9 : 13:7:19:152152] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control GravityYValue added
+[10-9 : 13:7:19:152152] - [Info] - [Sender: ParticleTestState->ControlHandler] - Control GravityYUp added
+[10-9 : 13:7:19:152152] - [Info] - [Sender: ParticleTestState] - Shown
+[10-9 : 13:7:20:8686] - [Info] - [Sender: ParticleTestState->ParticleTestManager] - Mouse button pressed, dispensing particles
+[10-9 : 13:7:20:519519] - [Info] - [Sender: ParticleTestState->ParticleTestManager] - Mouse button released, stopping particles
+[10-9 : 13:7:21:318318] - [Info] - [Sender: ParticleTestState->ParticleTestManager] - Mouse button pressed, dispensing particles
+[10-9 : 13:7:21:668668] - [Info] - [Sender: ParticleTestState->ParticleTestManager] - Mouse button released, stopping particles
+[10-9 : 13:7:21:684684] - [Info] - [Sender: ParticleTestState->ParticleTestManager] - Mouse button pressed, dispensing particles
+[10-9 : 13:7:21:718718] - [Info] - [Sender: ParticleTestState->ParticleTestManager] - Mouse button released, stopping particles
+[10-9 : 13:7:22:600600] - [Info] - [Sender: ParticleTestState->ParticleTestManager] - Mouse button pressed, dispensing particles
+[10-9 : 13:7:22:717717] - [Info] - [Sender: ParticleTestState->ParticleTestManager] - Mouse button released, stopping particles
+[10-9 : 13:7:23:416416] - [Info] - [Sender: ParticleTestState->ParticleTestManager] - Mouse button pressed, dispensing particles
+[10-9 : 13:7:23:566566] - [Info] - [Sender: ParticleTestState->ParticleTestManager] - Mouse button released, stopping particles
+[10-9 : 13:7:24:398398] - [Info] - [Sender: ParticleTestState] - Removed service InputHandler
+[10-9 : 13:7:24:398398] - [Info] - [Sender: ParticleTestState->InputHandler] - Destroyed
+[10-9 : 13:7:24:398398] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:399399] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:399399] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:399399] - [Info] - [Sender: ParticleTestState] - Removed service MouseHandler
+[10-9 : 13:7:24:399399] - [Info] - [Sender: ParticleTestState->MouseHandler] - Destroyed
+[10-9 : 13:7:24:399399] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:399399] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:399399] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:399399] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:400400] - [Warning] - [Sender: ParticleTestState->TestBedStateManager] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:400400] - [Warning] - [Sender: ControlHandler->ScreenInfo] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:400400] - [Warning] - [Sender: ControlHandler->StrengthText] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:400400] - [Warning] - [Sender: ControlHandler->StrengthDown] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:400400] - [Warning] - [Sender: ControlHandler->StrengthValue] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:401401] - [Warning] - [Sender: ControlHandler->StrengthUp] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:401401] - [Warning] - [Sender: ControlHandler->GravityText] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:401401] - [Warning] - [Sender: ControlHandler->GravityXDown] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:401401] - [Warning] - [Sender: ControlHandler->GravityXValue] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:401401] - [Warning] - [Sender: ControlHandler->GravityXUp] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:401401] - [Warning] - [Sender: ControlHandler->GravityYDown] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:401401] - [Warning] - [Sender: ControlHandler->GravityYValue] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:402402] - [Warning] - [Sender: ControlHandler->GravityYUp] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:402402] - [Info] - [Sender: ParticleTestState] - Removed service ControlHandler
+[10-9 : 13:7:24:402402] - [Info] - [Sender: ParticleTestState->ControlHandler] - Destroyed
+[10-9 : 13:7:24:402402] - [Warning] - [Sender: ControlHandler->ScreenInfo] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:402402] - [Warning] - [Sender: ControlHandler->StrengthText] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:402402] - [Warning] - [Sender: ControlHandler->StrengthDown] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:402402] - [Warning] - [Sender: ControlHandler->StrengthValue] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:402402] - [Warning] - [Sender: ControlHandler->StrengthUp] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:403403] - [Warning] - [Sender: ControlHandler->GravityText] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:403403] - [Warning] - [Sender: ControlHandler->GravityXDown] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:403403] - [Warning] - [Sender: ControlHandler->GravityXValue] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:403403] - [Warning] - [Sender: ControlHandler->GravityXUp] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:403403] - [Warning] - [Sender: ControlHandler->GravityYDown] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:404404] - [Warning] - [Sender: ControlHandler->GravityYValue] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:404404] - [Warning] - [Sender: ControlHandler->GravityYUp] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:427427] - [Info] - [Sender: ParticleTestState] - Destoyed
+[10-9 : 13:7:24:427427] - [Info] - [Sender: MenuState] - Added service InputHandler
+[10-9 : 13:7:24:427427] - [Info] - [Sender: MenuState] - Added service MouseHandler
+[10-9 : 13:7:24:427427] - [Info] - [Sender: MouseHandler->MouseHandler.MouseCursor] - Got focus!
+[10-9 : 13:7:24:428428] - [Info] - [Sender: MenuState] - Added service ControlHandler
+[10-9 : 13:7:24:428428] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem0 added
+[10-9 : 13:7:24:428428] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem1 added
+[10-9 : 13:7:24:428428] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem2 added
+[10-9 : 13:7:24:428428] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem3 added
+[10-9 : 13:7:24:428428] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem4 added
+[10-9 : 13:7:24:428428] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem5 added
+[10-9 : 13:7:24:429429] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem6 added
+[10-9 : 13:7:24:429429] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem7 added
+[10-9 : 13:7:24:429429] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem8 added
+[10-9 : 13:7:24:429429] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem9 added
+[10-9 : 13:7:24:429429] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem10 added
+[10-9 : 13:7:24:429429] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem11 added
+[10-9 : 13:7:24:429429] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem12 added
+[10-9 : 13:7:24:429429] - [Info] - [Sender: MenuState] - Shown
+[10-9 : 13:7:24:430430] - [Warning] - [Sender: Emitter->Emitter.Particle4950] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:430430] - [Warning] - [Sender: Emitter->Emitter.Particle4955] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:430430] - [Warning] - [Sender: Emitter->Emitter.Particle4960] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:430430] - [Warning] - [Sender: Emitter->Emitter.Particle4965] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:430430] - [Warning] - [Sender: Emitter->Emitter.Particle4970] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:430430] - [Warning] - [Sender: Emitter->Emitter.Particle4975] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:431431] - [Warning] - [Sender: Emitter->Emitter.Particle4980] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:431431] - [Warning] - [Sender: Emitter->Emitter.Particle4985] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:431431] - [Warning] - [Sender: Emitter->Emitter.Particle4990] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:431431] - [Warning] - [Sender: Emitter->Emitter.Particle4995] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:431431] - [Warning] - [Sender: Emitter->Emitter.Particle5000] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:431431] - [Warning] - [Sender: Emitter->Emitter.Particle5005] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:431431] - [Warning] - [Sender: Emitter->Emitter.Particle5010] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:431431] - [Warning] - [Sender: Emitter->Emitter.Particle5015] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:431431] - [Warning] - [Sender: Emitter->Emitter.Particle5020] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:431431] - [Warning] - [Sender: Emitter->Emitter.Particle5025] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5030] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5035] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5040] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5045] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5050] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5055] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5060] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5065] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5070] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5075] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:432432] - [Warning] - [Sender: Emitter->Emitter.Particle5080] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:433433] - [Warning] - [Sender: Emitter->Emitter.Particle5085] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:433433] - [Warning] - [Sender: Emitter->Emitter.Particle5090] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:24:433433] - [Warning] - [Sender: Emitter->Emitter.Particle5095] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:544544] - [Info] - [Sender: EntityGame] - Beginning Exit
+[10-9 : 13:7:28:545545] - [Info] - [Sender: MenuState] - Removed service InputHandler
+[10-9 : 13:7:28:545545] - [Info] - [Sender: MenuState->InputHandler] - Destroyed
+[10-9 : 13:7:28:545545] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:545545] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:546546] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:546546] - [Info] - [Sender: MenuState] - Removed service MouseHandler
+[10-9 : 13:7:28:546546] - [Info] - [Sender: MenuState->MouseHandler] - Destroyed
+[10-9 : 13:7:28:546546] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:546546] - [Warning] - [Sender: MouseHandler->MouseHandler.MouseCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:547547] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:547547] - [Warning] - [Sender: MouseHandler->MouseHandler.ControllerCursor] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:547547] - [Info] - [Sender: MenuState] - Removed service ControlHandler
+[10-9 : 13:7:28:547547] - [Info] - [Sender: MenuState->ControlHandler] - Destroyed
+[10-9 : 13:7:28:548548] - [Warning] - [Sender: MenuState->MenuItem0] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:548548] - [Warning] - [Sender: MenuState->MenuItem1] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:548548] - [Warning] - [Sender: MenuState->MenuItem2] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:548548] - [Warning] - [Sender: MenuState->MenuItem3] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:548548] - [Warning] - [Sender: MenuState->MenuItem4] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:549549] - [Warning] - [Sender: MenuState->MenuItem5] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:549549] - [Warning] - [Sender: MenuState->MenuItem6] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:549549] - [Warning] - [Sender: MenuState->MenuItem7] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:549549] - [Warning] - [Sender: MenuState->MenuItem8] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:550550] - [Warning] - [Sender: MenuState->MenuItem9] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:550550] - [Warning] - [Sender: MenuState->MenuItem10] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:550550] - [Warning] - [Sender: MenuState->MenuItem11] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:550550] - [Warning] - [Sender: MenuState->MenuItem12] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:550550] - [Warning] - [Sender: MenuState->MenuStateManager] - RemoveEntity was called but no methods were subscribed
+[10-9 : 13:7:28:551551] - [Info] - [Sender: MenuState] - Destoyed
+[10-9 : 13:7:28:551551] - [Info] - [Sender: EntityGame] - Exited
+[10-9 : 13:7:28:565565] - [Info] - [Sender: EntityGame] - Beginning Exit
+[10-9 : 13:7:28:565565] - [Info] - [Sender: MenuState] - Destoyed
+[10-9 : 13:7:28:566566] - [Info] - [Sender: EntityGame] - Exited

@@ -118,7 +118,9 @@ namespace EntityEngineV4TestBed.States.FireworkTest
                 Render = new ShapeTypes.Rectangle(this, "Render", Body, true);
                 Render.Color = Color.Red;
 
-                Physics = new Physics(this, "Physics", Body);
+                Physics = new Physics(this, "Physics");
+                Physics.Link(Physics.DEPENDENCY_BODY, Body);
+
                 Physics.Acceleration.Y = GRAVITY;
             }
 
@@ -179,7 +181,9 @@ namespace EntityEngineV4TestBed.States.FireworkTest
                     Body.Width = Random.Next(4, 8);
                     _maxLength = (int)Body.Width;
 
-                    Physics = new Physics(this, "Physics", Body);
+                    Physics = new Physics(this, "Physics");
+                    Physics.Link(Physics.DEPENDENCY_BODY, Body);
+
                     Physics.Acceleration.Y = GRAVITY;
                     //Get random thrust 
                     Physics.Thrust(Random.GetFloat(10, 20));

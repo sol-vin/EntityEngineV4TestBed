@@ -131,11 +131,13 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 Body = new Body(this, "Body");
                 Body.Bounds = new Vector2(70, 70);
 
-                Physics = new Physics(this, "Physics", Body);
+                Physics = new Physics(this, "Physics");
+                Physics.Link(Physics.DEPENDENCY_BODY, Body);
 
                 Collision = new Collision(this, "Collision", new AABB(), Body, Physics);
 
-                ImageRender = new ImageRender(this, "Image", Assets.Pixel, Body);
+                ImageRender = new ImageRender(this, "Image", Assets.Pixel);
+                ImageRender.Link(ImageRender.DEPENDENCY_BODY, Body);
                 ImageRender.Scale = new Vector2(70, 70);
                 ImageRender.Layer = .5f;
 

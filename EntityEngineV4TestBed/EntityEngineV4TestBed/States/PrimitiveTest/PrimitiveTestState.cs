@@ -119,7 +119,9 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
                 : base(parent, name)
             {
                 Body = new Body(this, "Body");
-                Physics = new Physics(this, "Physics", Body);
+                Physics = new Physics(this, "Physics");
+                Physics.Link(Physics.DEPENDENCY_BODY, Body);
+
                 Physics.AngularVelocity = .01f;
             }
 
