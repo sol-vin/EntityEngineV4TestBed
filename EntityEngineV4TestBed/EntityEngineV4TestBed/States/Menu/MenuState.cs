@@ -37,8 +37,8 @@ namespace EntityEngineV4TestBed.States.Menu
             EntityGame.ShowDebugInfo = true;
 
             //Service init
-            new InputHandler(this);
-            new MouseHandler(this);
+            new InputService(this);
+            new MouseService(this);
 
             var ch = new ControlHandler(this);
 

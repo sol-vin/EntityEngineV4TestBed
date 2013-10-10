@@ -165,17 +165,17 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             public override void Update(GameTime gt)
             {
                 base.Update(gt);
-                MouseHandler.Cursor.Position = new Vector2(MouseHandler.Cursor.Position.X + (_moveCursor.Position.X*5),
-                                                           MouseHandler.Cursor.Position.Y - (_moveCursor.Position.Y*5));
+                MouseService.Cursor.Position = new Vector2(MouseService.Cursor.Position.X + (_moveCursor.Position.X*5),
+                                                           MouseService.Cursor.Position.Y - (_moveCursor.Position.Y*5));
 
-                if(MouseHandler.IsMouseButtonPressed(MouseButton.RightButton) || _emitButton.Pressed())
+                if(MouseService.IsMouseButtonPressed(MouseButton.RightButton) || _emitButton.Pressed())
                     EntityGame.Log.Write("Mouse button pressed, dispensing particles", this, Alert.Info);
-                if (MouseHandler.IsMouseButtonDown(MouseButton.RightButton) || _emitButton.Down())
+                if (MouseService.IsMouseButtonDown(MouseButton.RightButton) || _emitButton.Down())
                 {
 
                     Emitter.Emit(30);
                 }
-                if (MouseHandler.IsMouseButtonReleased(MouseButton.RightButton) || _emitButton.Pressed())
+                if (MouseService.IsMouseButtonReleased(MouseButton.RightButton) || _emitButton.Pressed())
                     EntityGame.Log.Write("Mouse button released, stopping particles", this, Alert.Info);
                 if (_upkey.Released())
                     _controlHandler.UpControl();
@@ -213,7 +213,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 {
                     var p = new TestParticle(this);
                     p.RectRender.Color = ColorMath.HSVtoRGB(new HSVColor((float)Random.NextDouble(), 1, 1, 1));
-                    p.Body.Position = new Vector2(MouseHandler.Cursor.Position.X, MouseHandler.Cursor.Position.Y);
+                    p.Body.Position = new Vector2(MouseService.Cursor.Position.X, MouseService.Cursor.Position.Y);
                     p.Body.Width = Random.Next(3, 10);
                     p.Body.Height = p.Body.Width;
                     p.Body.Angle = (float)Random.NextDouble() * MathHelper.TwoPi;

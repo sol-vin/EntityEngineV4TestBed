@@ -127,7 +127,8 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
 
                 _textBody = new Body(this, "_textBody");
 
-                _textRender = new TextRender(this, "_textRender", _textBody);
+                _textRender = new TextRender(this, "_textRender");
+                _textRender.Link(TextRender.DEPENDENCY_BODY, _textBody);
                 _textRender.Color = Color.White;
                 _textRender.Font = Assets.Font;
                 _textRender.Text = Name;
@@ -138,16 +139,16 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             {
                 base.Update(gt);
 
-                if (!HasFocus && Body.BoundingRect.Contains((int)MouseHandler.Cursor.Position.X,
-                                                   (int)MouseHandler.Cursor.Position.Y))
+                if (!HasFocus && Body.BoundingRect.Contains((int)MouseService.Cursor.Position.X,
+                                                   (int)MouseService.Cursor.Position.Y))
                 {
                     _imageRender.Color = HoverColor;
-                    if (MouseHandler.IsMouseButtonPressed(MouseButton.LeftButton))
+                    if (MouseService.IsMouseButtonPressed(MouseButton.LeftButton))
                     {
-                        _clickposition = MouseHandler.Cursor.Position;
+                        _clickposition = MouseService.Cursor.Position;
                         HasFocus = true;
                     }
-                    if (MouseHandler.IsMouseButtonPressed(MouseButton.RightButton))
+                    if (MouseService.IsMouseButtonPressed(MouseButton.RightButton))
                     {
                         HasFocus = true;
                         _lastImmovable = Collision.Immovable;
@@ -163,20 +164,20 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                     _imageRender.Color = Color;
                 }
 
-                if (HasFocus && MouseHandler.IsMouseButtonReleased(MouseButton.LeftButton))
+                if (HasFocus && MouseService.IsMouseButtonReleased(MouseButton.LeftButton))
                 {
                     HasFocus = false;
-                    _releaseposition = MouseHandler.Cursor.Position;
+                    _releaseposition = MouseService.Cursor.Position;
 
                     //Add delta to force.
                     _physics.AddForce((_clickposition - _releaseposition) / 2f);
                 }
-                else if (HasFocus && MouseHandler.IsMouseButtonDown(MouseButton.RightButton))
+                else if (HasFocus && MouseService.IsMouseButtonDown(MouseButton.RightButton))
                 {
-                    Body.Position -= new Vector2(MouseHandler.Delta.X, MouseHandler.Delta.Y);
+                    Body.Position -= new Vector2(MouseService.Delta.X, MouseService.Delta.Y);
                     Collision.Immovable = true;
                 }
-                else if (HasFocus && MouseHandler.IsMouseButtonUp(MouseButton.LeftButton) && MouseHandler.IsMouseButtonUp(MouseButton.RightButton))
+                else if (HasFocus && MouseService.IsMouseButtonUp(MouseButton.LeftButton) && MouseService.IsMouseButtonUp(MouseButton.RightButton))
                 {
                     HasFocus = false;
                     Collision.Immovable = _lastImmovable;

@@ -67,9 +67,9 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
                 AutoBody.Position = new Vector2(_rand.Next(40, EntityGame.Viewport.Width - 40), -30);
 
-                if (MouseHandler.Cursor.Down())
+                if (MouseService.Cursor.Down())
                 {
-                    MouseBody.Position = new Vector2(MouseHandler.Cursor.Position.X, MouseHandler.Cursor.Position.Y);
+                    MouseBody.Position = new Vector2(MouseService.Cursor.Position.X, MouseService.Cursor.Position.Y);
                     FancyEmitterMouse.Emit(1);
                 }
                 if (_emitkey.Released()) FancyEmitterAuto.AutoEmit = !FancyEmitterAuto.AutoEmit;

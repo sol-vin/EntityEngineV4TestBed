@@ -143,7 +143,8 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
                 TextBody = new Body(this, "TextBody");
 
-                TextRender = new TextRender(this, "TextRender", TextBody);
+                TextRender = new TextRender(this, "TextRender");
+                TextRender.Link(TextRender.DEPENDENCY_BODY, TextBody);
                 TextRender.Color = Color.White;
                 TextRender.Font = Assets.Font;
                 TextRender.Text = Name;
@@ -154,11 +155,11 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             {
                 base.Update(gt);
                 //If the cursor is over the object, and the button is down
-                if (Body.BoundingRect.Contains((int)MouseHandler.Cursor.Position.X,
-                                               (int)MouseHandler.Cursor.Position.Y))
+                if (Body.BoundingRect.Contains((int)MouseService.Cursor.Position.X,
+                                               (int)MouseService.Cursor.Position.Y))
                 {
                     ImageRender.Color = HoverColor;
-                    if (MouseHandler.IsMouseButtonPressed(MouseButton.LeftButton))
+                    if (MouseService.IsMouseButtonPressed(MouseButton.LeftButton))
                         _hasFocus = true;
                 }
                 else
@@ -166,11 +167,11 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                     ImageRender.Color = Color;
                 }
 
-                if (_hasFocus && MouseHandler.IsMouseButtonDown(MouseButton.LeftButton))
+                if (_hasFocus && MouseService.IsMouseButtonDown(MouseButton.LeftButton))
                 {
-                    Body.Position -= new Vector2(MouseHandler.Delta.X, MouseHandler.Delta.Y);
+                    Body.Position -= new Vector2(MouseService.Delta.X, MouseService.Delta.Y);
                 }
-                else if (_hasFocus && MouseHandler.IsMouseButtonUp(MouseButton.LeftButton))
+                else if (_hasFocus && MouseService.IsMouseButtonUp(MouseButton.LeftButton))
                 {
                     _hasFocus = false;
                 }

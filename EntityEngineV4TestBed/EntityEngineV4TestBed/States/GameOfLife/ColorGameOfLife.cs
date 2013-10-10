@@ -166,11 +166,11 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             base.Update(gt);
             if (Destroyed) return;
 
-            MouseHandler.Cursor.Render.Color = Color.PaleVioletRed;
+            MouseService.Cursor.Render.Color = Color.PaleVioletRed;
             _millisecondsText.Text = _manager.UpdateTimer.Milliseconds.ToString();
             if (_manager.DrawButton.Down() || _manager.DrawMouseButton.Down())
             {
-                Tile t = Cells.GetTileByPosition(MouseHandler.Cursor.Position);
+                Tile t = Cells.GetTileByPosition(MouseService.Cursor.Position);
                 if (t != null)
                 {
                     t.Index = ALIVE;
@@ -180,7 +180,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
             if (_manager.EraseButton.Down() || _manager.EraseMouseButton.Down())
             {
-                Tile t = Cells.GetTileByPosition(MouseHandler.Cursor.Position);
+                Tile t = Cells.GetTileByPosition(MouseService.Cursor.Position);
                 if (t != null)
                 {
                     t.Index = DEAD;
