@@ -11,9 +11,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.FancyParticleTest
 {
-    public class FancyParticleTestState : TestBedState
+    public class FancySpawnerTestState : TestBedState
     {
-        public FancyParticleTestState()
+        public FancySpawnerTestState()
             : base("FancyParticleTest")
         {
         }
@@ -39,7 +39,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
         private class FancyEntity : Entity
         {
-            public FancyEmitter FancyEmitterMouse, FancyEmitterAuto;
+            public FancySpawner FancySpawnerMouse, FancySpawnerAuto;
             public Body MouseBody, AutoBody;
             private Random _rand = new Random();
 
@@ -50,13 +50,13 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
             {
                 MouseBody = new Body(this, "MouseBody");
                 AutoBody = new Body(this, "AutoBody");
-                FancyEmitterMouse = new FancyEmitter(this, "FancyEmitterMouse", MouseBody);
-                FancyEmitterMouse.Color = Color.Red;
+                FancySpawnerMouse = new FancySpawner(this, "FancySpawnerMouse", MouseBody);
+                FancySpawnerMouse.Color = Color.Red;
 
-                FancyEmitterAuto = new FancyEmitter(this, "FancyEmitterAuto", AutoBody);
-                FancyEmitterAuto.Color = Color.Blue;
-                FancyEmitterAuto.AutoEmit = true;
-                FancyEmitterAuto.AutoEmitAmount = 1;
+                FancySpawnerAuto = new FancySpawner(this, "FancySpawnerAuto", AutoBody);
+                FancySpawnerAuto.Color = Color.Blue;
+                FancySpawnerAuto.AutoEmit = true;
+                FancySpawnerAuto.AutoEmitAmount = 1;
 
                 _emitkey = new DoubleInput(this, "emitkey", Keys.Space, Buttons.A, PlayerIndex.One);
             }
@@ -70,27 +70,27 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 if (MouseService.Cursor.Down())
                 {
                     MouseBody.Position = new Vector2(MouseService.Cursor.Position.X, MouseService.Cursor.Position.Y);
-                    FancyEmitterMouse.Emit(1);
+                    FancySpawnerMouse.Emit(1);
                 }
-                if (_emitkey.Released()) FancyEmitterAuto.AutoEmit = !FancyEmitterAuto.AutoEmit;
+                if (_emitkey.Released()) FancySpawnerAuto.AutoEmit = !FancySpawnerAuto.AutoEmit;
             }
         }
 
-        private class FancyEmitter : Emitter
+        private class FancySpawner : Spawner
         {
             private Random _rand = new Random();
             private Body _body;
             public Color Color = Color.White;
 
-            public FancyEmitter(Entity e, string name, Body body)
+            public FancySpawner(Entity e, string name, Body body)
                 : base(e, name)
             {
                 _body = body;
             }
 
-            protected override Particle GenerateNewParticle()
+            protected override Spawn GenerateNewParticle()
             {
-                var p = new ExplodingParticle(this, 60000, Color);
+                var p = new ExplodingSpawn(this, 60000, Color);
                 p.Body.Bounds = new Vector2(5, 5);
                 p.Body.Position = _body.Position;
 
@@ -107,26 +107,29 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 return p;
             }
 
-            private class ExplodingParticle : Particle
+            private class ExplodingSpawn : Spawn
             {
                 private int _floor = EntityGame.Viewport.Height - 20;
 
                 public Body Body;
                 public Physics Physics;
                 public ShapeTypes.Rectangle RectRender;
-                public Emitter GibEmit;
+                public Spawner GibEmit;
 
-                public ExplodingParticle(Emitter e, int ttl, Color color)
+                public ExplodingSpawn(Spawner e, int ttl, Color color)
                     : base(e, ttl)
                 {
                     Body = new Body(this, "Body");
                     Physics = new Physics(this, "Physics");
                     Physics.Link(Physics.DEPENDENCY_BODY, Body);
 
-                    RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body, true);
+                    RectRender = new ShapeTypes.Rectangle(this, "RectRender", true);
+                    RectRender.Link(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
                     RectRender.Color = color;
 
-                    GibEmit = new GibEmitter(this, "GibEmitter", Body, Physics, color);
+                    GibEmit = new GibSpawner(this, "GibSpawner", color);
+                    GibEmit.Link(GibSpawner.DEPENDENCY_BODY, Body);
+                    GibEmit.Link(GibSpawner.DEPENDENCY_PHYSICS, Physics);
                 }
 
                 public override void Update(GameTime gt)
@@ -147,31 +150,27 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     }
                 }
 
-                private class GibEmitter : Emitter
+                private class GibSpawner : Spawner
                 {
                     private Random _rand = new Random(DateTime.Now.Millisecond ^ DateTime.Now.Second);
-                    private Body _body;
-                    private Physics _physics;
                     private Color _color;
 
-                    public GibEmitter(Entity parent, string name, Body body, Physics physics, Color color)
+                    public GibSpawner(Entity parent, string name, Color color)
                         : base(parent, name)
                     {
-                        _body = body;
-                        _physics = physics;
                         _color = color;
                     }
 
-                    protected override Particle GenerateNewParticle()
+                    protected override Spawn GenerateNewParticle()
                     {
-                        var p = new GibParticle(this);
+                        var p = new GibSpawn(this);
                         p.Body.Bounds = new Vector2(2, 2);
-                        p.Body.Position = _body.Position;
+                        p.Body.Position = GetLink<Body>(DEPENDENCY_BODY).Position;
 
                         int sign = _rand.Next(0, 2) == 0 ? -1 : 1;
                         p.Body.Angle = (float)_rand.NextDouble() * MathHelper.PiOver2 * sign;
 
-                        float thrust = ((float)_rand.NextDouble() + 1f) * (_physics.Velocity.Y / 4);
+                        float thrust = ((float)_rand.NextDouble() + 1f) * (GetLink<Physics>(DEPENDENCY_PHYSICS).Velocity.Y / 4);
                         p.Physics.Thrust(thrust);
                         p.Physics.Acceleration = new Vector2(0, .1f);
                         //p.RectRender.Scale = new Vector2(0);
@@ -183,9 +182,20 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     {
                         base.Emit(amount);
                     }
+
+                    //Dependencies
+                    public const int DEPENDENCY_BODY = 0;
+                    public const int DEPENDENCY_PHYSICS = 1;
+
+                    public override void CreateDependencyList()
+                    {
+                        base.CreateDependencyList();
+                        AddLinkType(DEPENDENCY_BODY, typeof(Body));
+                        AddLinkType(DEPENDENCY_PHYSICS, typeof(Physics));
+                    }
                 }
 
-                private class GibParticle : FadeParticle
+                private class GibSpawn : FadeSpawn
                 {
                     private int _floor = EntityGame.Viewport.Height - 20;
 
@@ -193,7 +203,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     public Physics Physics;
                     public ShapeTypes.Rectangle RectRender;
 
-                    public GibParticle(Emitter e)
+                    public GibSpawn(Spawner e)
                         : base(e, 3000)
                     {
                         FadeAge = TimeToLive / 5 * 4;
@@ -202,7 +212,9 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                         Physics.Link(Physics.DEPENDENCY_BODY, Body);
 
 
-                        RectRender = new ShapeTypes.Rectangle(this, "RectRender", Body, true);
+                        RectRender = new ShapeTypes.Rectangle(this, "RectRender", true);
+                        RectRender.Link(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
+
                         Render = RectRender;
                     }
 

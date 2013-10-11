@@ -18,6 +18,8 @@ namespace EntityEngineV4TestBed.States
             new InputService(this);
             new MouseService(this);
             AddEntity(new TestBedStateManager(this, "TestBedStateManager"));
+
+            EntityGame.BackgroundColor = Color.Gray;
         }
 
         public override void Update(GameTime gt)

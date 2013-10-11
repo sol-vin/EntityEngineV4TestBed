@@ -134,7 +134,9 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 Physics = new Physics(this, "Physics");
                 Physics.Link(Physics.DEPENDENCY_BODY, Body);
 
-                Collision = new Collision(this, "Collision", new AABB(), Body, Physics);
+                Collision = new Collision(this, "Collision", new AABB());
+                Collision.Link(Collision.DEPENDENCY_BODY, Body);
+                Collision.Link(Collision.DEPENDENCY_PHYSICS, Physics);
 
                 ImageRender = new ImageRender(this, "Image", Assets.Pixel);
                 ImageRender.Link(ImageRender.DEPENDENCY_BODY, Body);

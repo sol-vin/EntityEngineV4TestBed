@@ -5,7 +5,6 @@ using EntityEngineV4TestBed.States.CameraTest;
 using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ColorTest;
 using EntityEngineV4TestBed.States.FancyParticleTest;
-using EntityEngineV4TestBed.States.FireworkTest;
 using EntityEngineV4TestBed.States.GameOfLife;
 using EntityEngineV4TestBed.States.ParticleTest;
 using EntityEngineV4TestBed.States.PrimitiveTest;
@@ -35,6 +34,7 @@ namespace EntityEngineV4TestBed.States.Menu
             base.Create();
 
             EntityGame.ShowDebugInfo = true;
+            EntityGame.BackgroundColor = Color.Gray;
 
             //Service init
             new InputService(this);
@@ -45,12 +45,12 @@ namespace EntityEngineV4TestBed.States.Menu
             _menuStateManager = new MenuStateManager(this, ch);
             _menuStateManager.AddMenuItem("Game of Life", () => EntityGame.SwitchState(new GameOfLifeState()));
             _menuStateManager.AddMenuItem("Color Game of Life", () => EntityGame.SwitchState(new ColorGameOfLifeState()));
+            _menuStateManager.AddMenuItem("Particle Test State", () => EntityGame.SwitchState(new ParticleTestState()));
 
             _menuStateManager.AddMenuItem("Camera Test State", () => EntityGame.SwitchState(new CameraTestState()));
             _menuStateManager.AddMenuItem("Control Test State", () => EntityGame.SwitchState(new ControlTestState()));
-            _menuStateManager.AddMenuItem("Particle Test State", () => EntityGame.SwitchState(new ParticleTestState()));
-            _menuStateManager.AddMenuItem("Fancy Particle Test State", () => EntityGame.SwitchState(new FancyParticleTestState()));
-            _menuStateManager.AddMenuItem("Firework Test State", () => EntityGame.SwitchState(new FireworkTestState()));
+            _menuStateManager.AddMenuItem("Spawn Test State", () => EntityGame.SwitchState(new SpawnerTestState()));
+            _menuStateManager.AddMenuItem("Fancy Spawn Test State", () => EntityGame.SwitchState(new FancySpawnerTestState()));
             _menuStateManager.AddMenuItem("Collision Test State", () => EntityGame.SwitchState(new CollisionTestState()));
             _menuStateManager.AddMenuItem("Resolution Test State", () => EntityGame.SwitchState(new ResolutionTestState()));
             _menuStateManager.AddMenuItem("Color Test State", () => EntityGame.SwitchState(new ColorTestState()));

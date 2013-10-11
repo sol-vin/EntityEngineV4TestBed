@@ -113,12 +113,12 @@
     <Compile Include="States\CameraTest\CameraTestState.cs" />
     <Compile Include="States\CollisionTest\CollisionTestState.cs" />
     <Compile Include="States\ColorTest\ColorTestState.cs" />
-    <Compile Include="States\FancyParticleTest\FancyParticleTest.cs" />
-    <Compile Include="States\FireworkTest\FireworkTestState.cs" />
+    <Compile Include="States\FancySpawnerTest\FancyParticleTest.cs" />
     <Compile Include="States\GameOfLife\ColorGameOfLife.cs" />
     <Compile Include="States\GameOfLife\GameOfLifeState.cs" />
     <Compile Include="States\Menu\MenuState.cs" />
     <Compile Include="States\ParticleTest\ParticleTestState.cs" />
+    <Compile Include="States\SpawnerTest\SpawnerTestState.cs" />
     <Compile Include="States\PrimitiveTest\PrimitiveTestState.cs" />
     <Compile Include="States\ResolutionTest\ResolutionTestState.cs" />
     <Compile Include="States\SourceRectangleTest\RenderTestState.cs" />

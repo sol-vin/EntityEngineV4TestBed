@@ -35,14 +35,16 @@ namespace EntityEngineV4Test
             abody.Position = new Vector2(50, 50);
             abody.Bounds = new Vector2(300, 100);
 
-            a = new Collision(e, "CollisionA", new AABB(), abody);
+            a = new Collision(e, "CollisionA", new AABB());
+            a.Link(Collision.DEPENDENCY_BODY, abody);
             a.PairMask.AddMask(0);
             a.GroupMask.AddMask(0);
 
             Body bbody = new Body(e, "BodyB");
             bbody.Position = new Vector2(100, 90);
             bbody.Bounds = new Vector2(100, 100);
-            b = new Collision(e, "CollisionB", new AABB(), bbody);
+            b = new Collision(e, "CollisionB", new AABB());
+            b.Link(Collision.DEPENDENCY_BODY, bbody);
             b.GroupMask.AddMask(0);
             b.PairMask.AddMask(0);
 
@@ -76,14 +78,18 @@ namespace EntityEngineV4Test
             abody.Position = new Vector2(50, 50);
             abody.Bounds = new Vector2(300, 100);
 
-            a = new Collision(e, "CollisionA", new AABB(), abody);
+            a = new Collision(e, "CollisionA", new AABB());
+            a.Link(Collision.DEPENDENCY_BODY, abody);
+
             a.PairMask.AddMask(0);
             a.GroupMask.AddMask(0);
 
             Body bbody = new Body(e, "BodyB");
             bbody.Position = new Vector2(10, 50);
             bbody.Bounds = new Vector2(50, 100);
-            b = new Collision(e, "CollisionB", new AABB(), bbody);
+            b = new Collision(e, "CollisionB", new AABB());
+            b.Link(Collision.DEPENDENCY_BODY, bbody);
+
             b.GroupMask.AddMask(0);
             b.PairMask.AddMask(0);
 

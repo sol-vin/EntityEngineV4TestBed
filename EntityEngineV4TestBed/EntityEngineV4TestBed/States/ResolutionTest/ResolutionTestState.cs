@@ -116,7 +116,9 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
 
                 _physics.Drag = .95f;
 
-                Collision = new Collision(this, "Collision", new AABB(), Body, _physics);
+                Collision = new Collision(this, "Collision", new AABB());
+                Collision.Link(Collision.DEPENDENCY_BODY, Body);
+                Collision.Link(Collision.DEPENDENCY_PHYSICS, _physics);
                 Collision.Mass = 10f;
                 Collision.Restitution = .5f;
 
