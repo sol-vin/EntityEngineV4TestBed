@@ -36,13 +36,13 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             //Add our labels to the top
             _drawingtoolsTitle = new Label(ch, "drawingtoolsTitle");
             _drawingtoolsTitle.Text = "DrawingTools.Primitives";
-            _drawingtoolsTitle.Body.Position = new Vector2(EntityGame.Viewport.Width / 4 - _drawingtoolsTitle.TextRender.DrawRect.Width / 2, 15);
+            _drawingtoolsTitle.Body.Position = new Vector2(EntityGame.Viewport.Width / 4 - _drawingtoolsTitle.Render.DrawRect.Width / 2, 15);
             _drawingtoolsTitle.TabPosition = new Point(0, 0);
             ch.AddControl(_drawingtoolsTitle);
 
             _renderTitle = new Label(ch, "renderTitle");
             _renderTitle.Text = "Rendering.Primitives";
-            _renderTitle.Body.Position = new Vector2(EntityGame.Viewport.Width - (EntityGame.Viewport.Width / 4) - _renderTitle.TextRender.DrawRect.Width / 2, 15);
+            _renderTitle.Body.Position = new Vector2(EntityGame.Viewport.Width - (EntityGame.Viewport.Width / 4) - _renderTitle.Render.DrawRect.Width / 2, 15);
             _renderTitle.TabPosition = new Point(1, 0);
             ch.AddControl(_renderTitle);
 

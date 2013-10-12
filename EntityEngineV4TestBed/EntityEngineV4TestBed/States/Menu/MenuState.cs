@@ -106,7 +106,7 @@ namespace EntityEngineV4TestBed.States.Menu
 
                 l.Text = label;
                 l.Body.Position = new Vector2(20, (_lasttabposition.Y * l.Body.Height + 5));
-                l.TextRender.Layer = .2f;
+                l.Render.Layer = .2f;
                 l.OnReleased += control => changeStateDelegate();
 
                 l.TabPosition = _lasttabposition;

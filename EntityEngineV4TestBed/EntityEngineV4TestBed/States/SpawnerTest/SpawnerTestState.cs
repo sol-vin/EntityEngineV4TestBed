@@ -245,7 +245,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                         Physics = new Physics(this, "Physics");
                         Physics.Link(Physics.DEPENDENCY_BODY, Body);
 
-                        RectRender = new ShapeTypes.Rectangle(this, "RectRender", Random.RandomBool());
+                        RectRender = new ShapeTypes.Rectangle(this, "RectRender", RandomHelper.RandomBool());
                         RectRender.Link(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
                         
                         RectRender.Origin = new Vector2(.5f,.5f);

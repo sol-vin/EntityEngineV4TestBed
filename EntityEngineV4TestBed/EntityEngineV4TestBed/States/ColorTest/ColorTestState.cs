@@ -192,7 +192,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
                 _beginFadeTimer.Reset();
                 _fadeStepTimer.Reset();
                 _beginFadeTimer.Start();
-                TextRender.Alpha = 1;
+                Render.Alpha = 1;
             }
 
             public override void Update(GameTime gt)
@@ -204,7 +204,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
                 Y = 30;
 
                 //Set alpha
-                TextRender.Alpha = 1 - _fadeStepTimer.Progress;
+                Render.Alpha = 1 - _fadeStepTimer.Progress;
             }
         }
     }

@@ -17,6 +17,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
     {
         public ParticleTestState() : base("ParticleTestState")
         {
+            EntityGame.DebugInfo.Render.Color = Color.White;
         }
 
         public override void Create()
@@ -82,6 +83,12 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 Body.Angle = _angle;
 
                 _emitter.Emit(3);
+            }
+
+            public override void Destroy(IComponent i = null)
+            {
+                base.Destroy(i);
+                EntityGame.DebugInfo.Render.Color = Color.Black;
             }
 
             private class ParticleEmitter : Spawner

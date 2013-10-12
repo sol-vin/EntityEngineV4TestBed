@@ -102,7 +102,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             public Body Body;
 
             /// <summary>
-            /// Body used to describe TextRender's body
+            /// Body used to describe Render's body
             /// </summary>
             public Body TextBody;
 
@@ -145,7 +145,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
                 TextBody = new Body(this, "TextBody");
 
-                TextRender = new TextRender(this, "TextRender");
+                TextRender = new TextRender(this, "Render");
                 TextRender.Link(TextRender.DEPENDENCY_BODY, TextBody);
                 TextRender.Color = Color.White;
                 TextRender.Font = Assets.Font;
