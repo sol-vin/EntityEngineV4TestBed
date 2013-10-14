@@ -20,9 +20,9 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             EntityGame.DebugInfo.Render.Color = Color.White;
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
 
             new ParticleEntity(this, "Particle");
 

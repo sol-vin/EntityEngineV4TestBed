@@ -15,9 +15,9 @@ namespace EntityEngineV4TestBed.States.TestControl
         {
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
             //Add our services
             var controlHandler = new ControlHandler(this);
             for (int x = 0; x < 4; x++)

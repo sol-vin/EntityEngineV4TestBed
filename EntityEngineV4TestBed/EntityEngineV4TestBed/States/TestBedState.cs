@@ -12,9 +12,9 @@ namespace EntityEngineV4TestBed.States
 
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
             new InputService(this);
             new MouseService(this);
             AddEntity(new TestBedStateManager(this, "TestBedStateManager"));

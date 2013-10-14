@@ -22,9 +22,9 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         {
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
 
             new CollisionHandler(this);
             ControlHandler ch = new ControlHandler(this);

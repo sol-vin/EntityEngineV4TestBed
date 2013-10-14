@@ -24,9 +24,9 @@ namespace EntityEngineV4TestBed.States.ColorTest
         {
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
 
             int maxx = EntityGame.Viewport.Width / _size.X + 1;
             int maxy = EntityGame.Viewport.Height / _size.Y + 1;

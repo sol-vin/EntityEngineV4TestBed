@@ -19,9 +19,9 @@ namespace EntityEngineV4TestBed.States.CameraTest
             
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
 
             _cte = new CameraTestEntity(this, "CTE");
             AddEntity(_cte);

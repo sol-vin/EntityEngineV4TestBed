@@ -1,6 +1,7 @@
 ﻿using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
+using EntityEngineV4TestBed.States.AsteriodsGame;
 using EntityEngineV4TestBed.States.CameraTest;
 using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ColorTest;
@@ -29,9 +30,9 @@ namespace EntityEngineV4TestBed.States.Menu
         {
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
 
             EntityGame.ShowDebugInfo = true;
             EntityGame.BackgroundColor = Color.Gray;
@@ -45,6 +46,7 @@ namespace EntityEngineV4TestBed.States.Menu
             _menuStateManager = new MenuStateManager(this, ch);
             _menuStateManager.AddMenuItem("Game of Life", () => EntityGame.SwitchState(new GameOfLifeState()));
             _menuStateManager.AddMenuItem("Color Game of Life", () => EntityGame.SwitchState(new ColorGameOfLifeState()));
+            _menuStateManager.AddMenuItem("Asteroids Game", () => EntityGame.SwitchState(new AsteroidsGame()));
             _menuStateManager.AddMenuItem("Particle Test State", () => EntityGame.SwitchState(new ParticleTestState()));
 
             _menuStateManager.AddMenuItem("Camera Test State", () => EntityGame.SwitchState(new CameraTestState()));

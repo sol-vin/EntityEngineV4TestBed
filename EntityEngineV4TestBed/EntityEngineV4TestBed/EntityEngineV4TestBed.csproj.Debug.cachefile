@@ -19,4 +19,7 @@ Content\SuperTownDefence\game\sounds\explode.xnb
 Content\SuperTownDefence\game\sounds\firebomb.xnb
 Content\SuperTownDefence\game\sounds\soldierattack.xnb
 Content\SuperTownDefence\game\sounds\soldierhit.xnb
+Content\AsteroidsGame\ship.xnb
+Content\AsteroidsGame\triangle.xnb
+Content\AsteroidsGame\circle.xnb
 States\SourceRectangleTest\standing.xml

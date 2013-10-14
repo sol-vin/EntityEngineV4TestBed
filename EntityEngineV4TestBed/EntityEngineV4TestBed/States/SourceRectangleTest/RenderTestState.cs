@@ -16,9 +16,9 @@ namespace EntityEngineV4TestBed.States.SourceRectangleTest
            
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
             new AnimationTestEntity(this, "Animation");
         }
 

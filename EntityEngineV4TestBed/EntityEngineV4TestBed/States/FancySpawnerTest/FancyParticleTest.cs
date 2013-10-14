@@ -18,9 +18,9 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
         {
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
 
             //Init services
             new ControlHandler(this);

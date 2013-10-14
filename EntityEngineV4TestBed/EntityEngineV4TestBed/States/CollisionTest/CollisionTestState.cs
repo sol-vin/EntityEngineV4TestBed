@@ -22,9 +22,9 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         {
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
 
             CollisionHandler colhand = new CollisionHandler(this);
             ControlHandler ch = new ControlHandler(this);

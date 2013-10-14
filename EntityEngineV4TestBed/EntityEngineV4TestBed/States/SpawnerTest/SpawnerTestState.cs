@@ -34,9 +34,9 @@ namespace EntityEngineV4TestBed.States.ParticleTest
         {
         }
 
-        public override void Create()
+        public override void Initialize()
         {
-            base.Create();
+            base.Initialize();
 
             ControlHandler ch = new ControlHandler(this);
 
