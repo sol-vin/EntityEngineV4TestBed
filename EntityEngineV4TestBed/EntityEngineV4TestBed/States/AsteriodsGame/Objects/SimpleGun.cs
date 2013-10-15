@@ -19,8 +19,9 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public override void Fire()
         {
             Bullet bullet = new Bullet(this, "Bullet" + BulletCounter);
-            bullet.Body.Position = GetLink<Body>(DEPENDENCY_BODY).Position + (GetLink<Body>(DEPENDENCY_BODY).Bounds/2) - (bullet.Body.Bounds/2);
+            bullet.Body.Position = GetLink<Body>(DEPENDENCY_BODY).Position + (GetLink<Body>(DEPENDENCY_BODY).Bounds/2f) - (bullet.Body.Bounds/2f);
             bullet.Body.Angle = GetLink<Body>(DEPENDENCY_BODY).Angle;
+            bullet.Physics.AddForce(GetLink<Body>(DEPENDENCY_BODY).Delta);
             bullet.Initialize();
         }
 

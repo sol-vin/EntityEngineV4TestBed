@@ -23,8 +23,10 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Physics.Link(Physics.DEPENDENCY_BODY, Body);
 
             Render = new ImageRender(this, "Render");
-            Render.Scale = new Vector2(.05f);
             Render.LoadTexture("AsteroidsGame/circle");
+            Render.Layer = .1f;
+            Render.Scale = new Vector2(.03f);
+            Render.Color = Color.White;
             Render.Link(ImageRender.DEPENDENCY_BODY, Body);
             Body.Width = Render.DrawRect.Width;
             Body.Height = Render.DrawRect.Height;
