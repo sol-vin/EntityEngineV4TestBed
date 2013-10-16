@@ -111,9 +111,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="States\AsteriodsGame\AsteroidsGame.cs" />
+    <Compile Include="States\AsteriodsGame\Objects\Asteroid.cs" />
     <Compile Include="States\AsteriodsGame\Objects\BaseEntity.cs" />
     <Compile Include="States\AsteriodsGame\Objects\Bullet.cs" />
-    <Compile Include="States\AsteriodsGame\Objects\ExampleShip.cs" />
     <Compile Include="States\AsteriodsGame\Objects\Gun.cs" />
     <Compile Include="States\AsteriodsGame\Objects\PlayerShip.cs" />
     <Compile Include="States\AsteriodsGame\Objects\SimpleGun.cs" />

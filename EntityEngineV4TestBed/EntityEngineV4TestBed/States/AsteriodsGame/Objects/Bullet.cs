@@ -27,6 +27,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Render.Layer = .1f;
             Render.Scale = new Vector2(.03f);
             Render.Color = Color.White;
+            Render.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
             Render.Link(ImageRender.DEPENDENCY_BODY, Body);
             Body.Width = Render.DrawRect.Width;
             Body.Height = Render.DrawRect.Height;

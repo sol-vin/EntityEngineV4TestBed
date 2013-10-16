@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using EntityEngineV4.Components;
 using EntityEngineV4.Engine;
+using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework.GamerServices;
 
 namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
@@ -20,7 +21,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         {
             Bullet bullet = new Bullet(this, "Bullet" + BulletCounter);
             bullet.Body.Position = GetLink<Body>(DEPENDENCY_BODY).Position + (GetLink<Body>(DEPENDENCY_BODY).Bounds/2f) - (bullet.Body.Bounds/2f);
-            bullet.Body.Angle = GetLink<Body>(DEPENDENCY_BODY).Angle;
+            bullet.Body.Angle = GetLink<Body>(DEPENDENCY_BODY).Angle + (0.05f * RandomHelper.GetSign() * RandomHelper.NextGaussian(1, 1f));
             bullet.Physics.AddForce(GetLink<Body>(DEPENDENCY_BODY).Delta);
             bullet.Initialize();
         }

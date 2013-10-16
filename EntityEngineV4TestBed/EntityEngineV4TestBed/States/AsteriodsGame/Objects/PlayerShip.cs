@@ -81,7 +81,6 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
 
             if (FireButton.RapidFire(100)) Gun.Fire();
-
         }
     }
 }
