@@ -83,7 +83,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             base.Update(gt);
             if (Destroyed) return;
 
-            string debug = GetEntity<ResolutionTestEntity>("A0").Body.Position.ToString();
+            string debug = GetEntity<ResolutionTestEntity>("A0").Collision.IsColliding.ToString();
             _collidedLabel.Text = "A0: " + debug;
         }
 
@@ -94,6 +94,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             private Physics _physics;
 
             public Collision Collision;
+            public AABB Shape;
             private ImageRender _imageRender;
             private TextRender _textRender;
 
@@ -113,14 +114,16 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
 
                 _physics = new Physics(this, "_physics");
                 _physics.Link(Physics.DEPENDENCY_BODY, Body);
-
+                _physics.Mass = 10f;
+                _physics.Restitution = 1f;
                 _physics.Drag = .95f;
 
-                Collision = new Collision(this, "Collision", new AABB());
-                Collision.Link(Collision.DEPENDENCY_BODY, Body);
+                Shape = new AABB(this, "AABB");
+
+                Collision = new Collision(this, "Collision");
+                Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
                 Collision.Link(Collision.DEPENDENCY_PHYSICS, _physics);
-                Collision.Mass = 10f;
-                Collision.Restitution = .5f;
+                Collision.Initialize();
 
                 _imageRender = new ImageRender(this, "Image", Assets.Pixel);
                 _imageRender.Link(ImageRender.DEPENDENCY_BODY, Body);
@@ -155,9 +158,6 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                         HasFocus = true;
                         _lastImmovable = Collision.Immovable;
                     }
-                    _textRender.Text = Name + Environment.NewLine +
-                                       "X:" + Math.Round(Body.X, 2) + Environment.NewLine +
-                                       "Y" + Math.Round(Body.Y, 2);
                 }
                 else if (!HasFocus)
                 {
@@ -196,6 +196,9 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 else if (Body.Top > EntityGame.Viewport.Height)
                     Body.Y = 0 - Body.Bounds.Y;
 
+                _textRender.Text = Name + Environment.NewLine +
+                                       "X:" + Math.Round(Body.X, 2) + Environment.NewLine +
+                                       "Y" + Math.Round(Body.Y, 2);
                 _textBody.Position = Body.Position + Vector2.One * 3;
             }
         }

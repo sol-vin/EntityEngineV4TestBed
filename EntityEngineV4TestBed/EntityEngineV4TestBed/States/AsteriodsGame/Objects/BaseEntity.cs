@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
+using EntityEngineV4.Collision;
+using EntityEngineV4.Collision.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Engine;
 using Microsoft.Xna.Framework;
@@ -12,9 +15,18 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
     {
         public Body Body;
         public Physics Physics;
+        public Collision Collision;
 
         public BaseEntity(IComponent parent, string name) : base(parent, name)
         {
+            Body = new Body(this, "Body");
+
+            Physics = new Physics(this, "Physics");
+            Physics.Link(Physics.DEPENDENCY_BODY, Body);
+
+            Collision = new Collision(this, "Collision");
+            Collision.Link(Collision.DEPENDENCY_PHYSICS, Physics);
+
         }
 
         public override void Update(GameTime gt)

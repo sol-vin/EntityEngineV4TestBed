@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using EntityEngineV4.Collision;
 using EntityEngineV4.Engine;
-using EntityEngineV4.Input;
 using EntityEngineV4TestBed.States.AsteriodsGame.Objects;
 using Microsoft.Xna.Framework;
 
@@ -11,21 +7,21 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
 {
     public class AsteroidsGame : TestBedState
     {
+        private PlayerShip _player;
+
         public AsteroidsGame() : base("AsteroidsGame")
         {
-            
         }
-
 
 
         public override void Initialize()
         {
             base.Initialize();
-
+            new CollisionHandler(this);
             //Change bgcolor to black
             EntityGame.BackgroundColor = Color.Black;
             EntityGame.DebugInfo.Render.Color = Color.White;
-            new PlayerShip(this, "PlayerShip");
+            _player = new PlayerShip(this, "PlayerShip");
         }
 
         public override void Update(GameTime gt)

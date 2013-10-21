@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EntityEngineV4.Collision.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Engine;
@@ -24,13 +25,11 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
         public PlayerShip(IComponent parent, string name) : base(parent, name)
         {
-            Body = new Body(this, "Body");
             Body.X = 10;
             Body.Y = 10;
-            Physics = new Physics(this, "Physics");
+
             Physics.Drag = 0.97f;
             Physics.AngularDrag = 0.9f;
-            Physics.Link(Physics.DEPENDENCY_BODY, Body);
 
             Render = new ImageRender(this, "Render");
             Render.LoadTexture(@"AsteroidsGame/ship");
@@ -38,10 +37,16 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Render.Scale = new Vector2(.128f);
             Render.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
             Render.Link(ImageRender.DEPENDENCY_BODY, Body);
+            
             Body.Bounds = Render.Bounds;
 
             Gun = new SimpleGun(this, "SimpleGun");
             Gun.Link(SimpleGun.DEPENDENCY_BODY, Body);
+
+            Collision.GroupMask.AddMask(0);
+            Collision.PairMask.AddMask(1);
+            //TODO: Set shape
+            Collision.Immovable = true;
 
             //Control
             UpButton = new DoubleInput(this, "UpButton", Keys.W, Buttons.DPadUp, PlayerIndex.One);

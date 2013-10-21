@@ -1,13 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityEngineV4TestBed", "EntityEngineV4TestBed\EntityEngineV4TestBed\EntityEngineV4TestBed.csproj", "{3C3C5891-8947-4183-A032-695A8DB36DD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityEngineV4TestBedContent", "EntityEngineV4TestBed\EntityEngineV4TestBedContent\EntityEngineV4TestBedContent.contentproj", "{04EFF616-8AF4-42C1-B33B-12C13F951DB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityEngineV4", "..\EntityEngineV4\EntityEngineV4\EntityEngineV4.csproj", "{C713674E-D5EC-44BC-AF48-81BF46FFDC2C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityEngineV4Test", "EntityEngineV4Test\EntityEngineV4Test.csproj", "{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7ACB4AEA-2F2A-482F-BF2C-8D5A6E75C007}"
 	ProjectSection(SolutionItems) = preProject
@@ -55,16 +53,6 @@ Global
 		{C713674E-D5EC-44BC-AF48-81BF46FFDC2C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C713674E-D5EC-44BC-AF48-81BF46FFDC2C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C713674E-D5EC-44BC-AF48-81BF46FFDC2C}.Release|x86.ActiveCfg = Release|Any CPU
-		{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{6EBFA5C4-4652-445F-8ADC-69CE7122F6EB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

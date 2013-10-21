@@ -8,6 +8,7 @@ using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
+using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
 
 namespace EntityEngineV4TestBed.States.CollisionTest
@@ -45,11 +46,8 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
-                c.Body.Bounds = new Vector2(50 + rand.Next(1, 100), 50 + rand.Next(1, 100));
-                c.ImageRender.Scale = c.Body.Bounds;
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(30, 100 * x + 20);
-                //AddEntity(c);
             }
             for (int x = 0; x < 3; x++)
             {
@@ -58,12 +56,9 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
                 c.Body.Position = new Vector2(510, 80 * x + 20);
-                c.Body.Bounds = new Vector2(50 + rand.Next(1, 100), 50 + rand.Next(1, 100));
-                c.ImageRender.Scale = c.Body.Bounds;
                 c.Color = Color.Orange;
                 c.HoverColor = Color.Black;
                 c.Collision.Debug = true;
-                //AddEntity(c);
             }
         }
 
@@ -111,6 +106,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             public Collision Collision;
             public ImageRender ImageRender;
             public TextRender TextRender;
+            public AABB Shape;
 
             public Color Color = Color.Blue;
             public Color HoverColor = Color.Red;
@@ -129,18 +125,21 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 : base(stateref, name)
             {
                 Body = new Body(this, "Body");
-                Body.Bounds = new Vector2(70, 70);
+                Body.Bounds = new Vector2(30 + RandomHelper.GetFloat(0, 30), 30 + RandomHelper.GetFloat(0, 30));
 
                 Physics = new Physics(this, "Physics");
                 Physics.Link(Physics.DEPENDENCY_BODY, Body);
 
-                Collision = new Collision(this, "Collision", new AABB());
-                Collision.Link(Collision.DEPENDENCY_BODY, Body);
+                Shape = new AABB(this, "AABB");
+
+                Collision = new Collision(this, "Collision");
+                Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
                 Collision.Link(Collision.DEPENDENCY_PHYSICS, Physics);
+                Collision.Initialize();
 
                 ImageRender = new ImageRender(this, "Image", Assets.Pixel);
                 ImageRender.Link(ImageRender.DEPENDENCY_BODY, Body);
-                ImageRender.Scale = new Vector2(70, 70);
+                ImageRender.Scale = new Vector2(Body.Width, Body.Height);
                 ImageRender.Layer = .5f;
 
                 TextBody = new Body(this, "TextBody");
