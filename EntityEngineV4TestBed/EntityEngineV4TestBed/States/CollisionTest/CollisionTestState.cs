@@ -131,6 +131,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 Physics.Link(Physics.DEPENDENCY_BODY, Body);
 
                 Shape = new AABB(this, "AABB");
+                Shape.Link(AABB.DEPENDENCY_BODY, Body);
 
                 Collision = new Collision(this, "Collision");
                 Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);

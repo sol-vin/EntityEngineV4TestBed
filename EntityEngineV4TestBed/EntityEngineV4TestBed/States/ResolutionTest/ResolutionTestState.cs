@@ -119,6 +119,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 _physics.Drag = .95f;
 
                 Shape = new AABB(this, "AABB");
+                Shape.Link(AABB.DEPENDENCY_BODY, Body);
 
                 Collision = new Collision(this, "Collision");
                 Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);

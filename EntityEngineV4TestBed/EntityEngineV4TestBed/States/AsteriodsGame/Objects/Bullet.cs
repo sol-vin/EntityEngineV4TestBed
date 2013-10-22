@@ -16,6 +16,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public const float SPEED = 5f;
         public bool HasLeftCollisionZone { get; private set; }
         public ImageRender Render;
+        public Circle Shape;
+
         public Bullet(IComponent parent, string name) : base(parent, name)
         {
             Render = new ImageRender(this, "Render");
@@ -29,11 +31,16 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             //Make our collision rectangles the size of the rendered sprite.
             Body.Bounds = Render.Bounds;
 
+            Shape = new Circle(this, "Shape", Body.Width/2);
+            Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
+            Shape.Link(Circle.DEPENDENCY_BODY, Body);
+
             Collision.GroupMask.AddMask(1);
             Collision.PairMask.AddMask(0);
-            //TODO: Set Shpe
             Collision.CollideEvent += OnCollide;
             Collision.Immovable = true;
+            Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
+            Collision.Initialize();
         }
 
         public override void Initialize()

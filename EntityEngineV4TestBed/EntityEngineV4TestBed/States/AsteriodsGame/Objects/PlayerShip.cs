@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EntityEngineV4.Collision;
+
 using EntityEngineV4.Collision.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
@@ -17,6 +19,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
     {
         public ImageRender Render;
         public Gun Gun;
+        public Circle Shape;
 
         //Controls
         public DoubleInput UpButton, DownButton, RightButton, LeftButton, FireButton, BombButton;
@@ -43,10 +46,15 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Gun = new SimpleGun(this, "SimpleGun");
             Gun.Link(SimpleGun.DEPENDENCY_BODY, Body);
 
+            Shape = new Circle(this, "Shape", Body.Height);
+            Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
+            Shape.Link(Circle.DEPENDENCY_BODY, Body);
+
             Collision.GroupMask.AddMask(0);
             Collision.PairMask.AddMask(1);
-            //TODO: Set shape
             Collision.Immovable = true;
+            Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
+            Collision.Initialize();
 
             //Control
             UpButton = new DoubleInput(this, "UpButton", Keys.W, Buttons.DPadUp, PlayerIndex.One);
