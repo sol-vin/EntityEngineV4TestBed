@@ -23,7 +23,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Render = new ImageRender(this, "Render");
             Render.LoadTexture("AsteroidsGame/circle");
             Render.Layer = .1f;
-            Render.Scale = new Vector2(.03f);
+            Render.Scale = new Vector2(.06f);
             Render.Color = Color.White;
             Render.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
             Render.Link(ImageRender.DEPENDENCY_BODY, Body);
@@ -40,7 +40,6 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Collision.CollideEvent += OnCollide;
             Collision.Immovable = true;
             Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
-            Collision.Initialize();
         }
 
         public override void Initialize()
@@ -54,6 +53,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             base.Update(gt);
             if (!Collision.IsColliding) 
                 HasLeftCollisionZone = true;
+
+            Render.Color = Collision.IsColliding ? Color.Green : Color.Red;
         }
 
         public void OnCollide(Collision collision)
