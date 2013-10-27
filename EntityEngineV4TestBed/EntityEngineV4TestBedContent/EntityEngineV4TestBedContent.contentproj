@@ -178,7 +178,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsteroidsGame\circle.png">
+    <Compile Include="EntityEngine\circle.png">
       <Name>circle</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

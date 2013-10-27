@@ -33,16 +33,14 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             _collided = new SortedSet<string>();
 
             _collidedLabel = new Label(ch, "CollidedLabel");
-            _collidedLabel.Body.Position = new Vector2(10, 560);
+            _collidedLabel.Body.Position = new Vector2(10, 500);
             ch.AddControl(_collidedLabel);
 
             Random rand = new Random();
 
             for (int x = 0; x < 3; x++)
             {
-                CollisionTestEntity c = new CollisionTestEntity(this, "A" + x);
-                if (c.Name == "A0")
-                    c.Collision.CollisionDirection.BitmaskChanged += bm => BitmaskChanged();
+                AABBEntity c = new AABBEntity(this, "A" + x);
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
@@ -51,7 +49,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             }
             for (int x = 0; x < 3; x++)
             {
-                CollisionTestEntity c = new CollisionTestEntity(this, "B" + x);
+                AABBEntity c = new AABBEntity(this, "B" + x);
                 c.Collision.GroupMask.AddMask(1);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
@@ -60,6 +58,20 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.HoverColor = Color.Black;
                 c.Collision.Debug = true;
             }
+
+            for (int x = 0; x < 3; x++)
+            {
+                CircleEntity c = new CircleEntity(this, "C" + x);
+                c.Collision.GroupMask.AddMask(2);
+                c.Collision.PairMask.AddMask(2);
+                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Body.Position = new Vector2(80 * x + 20, 300);
+                c.Color = Color.LightBlue;
+                c.HoverColor = Color.DarkRed;
+                c.Shape.Debug = true;
+            }
+
+            
         }
 
         public override void Update(GameTime gt)
@@ -67,7 +79,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             base.Update(gt);
 
             if (Destroyed) return;
-            Bitmask mask = GetEntity<CollisionTestEntity>("A0").Collision.CollisionDirection;
+            Bitmask mask = GetEntity<AABBEntity>("A0").Collision.CollisionDirection;
             string text = "Collision Directions (A0): ";
 
             if (mask.HasMatchingBit(CollisionHandler.LEFT))
@@ -79,22 +91,41 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             if (mask.HasMatchingBit(CollisionHandler.DOWN))
                 text += "Down ";
 
-            _collidedLabel.Text = text;
+            text += '\n';
 
+            mask = GetEntity<AABBEntity>("A1").Collision.CollisionDirection;
+            text += "Collision Directions (A1): ";
+
+            if (mask.HasMatchingBit(CollisionHandler.LEFT))
+                text += "Left ";
+            if (mask.HasMatchingBit(CollisionHandler.RIGHT))
+                text += "Right ";
+            if (mask.HasMatchingBit(CollisionHandler.UP))
+                text += "Up ";
+            if (mask.HasMatchingBit(CollisionHandler.DOWN))
+                text += "Down ";
+
+            text += '\n';
+
+            text += "Colliding: ";
+            foreach (var collider in GetService<CollisionHandler>().GetColliding())
+            {
+                text += collider.Parent.Name + " ";
+            }
+
+            text += '\n';
+            text += "C0 -> C1: ";
+
+            Vector2 delta = GetEntity<CircleEntity>("C0").Body.Position - GetEntity<CircleEntity>("C1").Body.Position;
+            text += delta.Length();
+
+            _collidedLabel.Text = text;
             _collided.Clear();
         }
 
-        public void BitmaskChanged()
-        {
-            Console.WriteLine("BITMASK CHANGED!");
-        }
-
-        /// <summary>
-        /// Simple entity to test collisions
-        /// </summary>
         private class CollisionTestEntity : Entity
         {
-            public Body Body;
+             public Body Body;
 
             /// <summary>
             /// Body used to describe Render's body
@@ -106,7 +137,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             public Collision Collision;
             public ImageRender ImageRender;
             public TextRender TextRender;
-            public AABB Shape;
+            public Shape Shape;
 
             public Color Color = Color.Blue;
             public Color HoverColor = Color.Red;
@@ -117,7 +148,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             private bool _hasFocus;
 
             /// <summary>
-            /// /Creates a new CollisionTestEntity
+            /// /Creates a new AABBEntity
             /// </summary>
             /// <param name="stateref"></param>
             /// <param name="name"></param>
@@ -125,32 +156,21 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 : base(stateref, name)
             {
                 Body = new Body(this, "Body");
-                Body.Bounds = new Vector2(30 + RandomHelper.GetFloat(0, 30), 30 + RandomHelper.GetFloat(0, 30));
 
                 Physics = new Physics(this, "Physics");
                 Physics.Link(Physics.DEPENDENCY_BODY, Body);
 
-                Shape = new AABB(this, "AABB");
-                Shape.Link(AABB.DEPENDENCY_BODY, Body);
-
                 Collision = new Collision(this, "Collision");
-                Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
                 Collision.Link(Collision.DEPENDENCY_PHYSICS, Physics);
-                Collision.Initialize();
 
                 ImageRender = new ImageRender(this, "Image", Assets.Pixel);
                 ImageRender.Link(ImageRender.DEPENDENCY_BODY, Body);
-                ImageRender.Scale = new Vector2(Body.Width, Body.Height);
-                ImageRender.Layer = .5f;
 
                 TextBody = new Body(this, "TextBody");
 
                 TextRender = new TextRender(this, "Render");
                 TextRender.Link(TextRender.DEPENDENCY_BODY, TextBody);
-                TextRender.Color = Color.White;
-                TextRender.Font = Assets.Font;
-                TextRender.Text = Name;
-                TextRender.Layer = 1f;
+
             }
 
             public override void Update(GameTime gt)
@@ -179,6 +199,57 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 }
 
                 TextBody.Position = Body.Position + Vector2.One * 10f;
+            }
+        }
+
+        /// <summary>
+        /// Simple entity to test collisions
+        /// </summary>
+        private class AABBEntity : CollisionTestEntity
+        {
+            public AABBEntity(EntityState stateref, string name) : base(stateref, name)
+            {
+                Body.Bounds = new Vector2(50 + RandomHelper.GetFloat(0, 30), 50 + RandomHelper.GetFloat(0, 30));
+
+                Shape = new AABB(this, "AABB");
+                Shape.Link(AABB.DEPENDENCY_BODY, Body);
+                Shape.Link(AABB.DEPENDENCY_COLLISION, Collision);
+
+                Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
+
+               
+                ImageRender.Scale = new Vector2(Body.Width, Body.Height);
+                ImageRender.Layer = .5f;
+
+                
+                TextRender.Color = Color.White;
+                TextRender.Font = Assets.Font;
+                TextRender.Text = Name;
+                TextRender.Layer = 1f;
+            }
+        }
+
+        private class CircleEntity : CollisionTestEntity
+        {
+            public CircleEntity(EntityState stateref, string name)
+                : base(stateref, name)
+            {
+                Shape = new Circle(this, "Circle", 30);
+                Shape.Offset = new Vector2(GetComponent<Circle>("Circle").Radius);
+                Shape.Link(Circle.DEPENDENCY_BODY, Body);
+                Shape.Link(Circle.DEPENDENCY_COLLISION, Collision);
+
+                Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
+
+                Body.Bounds = new Vector2(GetComponent<Circle>("Circle").Diameter);
+
+                ImageRender.Scale = new Vector2(Body.Width, Body.Height);
+                ImageRender.Layer = .5f;
+
+                TextRender.Color = Color.White;
+                TextRender.Font = Assets.Font;
+                TextRender.Text = Name;
+                TextRender.Layer = 1f;
             }
         }
     }

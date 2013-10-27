@@ -7,6 +7,7 @@ using EntityEngineV4.Collision;
 using EntityEngineV4.Collision.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
+using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.Input;
 using EntityEngineV4.PowerTools;
@@ -28,8 +29,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
         public PlayerShip(IComponent parent, string name) : base(parent, name)
         {
-            Body.X = 10;
-            Body.Y = 10;
+            Body.X = 0;
+            Body.Y = 0;
 
             Physics.Drag = 0.97f;
             Physics.AngularDrag = 0.9f;
@@ -38,7 +39,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Render.LoadTexture(@"AsteroidsGame/ship");
             Render.Layer = .01f;
             Render.Scale = new Vector2(.128f);
-            Render.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
+            Render.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
             Render.Link(ImageRender.DEPENDENCY_BODY, Body);
             
             Body.Bounds = Render.Bounds;
@@ -46,14 +47,17 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Gun = new SimpleGun(this, "SimpleGun");
             Gun.Link(SimpleGun.DEPENDENCY_BODY, Body);
 
-            Shape = new Circle(this, "Shape", Body.Height*2);
+            Shape = new Circle(this, "Shape", Body.Width);
             Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
+            Shape.Debug = true;
             Shape.Link(Circle.DEPENDENCY_BODY, Body);
 
             Collision.GroupMask.AddMask(0);
             Collision.PairMask.AddMask(1);
             Collision.Immovable = true;
             Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
+            Shape.Link(Circle.DEPENDENCY_COLLISION, Collision);
+
 
             //Control
             UpButton = new DoubleInput(this, "UpButton", Keys.W, Buttons.DPadUp, PlayerIndex.One);
@@ -92,7 +96,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             if(ThrustTrigger.Value > 0) Physics.Thrust(ThrustTrigger.Value * _FLYSPEED);
 
 
-            if (FireButton.RapidFire(100)) Gun.Fire();
+            if (FireButton.RapidFire(50)) Gun.Fire();
         }
     }
 }
