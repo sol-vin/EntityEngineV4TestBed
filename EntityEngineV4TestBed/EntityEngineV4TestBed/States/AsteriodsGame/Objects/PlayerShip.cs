@@ -23,9 +23,9 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public Circle Shape;
 
         //Controls
-        public DoubleInput UpButton, DownButton, RightButton, LeftButton, FireButton, BombButton;
-        public GamePadAnalog MoveAnalog, LookAnalog;
-        public GamePadTrigger ThrustTrigger, BrakeTrigger;
+        public DoubleInput UpButton, DownButton, RightButton, LeftButton, FireButton;
+        public GamePadAnalog LookAnalog;
+        public GamePadTrigger ThrustTrigger, GravityTrigger;
 
         public PlayerShip(IComponent parent, string name) : base(parent, name)
         {
@@ -47,7 +47,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Gun = new SimpleGun(this, "SimpleGun");
             Gun.Link(SimpleGun.DEPENDENCY_BODY, Body);
 
-            Shape = new Circle(this, "Shape", Body.Width);
+            Shape = new Circle(this, "Circle", Body.Width*.8f);
             Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
             Shape.Debug = true;
             Shape.Link(Circle.DEPENDENCY_BODY, Body);
@@ -65,12 +65,10 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             LeftButton = new DoubleInput(this, "LeftButton", Keys.A, Buttons.DPadLeft, PlayerIndex.One);
             RightButton = new DoubleInput(this, "RightButton", Keys.D, Buttons.DPadRight, PlayerIndex.One);
             FireButton = new DoubleInput(this, "FireButton", Keys.Space, Buttons.A, PlayerIndex.One);
-            BombButton = new DoubleInput(this, "BombButton", Keys.Z, Buttons.B, PlayerIndex.One);
             ThrustTrigger = new GamePadTrigger(this, "ThrustTrigger", Triggers.Right, PlayerIndex.One);
-            //TODO: Add brake code
-            BrakeTrigger = new GamePadTrigger(this, "BrakeTrigger", Triggers.Left, PlayerIndex.One);
-            MoveAnalog = new GamePadAnalog(this, "MoveAnalog", Sticks.Left, PlayerIndex.One);
-            LookAnalog = new GamePadAnalog(this, "LookAnalog", Sticks.Right, PlayerIndex.One);
+            GravityTrigger = new GamePadTrigger(this, "GravityTrigger", Triggers.Left, PlayerIndex.One);
+
+            LookAnalog = new GamePadAnalog(this, "LookAnalog", Sticks.Left, PlayerIndex.One);
         }
 
         public override void Update(GameTime gt)
@@ -89,14 +87,36 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             if (LeftButton.Down()) Physics.AddAngularForce(-_TURNSPEED);
             else if (RightButton.Down()) Physics.AddAngularForce(_TURNSPEED);
 
-            if (MoveAnalog.Position != Vector2.Zero)
+            if (LookAnalog.Position != Vector2.Zero)
             {
-                Body.Angle = MathTools.Physics.GetAngle(new Vector2(-MoveAnalog.Position.X, -MoveAnalog.Position.Y));
+                Body.Angle = MathTools.Physics.GetAngle(new Vector2(-LookAnalog.Position.X, -LookAnalog.Position.Y));
             }
-            if(ThrustTrigger.Value > 0) Physics.Thrust(ThrustTrigger.Value * _FLYSPEED);
 
+            if(ThrustTrigger.Value > ThrustTrigger.DeadZone) Physics.Thrust(ThrustTrigger.Value * _FLYSPEED);
+
+            if(GravityTrigger.Value > GravityTrigger.DeadZone) GravityWell(GravityTrigger.Value);
 
             if (FireButton.RapidFire(50)) Gun.Fire();
+        }
+
+
+        public const float MAXGRAVITYDISTANCE = 400f;
+        public const float GRAVITYSTRENGTH = 3f;
+        private void GravityWell(float strength)
+        {
+            foreach (var bullet in Gun.Bullets)
+            {
+                Vector2 normal = bullet.Body.Position - Body.Position;
+                if (normal.LengthSquared() > MAXGRAVITYDISTANCE*MAXGRAVITYDISTANCE) return;
+
+                float distance = normal.Length();
+                float gravity = 1f - distance/MAXGRAVITYDISTANCE;
+
+                normal.Normalize();
+
+                bullet.Physics.Velocity -= normal*gravity*GRAVITYSTRENGTH*strength;
+                bullet.Physics.Velocity *= .95f;
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ Content\GameOfLife\tiles.xnb
 Content\AsteroidsGame\ship.xnb
 Content\AsteroidsGame\triangle.xnb
 Content\EntityEngine\circle.xnb
+Content\AsteroidsGame\bullet.xnb
 Content\SuperTownDefence\game\sounds\explode.xnb
 Content\SuperTownDefence\game\sounds\firebomb.xnb
 Content\SuperTownDefence\game\sounds\soldierattack.xnb

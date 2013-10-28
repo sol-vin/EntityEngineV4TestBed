@@ -8,6 +8,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 {
     public abstract class Gun : Component
     {
+        public HashSet<Bullet> Bullets = new HashSet<Bullet>();
+
         protected Gun(IComponent parent, string name) : base(parent, name)
         {
         }

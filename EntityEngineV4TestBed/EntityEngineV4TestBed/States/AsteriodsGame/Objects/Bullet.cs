@@ -24,9 +24,9 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public Bullet(IComponent parent, string name) : base(parent, name)
         {
             Render = new ImageRender(this, "Render");
-            Render.Texture = Assets.Circle;
+            Render.LoadTexture(@"AsteroidsGame/bullet");
             Render.Layer = .1f;
-            Render.Scale = new Vector2(.06f);
+            Render.Scale = new Vector2(.1f);
             Render.Color = Color.White;
             Render.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
             Render.Link(ImageRender.DEPENDENCY_BODY, Body);
@@ -60,7 +60,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             if (!Collision.IsColliding) _hasLeftPlayerCircle = true;
         }
 
-        public void OnCollide(Collision collision)
+        private void OnCollide(Collision collision)
         {
             if (!_hasLeftPlayerCircle) return;
 
