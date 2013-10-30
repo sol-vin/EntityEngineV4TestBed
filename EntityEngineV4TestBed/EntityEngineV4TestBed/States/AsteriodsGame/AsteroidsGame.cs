@@ -1,5 +1,6 @@
 ﻿using EntityEngineV4.Collision;
 using EntityEngineV4.Engine;
+using EntityEngineV4.Engine.Services;
 using EntityEngineV4TestBed.States.AsteriodsGame.Objects;
 using Microsoft.Xna.Framework;
 
@@ -18,6 +19,9 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
         {
             base.Initialize();
             new CollisionHandler(this);
+            new AssetCollector(this);
+            GetService<AssetCollector>().LoadXML(@"Content/AsteroidsGame/assets.xml");
+
             //Change bgcolor to black
             EntityGame.BackgroundColor = Color.Black;
             EntityGame.DebugInfo.Render.Color = Color.White;

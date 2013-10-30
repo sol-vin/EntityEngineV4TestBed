@@ -8,8 +8,10 @@ using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
+using EntityEngineV4.Engine.Services;
 using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 {
@@ -24,7 +26,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public Bullet(IComponent parent, string name) : base(parent, name)
         {
             Render = new ImageRender(this, "Render");
-            Render.LoadTexture(@"AsteroidsGame/bullet");
+            Render.SetTexture(GetService<AssetCollector>().GetAsset<Texture2D>("bullet"));
             Render.Layer = .1f;
             Render.Scale = new Vector2(.1f);
             Render.Color = Color.White;

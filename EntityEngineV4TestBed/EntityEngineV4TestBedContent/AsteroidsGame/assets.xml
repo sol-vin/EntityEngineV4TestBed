@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Assets>
+  <Texture2D name="bullet">AsteroidsGame/bullet</Texture2D>
+  <Texture2D name="ship">AsteroidsGame/ship</Texture2D>
+  <Texture2D name="triangle">AsteroidsGame/triangle</Texture2D>
+</Assets>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AsteroidsGame>
+  <PlayerShip>
+    <Body>
+      <X>300</X>
+      <Y>300</Y>
+      <Width>20</Width>
+      <Height>20</Height>
+    </Body>
+  </PlayerShip>
+</AsteroidsGame>

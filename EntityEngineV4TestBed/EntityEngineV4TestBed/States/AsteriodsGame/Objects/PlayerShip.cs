@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using EntityEngineV4.Collision;
 
@@ -9,9 +10,11 @@ using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
+using EntityEngineV4.Engine.Services;
 using EntityEngineV4.Input;
 using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
@@ -36,7 +39,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Physics.AngularDrag = 0.9f;
 
             Render = new ImageRender(this, "Render");
-            Render.LoadTexture(@"AsteroidsGame/ship");
+            Render.SetTexture(GetService<AssetCollector>().GetAsset<Texture2D>("ship"));
             Render.Layer = .01f;
             Render.Scale = new Vector2(.128f);
             Render.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
