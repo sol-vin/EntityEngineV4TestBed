@@ -123,7 +123,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
         {
             base.Update(gt);
 
-            _screeninfo.Text = "Active: " + (GetState<State>().ActiveNodes-15) + "\n";
+            _screeninfo.Text = "Active: " + (GetState<State>().ActiveNodes) + "\n";
 
             _strengthValue.Text = Math.Round(_ptm.Spawner.Strength, 1).ToString();
             _strengthUp.Body.Position.X = _strengthValue.Body.BoundingRect.Right + 5;
