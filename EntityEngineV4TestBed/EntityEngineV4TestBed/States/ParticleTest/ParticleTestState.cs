@@ -46,7 +46,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             public ShapeTypes.Rectangle Render;
             private ParticleEmitter _emitter;
 
-            public ParticleEntity(IComponent parent, string name) : base(parent, name)
+            public ParticleEntity(Node parent, string name) : base(parent, name)
             {
                 Body = new Body(this, "Body");
                 Body.Width = 10;
@@ -55,14 +55,14 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 Body.Y = -100;
 
                 Physics = new Physics(this, "Physics");
-                Physics.Link(Physics.DEPENDENCY_BODY, Body);
+                Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
                 Render = new ShapeTypes.Rectangle(this, "Render", true);
-                Render.Link(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
+                Render.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
                 Render.Color = Color.OrangeRed;
 
                 _emitter = new ParticleEmitter(this, "Emitter");
-                _emitter.Link(ParticleEmitter.DEPENDENCY_BODY,Body);
+                _emitter.LinkDependency(ParticleEmitter.DEPENDENCY_BODY,Body);
             }
 
             private float _angle;
@@ -85,16 +85,16 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 _emitter.Emit(3);
             }
 
-            public override void Destroy(IComponent i = null)
+            public override void Destroy(IComponent sender = null)
             {
-                base.Destroy(i);
+                base.Destroy(sender);
                 EntityGame.DebugInfo.Render.Color = Color.Black;
             }
 
             private class ParticleEmitter : Spawner
             {
                 private Random _random = new Random();
-                public ParticleEmitter(IComponent parent, string name) : base(parent, name)
+                public ParticleEmitter(Node parent, string name) : base(parent, name)
                 {
                 }
 
@@ -103,9 +103,9 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     TrailParticle p = new TrailParticle(this, 1000);
                     p.Body.Position = MathTools.Physics.RotatePoint(
                     new Vector2(EntityGame.Viewport.Width / 2, EntityGame.Viewport.Height / 2),
-                    GetLink<Body>(DEPENDENCY_BODY).Angle,
-                    new Vector2(EntityGame.Viewport.Width / 2, YOFFSET+GetLink<Body>(DEPENDENCY_BODY).Bounds.Y/2));
-                    p.Body.Angle = GetLink<Body>(DEPENDENCY_BODY).Angle + MathHelper.Pi - 
+                    GetDependency<Body>(DEPENDENCY_BODY).Angle,
+                    new Vector2(EntityGame.Viewport.Width / 2, YOFFSET+GetDependency<Body>(DEPENDENCY_BODY).Bounds.Y/2));
+                    p.Body.Angle = GetDependency<Body>(DEPENDENCY_BODY).Angle + MathHelper.Pi - 
                         (MathHelper.Pi/16 * ((_random.Next(0,2) == 0) ? 1 : -1) 
                         * (float)_random.NextDouble());
                     p.Body.Bounds = new Vector2(_random.Next(2,10));
@@ -137,10 +137,10 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     Body = new Body(this, "Body");
 
                     Physics = new Physics(this, "Physics");
-                    Physics.Link(Physics.DEPENDENCY_BODY, Body);
+                    Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
                     Render = new ShapeTypes.Rectangle(this, "Render", true);
-                    Render.Link(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
+                    Render.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
                     Render.Color = Color.OrangeRed;
                     Render.Origin = new Vector2(.5f, .5f);
                 }

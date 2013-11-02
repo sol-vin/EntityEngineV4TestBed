@@ -18,7 +18,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.Menu
 {
-    public class MenuState : EntityState
+    public class MenuState : State
     {
         private delegate void ChangeStateDelegate();
 
@@ -59,7 +59,6 @@ namespace EntityEngineV4TestBed.States.Menu
             _menuStateManager.AddMenuItem("Tilemap Test State", () => EntityGame.SwitchState(new TilemapTestState()));
             _menuStateManager.AddMenuItem("Render Test State", () => EntityGame.SwitchState(new RenderTestState()));
             _menuStateManager.AddMenuItem("Primitives Test State", () => EntityGame.SwitchState(new PrimitiveTestState()));
-            AddEntity(_menuStateManager);
         }
 
         public override void Update(GameTime gt)
@@ -75,7 +74,7 @@ namespace EntityEngineV4TestBed.States.Menu
 
             private DoubleInput _upkey, _downkey, _leftkey, _rightkey, _selectkey;
 
-            public MenuStateManager(EntityState stateref, ControlHandler controlHandler)
+            public MenuStateManager(State stateref, ControlHandler controlHandler)
                 : base(stateref, "MenuStateManager")
             {
                 _controlHandler = controlHandler;
@@ -104,7 +103,7 @@ namespace EntityEngineV4TestBed.States.Menu
 
             public void AddMenuItem(string label, ChangeStateDelegate changeStateDelegate)
             {
-                LinkLabel l = new LinkLabel(Parent, "MenuItem" + (_lasttabposition.X ^ _lasttabposition.Y));
+                LinkLabel l = new LinkLabel(this, "MenuItem" + (_lasttabposition.X ^ _lasttabposition.Y));
 
                 l.Text = label;
                 l.Body.Position = new Vector2(20, (_lasttabposition.Y * l.Body.Height + 5));

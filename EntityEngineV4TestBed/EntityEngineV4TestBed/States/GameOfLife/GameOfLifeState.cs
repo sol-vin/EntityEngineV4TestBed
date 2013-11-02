@@ -249,7 +249,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
             public bool RunningSimulation { get { return UpdateTimer.Alive; } }
 
-            public GameOfLifeManager(IComponent parent, string name) : base(parent, name)
+            public GameOfLifeManager(Node parent, string name) : base(parent, name)
             {
                 UpdateTimer = new Timer(this, "UpdateTimer");
                 UpdateTimer.Milliseconds = 250;

@@ -17,15 +17,15 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public Physics Physics;
         public Collision Collision;
 
-        public BaseEntity(IComponent parent, string name) : base(parent, name)
+        public BaseEntity(Node parent, string name) : base(parent, name)
         {
             Body = new Body(this, "Body");
 
             Physics = new Physics(this, "Physics");
-            Physics.Link(Physics.DEPENDENCY_BODY, Body);
+            Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
             Collision = new Collision(this, "Collision");
-            Collision.Link(Collision.DEPENDENCY_PHYSICS, Physics);
+            Collision.LinkDependency(Collision.DEPENDENCY_PHYSICS, Physics);
 
         }
 

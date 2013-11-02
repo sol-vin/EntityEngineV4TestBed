@@ -30,7 +30,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public GamePadAnalog LookAnalog;
         public GamePadTrigger ThrustTrigger, GravityTrigger;
 
-        public PlayerShip(IComponent parent, string name) : base(parent, name)
+        public PlayerShip(Node parent, string name) : base(parent, name)
         {
             Body.X = 0;
             Body.Y = 0;
@@ -39,27 +39,27 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Physics.AngularDrag = 0.9f;
 
             Render = new ImageRender(this, "Render");
-            Render.SetTexture(GetService<AssetCollector>().GetAsset<Texture2D>("ship"));
+            Render.SetTexture(GetState().GetService<AssetCollector>().GetAsset<Texture2D>("ship"));
             Render.Layer = .01f;
             Render.Scale = new Vector2(.128f);
             Render.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
-            Render.Link(ImageRender.DEPENDENCY_BODY, Body);
+            Render.LinkDependency(ImageRender.DEPENDENCY_BODY, Body);
             
             Body.Bounds = Render.Bounds;
 
             Gun = new SimpleGun(this, "SimpleGun");
-            Gun.Link(SimpleGun.DEPENDENCY_BODY, Body);
+            Gun.LinkDependency(SimpleGun.DEPENDENCY_BODY, Body);
 
             Shape = new Circle(this, "Circle", Body.Width*.8f);
             Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
             Shape.Debug = true;
-            Shape.Link(Circle.DEPENDENCY_BODY, Body);
+            Shape.LinkDependency(Circle.DEPENDENCY_BODY, Body);
 
             Collision.GroupMask.AddMask(0);
             Collision.PairMask.AddMask(1);
             Collision.Immovable = true;
-            Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
-            Shape.Link(Circle.DEPENDENCY_COLLISION, Collision);
+            Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
+            Shape.LinkDependency(Circle.DEPENDENCY_COLLISION, Collision);
 
 
             //Control

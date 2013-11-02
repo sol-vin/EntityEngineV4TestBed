@@ -17,21 +17,20 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 {
     public class Bullet : BaseEntity
     {
-        public const float SPEED = 5f;
         public ImageRender Render;
         public Circle Shape;
 
         private bool _hasLeftPlayerCircle = false;
 
-        public Bullet(IComponent parent, string name) : base(parent, name)
+        public Bullet(Node parent, string name) : base(parent, name)
         {
             Render = new ImageRender(this, "Render");
-            Render.SetTexture(GetService<AssetCollector>().GetAsset<Texture2D>("bullet"));
+            Render.SetTexture(GetState<State>().GetService<AssetCollector>().GetAsset<Texture2D>("bullet"));
             Render.Layer = .1f;
             Render.Scale = new Vector2(.1f);
             Render.Color = Color.White;
             Render.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
-            Render.Link(ImageRender.DEPENDENCY_BODY, Body);
+            Render.LinkDependency(ImageRender.DEPENDENCY_BODY, Body);
 
             //Make our collision rectangles the size of the rendered sprite.
             Body.Bounds = Render.Bounds;
@@ -39,20 +38,19 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Shape = new Circle(this, "Shape", Body.Width/2);
             Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
             Shape.Debug = true;
-            Shape.Link(Circle.DEPENDENCY_BODY, Body);
+            Shape.LinkDependency(Circle.DEPENDENCY_BODY, Body);
 
             Collision.GroupMask.AddMask(1);
             Collision.PairMask.AddMask(0);
             Collision.CollideEvent += OnCollide;
             Collision.Immovable = true;
-            Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
-            Shape.Link(Circle.DEPENDENCY_COLLISION, Collision);
+            Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
+            Shape.LinkDependency(Circle.DEPENDENCY_COLLISION, Collision);
         }
 
         public override void Initialize()
         {
             base.Initialize();
-            Physics.Thrust(SPEED);
         }
 
         public override void Update(GameTime gt)

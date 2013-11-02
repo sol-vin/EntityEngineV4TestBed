@@ -115,12 +115,12 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             public Body Body;
             public Physics Physics;
 
-            public PrimitiveTestEntity(IComponent parent, string name)
+            public PrimitiveTestEntity(Node parent, string name)
                 : base(parent, name)
             {
                 Body = new Body(this, "Body");
                 Physics = new Physics(this, "Physics");
-                Physics.Link(Physics.DEPENDENCY_BODY, Body);
+                Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
                 Physics.AngularVelocity = .01f;
             }
@@ -135,7 +135,7 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
         {
             private ShapeTypes.Rectangle Rectangle;
 
-            public SpinningRect(IComponent parent, string name, float x, float y, float width, float height, bool fill = false, float thickness = 3)
+            public SpinningRect(Node parent, string name, float x, float y, float width, float height, bool fill = false, float thickness = 3)
                 : base(parent, name)
             {
                 Body.X = x;
@@ -143,7 +143,7 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
                 Body.Width = width;
                 Body.Height = height;
                 Rectangle = new ShapeTypes.Rectangle(this, "Rectangle", fill);
-                Rectangle.Link(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
+                Rectangle.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
 
                 //Rectangle.Origin = fill ? new Vector2(Body.Width / 2f, Body.Height / 2f) : new Vector2(.5f, .5f);
                 Rectangle.Origin = new Vector2(.5f/thickness, .5f/thickness);

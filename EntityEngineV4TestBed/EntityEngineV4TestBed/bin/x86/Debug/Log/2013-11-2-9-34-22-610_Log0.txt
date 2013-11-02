@@ -1,0 +1,10 @@
+Starting Log @ 2013-11-2 | 9:34:22:612
+===========================================
+[11-2 : 9:34:24:384384] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[11-2 : 9:34:24:399399] - [Info] - [Sender: MouseService->MouseService.MouseCursor] - Got focus!
+[11-2 : 9:34:24:402402] - [Warning] - [Sender: MenuState->ControlHandler] - Mouse was disabled on this state, switching UseMouse to false. Next time, please specify UseMouse in constructor
+[11-2 : 9:34:24:404404] - [Warning] - [Sender: MenuState] - Service EntityEngineV4.GUI.ControlHandler does not exist!
+[11-2 : 9:34:24:404404] - [Error] - [Sender: MenuState->MenuItem0] - ControlHandler was not found! Cannot attach to Service
+[11-2 : 9:34:24:405405] - [Warning] - Control attempted to attach to a null service!
+[11-2 : 9:34:24:405405] - [Warning] - [Sender: MenuState] - Service EntityEngineV4.GUI.ControlHandler does not exist!
+[11-2 : 9:34:24:405405] - [Error] - [Sender: MenuState->MenuItem1] - ControlHandler was not found! Cannot attach to Service

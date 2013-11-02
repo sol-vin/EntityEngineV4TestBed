@@ -419,7 +419,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
             public bool RunningSimulation { get { return UpdateTimer.Alive; } }
 
-            public ColorGameOfLifeManager(IComponent parent, string name)
+            public ColorGameOfLifeManager(Node parent, string name)
                 : base(parent, name)
             {
                 UpdateTimer = new Timer(this, "UpdateTimer");

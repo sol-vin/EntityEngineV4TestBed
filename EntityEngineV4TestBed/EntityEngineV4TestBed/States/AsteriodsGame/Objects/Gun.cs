@@ -10,7 +10,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
     {
         public HashSet<Bullet> Bullets = new HashSet<Bullet>();
 
-        protected Gun(IComponent parent, string name) : base(parent, name)
+        protected Gun(Node parent, string name) : base(parent, name)
         {
         }
 

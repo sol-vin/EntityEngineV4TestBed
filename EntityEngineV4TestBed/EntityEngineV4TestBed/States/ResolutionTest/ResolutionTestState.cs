@@ -83,7 +83,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             base.Update(gt);
             if (Destroyed) return;
 
-            string debug = GetEntity<ResolutionTestEntity>("A0").Collision.IsColliding.ToString();
+            string debug = GetState().GetChild<ResolutionTestEntity>("A0").Collision.IsColliding.ToString();
             _collidedLabel.Text = "A0: " + debug;
         }
 
@@ -106,35 +106,35 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             public bool HasFocus;
             private bool _lastImmovable;
 
-            public ResolutionTestEntity(EntityState stateref, string name)
+            public ResolutionTestEntity(State stateref, string name)
                 : base(stateref, name)
             {
                 Body = new Body(this, "Body");
                 Body.Bounds = new Vector2(70, 70);
 
                 _physics = new Physics(this, "_physics");
-                _physics.Link(Physics.DEPENDENCY_BODY, Body);
+                _physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
                 _physics.Mass = 10f;
                 _physics.Restitution = 1f;
                 _physics.Drag = .95f;
 
                 Shape = new AABB(this, "AABB");
-                Shape.Link(AABB.DEPENDENCY_BODY, Body);
+                Shape.LinkDependency(AABB.DEPENDENCY_BODY, Body);
 
                 Collision = new Collision(this, "Collision");
-                Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
-                Collision.Link(Collision.DEPENDENCY_PHYSICS, _physics);
+                Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
+                Collision.LinkDependency(Collision.DEPENDENCY_PHYSICS, _physics);
                 Collision.Initialize();
 
                 _imageRender = new ImageRender(this, "Image", Assets.Pixel);
-                _imageRender.Link(ImageRender.DEPENDENCY_BODY, Body);
+                _imageRender.LinkDependency(ImageRender.DEPENDENCY_BODY, Body);
                 _imageRender.Scale = new Vector2(70, 70);
                 _imageRender.Layer = .5f;
 
                 _textBody = new Body(this, "_textBody");
 
                 _textRender = new TextRender(this, "_textRender");
-                _textRender.Link(TextRender.DEPENDENCY_BODY, _textBody);
+                _textRender.LinkDependency(TextRender.DEPENDENCY_BODY, _textBody);
                 _textRender.Color = Color.White;
                 _textRender.Font = Assets.Font;
                 _textRender.Text = Name;

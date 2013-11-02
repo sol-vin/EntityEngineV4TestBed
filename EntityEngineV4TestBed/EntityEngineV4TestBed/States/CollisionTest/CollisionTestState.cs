@@ -79,7 +79,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             base.Update(gt);
 
             if (Destroyed) return;
-            Bitmask mask = GetEntity<AABBEntity>("A0").Collision.CollisionDirection;
+            Bitmask mask = GetState().GetChild<AABBEntity>("A0").Collision.CollisionDirection;
             string text = "Collision Directions (A0): ";
 
             if (mask.HasMatchingBit(CollisionHandler.LEFT))
@@ -93,7 +93,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
             text += '\n';
 
-            mask = GetEntity<AABBEntity>("A1").Collision.CollisionDirection;
+            mask = GetState().GetChild<AABBEntity>("A1").Collision.CollisionDirection;
             text += "Collision Directions (A1): ";
 
             if (mask.HasMatchingBit(CollisionHandler.LEFT))
@@ -116,7 +116,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             text += '\n';
             text += "C0 -> C1: ";
 
-            Vector2 delta = GetEntity<CircleEntity>("C0").Body.Position - GetEntity<CircleEntity>("C1").Body.Position;
+            Vector2 delta = GetState().GetChild<CircleEntity>("C0").Body.Position - GetState().GetChild<CircleEntity>("C1").Body.Position;
             text += delta.Length();
 
             _collidedLabel.Text = text;
@@ -152,24 +152,24 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             /// </summary>
             /// <param name="stateref"></param>
             /// <param name="name"></param>
-            public CollisionTestEntity(EntityState stateref, string name)
+            public CollisionTestEntity(State stateref, string name)
                 : base(stateref, name)
             {
                 Body = new Body(this, "Body");
 
                 Physics = new Physics(this, "Physics");
-                Physics.Link(Physics.DEPENDENCY_BODY, Body);
+                Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
                 Collision = new Collision(this, "Collision");
-                Collision.Link(Collision.DEPENDENCY_PHYSICS, Physics);
+                Collision.LinkDependency(Collision.DEPENDENCY_PHYSICS, Physics);
 
                 ImageRender = new ImageRender(this, "Image", Assets.Pixel);
-                ImageRender.Link(ImageRender.DEPENDENCY_BODY, Body);
+                ImageRender.LinkDependency(ImageRender.DEPENDENCY_BODY, Body);
 
                 TextBody = new Body(this, "TextBody");
 
                 TextRender = new TextRender(this, "Render");
-                TextRender.Link(TextRender.DEPENDENCY_BODY, TextBody);
+                TextRender.LinkDependency(TextRender.DEPENDENCY_BODY, TextBody);
 
             }
 
@@ -207,15 +207,15 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         /// </summary>
         private class AABBEntity : CollisionTestEntity
         {
-            public AABBEntity(EntityState stateref, string name) : base(stateref, name)
+            public AABBEntity(State stateref, string name) : base(stateref, name)
             {
                 Body.Bounds = new Vector2(50 + RandomHelper.GetFloat(0, 30), 50 + RandomHelper.GetFloat(0, 30));
 
                 Shape = new AABB(this, "AABB");
-                Shape.Link(AABB.DEPENDENCY_BODY, Body);
-                Shape.Link(AABB.DEPENDENCY_COLLISION, Collision);
+                Shape.LinkDependency(AABB.DEPENDENCY_BODY, Body);
+                Shape.LinkDependency(AABB.DEPENDENCY_COLLISION, Collision);
 
-                Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
+                Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
 
                
                 ImageRender.Scale = new Vector2(Body.Width, Body.Height);
@@ -231,17 +231,17 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
         private class CircleEntity : CollisionTestEntity
         {
-            public CircleEntity(EntityState stateref, string name)
+            public CircleEntity(State stateref, string name)
                 : base(stateref, name)
             {
                 Shape = new Circle(this, "Circle", 30);
-                Shape.Offset = new Vector2(GetComponent<Circle>("Circle").Radius);
-                Shape.Link(Circle.DEPENDENCY_BODY, Body);
-                Shape.Link(Circle.DEPENDENCY_COLLISION, Collision);
+                Shape.Offset = new Vector2((Shape as Circle).Radius);
+                Shape.LinkDependency(Circle.DEPENDENCY_BODY, Body);
+                Shape.LinkDependency(Circle.DEPENDENCY_COLLISION, Collision);
 
-                Collision.Link(Collision.DEPENDENCY_SHAPE, Shape);
+                Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
 
-                Body.Bounds = new Vector2(GetComponent<Circle>("Circle").Diameter);
+                Body.Bounds = new Vector2((Shape as Circle).Diameter);
 
                 ImageRender.Scale = new Vector2(Body.Width, Body.Height);
                 ImageRender.Layer = .5f;

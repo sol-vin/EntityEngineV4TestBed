@@ -13,7 +13,7 @@ namespace EntityEngineV4TestBed.States.TestControl
 
         private DoubleInput _upkey, _downkey, _leftkey, _rightkey, _selectkey;
 
-        public TestControlManager(EntityState stateref, ControlHandler controlHandler)
+        public TestControlManager(State stateref, ControlHandler controlHandler)
             : base(stateref, "TestControlManager")
         {
             ControlHandler = controlHandler;

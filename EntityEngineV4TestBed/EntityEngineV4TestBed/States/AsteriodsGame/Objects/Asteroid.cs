@@ -15,20 +15,20 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
     {
         public ImageRender Render;
 
-        public Asteroid(IComponent parent, string name) : base(parent, name)
+        public Asteroid(Node parent, string name) : base(parent, name)
         {
             Body = new Body(this, "Body");
             Body.X = RandomHelper.GetFloat() * EntityGame.Viewport.Right;
             Body.Y = RandomHelper.GetFloat() * EntityGame.Viewport.Bottom;
 
             Physics = new Physics(this, "Physics");
-            Physics.Link(Physics.DEPENDENCY_BODY, Body);
+            Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
             Render = new ImageRender(this, "Render");
             Render.LoadTexture(@"AsteroidsGame/circle");
             Render.Scale = new Vector2(0.01f);
             Render.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
-            Render.Link(ImageRender.DEPENDENCY_BODY, Body);
+            Render.LinkDependency(ImageRender.DEPENDENCY_BODY, Body);
             Body.Width = Render.DrawRect.Width;
             Body.Height = Render.DrawRect.Height;
         }

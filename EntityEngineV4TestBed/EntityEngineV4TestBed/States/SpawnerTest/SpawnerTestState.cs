@@ -123,7 +123,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
         {
             base.Update(gt);
 
-            _screeninfo.Text = "Active: " + (this.Count()-15) + "\n";
+            _screeninfo.Text = "Active: " + (GetState<State>().ActiveNodes-15) + "\n";
 
             _strengthValue.Text = Math.Round(_ptm.Spawner.Strength, 1).ToString();
             _strengthUp.Body.Position.X = _strengthValue.Body.BoundingRect.Right + 5;
@@ -146,7 +146,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
             private DoubleInput _upkey, _downkey, _leftkey, _rightkey, _selectkey;
 
-            public ParticleTestManager(EntityState stateref)
+            public ParticleTestManager(State stateref)
                 : base(stateref, "ParticleTestManager")
             {
                 _controlHandler = stateref.GetService<ControlHandler>();
@@ -243,10 +243,10 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     {
                         Body = new Body(this, "Body");
                         Physics = new Physics(this, "Physics");
-                        Physics.Link(Physics.DEPENDENCY_BODY, Body);
+                        Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
                         RectRender = new ShapeTypes.Rectangle(this, "RectRender", RandomHelper.RandomBool());
-                        RectRender.Link(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
+                        RectRender.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
                         
                         RectRender.Origin = new Vector2(.5f,.5f);
                         RectRender.Thickness = 1;

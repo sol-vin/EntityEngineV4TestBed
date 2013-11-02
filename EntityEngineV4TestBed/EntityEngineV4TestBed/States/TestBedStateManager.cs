@@ -10,7 +10,7 @@ namespace EntityEngineV4TestBed.States
     {
         private DoubleInput _backkey;
 
-        public TestBedStateManager(EntityState stateref, string name)
+        public TestBedStateManager(State stateref, string name)
             : base(stateref, name)
         {
             _backkey = new DoubleInput(this, "BackKey", Keys.Back, Buttons.Back, PlayerIndex.One);

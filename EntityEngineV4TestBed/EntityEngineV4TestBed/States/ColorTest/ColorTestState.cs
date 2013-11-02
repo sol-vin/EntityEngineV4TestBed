@@ -87,7 +87,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
         {
             public DoubleInput NextTestKey;
 
-            public ColorTestManager(IComponent parent, string name) : base(parent, name)
+            public ColorTestManager(Node parent, string name) : base(parent, name)
             {
                 NextTestKey =  new DoubleInput(this, "NextTestKey", Keys.Space, Buttons.A, PlayerIndex.One);
             }
@@ -95,7 +95,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
 
         private class HSVTilemap : Tilemap
         {
-            public HSVTilemap(IComponent parent, string name, Point size)
+            public HSVTilemap(Node parent, string name, Point size)
                 : base(parent, name, Assets.Pixel, size, new Point(1, 1))
             {
                 float huefraction = 1f/(size.X*size.Y);
@@ -130,7 +130,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
 
         private class XYZTilemap : Tilemap
         {
-            public XYZTilemap(IComponent parent, string name, Point size)
+            public XYZTilemap(Node parent, string name, Point size)
                 : base(parent, name, Assets.Pixel, size, new Point(1, 1))
             {
                 float huefraction = 1f / (size.X * size.Y);
@@ -168,7 +168,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
         {
             private Timer _beginFadeTimer, _fadeStepTimer;
 
-            public FadeOutLabel(IComponent parent, string name) : base(parent, name)
+            public FadeOutLabel(Node parent, string name) : base(parent, name)
             {
                 _beginFadeTimer = new Timer(this, "BeginFadeTimer");
                 _beginFadeTimer.Milliseconds = 2000;

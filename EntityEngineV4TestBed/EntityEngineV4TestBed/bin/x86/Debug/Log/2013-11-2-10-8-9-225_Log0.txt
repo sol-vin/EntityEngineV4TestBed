@@ -1,0 +1,29 @@
+Starting Log @ 2013-11-2 | 10:8:9:225
+===========================================
+[11-2 : 10:8:10:584584] - [Info] - Created window with params {X:0 Y:0 Width:600 Height:600}
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MouseService->MouseService.MouseCursor] - Got focus!
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem0 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem1 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem2 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem3 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem4 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem5 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem6 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem7 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem8 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem9 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem10 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem11 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem12 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState->ControlHandler] - Control MenuItem13 added
+[11-2 : 10:8:10:600600] - [Info] - [Sender: MenuState] - Shown
+[11-2 : 10:8:13:423423] - [Info] - [Sender: MouseService->MouseService.MouseCursor] - Got focus!
+[11-2 : 10:8:13:454454] - [Info] - [Sender: AsteroidsGame] - Shown
+[11-2 : 10:8:16:138138] - [Info] - [Sender: MouseService->MouseService.ControllerCursor] - Got focus!
+[11-2 : 10:8:31:145145] - [Info] - [Sender: EntityGame] - Beginning Exit
+[11-2 : 10:8:31:160160] - [Info] - [Sender: AsteroidsGame] - Destoyed
+[11-2 : 10:8:31:160160] - [Info] - [Sender: EntityGame] - Exited
+[11-2 : 10:8:31:160160] - [Info] - [Sender: MouseService->MouseService.MouseCursor] - Got focus!
+[11-2 : 10:8:31:176176] - [Info] - [Sender: EntityGame] - Beginning Exit
+[11-2 : 10:8:31:176176] - [Info] - [Sender: AsteroidsGame] - Destoyed
+[11-2 : 10:8:31:176176] - [Info] - [Sender: EntityGame] - Exited

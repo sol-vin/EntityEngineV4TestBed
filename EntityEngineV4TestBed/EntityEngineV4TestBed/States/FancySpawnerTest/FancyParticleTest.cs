@@ -32,8 +32,8 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
             countlabel.TabPosition = new Point(0,0);
             countlabel.X = 0;
             countlabel.Y = EntityGame.Viewport.Height - countlabel.Height;
-            AddEntityEvent += e => countlabel.Text = "Active: " + (Count-5);
-            RemoveEntityEvent += e => countlabel.Text = "Active: " + (Count-5); 
+            NodeAdded += e => countlabel.Text = "Active: " + (ActiveNodes-5);
+            NodeRemoved += e => countlabel.Text = "Active: " + (ActiveNodes-5); 
             countlabel.AttachToControlHandler();
         }
 
@@ -45,7 +45,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
             private DoubleInput _emitkey;
 
-            public FancyEntity(EntityState stateref, string name)
+            public FancyEntity(State stateref, string name)
                 : base(stateref, name)
             {
                 MouseBody = new Body(this, "MouseBody");
@@ -121,15 +121,15 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 {
                     Body = new Body(this, "Body");
                     Physics = new Physics(this, "Physics");
-                    Physics.Link(Physics.DEPENDENCY_BODY, Body);
+                    Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
                     RectRender = new ShapeTypes.Rectangle(this, "RectRender", true);
-                    RectRender.Link(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
+                    RectRender.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
                     RectRender.Color = color;
 
                     GibEmit = new GibSpawner(this, "GibSpawner", color);
-                    GibEmit.Link(GibSpawner.DEPENDENCY_BODY, Body);
-                    GibEmit.Link(GibSpawner.DEPENDENCY_PHYSICS, Physics);
+                    GibEmit.LinkDependency(GibSpawner.DEPENDENCY_BODY, Body);
+                    GibEmit.LinkDependency(GibSpawner.DEPENDENCY_PHYSICS, Physics);
                 }
 
                 public override void Update(GameTime gt)
@@ -165,12 +165,12 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     {
                         var p = new GibSpawn(this);
                         p.Body.Bounds = new Vector2(2, 2);
-                        p.Body.Position = GetLink<Body>(DEPENDENCY_BODY).Position;
+                        p.Body.Position = GetDependency<Body>(DEPENDENCY_BODY).Position;
 
                         int sign = _rand.Next(0, 2) == 0 ? -1 : 1;
                         p.Body.Angle = (float)_rand.NextDouble() * MathHelper.PiOver2 * sign;
 
-                        float thrust = ((float)_rand.NextDouble() + 1f) * (GetLink<Physics>(DEPENDENCY_PHYSICS).Velocity.Y / 4);
+                        float thrust = ((float)_rand.NextDouble() + 1f) * (GetDependency<Physics>(DEPENDENCY_PHYSICS).Velocity.Y / 4);
                         p.Physics.Thrust(thrust);
                         p.Physics.Acceleration = new Vector2(0, .1f);
                         //p.RectRender.Scale = new Vector2(0);
@@ -209,11 +209,11 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                         FadeAge = TimeToLive / 5 * 4;
                         Body = new Body(this, "Body");
                         Physics = new Physics(this, "Physics");
-                        Physics.Link(Physics.DEPENDENCY_BODY, Body);
+                        Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
 
                         RectRender = new ShapeTypes.Rectangle(this, "RectRender", true);
-                        RectRender.Link(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
+                        RectRender.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
 
                         Render = RectRender;
                     }

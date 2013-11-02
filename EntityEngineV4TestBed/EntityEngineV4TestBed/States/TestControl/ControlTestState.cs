@@ -32,17 +32,16 @@ namespace EntityEngineV4TestBed.States.TestControl
                     //Set the default control.
                     if (x == 0 && y == 0)
                         testControl.OnFocusGain(testControl);
-                    controlHandler.AddControl(testControl);
+                    testControl.AttachToControlHandler();
                 }
 
             _actionLabel = new Label(controlHandler, "TestContolLabel");
             _actionLabel.Text = "TestControlLabel";
             _actionLabel.TabPosition = new Point(5, 2);
             _actionLabel.Body.Position = new Vector2(50, 400);
-            controlHandler.AddControl(_actionLabel);
+            _actionLabel.AttachToControlHandler();
 
             _testControlManager = new TestControlManager(this, controlHandler);
-            AddEntity(_testControlManager);
         }
 
         public override void Update(GameTime gt)

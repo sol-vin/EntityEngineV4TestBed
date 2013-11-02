@@ -24,9 +24,8 @@ namespace EntityEngineV4TestBed.States.CameraTest
             base.Initialize();
 
             _cte = new CameraTestEntity(this, "CTE");
-            AddEntity(_cte);
 
-            AddEntity(new CameraEntity(this, "CE"));
+            new CameraEntity(this, "CE");
 
             //add a label to track screen space
             var ch = new ControlHandler(this);
@@ -41,7 +40,7 @@ namespace EntityEngineV4TestBed.States.CameraTest
             private DoubleInput _up, _down, _left, _right, _zoomIn, _zoomOut, _rotateLeft, _rotateRight;
             private Camera _camera;
 
-            public CameraTestEntity(EntityState stateref, string name)
+            public CameraTestEntity(State stateref, string name)
                 : base(stateref, name)
             {
                 _up = new DoubleInput(this, "Up", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
@@ -74,9 +73,9 @@ namespace EntityEngineV4TestBed.States.CameraTest
                     _camera.Zoom -= .1f;
             }
 
-            public override void Destroy(IComponent i = null)
+            public override void Destroy(IComponent sender = null)
             {
-                base.Destroy(i);
+                base.Destroy(sender);
                 Camera c = new Camera(this, "DefaultCamera");
                 c.View();
             }
@@ -87,12 +86,12 @@ namespace EntityEngineV4TestBed.States.CameraTest
             public Body Body;
             public ImageRender Image;
 
-            public CameraEntity(EntityState stateref, string name)
+            public CameraEntity(State stateref, string name)
                 : base(stateref, name)
             {
                 Body = new Body(this, "Body", new Vector2(EntityGame.Viewport.Width / 2f, EntityGame.Viewport.Height / 2f));
                 Image = new ImageRender(this, "Image", Assets.Pixel);
-                Image.Link(ImageRender.DEPENDENCY_BODY, Body);
+                Image.LinkDependency(ImageRender.DEPENDENCY_BODY, Body);
                 Image.Scale = new Vector2(50, 100);
                 Image.Color = Color.Red;
             }

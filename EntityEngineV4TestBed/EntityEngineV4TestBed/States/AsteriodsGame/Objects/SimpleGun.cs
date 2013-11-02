@@ -6,21 +6,22 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 {
     public class SimpleGun : Gun
     {
-        public const int MaxBullets = 10;
+        public const int MAXBULLETS = 10;
+        public const float SPEED = 5f;
 
-        public SimpleGun(IComponent parent, string name) : base(parent, name)
+        public SimpleGun(Node parent, string name) : base(parent, name)
         {
         }
 
         public override void Fire()
         {
-            if (MaxBullets <= Bullets.Count) return;
-            var bullet = new Bullet(this, "Bullet" + Bullets.Count);
-            bullet.Body.Position = GetLink<Body>(DEPENDENCY_BODY).Position + (GetLink<Body>(DEPENDENCY_BODY).Bounds/2f) -
+            if (MAXBULLETS <= Bullets.Count) return;
+            var bullet = new Bullet(GetState(), "Bullet" + Bullets.Count);
+            bullet.Body.Position = GetDependency<Body>(DEPENDENCY_BODY).Position + (GetDependency<Body>(DEPENDENCY_BODY).Bounds/2f) -
                                    (bullet.Body.Bounds/2f);
-            bullet.Body.Angle = GetLink<Body>(DEPENDENCY_BODY).Angle +
+            bullet.Body.Angle = GetDependency<Body>(DEPENDENCY_BODY).Angle +
                                 (0.05f*RandomHelper.GetSign()*RandomHelper.NextGaussian(1, 1f));
-            bullet.Physics.AddForce(GetLink<Body>(DEPENDENCY_BODY).Delta);
+            bullet.Physics.Thrust(SPEED);
             bullet.DestroyEvent += component => Bullets.Remove(bullet);
 
             Bullets.Add(bullet);

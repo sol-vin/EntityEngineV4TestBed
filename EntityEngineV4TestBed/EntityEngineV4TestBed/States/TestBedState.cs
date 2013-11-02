@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace EntityEngineV4TestBed.States
 {
-    public abstract class TestBedState : EntityState
+    public abstract class TestBedState : State
     {
         protected TestBedState(string name)
             : base(name)
@@ -17,7 +17,7 @@ namespace EntityEngineV4TestBed.States
             base.Initialize();
             new InputService(this);
             new MouseService(this);
-            AddEntity(new TestBedStateManager(this, "TestBedStateManager"));
+            new TestBedStateManager(this, "TestBedStateManager");
 
             EntityGame.BackgroundColor = Color.LightGray;
         }

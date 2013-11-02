@@ -55,7 +55,7 @@ namespace EntityEngineV4TestBed.States.TilemapTest
             private DoubleInput _up, _down, _left, _right, _zoomIn, _zoomOut, _rotateLeft, _rotateRight;
             private Camera _camera;
 
-            public CameraController(EntityState stateref, string name)
+            public CameraController(State stateref, string name)
                 : base(stateref, name)
             {
                 _up = new DoubleInput(this, "Up", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
@@ -88,9 +88,9 @@ namespace EntityEngineV4TestBed.States.TilemapTest
                     _camera.Zoom -= .1f;
             }
 
-            public override void Destroy(IComponent i = null)
+            public override void Destroy(IComponent sender = null)
             {
-                base.Destroy(i);
+                base.Destroy(sender);
                 Camera c = new Camera(this, "Camera");
                 c.View();
             }
