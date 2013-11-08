@@ -26,6 +26,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
             EntityGame.BackgroundColor = Color.Black;
             EntityGame.DebugInfo.Render.Color = Color.White;
             _player = new PlayerShip(this, "PlayerShip");
+
+            new Asteroid(this, "Ass");
         }
 
         public override void Update(GameTime gt)

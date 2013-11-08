@@ -3,4 +3,5 @@
   <Texture2D name="bullet">AsteroidsGame/bullet</Texture2D>
   <Texture2D name="ship">AsteroidsGame/ship</Texture2D>
   <Texture2D name="triangle">AsteroidsGame/triangle</Texture2D>
+  <Texture2D name="circle">EntityEngine/circle</Texture2D>
 </Assets>

@@ -114,8 +114,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             MakeNextColorButton(Color.Green.ToRGBColor());
             MakeNextColorButton(Color.LightBlue.ToRGBColor());
             MakeNextColorButton(Color.Blue.ToRGBColor());
-            MakeNextColorButton(Color.Purple.ToRGBColor());
-            MakeNextColorButton(Color.Magenta.ToRGBColor());
+            MakeNextColorButton(Color.MediumPurple.ToRGBColor());
         }
 
 

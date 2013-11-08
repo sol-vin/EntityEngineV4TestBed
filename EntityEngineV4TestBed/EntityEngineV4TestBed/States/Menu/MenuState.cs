@@ -44,21 +44,19 @@ namespace EntityEngineV4TestBed.States.Menu
             var ch = new ControlHandler(this);
 
             _menuStateManager = new MenuStateManager(this, ch);
-            _menuStateManager.AddMenuItem("Game of Life", () => EntityGame.SwitchState(new GameOfLifeState()));
-            _menuStateManager.AddMenuItem("Color Game of Life", () => EntityGame.SwitchState(new ColorGameOfLifeState()));
-            _menuStateManager.AddMenuItem("Asteroids Game", () => EntityGame.SwitchState(new AsteroidsGame()));
-            _menuStateManager.AddMenuItem("Particle Test State", () => EntityGame.SwitchState(new ParticleTestState()));
-
-            _menuStateManager.AddMenuItem("Camera Test State", () => EntityGame.SwitchState(new CameraTestState()));
-            _menuStateManager.AddMenuItem("Control Test State", () => EntityGame.SwitchState(new ControlTestState()));
-            _menuStateManager.AddMenuItem("Spawn Test State", () => EntityGame.SwitchState(new SpawnerTestState()));
-            _menuStateManager.AddMenuItem("Fancy Spawn Test State", () => EntityGame.SwitchState(new FancySpawnerTestState()));
-            _menuStateManager.AddMenuItem("Collision Test State", () => EntityGame.SwitchState(new CollisionTestState()));
-            _menuStateManager.AddMenuItem("Resolution Test State", () => EntityGame.SwitchState(new ResolutionTestState()));
-            _menuStateManager.AddMenuItem("Color Test State", () => EntityGame.SwitchState(new ColorTestState()));
-            _menuStateManager.AddMenuItem("Tilemap Test State", () => EntityGame.SwitchState(new TilemapTestState()));
-            _menuStateManager.AddMenuItem("Render Test State", () => EntityGame.SwitchState(new RenderTestState()));
-            _menuStateManager.AddMenuItem("Primitives Test State", () => EntityGame.SwitchState(new PrimitiveTestState()));
+            _menuStateManager.AddMenuItem("Game of Life", () => (new GameOfLifeState()).Show());
+            _menuStateManager.AddMenuItem("Color Game of Life", () => (new ColorGameOfLifeState()).Show());
+            _menuStateManager.AddMenuItem("Asteroids Game", () => (new AsteroidsGame()).Show());
+            _menuStateManager.AddMenuItem("Particle Test State", () => (new ParticleTestState()).Show());
+            _menuStateManager.AddMenuItem("Camera Test State", () => (new CameraTestState()).Show());
+            _menuStateManager.AddMenuItem("Control Test State", () => (new ControlTestState()).Show());
+            _menuStateManager.AddMenuItem("Spawn Test State", () => (new SpawnerTestState()).Show());
+            _menuStateManager.AddMenuItem("Fancy Spawn Test State", () => (new FancySpawnerTestState()).Show());
+            _menuStateManager.AddMenuItem("Collision Test State", () => (new CollisionTestState()).Show());
+            _menuStateManager.AddMenuItem("Resolution Test State", () => (new ResolutionTestState()).Show());
+            _menuStateManager.AddMenuItem("Color Test State", () => (new ColorTestState()).Show());
+            _menuStateManager.AddMenuItem("Render Test State", () => (new RenderTestState()).Show());
+            _menuStateManager.AddMenuItem("Primitives Test State", () => (new PrimitiveTestState()).Show());
         }
 
         public override void Update(GameTime gt)

@@ -28,7 +28,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         //Controls
         public DoubleInput UpButton, DownButton, RightButton, LeftButton, FireButton;
         public GamePadAnalog LookAnalog;
-        public GamePadTrigger ThrustTrigger, GravityTrigger;
+        public GamePadTrigger ThrustTrigger;
 
         public PlayerShip(Node parent, string name) : base(parent, name)
         {
@@ -49,14 +49,14 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
             Gun = new SimpleGun(this, "SimpleGun");
             Gun.LinkDependency(SimpleGun.DEPENDENCY_BODY, Body);
-
+            Gun.LinkDependency(SimpleGun.DEPENDENCY_PHYSICS, Physics);
             Shape = new Circle(this, "Circle", Body.Width*.8f);
             Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
             Shape.Debug = true;
             Shape.LinkDependency(Circle.DEPENDENCY_BODY, Body);
 
             Collision.GroupMask.AddMask(0);
-            Collision.PairMask.AddMask(1);
+            Collision.PairMask.AddMask(2);
             Collision.Immovable = true;
             Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
             Shape.LinkDependency(Circle.DEPENDENCY_COLLISION, Collision);
@@ -69,9 +69,16 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             RightButton = new DoubleInput(this, "RightButton", Keys.D, Buttons.DPadRight, PlayerIndex.One);
             FireButton = new DoubleInput(this, "FireButton", Keys.Space, Buttons.A, PlayerIndex.One);
             ThrustTrigger = new GamePadTrigger(this, "ThrustTrigger", Triggers.Right, PlayerIndex.One);
-            GravityTrigger = new GamePadTrigger(this, "GravityTrigger", Triggers.Left, PlayerIndex.One);
+            //GravityTrigger = new GamePadTrigger(this, "GravityTrigger", Triggers.Left, PlayerIndex.One);
 
             LookAnalog = new GamePadAnalog(this, "LookAnalog", Sticks.Left, PlayerIndex.One);
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            //EntityGame.Camera.FollowPoint(Body);
+            //EntityGame.Camera.FollowOffset = new Vector2(Body.Width/2f, Body.Height/2f);
         }
 
         public override void Update(GameTime gt)
@@ -97,29 +104,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
             if(ThrustTrigger.Value > ThrustTrigger.DeadZone) Physics.Thrust(ThrustTrigger.Value * _FLYSPEED);
 
-            if(GravityTrigger.Value > GravityTrigger.DeadZone) GravityWell(GravityTrigger.Value);
-
-            if (FireButton.RapidFire(50)) Gun.Fire();
-        }
-
-
-        public const float MAXGRAVITYDISTANCE = 400f;
-        public const float GRAVITYSTRENGTH = 3f;
-        private void GravityWell(float strength)
-        {
-            foreach (var bullet in Gun.Bullets)
-            {
-                Vector2 normal = bullet.Body.Position - Body.Position;
-                if (normal.LengthSquared() > MAXGRAVITYDISTANCE*MAXGRAVITYDISTANCE) return;
-
-                float distance = normal.Length();
-                float gravity = 1f - distance/MAXGRAVITYDISTANCE;
-
-                normal.Normalize();
-
-                bullet.Physics.Velocity -= normal*gravity*GRAVITYSTRENGTH*strength;
-                bullet.Physics.Velocity *= .95f;
-            }
+            if (FireButton.RapidFire(250)) Gun.Fire();
         }
     }
 }

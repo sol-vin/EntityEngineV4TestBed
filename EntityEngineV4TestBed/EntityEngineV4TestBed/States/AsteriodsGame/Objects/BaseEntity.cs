@@ -32,6 +32,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public override void Update(GameTime gt)
         {
             base.Update(gt);
+
             UpdateOutOfBounds();
         }
 
@@ -41,7 +42,6 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             else if (Body.Top > EntityGame.Viewport.Height) Body.Y = -Body.Height;
             if (Body.Right < 0) Body.X = EntityGame.Viewport.Width;
             else if (Body.Left > EntityGame.Viewport.Width) Body.X = -Body.Width;
-         }
-
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
     {
         public ImageRender Render;
         public Circle Shape;
+        public Timer DeathTimer;
 
         private bool _hasLeftPlayerCircle = false;
 
@@ -37,34 +38,30 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
             Shape = new Circle(this, "Shape", Body.Width/2);
             Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
-            Shape.Debug = true;
             Shape.LinkDependency(Circle.DEPENDENCY_BODY, Body);
 
             Collision.GroupMask.AddMask(1);
-            Collision.PairMask.AddMask(0);
-            Collision.CollideEvent += OnCollide;
+            Collision.PairMask.AddMask(2);
             Collision.Immovable = true;
+            Collision.CollideEvent += Destroy;
             Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
             Shape.LinkDependency(Circle.DEPENDENCY_COLLISION, Collision);
+
+            DeathTimer = new Timer(this, "DeathTimer");
+            DeathTimer.Milliseconds = 2000;
+            DeathTimer.LastEvent += () => Destroy(this);
         }
 
         public override void Initialize()
         {
             base.Initialize();
+            DeathTimer.Start();
         }
 
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-
-            if (!Collision.IsColliding) _hasLeftPlayerCircle = true;
-        }
-
-        private void OnCollide(Collision collision)
-        {
-            if (!_hasLeftPlayerCircle) return;
-
-            Destroy();
+            Physics.FaceVelocity();
         }
     }
 }
