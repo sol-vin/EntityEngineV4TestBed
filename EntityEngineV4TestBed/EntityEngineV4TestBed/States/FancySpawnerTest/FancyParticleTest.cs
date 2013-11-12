@@ -1,7 +1,6 @@
 ﻿using System;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering.Primitives;
-
 using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
@@ -9,7 +8,7 @@ using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace EntityEngineV4TestBed.States.FancyParticleTest
+namespace EntityEngineV4TestBed.States.FancySpawnerTest
 {
     public class FancySpawnerTestState : TestBedState
     {
@@ -90,7 +89,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
             protected override Spawn GenerateNewParticle()
             {
-                var p = new ExplodingSpawn(this, 60000, Color);
+                var p = new ExplodingSpawn(GetRoot(), 60000, Color);
                 p.Body.Bounds = new Vector2(5, 5);
                 p.Body.Position = _body.Position;
 
@@ -116,8 +115,8 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                 public ShapeTypes.Rectangle RectRender;
                 public Spawner GibEmit;
 
-                public ExplodingSpawn(Spawner e, int ttl, Color color)
-                    : base(e, ttl)
+                public ExplodingSpawn(Node parent, int ttl, Color color)
+                    : base(parent, ttl)
                 {
                     Body = new Body(this, "Body");
                     Physics = new Physics(this, "Physics");
@@ -163,7 +162,7 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
 
                     protected override Spawn GenerateNewParticle()
                     {
-                        var p = new GibSpawn(this);
+                        var p = new GibSpawn(GetRoot());
                         p.Body.Bounds = new Vector2(2, 2);
                         p.Body.Position = GetDependency<Body>(DEPENDENCY_BODY).Position;
 
@@ -203,8 +202,8 @@ namespace EntityEngineV4TestBed.States.FancyParticleTest
                     public Physics Physics;
                     public ShapeTypes.Rectangle RectRender;
 
-                    public GibSpawn(Spawner e)
-                        : base(e, 3000)
+                    public GibSpawn(Node parent)
+                        : base(parent, 3000)
                     {
                         FadeAge = TimeToLive / 5 * 4;
                         Body = new Body(this, "Body");

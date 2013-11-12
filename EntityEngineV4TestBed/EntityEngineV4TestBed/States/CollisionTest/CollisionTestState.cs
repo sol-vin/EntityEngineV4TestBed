@@ -79,7 +79,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             base.Update(gt);
 
             if (Destroyed) return;
-            Bitmask mask = GetState().GetChild<AABBEntity>("A0").Collision.CollisionDirection;
+            Bitmask mask = GetRoot().GetChild<AABBEntity>("A0").Collision.CollisionDirection;
             string text = "Collision Directions (A0): ";
 
             if (mask.HasMatchingBit(CollisionHandler.LEFT))
@@ -93,7 +93,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
             text += '\n';
 
-            mask = GetState().GetChild<AABBEntity>("A1").Collision.CollisionDirection;
+            mask = GetRoot().GetChild<AABBEntity>("A1").Collision.CollisionDirection;
             text += "Collision Directions (A1): ";
 
             if (mask.HasMatchingBit(CollisionHandler.LEFT))
@@ -116,7 +116,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             text += '\n';
             text += "C0 -> C1: ";
 
-            Vector2 delta = GetState().GetChild<CircleEntity>("C0").Body.Position - GetState().GetChild<CircleEntity>("C1").Body.Position;
+            Vector2 delta = GetRoot().GetChild<CircleEntity>("C0").Body.Position - GetRoot().GetChild<CircleEntity>("C1").Body.Position;
             text += delta.Length();
 
             _collidedLabel.Text = text;

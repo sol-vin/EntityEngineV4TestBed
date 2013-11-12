@@ -83,7 +83,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             base.Update(gt);
             if (Destroyed) return;
 
-            string debug = GetState().GetChild<ResolutionTestEntity>("A0").Collision.IsColliding.ToString();
+            string debug = GetRoot().GetChild<ResolutionTestEntity>("A0").Collision.IsColliding.ToString();
             _collidedLabel.Text = "A0: " + debug;
         }
 

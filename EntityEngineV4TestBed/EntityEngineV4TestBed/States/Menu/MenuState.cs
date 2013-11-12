@@ -5,7 +5,7 @@ using EntityEngineV4TestBed.States.AsteriodsGame;
 using EntityEngineV4TestBed.States.CameraTest;
 using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ColorTest;
-using EntityEngineV4TestBed.States.FancyParticleTest;
+using EntityEngineV4TestBed.States.FancySpawnerTest;
 using EntityEngineV4TestBed.States.GameOfLife;
 using EntityEngineV4TestBed.States.ParticleTest;
 using EntityEngineV4TestBed.States.PrimitiveTest;

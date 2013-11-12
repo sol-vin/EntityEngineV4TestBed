@@ -132,7 +132,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
                 public float ScaleSpeed = .05f;
                 
-                public TrailParticle(Spawner e, int ttl) : base(e, ttl)
+                public TrailParticle(Spawner parent, int ttl) : base(parent, ttl)
                 {
                     Body = new Body(this, "Body");
 

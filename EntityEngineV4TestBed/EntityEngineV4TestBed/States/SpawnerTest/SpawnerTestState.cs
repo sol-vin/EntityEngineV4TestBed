@@ -238,8 +238,8 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     public Physics Physics;
                     public ShapeTypes.Rectangle RectRender;
 
-                    public TestSpawn(Spawner e)
-                        : base(e, 3000)
+                    public TestSpawn(Spawner parent)
+                        : base(parent, 3000)
                     {
                         Body = new Body(this, "Body");
                         Physics = new Physics(this, "Physics");
