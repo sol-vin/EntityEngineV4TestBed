@@ -110,12 +110,12 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             _ly3.Draw(sb);
         }
 
-        private class PrimitiveTestEntity : Entity
+        private class PrimitiveTestNode : Node
         {
             public Body Body;
             public Physics Physics;
 
-            public PrimitiveTestEntity(Node parent, string name)
+            public PrimitiveTestNode(Node parent, string name)
                 : base(parent, name)
             {
                 Body = new Body(this, "Body");
@@ -131,7 +131,7 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             }
         }
 
-        private class SpinningRect : PrimitiveTestEntity
+        private class SpinningRect : PrimitiveTestNode
         {
             private ShapeTypes.Rectangle Rectangle;
 

@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 {
-    public class Bullet : BaseEntity
+    public class Bullet : BaseNode
     {
         public ImageRender Render;
         public Circle Shape;

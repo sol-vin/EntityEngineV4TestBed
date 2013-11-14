@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 {
-    public class Asteroid : BaseEntity
+    public class Asteroid : BaseNode
     {
         public ImageRender Render;
         public Circle Shape;

@@ -24,7 +24,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
         {
             base.Initialize();
 
-            new ParticleEntity(this, "Particle");
+            new ParticleNode(this, "Particle");
 
             EntityGame.BackgroundColor = Color.Black;
         }
@@ -39,14 +39,14 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             base.Draw(sb);
         }
 
-        public class ParticleEntity : Entity
+        public class ParticleNode : Node
         {
             public Body Body;
             public Physics Physics;
             public ShapeTypes.Rectangle Render;
             private ParticleEmitter _emitter;
 
-            public ParticleEntity(Node parent, string name) : base(parent, name)
+            public ParticleNode(Node parent, string name) : base(parent, name)
             {
                 Body = new Body(this, "Body");
                 Body.Width = 10;

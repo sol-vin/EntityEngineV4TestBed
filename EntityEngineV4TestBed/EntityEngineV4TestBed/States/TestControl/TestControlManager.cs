@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.TestControl
 {
-    public class TestControlManager : Entity
+    public class TestControlManager : Node
     {
         public ControlHandler ControlHandler;
 

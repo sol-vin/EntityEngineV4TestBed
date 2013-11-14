@@ -36,7 +36,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             ch.AddControl(_collidedLabel);
             for (int x = 0; x < 3; x++)
             {
-                ResolutionTestEntity c = new ResolutionTestEntity(this, "A" + x);
+                ResolutionTestNode c = new ResolutionTestNode(this, "A" + x);
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.PairMask.AddMask(2);
@@ -49,7 +49,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             }
             for (int x = 0; x < 3; x++)
             {
-                ResolutionTestEntity c = new ResolutionTestEntity(this, "B" + x);
+                ResolutionTestNode c = new ResolutionTestNode(this, "B" + x);
                 c.Collision.GroupMask.AddMask(1);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.PairMask.AddMask(2);
@@ -63,7 +63,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
 
             for (int x = 0; x < 3; x++)
             {
-                ResolutionTestEntity c = new ResolutionTestEntity(this, "C" + x);
+                ResolutionTestNode c = new ResolutionTestNode(this, "C" + x);
                 c.Collision.GroupMask.AddMask(2);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.PairMask.AddMask(1);
@@ -83,11 +83,11 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             base.Update(gt);
             if (Destroyed) return;
 
-            string debug = GetRoot().GetChild<ResolutionTestEntity>("A0").Collision.IsColliding.ToString();
+            string debug = GetRoot().GetChild<ResolutionTestNode>("A0").Collision.IsColliding.ToString();
             _collidedLabel.Text = "A0: " + debug;
         }
 
-        private class ResolutionTestEntity : Entity
+        private class ResolutionTestNode : Node
         {
             public Body Body;
             private Body _textBody;
@@ -106,7 +106,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             public bool HasFocus;
             private bool _lastImmovable;
 
-            public ResolutionTestEntity(State stateref, string name)
+            public ResolutionTestNode(State stateref, string name)
                 : base(stateref, name)
             {
                 Body = new Body(this, "Body");

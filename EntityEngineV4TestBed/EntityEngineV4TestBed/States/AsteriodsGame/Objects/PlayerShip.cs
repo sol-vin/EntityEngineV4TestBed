@@ -19,7 +19,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 {
-    public class PlayerShip : BaseEntity
+    public class PlayerShip : BaseNode
     {
         public ImageRender Render;
         public Gun Gun;

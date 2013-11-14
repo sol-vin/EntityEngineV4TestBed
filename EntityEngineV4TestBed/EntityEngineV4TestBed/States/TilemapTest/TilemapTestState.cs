@@ -50,7 +50,7 @@ namespace EntityEngineV4TestBed.States.TilemapTest
             base.Update(gt);
         }
 
-        private class CameraController : Entity
+        private class CameraController : Node
         {
             private DoubleInput _up, _down, _left, _right, _zoomIn, _zoomOut, _rotateLeft, _rotateRight;
             private Camera _camera;

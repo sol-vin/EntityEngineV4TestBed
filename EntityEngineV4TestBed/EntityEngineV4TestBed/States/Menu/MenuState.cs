@@ -64,7 +64,7 @@ namespace EntityEngineV4TestBed.States.Menu
             base.Update(gt);
         }
 
-        private class MenuStateManager : Entity
+        private class MenuStateManager : Node
         {
             private ControlHandler _controlHandler;
 

@@ -238,7 +238,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             }
         }
 
-        private class GameOfLifeManager : Entity
+        private class GameOfLifeManager : Node
         {
             public Timer UpdateTimer;
             public GamepadInput DrawButton;

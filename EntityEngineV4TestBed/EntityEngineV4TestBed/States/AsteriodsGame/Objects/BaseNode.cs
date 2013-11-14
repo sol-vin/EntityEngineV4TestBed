@@ -11,13 +11,13 @@ using Microsoft.Xna.Framework;
 
 namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 {
-    public class BaseEntity : Entity
+    public class BaseNode : Node
     {
         public Body Body;
         public Physics Physics;
         public Collision Collision;
 
-        public BaseEntity(Node parent, string name) : base(parent, name)
+        public BaseNode(Node parent, string name) : base(parent, name)
         {
             Body = new Body(this, "Body");
 

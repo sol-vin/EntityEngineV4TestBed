@@ -11,7 +11,7 @@ namespace EntityEngineV4TestBed.States.CameraTest
 {
     public class CameraTestState : TestBedState
     {
-        private CameraTestEntity _cte;
+        private CameraTestNode _cte;
 
         public CameraTestState()
             : base("CameraState")
@@ -23,9 +23,9 @@ namespace EntityEngineV4TestBed.States.CameraTest
         {
             base.Initialize();
 
-            _cte = new CameraTestEntity(this, "CTE");
+            _cte = new CameraTestNode(this, "CTE");
 
-            new CameraEntity(this, "CE");
+            new CameraNode(this, "CE");
 
             //add a label to track screen space
             var ch = new ControlHandler(this);
@@ -35,12 +35,12 @@ namespace EntityEngineV4TestBed.States.CameraTest
 
         }
 
-        private class CameraTestEntity : Entity
+        private class CameraTestNode : Node
         {
             private DoubleInput _up, _down, _left, _right, _zoomIn, _zoomOut, _rotateLeft, _rotateRight;
             private Camera _camera;
 
-            public CameraTestEntity(State stateref, string name)
+            public CameraTestNode(State stateref, string name)
                 : base(stateref, name)
             {
                 _up = new DoubleInput(this, "Up", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
@@ -81,12 +81,12 @@ namespace EntityEngineV4TestBed.States.CameraTest
             }
         }
 
-        private class CameraEntity : Entity
+        private class CameraNode : Node
         {
             public Body Body;
             public ImageRender Image;
 
-            public CameraEntity(State stateref, string name)
+            public CameraNode(State stateref, string name)
                 : base(stateref, name)
             {
                 Body = new Body(this, "Body", new Vector2(EntityGame.Viewport.Width / 2f, EntityGame.Viewport.Height / 2f));

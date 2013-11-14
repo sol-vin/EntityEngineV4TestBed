@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States
 {
-    public class TestBedStateManager : Entity
+    public class TestBedStateManager : Node
     {
         private DoubleInput _backkey;
 

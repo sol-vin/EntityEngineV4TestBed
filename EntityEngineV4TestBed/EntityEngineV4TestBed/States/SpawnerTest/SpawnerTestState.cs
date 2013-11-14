@@ -135,7 +135,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             _gravityXUp.Body.Position = new Vector2(_gravityXValue.Body.BoundingRect.Right + 5, 80);
         }
 
-        public class ParticleTestManager : Entity
+        public class ParticleTestManager : Node
         {
             private ControlHandler _controlHandler;
             public TestSpawner Spawner;
@@ -204,7 +204,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
                 public Vector2 Acceleration = new Vector2(0, .2f);
 
-                public TestSpawner(Entity e, string name)
+                public TestSpawner(Node e, string name)
                     : base(e, name)
                 {
                 }

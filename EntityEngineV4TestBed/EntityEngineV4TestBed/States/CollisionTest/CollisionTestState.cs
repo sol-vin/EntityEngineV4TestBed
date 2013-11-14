@@ -40,7 +40,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
             for (int x = 0; x < 3; x++)
             {
-                AABBEntity c = new AABBEntity(this, "A" + x);
+                AabbNode c = new AabbNode(this, "A" + x);
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
@@ -49,7 +49,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             }
             for (int x = 0; x < 3; x++)
             {
-                AABBEntity c = new AABBEntity(this, "B" + x);
+                AabbNode c = new AabbNode(this, "B" + x);
                 c.Collision.GroupMask.AddMask(1);
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
@@ -61,7 +61,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
             for (int x = 0; x < 3; x++)
             {
-                CircleEntity c = new CircleEntity(this, "C" + x);
+                CircleNode c = new CircleNode(this, "C" + x);
                 c.Collision.GroupMask.AddMask(2);
                 c.Collision.PairMask.AddMask(2);
                 c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
@@ -79,7 +79,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             base.Update(gt);
 
             if (Destroyed) return;
-            Bitmask mask = GetRoot().GetChild<AABBEntity>("A0").Collision.CollisionDirection;
+            Bitmask mask = GetRoot().GetChild<AabbNode>("A0").Collision.CollisionDirection;
             string text = "Collision Directions (A0): ";
 
             if (mask.HasMatchingBit(CollisionHandler.LEFT))
@@ -93,7 +93,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
             text += '\n';
 
-            mask = GetRoot().GetChild<AABBEntity>("A1").Collision.CollisionDirection;
+            mask = GetRoot().GetChild<AabbNode>("A1").Collision.CollisionDirection;
             text += "Collision Directions (A1): ";
 
             if (mask.HasMatchingBit(CollisionHandler.LEFT))
@@ -116,14 +116,14 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             text += '\n';
             text += "C0 -> C1: ";
 
-            Vector2 delta = GetRoot().GetChild<CircleEntity>("C0").Body.Position - GetRoot().GetChild<CircleEntity>("C1").Body.Position;
+            Vector2 delta = GetRoot().GetChild<CircleNode>("C0").Body.Position - GetRoot().GetChild<CircleNode>("C1").Body.Position;
             text += delta.Length();
 
             _collidedLabel.Text = text;
             _collided.Clear();
         }
 
-        private class CollisionTestEntity : Entity
+        private class CollisionTestNode : Node
         {
              public Body Body;
 
@@ -152,7 +152,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             /// </summary>
             /// <param name="stateref"></param>
             /// <param name="name"></param>
-            public CollisionTestEntity(State stateref, string name)
+            public CollisionTestNode(State stateref, string name)
                 : base(stateref, name)
             {
                 Body = new Body(this, "Body");
@@ -205,9 +205,9 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         /// <summary>
         /// Simple entity to test collisions
         /// </summary>
-        private class AABBEntity : CollisionTestEntity
+        private class AabbNode : CollisionTestNode
         {
-            public AABBEntity(State stateref, string name) : base(stateref, name)
+            public AabbNode(State stateref, string name) : base(stateref, name)
             {
                 Body.Bounds = new Vector2(50 + RandomHelper.GetFloat(0, 30), 50 + RandomHelper.GetFloat(0, 30));
 
@@ -229,9 +229,9 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             }
         }
 
-        private class CircleEntity : CollisionTestEntity
+        private class CircleNode : CollisionTestNode
         {
-            public CircleEntity(State stateref, string name)
+            public CircleNode(State stateref, string name)
                 : base(stateref, name)
             {
                 Shape = new Circle(this, "Circle", 30);

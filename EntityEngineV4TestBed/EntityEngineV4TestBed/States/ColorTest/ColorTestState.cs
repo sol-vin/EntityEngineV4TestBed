@@ -83,7 +83,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
             }
         }
 
-        private class ColorTestManager : Entity
+        private class ColorTestManager : Node
         {
             public DoubleInput NextTestKey;
 

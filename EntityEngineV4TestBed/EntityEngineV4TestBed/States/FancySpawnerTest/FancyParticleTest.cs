@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering.Primitives;
 using EntityEngineV4.Engine;
@@ -6,6 +7,7 @@ using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.FancySpawnerTest
@@ -24,28 +26,25 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
             //Init services
             new ControlHandler(this);
 
-            new FancyEntity(this, "FE");
-
-            //GUI
-            var countlabel = new Label(this, "countlabel");
-            countlabel.TabPosition = new Point(0,0);
-            countlabel.X = 0;
-            countlabel.Y = EntityGame.Viewport.Height - countlabel.Height;
-            NodeAdded += e => countlabel.Text = "Active: " + (ActiveNodes-5);
-            NodeRemoved += e => countlabel.Text = "Active: " + (ActiveNodes-5); 
-            countlabel.AttachToControlHandler();
+            new FancyNode(this, "FE");
         }
 
-        private class FancyEntity : Entity
+        public override void Update(GameTime gt)
+        {
+            base.Update(gt);
+        }
+
+        private class FancyNode : Node
         {
             public FancySpawner FancySpawnerMouse, FancySpawnerAuto;
+            private Timer _spawnTimer;
             public Body MouseBody, AutoBody;
             private Random _rand = new Random();
 
             private DoubleInput _emitkey;
 
-            public FancyEntity(State stateref, string name)
-                : base(stateref, name)
+            public FancyNode(Node parent, string name)
+                : base(parent, name)
             {
                 MouseBody = new Body(this, "MouseBody");
                 AutoBody = new Body(this, "AutoBody");
@@ -54,8 +53,11 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
 
                 FancySpawnerAuto = new FancySpawner(this, "FancySpawnerAuto", AutoBody);
                 FancySpawnerAuto.Color = Color.Blue;
-                FancySpawnerAuto.AutoEmit = true;
-                FancySpawnerAuto.AutoEmitAmount = 1;
+
+                _spawnTimer = new Timer(this, "SpwnTimer");
+                _spawnTimer.Milliseconds = 25;
+                _spawnTimer.LastEvent += () => FancySpawnerAuto.Emit(1);
+                _spawnTimer.Start();
 
                 _emitkey = new DoubleInput(this, "emitkey", Keys.Space, Buttons.A, PlayerIndex.One);
             }
@@ -81,7 +83,7 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
             private Body _body;
             public Color Color = Color.White;
 
-            public FancySpawner(Entity e, string name, Body body)
+            public FancySpawner(Node e, string name, Body body)
                 : base(e, name)
             {
                 _body = body;
@@ -108,6 +110,11 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
 
             private class ExplodingSpawn : Spawn
             {
+                public override bool IsObject
+                {
+                    get { return true; }
+                }
+
                 private int _floor = EntityGame.Viewport.Height - 20;
 
                 public Body Body;
@@ -154,7 +161,7 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                     private Random _rand = new Random(DateTime.Now.Millisecond ^ DateTime.Now.Second);
                     private Color _color;
 
-                    public GibSpawner(Entity parent, string name, Color color)
+                    public GibSpawner(Node parent, string name, Color color)
                         : base(parent, name)
                     {
                         _color = color;
@@ -196,6 +203,10 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
 
                 private class GibSpawn : FadeSpawn
                 {
+                    public override bool IsObject
+                    {
+                        get { return true; }
+                    }
                     private int _floor = EntityGame.Viewport.Height - 20;
 
                     public Body Body;

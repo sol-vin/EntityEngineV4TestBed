@@ -19,15 +19,15 @@ namespace EntityEngineV4TestBed.States.SourceRectangleTest
         public override void Initialize()
         {
             base.Initialize();
-            new AnimationTestEntity(this, "Animation");
+            new AnimationTestNode(this, "Animation");
         }
 
-        private class AnimationTestEntity : Entity
+        private class AnimationTestNode : Node
         {
             public Body Body;
             public SourceAnimation StandingAnim;
 
-            public AnimationTestEntity(State stateref, string name)
+            public AnimationTestNode(State stateref, string name)
                 : base(stateref, name)
             {
                 Body = new Body(this, "Body");
