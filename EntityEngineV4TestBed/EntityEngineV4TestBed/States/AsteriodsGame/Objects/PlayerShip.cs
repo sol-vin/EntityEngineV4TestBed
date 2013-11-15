@@ -39,7 +39,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Physics.AngularDrag = 0.9f;
 
             Render = new ImageRender(this, "Render");
-            Render.SetTexture(GetState().GetService<AssetCollector>().GetAsset<Texture2D>("ship"));
+            Render.SetTexture(GetRoot<State>().GetService<AssetCollector>().GetAsset<Texture2D>("ship"));
             Render.Layer = .01f;
             Render.Scale = new Vector2(.128f);
             Render.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);

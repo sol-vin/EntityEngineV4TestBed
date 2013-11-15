@@ -26,7 +26,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public Bullet(Node parent, string name) : base(parent, name)
         {
             Render = new ImageRender(this, "Render");
-            Render.SetTexture(GetState().GetService<AssetCollector>().GetAsset<Texture2D>("bullet"));
+            Render.SetTexture(GetRoot<State>().GetService<AssetCollector>().GetAsset<Texture2D>("bullet"));
             Render.Layer = .1f;
             Render.Scale = new Vector2(.1f);
             Render.Color = Color.White;
