@@ -17,6 +17,16 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 {
     public class Bullet : BaseNode
     {
+        public override bool IsObject
+        {
+            get { return true; }
+        }
+
+        public override bool Recyclable
+        {
+            get { return true; }
+        }
+
         public ImageRender Render;
         public Circle Shape;
         public Timer DeathTimer;
@@ -43,13 +53,14 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Collision.GroupMask.AddMask(1);
             Collision.PairMask.AddMask(2);
             Collision.Immovable = true;
-            Collision.CollideEvent += Destroy;
+            Collision.CollideEvent += collision => Recycle();
             Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
             Shape.LinkDependency(Circle.DEPENDENCY_COLLISION, Collision);
 
             DeathTimer = new Timer(this, "DeathTimer");
             DeathTimer.Milliseconds = 2000;
-            DeathTimer.LastEvent += () => Destroy(this);
+            DeathTimer.LastEvent += Recycle;
+            DeathTimer.LastEvent += DeathTimer.Stop;
         }
 
         public override void Initialize()
@@ -62,6 +73,18 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         {
             base.Update(gt);
             Physics.FaceVelocity();
+
+            if (Name == "BulletRecycled") Render.Color = Color.Red;
+            else Render.Color = Color.Blue;
+        }
+
+        public override void Reuse(Node parent, string name)
+        {
+            base.Reuse(parent, name);
+
+            DeathTimer.Milliseconds = 2000;
+            DeathTimer.LastEvent += Recycle;
+            DeathTimer.Start();
         }
     }
 }

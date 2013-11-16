@@ -14,7 +14,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
         public override void Fire()
         {
-            var bullet = new Bullet(this, "Bullet" + Count);
+            var bullet = GetRoot<State>().GetNextRecycled<Bullet>(this, "BulletRecycled") ?? new Bullet(this, "Bullet" + Count);
             bullet.Body.Position = GetDependency<Body>(DEPENDENCY_BODY).Position + (GetDependency<Body>(DEPENDENCY_BODY).Bounds/2f) -
                                    (bullet.Body.Bounds/2f);
             bullet.Body.Angle = GetDependency<Body>(DEPENDENCY_BODY).Angle +

@@ -77,8 +77,6 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-
-            if (Destroyed) return;
             Bitmask mask = GetRoot().GetChild<AabbNode>("A0").Collision.CollisionDirection;
             string text = "Collision Directions (A0): ";
 
@@ -108,6 +106,8 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             text += '\n';
 
             text += "Colliding: ";
+            CollisionHandler c = GetService<CollisionHandler>();
+            IEnumerable<Collision> list = c.GetColliding();
             foreach (var collider in GetService<CollisionHandler>().GetColliding())
             {
                 text += collider.Parent.Name + " ";
