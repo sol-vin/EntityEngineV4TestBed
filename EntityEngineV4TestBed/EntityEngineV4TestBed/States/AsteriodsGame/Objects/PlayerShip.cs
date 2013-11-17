@@ -99,7 +99,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
             if (LookAnalog.Position != Vector2.Zero)
             {
-                Body.Angle = MathTools.Physics.GetAngle(new Vector2(-LookAnalog.Position.X, -LookAnalog.Position.Y));
+                Body.Angle = Physics.GetAngle(new Vector2(-LookAnalog.Position.X, -LookAnalog.Position.Y));
             }
 
             if(ThrustTrigger.Value > ThrustTrigger.DeadZone) Physics.Thrust(ThrustTrigger.Value * _FLYSPEED);

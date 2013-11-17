@@ -76,7 +76,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 
                 _angle += _SPEED;
 
-                Body.Position = MathTools.Physics.RotatePoint(
+                Body.Position = Physics.RotatePoint(
                     new Vector2(EntityGame.Viewport.Width/2, EntityGame.Viewport.Height/2),
                     _angle,
                     new Vector2(EntityGame.Viewport.Width / 2, YOFFSET));
@@ -101,7 +101,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 protected override Spawn GenerateNewParticle()
                 {
                     TrailParticle p = new TrailParticle(this, 1000);
-                    p.Body.Position = MathTools.Physics.RotatePoint(
+                    p.Body.Position = Physics.RotatePoint(
                     new Vector2(EntityGame.Viewport.Width / 2, EntityGame.Viewport.Height / 2),
                     GetDependency<Body>(DEPENDENCY_BODY).Angle,
                     new Vector2(EntityGame.Viewport.Width / 2, YOFFSET+GetDependency<Body>(DEPENDENCY_BODY).Bounds.Y/2));
@@ -112,6 +112,9 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
                     p.Physics.Thrust((float)_random.NextDouble() * 2);
                     p.Physics.AngularVelocity = (float) _random.NextDouble()/2f;
+
+                    
+
                     return p;
                 }
                 
@@ -130,7 +133,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 public Body Body;
                 public Physics Physics;
 
-                public float ScaleSpeed = .05f;
+                public float ScaleSpeed = .01f;
                 
                 public TrailParticle(Spawner parent, int ttl) : base(parent, ttl)
                 {
@@ -143,6 +146,8 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     Render.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
                     Render.Color = Color.OrangeRed;
                     Render.Origin = new Vector2(.5f, .5f);
+
+                    DeathTimer.LastEvent += () => Destroy();
                 }
             }
         }

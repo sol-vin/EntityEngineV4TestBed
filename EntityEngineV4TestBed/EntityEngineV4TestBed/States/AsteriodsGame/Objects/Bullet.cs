@@ -74,8 +74,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             base.Update(gt);
             Physics.FaceVelocity();
 
-            if (Name == "BulletRecycled") Render.Color = Color.Red;
-            else Render.Color = Color.Blue;
+            Render.Color = Name == "BulletRecycled" ? Color.Red : Color.Blue;
         }
 
         public override void Reuse(Node parent, string name)

@@ -118,6 +118,7 @@
     <Compile Include="States\AsteriodsGame\Objects\PlayerShip.cs" />
     <Compile Include="States\AsteriodsGame\Objects\SimpleGun.cs" />
     <Compile Include="States\CameraTest\CameraTestState.cs" />
+    <Compile Include="States\CollisionResolutionTest\CollisionResolutionTest.cs" />
     <Compile Include="States\CollisionTest\CollisionTestState.cs" />
     <Compile Include="States\ColorTest\ColorTestState.cs" />
     <Compile Include="States\FancySpawnerTest\FancyParticleTest.cs" />

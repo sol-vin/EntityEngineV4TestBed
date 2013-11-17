@@ -3,6 +3,7 @@ using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4TestBed.States.AsteriodsGame;
 using EntityEngineV4TestBed.States.CameraTest;
+using EntityEngineV4TestBed.States.CollisionResolution;
 using EntityEngineV4TestBed.States.CollisionTest;
 using EntityEngineV4TestBed.States.ColorTest;
 using EntityEngineV4TestBed.States.FancySpawnerTest;
@@ -53,6 +54,7 @@ namespace EntityEngineV4TestBed.States.Menu
             _menuStateManager.AddMenuItem("Spawn Test State", () => (new SpawnerTestState()).Show());
             _menuStateManager.AddMenuItem("Fancy Spawn Test State", () => (new FancySpawnerTestState()).Show());
             _menuStateManager.AddMenuItem("Collision Test State", () => (new CollisionTestState()).Show());
+            _menuStateManager.AddMenuItem("Collision Tester State", () => (new CollisionResolutionTest()).Show());
             _menuStateManager.AddMenuItem("Resolution Test State", () => (new ResolutionTestState()).Show());
             _menuStateManager.AddMenuItem("Color Test State", () => (new ColorTestState()).Show());
             _menuStateManager.AddMenuItem("Render Test State", () => (new RenderTestState()).Show());

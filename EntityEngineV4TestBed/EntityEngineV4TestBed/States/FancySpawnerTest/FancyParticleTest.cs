@@ -91,7 +91,7 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
 
             protected override Spawn GenerateNewParticle()
             {
-                var p = new ExplodingSpawn(GetRoot(), 60000, Color);
+                var p = GetRoot<State>().GetNextRecycled<ExplodingSpawn>(GetRoot(), "RecycledExplode") ?? new ExplodingSpawn(GetRoot(), 60000, Color);
                 p.Body.Bounds = new Vector2(5, 5);
                 p.Body.Position = _body.Position;
 
@@ -105,12 +105,18 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                 p.Physics.Thrust(thrust);
                 p.Physics.Acceleration = new Vector2(0, .1f);
                 //p.RectRender.Scale = new Vector2(0);
+                p.RectRender.Color = p.Name == "RecycledExplode" ? Color.Red : Color.Blue;
                 return p;
             }
 
             private class ExplodingSpawn : Spawn
             {
                 public override bool IsObject
+                {
+                    get { return true; }
+                }
+
+                public override bool Recyclable
                 {
                     get { return true; }
                 }
@@ -152,7 +158,7 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                         //Move out of the floor, add a little extra for safety
                         Body.Position.Y -= depth + .1f;
                         GibEmit.Emit(20);
-                        Destroy();
+                        Recycle();
                     }
                 }
 
@@ -169,7 +175,7 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
 
                     protected override Spawn GenerateNewParticle()
                     {
-                        var p = new GibSpawn(GetRoot());
+                        var p = GetRoot<State>().GetNextRecycled<GibSpawn>(GetRoot(), "RecycledGib") ??  new GibSpawn(GetRoot());
                         p.Body.Bounds = new Vector2(2, 2);
                         p.Body.Position = GetDependency<Body>(DEPENDENCY_BODY).Position;
 
@@ -180,7 +186,7 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                         p.Physics.Thrust(thrust);
                         p.Physics.Acceleration = new Vector2(0, .1f);
                         //p.RectRender.Scale = new Vector2(0);
-                        p.RectRender.Color = _color;
+                        p.RectRender.Color = p.Name == "RecycledGib" ? Color.Red : Color.Blue;
                         return p;
                     }
 
@@ -207,6 +213,12 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                     {
                         get { return true; }
                     }
+
+                    public override bool Recyclable
+                    {
+                        get { return true; }
+                    }
+
                     private int _floor = EntityGame.Viewport.Height - 20;
 
                     public Body Body;
@@ -226,6 +238,8 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                         RectRender.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
 
                         Render = RectRender;
+
+                        DeathTimer.LastEvent += Recycle;
                     }
 
                     public override void Update(GameTime gt)
@@ -235,7 +249,7 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                         Physics.FaceVelocity();
 
                         if (Body.Right < EntityGame.Camera.ScreenSpace.Left || Body.Left > EntityGame.Camera.ScreenSpace.Right)
-                            Destroy();
+                            Recycle();
 
                         if (Body.BoundingRect.Bottom > _floor)
                         {
@@ -252,6 +266,14 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                             Physics.Velocity.X *= .9f;
                             Physics.Velocity.Y = 0;
                         }
+                    }
+
+                    public override void Reuse(Node parent, string name)
+                    {
+                        base.Reuse(parent, name);
+                        DeathTimer.Milliseconds = 3000;
+                        DeathTimer.LastEvent += Recycle;
+                        DeathTimer.Start();
                     }
                 }
             }
