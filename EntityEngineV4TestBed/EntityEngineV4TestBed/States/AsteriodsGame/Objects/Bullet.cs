@@ -35,16 +35,17 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
         public Bullet(Node parent, string name) : base(parent, name)
         {
+
             Render = new ImageRender(this, "Render");
             Render.SetTexture(GetRoot<State>().GetService<AssetCollector>().GetAsset<Texture2D>("bullet"));
             Render.Layer = .1f;
             Render.Scale = new Vector2(.1f);
             Render.Color = Color.White;
-            Render.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
             Render.LinkDependency(ImageRender.DEPENDENCY_BODY, Body);
 
             //Make our collision rectangles the size of the rendered sprite.
             Body.Bounds = Render.Bounds;
+            Body.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
 
             Shape = new Circle(this, "Shape", Body.Width/2);
             Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
@@ -80,10 +81,15 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public override void Reuse(Node parent, string name)
         {
             base.Reuse(parent, name);
+            Body.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
 
             DeathTimer.Milliseconds = 2000;
             DeathTimer.LastEvent += Recycle;
             DeathTimer.Start();
+
+            Render.Layer = .1f;
+            Render.Scale = new Vector2(.1f);
+            Render.Color = Color.White;
         }
     }
 }

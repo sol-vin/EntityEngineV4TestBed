@@ -248,7 +248,7 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
 
                         Physics.FaceVelocity();
 
-                        if (Body.Right < EntityGame.Camera.ScreenSpace.Left || Body.Left > EntityGame.Camera.ScreenSpace.Right)
+                        if (Body.Right < EntityGame.ActiveCamera.ScreenSpace.Left || Body.Left > EntityGame.ActiveCamera.ScreenSpace.Right)
                             Recycle();
 
                         if (Body.BoundingRect.Bottom > _floor)

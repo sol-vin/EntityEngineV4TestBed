@@ -142,11 +142,12 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
                 Body.Y = y;
                 Body.Width = width;
                 Body.Height = height;
+                Body.Origin = new Vector2(.5f/thickness, .5f/thickness);
+
                 Rectangle = new ShapeTypes.Rectangle(this, "Rectangle", fill);
                 Rectangle.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
 
                 //Rectangle.Origin = fill ? new Vector2(Body.Width / 2f, Body.Height / 2f) : new Vector2(.5f, .5f);
-                Rectangle.Origin = new Vector2(.5f/thickness, .5f/thickness);
                 Rectangle.Thickness = thickness;
                 Rectangle.Debug = false;
             }

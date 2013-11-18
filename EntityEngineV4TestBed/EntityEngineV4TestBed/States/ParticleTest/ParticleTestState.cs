@@ -138,6 +138,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 public TrailParticle(Spawner parent, int ttl) : base(parent, ttl)
                 {
                     Body = new Body(this, "Body");
+                    Body.Origin = new Vector2(.5f, .5f);
 
                     Physics = new Physics(this, "Physics");
                     Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
@@ -145,7 +146,6 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     Render = new ShapeTypes.Rectangle(this, "Render", true);
                     Render.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
                     Render.Color = Color.OrangeRed;
-                    Render.Origin = new Vector2(.5f, .5f);
 
                     DeathTimer.LastEvent += () => Destroy();
                 }

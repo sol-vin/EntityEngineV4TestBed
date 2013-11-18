@@ -31,11 +31,11 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Render = new ImageRender(this, "Render");
             Render.SetTexture(GetRoot<State>().GetService<AssetCollector>().GetAsset<Texture2D>("circle"));
             Render.Scale = new Vector2(RandomHelper.GetFloat(.25f, .5f));
-            Render.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
             Render.LinkDependency(ImageRender.DEPENDENCY_BODY, Body);
 
             Body.Width = Render.DrawRect.Width;
             Body.Height = Render.DrawRect.Height;
+            Body.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
 
             Health = new Health(this, "Health", 3);
             Health.DiedEvent += entity => Destroy(this);

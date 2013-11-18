@@ -42,10 +42,11 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Render.SetTexture(GetRoot<State>().GetService<AssetCollector>().GetAsset<Texture2D>("ship"));
             Render.Layer = .01f;
             Render.Scale = new Vector2(.128f);
-            Render.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
             Render.LinkDependency(ImageRender.DEPENDENCY_BODY, Body);
             
             Body.Bounds = Render.Bounds;
+            Body.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
+
 
             Gun = new SimpleGun(this, "SimpleGun");
             Gun.LinkDependency(SimpleGun.DEPENDENCY_BODY, Body);
