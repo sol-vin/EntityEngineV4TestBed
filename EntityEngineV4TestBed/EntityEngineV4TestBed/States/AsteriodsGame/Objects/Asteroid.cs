@@ -25,8 +25,10 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         {
             Body.X = RandomHelper.GetFloat() * EntityGame.Viewport.Right;
             Body.Y = RandomHelper.GetFloat() * EntityGame.Viewport.Bottom;
+            Body.Angle = MathHelper.TwoPi*RandomHelper.GetFloat();
 
-            Physics.Velocity = new Vector2(RandomHelper.GetFloat(-.5f, .5f), RandomHelper.GetFloat(-.5f, .5f));
+            Physics.Thrust(RandomHelper.GetFloat(.1f, 1f));
+            Physics.Restitution = 1.5f;
 
             Render = new ImageRender(this, "Render");
             Render.SetTexture(GetRoot<State>().GetService<AssetCollector>().GetAsset<Texture2D>("circle"));
@@ -37,6 +39,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Body.Height = Render.DrawRect.Height;
             Body.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
 
+            Physics.Mass = Render.Scale.X;
+
             Health = new Health(this, "Health", 3);
             Health.DiedEvent += entity => Destroy(this);
 
@@ -44,13 +48,24 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Shape.Offset = new Vector2(Body.Width / 2, Body.Height / 2);
             Shape.Debug = true;
             Shape.LinkDependency(Circle.DEPENDENCY_BODY, Body);
-
-            Collision.GroupMask.AddMask(2);
+                        
             Collision.PairMask.AddMask(0);
             Collision.PairMask.AddMask(1);
-            Collision.CollideEvent += collision => Health.Hurt(1);
+            Collision.GroupMask.AddMask(2);
+            Collision.PairMask.AddMask(2);
+            Collision.ResolutionGroupMask.AddMask(2);
+            Collision.CollideEvent += OnCollide;
             Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
             Shape.LinkDependency(Circle.DEPENDENCY_COLLISION, Collision);
+        }
+
+        public void OnCollide(Manifold m)
+        {
+            Node otherNode = m.A != Collision ? m.A : m.B;
+            if (otherNode.Parent.GetType() == typeof(Bullet) || otherNode.Parent.GetType() == typeof(PlayerShip))
+            {
+                Health.Hurt(1);
+            }
         }
     }
 }

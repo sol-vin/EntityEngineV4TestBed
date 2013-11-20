@@ -1,6 +1,9 @@
-﻿using EntityEngineV4.Collision;
+﻿using System.Linq;
+using EntityEngineV4.Collision;
 using EntityEngineV4.Engine;
 using EntityEngineV4.Engine.Services;
+using EntityEngineV4.GUI;
+using EntityEngineV4.PowerTools;
 using EntityEngineV4TestBed.States.AsteriodsGame.Objects;
 using Microsoft.Xna.Framework;
 
@@ -9,7 +12,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
     public class AsteroidsGame : TestBedState
     {
         private PlayerShip _player;
-
+        private Label _statusLabel;
+        private bool _playerDied, _asteroidsDied;
         public AsteroidsGame() : base("AsteroidsGame")
         {
         }
@@ -27,12 +31,45 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
             EntityGame.DebugInfo.Render.Color = Color.White;
             _player = new PlayerShip(this, "PlayerShip");
 
-            new Asteroid(this, "Ass");
+            SpawnAsteroids(5);
+
+            _statusLabel = new Label(this, "StatusLabel");
+            _statusLabel.Color = Color.White;
+            _statusLabel.Visible = false;
         }
 
         public override void Update(GameTime gt)
         {
             base.Update(gt);
+            if(!_playerDied && !_asteroidsDied)
+            {
+                _playerDied = this.Count(c => c.GetType() == typeof(PlayerShip)) == 0;
+                _asteroidsDied = this.Count(c => c.GetType() == typeof(Asteroid)) == 0;
+            }
+
+            if (_playerDied && _asteroidsDied) //Playership took out the last asteroid by ramming it
+            {
+                _statusLabel.Visible = true;
+                _statusLabel.Text = "Good job dipshit.";
+                _statusLabel.Body.X = EntityGame.Viewport.Width/2f - _statusLabel.Body.Width/2f;
+                _statusLabel.Body.Y = 100;
+
+            }
+            else if (_playerDied)
+            {
+                _statusLabel.Visible = true;
+                _statusLabel.Text = "You lose, stop sucking jajajaja.";
+                _statusLabel.Body.X = EntityGame.Viewport.Width / 2f - _statusLabel.Body.Width / 2f;
+                _statusLabel.Body.Y = 100;
+
+            }
+            else if (_asteroidsDied)
+            {
+                _statusLabel.Visible = true;
+                _statusLabel.Text = "You win, bitches ain't shit.";
+                _statusLabel.Body.X = EntityGame.Viewport.Width / 2f - _statusLabel.Body.Width / 2f;
+                _statusLabel.Body.Y = 100;
+            }
         }
 
         public override void Destroy(IComponent i = null)
@@ -40,6 +77,19 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
             base.Destroy(i);
             EntityGame.BackgroundColor = Color.White;
             EntityGame.DebugInfo.Render.Color = Color.Black;
+        }
+
+        public void SpawnAsteroids(int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                var a = new Asteroid(this, "Asteroid");
+                while (GetService<CollisionHandler>().ReturnManifolds(a.Collision).Count > 0)
+                {
+                    a.Body.X = RandomHelper.GetFloat() * EntityGame.Viewport.Right;
+                    a.Body.Y = RandomHelper.GetFloat() * EntityGame.Viewport.Bottom;
+                }
+            }
         }
     }
 }

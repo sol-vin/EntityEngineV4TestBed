@@ -32,8 +32,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
         public PlayerShip(Node parent, string name) : base(parent, name)
         {
-            Body.X = 0;
-            Body.Y = 0;
+            Body.X = EntityGame.Viewport.Width/2f;
+            Body.Y = EntityGame.Viewport.Height/2f;
 
             Physics.Drag = 0.97f;
             Physics.AngularDrag = 0.9f;
@@ -58,6 +58,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
             Collision.GroupMask.AddMask(0);
             Collision.PairMask.AddMask(2);
+            Collision.CollideEvent += OnCollide;
             Collision.Immovable = true;
             Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
             Shape.LinkDependency(Circle.DEPENDENCY_COLLISION, Collision);
@@ -106,6 +107,15 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             if(ThrustTrigger.Value > ThrustTrigger.DeadZone) Physics.Thrust(ThrustTrigger.Value * _FLYSPEED);
 
             if (FireButton.RapidFire(250)) Gun.Fire();
+        }
+
+        public void OnCollide(Manifold m)
+        {
+            Node otherNode = m.A != Collision ? m.A : m.B;
+            if (otherNode.Parent is Asteroid)
+            {
+                Destroy();
+            }
         }
     }
 }

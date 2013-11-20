@@ -386,7 +386,6 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             EmitTimer = new Timer(this, "EmitTimer");
             EmitTimer.Milliseconds = 250;
             EmitTimer.LastEvent += EmitParticle;
-            EmitTimer.Start();
 
             B = new CircleTester(this, "B", 60);
             B.Render.Color = Color.Blue;
@@ -396,6 +395,12 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
                 EntityGame.Viewport.Height - 20 - B.Body.Height);
             B.Debug = true;
             //B.Physics.Velocity.X = -1;
+        }
+
+        public override void Begin()
+        {
+            base.Begin();
+            EmitTimer.Start();
         }
 
         public void EmitParticle()

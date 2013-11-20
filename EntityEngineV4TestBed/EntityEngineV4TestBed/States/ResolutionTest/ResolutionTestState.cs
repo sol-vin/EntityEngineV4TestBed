@@ -43,7 +43,9 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 c.Collision.ResolutionGroupMask.AddMask(0);
                 c.Collision.ResolutionGroupMask.AddMask(1);
                 c.Collision.ResolutionGroupMask.AddMask(2);
-                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Collision.CollideEvent +=
+                    manifold =>
+                        _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(30, 80 * x + 20);
             }
@@ -54,7 +56,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 c.Collision.PairMask.AddMask(0);
                 c.Collision.PairMask.AddMask(2);
                 c.Collision.ResolutionGroupMask.AddMask(0);
-                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(510, 80 * x + 20);
                 c.Color = Color.Orange;
@@ -69,7 +71,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                 c.Collision.PairMask.AddMask(1);
                 c.Collision.ResolutionGroupMask.AddMask(0);
                 c.Collision.ResolutionGroupMask.AddMask(1);
-                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Collision.Immovable = true;
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(50 + x * 70, 450);

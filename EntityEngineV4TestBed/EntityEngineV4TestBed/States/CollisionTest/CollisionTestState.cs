@@ -43,7 +43,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 AabbNode c = new AabbNode(this, "A" + x);
                 c.Collision.GroupMask.AddMask(0);
                 c.Collision.PairMask.AddMask(0);
-                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(30, 100 * x + 20);
             }
@@ -52,7 +52,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 AabbNode c = new AabbNode(this, "B" + x);
                 c.Collision.GroupMask.AddMask(1);
                 c.Collision.PairMask.AddMask(0);
-                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Body.Position = new Vector2(510, 80 * x + 20);
                 c.Color = Color.Orange;
                 c.HoverColor = Color.Black;
@@ -64,7 +64,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 CircleNode c = new CircleNode(this, "C" + x);
                 c.Collision.GroupMask.AddMask(2);
                 c.Collision.PairMask.AddMask(2);
-                c.Collision.CollideEvent += collision => _collided.Add(collision.Parent.Name);
+                c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name); ;
                 c.Body.Position = new Vector2(80 * x + 20, 300);
                 c.Color = Color.LightBlue;
                 c.HoverColor = Color.DarkRed;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering.Primitives;
 using EntityEngineV4.Data;
@@ -144,8 +143,6 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             private GamePadAnalog _moveCursor;
             private GamepadInput _emitButton;
 
-            private DoubleInput _upkey, _downkey, _leftkey, _rightkey, _selectkey;
-
             public ParticleTestManager(State stateref)
                 : base(stateref, "ParticleTestManager")
             {
@@ -155,11 +152,6 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
                 _moveCursor = new GamePadAnalog(this, "MoveCursor", Sticks.Left, PlayerIndex.One);
                 _emitButton = new GamepadInput(this, "EmitButton", Buttons.B, PlayerIndex.One);
-                _upkey = new DoubleInput(this, "UpKey", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
-                _downkey = new DoubleInput(this, "DownKey", Keys.Down, Buttons.DPadDown, PlayerIndex.One);
-                _leftkey = new DoubleInput(this, "LeftKey", Keys.Left, Buttons.DPadLeft, PlayerIndex.One);
-                _rightkey = new DoubleInput(this, "RightKey", Keys.Right, Buttons.DPadRight, PlayerIndex.One);
-                _selectkey = new DoubleInput(this, "SelectKey", Keys.Space, Buttons.A, PlayerIndex.One);
             }
 
             public override void Update(GameTime gt)
@@ -177,16 +169,6 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 }
                 if (MouseService.IsMouseButtonReleased(MouseButton.RightButton) || _emitButton.Pressed())
                     EntityGame.Log.Write("Mouse button released, stopping particles", this, Alert.Info);
-                if (_upkey.Released())
-                    _controlHandler.UpControl();
-                else if (_downkey.Released())
-                    _controlHandler.DownControl();
-                else if (_leftkey.Released())
-                    _controlHandler.LeftControl();
-                else if (_rightkey.Released())
-                    _controlHandler.RightControl();
-                if (_selectkey.Released())
-                    _controlHandler.Release();
             }
 
             public class TestSpawner : Spawner
@@ -211,7 +193,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
                 protected override Spawn GenerateNewParticle()
                 {
-                    var p = new TestSpawn(this);
+                    var p = GetRoot<State>().GetNextRecycled<TestSpawn>(GetRoot(), "TestSpawnRecycled") ?? new TestSpawn(GetRoot());
                     p.RectRender.Color = ColorMath.HSVtoRGB(new HSVColor((float)Random.NextDouble(), 1, 1, 1));
                     p.Body.Position = new Vector2(MouseService.Cursor.Position.X, MouseService.Cursor.Position.Y);
                     p.Body.Width = Random.Next(3, 10);
@@ -234,12 +216,25 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
                 private class TestSpawn : FadeSpawn
                 {
+                    public override bool IsObject
+                    {
+                        get { return true; }
+                    }
+
+                    public override bool Recyclable
+                    {
+                        get
+                        {
+                            return true;
+                        }
+                    }
+
                     public Body Body;
                     public Physics Physics;
                     public ShapeTypes.Rectangle RectRender;
 
-                    public TestSpawn(Spawner parent)
-                        : base(parent, 3000)
+                    public TestSpawn(Node parent)
+                        : base(parent, 2000)
                     {
                         Body = new Body(this, "Body");
                         Body.Origin = new Vector2(.5f,.5f);
@@ -253,6 +248,8 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                         RectRender.Thickness = 1;
                         Render = RectRender;
                         FadeAge = 1000;
+
+                        DeathTimer.LastEvent += Recycle;
                     }
 
                     public override void Update(GameTime gt)
@@ -264,6 +261,14 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                         RectRender.Width = Body.Width;
                         RectRender.Height = Body.Height;
                         RectRender.Angle = Body.Angle;
+                    }
+
+                    public override void Reuse(Node parent, string name)
+                    {
+                        base.Reuse(parent, name);
+                        DeathTimer.Milliseconds = 2000;
+                        DeathTimer.LastEvent += Recycle;
+                        DeathTimer.Start();
                     }
                 }
             }
