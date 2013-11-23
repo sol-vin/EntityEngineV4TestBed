@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
-using EntityEngineV4.Collision;
+using EntityEngineV4.CollisionEngine;
 
-using EntityEngineV4.Collision.Shapes;
+using EntityEngineV4.CollisionEngine.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
@@ -56,8 +56,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Shape.Debug = true;
             Shape.LinkDependency(Circle.DEPENDENCY_BODY, Body);
 
-            Collision.GroupMask.AddMask(0);
-            Collision.PairMask.AddMask(2);
+            Collision.Group.AddMask(0);
+            Collision.Pair.AddMask(2);
             Collision.CollideEvent += OnCollide;
             Collision.Immovable = true;
             Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);

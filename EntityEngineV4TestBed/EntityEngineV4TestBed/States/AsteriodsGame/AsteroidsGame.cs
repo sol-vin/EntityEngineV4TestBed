@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using EntityEngineV4.Collision;
+using EntityEngineV4.CollisionEngine;
 using EntityEngineV4.Engine;
 using EntityEngineV4.Engine.Services;
 using EntityEngineV4.GUI;
@@ -22,18 +22,19 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
         public override void Initialize()
         {
             base.Initialize();
-            new CollisionHandler(this);
             new AssetCollector(this);
             GetService<AssetCollector>().LoadXML(@"Content/AsteroidsGame/assets.xml");
 
             //Change bgcolor to black
             EntityGame.BackgroundColor = Color.Black;
-            EntityGame.DebugInfo.Render.Color = Color.White;
+            EntityGame.DebugInfo.Color = Color.White;
             _player = new PlayerShip(this, "PlayerShip");
 
             SpawnAsteroids(5);
+            Page p = new Page(this, "Page");
+            p.Show();
 
-            _statusLabel = new Label(this, "StatusLabel");
+            _statusLabel = new Label(p, "StatusLabel", new Point(0,0));
             _statusLabel.Color = Color.White;
             _statusLabel.Visible = false;
         }
@@ -76,7 +77,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
         {
             base.Destroy(i);
             EntityGame.BackgroundColor = Color.White;
-            EntityGame.DebugInfo.Render.Color = Color.Black;
+            EntityGame.DebugInfo.Color = Color.Black;
         }
 
         public void SpawnAsteroids(int num)

@@ -39,7 +39,10 @@ namespace EntityEngineV4TestBed.States.ColorTest
             _xyz.Active = false;
             _xyz.Visible = false;
 
-            _label = new FadeOutLabel(this, "FadeOutLabel");
+            Page p = new Page(this, "Page");
+            p.Show();
+
+            _label = new FadeOutLabel(p, "FadeOutLabel", new Point(0,0));
             _label.Text = "HSV Test";
 
             _ctm = new ColorTestManager(this,"CTM");
@@ -168,7 +171,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
         {
             private Timer _beginFadeTimer, _fadeStepTimer;
 
-            public FadeOutLabel(Node parent, string name) : base(parent, name)
+            public FadeOutLabel(Page parent, string name, Point tabPosition) : base(parent, name, tabPosition)
             {
                 _beginFadeTimer = new Timer(this, "BeginFadeTimer");
                 _beginFadeTimer.Milliseconds = 2000;
@@ -187,8 +190,9 @@ namespace EntityEngineV4TestBed.States.ColorTest
                 _fadeStepTimer.Start();
             }
 
-            public void Reset()
+            public override void Reset()
             {
+                base.Reset();
                 _beginFadeTimer.Reset();
                 _fadeStepTimer.Reset();
                 _beginFadeTimer.Start();

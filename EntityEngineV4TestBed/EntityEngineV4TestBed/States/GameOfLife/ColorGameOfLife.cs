@@ -49,6 +49,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             base.Initialize();
 
             new ControlHandler(this);
+            _page = new Page(this, "GUIPage");
 
             _manager = new ColorGameOfLifeManager(this, "Manager");
             _manager.UpdateTimer.LastEvent += CheckAllCells;
@@ -66,47 +67,37 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             _tiles = Cells.CloneTiles();
 
             //GUI
-            TextButton startTextButton = new TextButton(this, "StartButton", new Vector2(Cells.Body.X, 500), Color.White.ToRGBColor());
-            startTextButton.TabPosition = new Point(0, 0);
-            startTextButton.OnFocusGain(startTextButton);
+            _page.Show();
+
+            TextButton startTextButton = new TextButton(_page, "StartButton", new Point(0, 0), new Vector2(Cells.Body.X, 500), Color.White.ToRGBColor());
+            startTextButton.OnFocusGain();
             startTextButton.Text = "Start";
             startTextButton.MakeDefault();
             startTextButton.OnReleased += control => _manager.Start();
-            startTextButton.AttachToControlHandler();
 
-            TextButton stopTextButton = new TextButton(this, "StopLink", new Vector2(Cells.Body.X, startTextButton.Body.Bottom), Color.White.ToRGBColor());
-            stopTextButton.TabPosition = new Point(0, 1);
+            TextButton stopTextButton = new TextButton(_page, "StopLink", new Point(0, 1), new Vector2(Cells.Body.X, startTextButton.Body.Bottom), Color.White.ToRGBColor());
             stopTextButton.Text = "Stop";
             stopTextButton.OnReleased += control => _manager.Stop();
             stopTextButton.MakeDefault();
-            stopTextButton.AttachToControlHandler();
 
-            TextButton resetTextButton = new TextButton(this, "ResetLink", new Vector2(Cells.Body.X, stopTextButton.Body.Bottom), Color.White.ToRGBColor());
-            resetTextButton.TabPosition = new Point(0, 2);
+            TextButton resetTextButton = new TextButton(_page, "ResetLink",  new Point(0, 2),new Vector2(Cells.Body.X, stopTextButton.Body.Bottom), Color.White.ToRGBColor());
             resetTextButton.Text = "Reset";
             resetTextButton.OnReleased += control => ResetCells();
             resetTextButton.MakeDefault();
-            resetTextButton.AttachToControlHandler();
 
-            LinkLabel downMillisecondsLink = new LinkLabel(this, "downMillisecondsLink");
+            LinkLabel downMillisecondsLink = new LinkLabel(_page, "downMillisecondsLink", new Point(1, 0));
             downMillisecondsLink.Body.Position = new Vector2(Cells.Body.X + 100, startTextButton.Body.Bottom);
-            downMillisecondsLink.TabPosition = new Point(1, 0);
             downMillisecondsLink.Text = "<-";
             downMillisecondsLink.OnDown += control => _manager.UpdateTimer.Milliseconds -= 50;
-            downMillisecondsLink.AttachToControlHandler();
 
-            _millisecondsText = new Label(this, "millisecondsText");
+            _millisecondsText = new Label(_page, "millisecondsText", new Point(2, 0));
             _millisecondsText.Body.Position = new Vector2(downMillisecondsLink.Body.Right + 2, startTextButton.Body.Bottom);
-            _millisecondsText.TabPosition = new Point(2, 0);
             _millisecondsText.Text = _manager.UpdateTimer.Milliseconds.ToString();
-            _millisecondsText.AttachToControlHandler();
 
-            LinkLabel upMillisecondsLink = new LinkLabel(this, "upMillisecondsLink");
+            LinkLabel upMillisecondsLink = new LinkLabel(_page, "upMillisecondsLink", new Point(3, 0));
             upMillisecondsLink.Body.Position = new Vector2(_millisecondsText.Body.Right + 25, startTextButton.Body.Bottom);
-            upMillisecondsLink.TabPosition = new Point(3, 0);
             upMillisecondsLink.Text = "->";
             upMillisecondsLink.OnDown += control => _manager.UpdateTimer.Milliseconds += 50;
-            upMillisecondsLink.AttachToControlHandler();
 
             MakeNextColorButton(Color.Red.ToRGBColor());
             MakeNextColorButton(Color.Orange.ToRGBColor());
@@ -120,6 +111,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
         private int _lastX = 160;
         private Point _lastTab = new Point(1,1);
+        private Page _page;
 
         public void MakeNextColorButton(RGBColor color)
         {
@@ -130,13 +122,11 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             hsv.V = 1;
             RGBColor rgb = hsv.ToRGBColor();
 
-            Button button = new Button(this, "button" + _lastX.ToString(), new Vector2(_lastX, 539), new Vector2(20,20), rgb);
-            button.TabPosition = _lastTab;
+            Button button = new Button(_page, "button" + _lastX.ToString(), _lastTab, new Vector2(_lastX, 539), new Vector2(20,20), rgb);
             button.OnReleased += control => _currentColor = rgb;
             button.OnDown += c => button.RGBColor = Color.White.ToRGBColor();
             button.FocusLost += c => button.RGBColor = rgb;
             button.FocusGain += c => button.RGBColor = rgb;
-            button.AttachToControlHandler();
 
             _lastX += 25;
             _lastTab.X++;

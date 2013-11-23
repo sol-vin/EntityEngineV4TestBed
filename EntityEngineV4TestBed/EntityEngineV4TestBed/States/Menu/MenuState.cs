@@ -1,4 +1,5 @@
-﻿using EntityEngineV4.Engine;
+﻿using System;
+using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4TestBed.States.AsteriodsGame;
@@ -23,8 +24,11 @@ namespace EntityEngineV4TestBed.States.Menu
     {
         private delegate void ChangeStateDelegate();
 
-        //Manager
-        private MenuStateManager _menuStateManager;
+        private Point _lasttabposition = Point.Zero;
+
+        private DoubleInput _upkey, _downkey, _leftkey, _rightkey, _selectkey;
+
+        private Page _page;
 
         public MenuState()
             : base("MenuState")
@@ -42,80 +46,64 @@ namespace EntityEngineV4TestBed.States.Menu
             new InputService(this);
             new MouseService(this);
 
-            var ch = new ControlHandler(this);
 
-            _menuStateManager = new MenuStateManager(this, ch);
-            _menuStateManager.AddMenuItem("Game of Life", () => (new GameOfLifeState()).Show());
-            _menuStateManager.AddMenuItem("Color Game of Life", () => (new ColorGameOfLifeState()).Show());
-            _menuStateManager.AddMenuItem("Asteroids Game", () => (new AsteroidsGame()).Show());
-            _menuStateManager.AddMenuItem("Particle Test State", () => (new ParticleTestState()).Show());
-            _menuStateManager.AddMenuItem("Camera Test State", () => (new CameraTestState()).Show());
-            _menuStateManager.AddMenuItem("Control Test State", () => (new ControlTestState()).Show());
-            _menuStateManager.AddMenuItem("Spawn Test State", () => (new SpawnerTestState()).Show());
-            _menuStateManager.AddMenuItem("Fancy Spawn Test State", () => (new FancySpawnerTestState()).Show());
-            _menuStateManager.AddMenuItem("Collision Test State", () => (new CollisionTestState()).Show());
-            _menuStateManager.AddMenuItem("Collision Tester State", () => (new CollisionResolutionTest()).Show());
-            _menuStateManager.AddMenuItem("Resolution Test State", () => (new ResolutionTestState()).Show());
-            _menuStateManager.AddMenuItem("Color Test State", () => (new ColorTestState()).Show());
-            _menuStateManager.AddMenuItem("Render Test State", () => (new RenderTestState()).Show());
-            _menuStateManager.AddMenuItem("Primitives Test State", () => (new PrimitiveTestState()).Show());
+            _upkey = new DoubleInput(this, "UpKey", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
+            _downkey = new DoubleInput(this, "DownKey", Keys.Down, Buttons.DPadDown, PlayerIndex.One);
+            _leftkey = new DoubleInput(this, "LeftKey", Keys.Left, Buttons.DPadLeft, PlayerIndex.One);
+            _rightkey = new DoubleInput(this, "RightKey", Keys.Right, Buttons.DPadRight, PlayerIndex.One);
+            _selectkey = new DoubleInput(this, "SelectKey", Keys.Space, Buttons.A, PlayerIndex.One);
+
+            var ch = new ControlHandler(this);
+            _page = new Page(this, "Page");
+            _page.Show();
+
+            AddMenuItem("Game of Life", () => (new GameOfLifeState()).Show());
+            AddMenuItem("Color Game of Life", () => (new ColorGameOfLifeState()).Show());
+            AddMenuItem("Asteroids Game", () => (new AsteroidsGame()).Show());
+            AddMenuItem("Particle Test State", () => (new ParticleTestState()).Show());
+            AddMenuItem("Camera Test State", () => (new CameraTestState()).Show());
+            AddMenuItem("Control Test State", () => (new ControlTestState()).Show());
+            AddMenuItem("Spawn Test State", () => (new SpawnerTestState()).Show());
+            AddMenuItem("Fancy Spawn Test State", () => (new FancySpawnerTestState()).Show());
+            AddMenuItem("Collision Test State", () => (new CollisionTestState()).Show());
+            AddMenuItem("Collision Tester State", () => (new CollisionResolutionTest()).Show());
+            AddMenuItem("Resolution Test State", () => (new ResolutionTestState()).Show());
+            AddMenuItem("Color Test State", () => (new ColorTestState()).Show());
+            AddMenuItem("Render Test State", () => (new RenderTestState()).Show());
+            AddMenuItem("Primitives Test State", () => (new PrimitiveTestState()).Show());
+            _page.ProcessControls();
         }
 
         public override void Update(GameTime gt)
         {
             base.Update(gt);
+
+            if (_upkey.Released())
+                _page.MoveFocusUp();
+            else if (_downkey.Released())
+                _page.MoveFocusDown();
+            else if (_leftkey.Released())
+                _page.MoveFocusLeft();
+            else if (_rightkey.Released())
+                _page.MoveFocusRight();
+            if (_selectkey.Released())
+                _page.Release();
+
         }
 
-        private class MenuStateManager : Node
+        private void AddMenuItem(string label, ChangeStateDelegate changeStateDelegate)
         {
-            private ControlHandler _controlHandler;
+            var l = new LinkLabel(_page, "MenuItem" + (_lasttabposition.X ^ _lasttabposition.Y), _lasttabposition);
 
-            private Point _lasttabposition = Point.Zero;
+            l.Text = label;
+            l.Body.Position = new Vector2(20, (_lasttabposition.Y * l.Body.Height + 5));
+            l.Render.Layer = .2f;
+            l.OnReleased += control => changeStateDelegate();
+            l.OnReleased += control => Destroy(this);
 
-            private DoubleInput _upkey, _downkey, _leftkey, _rightkey, _selectkey;
+            _lasttabposition.Y++;
 
-            public MenuStateManager(State stateref, ControlHandler controlHandler)
-                : base(stateref, "MenuStateManager")
-            {
-                _controlHandler = controlHandler;
-                _upkey = new DoubleInput(this, "UpKey", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
-                _downkey = new DoubleInput(this, "DownKey", Keys.Down, Buttons.DPadDown, PlayerIndex.One);
-                _leftkey = new DoubleInput(this, "LeftKey", Keys.Left, Buttons.DPadLeft, PlayerIndex.One);
-                _rightkey = new DoubleInput(this, "RightKey", Keys.Right, Buttons.DPadRight, PlayerIndex.One);
-                _selectkey = new DoubleInput(this, "SelectKey", Keys.Space, Buttons.A, PlayerIndex.One);
-            }
-
-            public override void Update(GameTime gt)
-            {
-                if (_upkey.Released())
-                    _controlHandler.UpControl();
-                else if (_downkey.Released())
-                    _controlHandler.DownControl();
-                else if (_leftkey.Released())
-                    _controlHandler.LeftControl();
-                else if (_rightkey.Released())
-                    _controlHandler.RightControl();
-                if (_selectkey.Released())
-                    _controlHandler.Release();
-
-                base.Update(gt);
-            }
-
-            public void AddMenuItem(string label, ChangeStateDelegate changeStateDelegate)
-            {
-                LinkLabel l = new LinkLabel(this, "MenuItem" + (_lasttabposition.X ^ _lasttabposition.Y));
-
-                l.Text = label;
-                l.Body.Position = new Vector2(20, (_lasttabposition.Y * l.Body.Height + 5));
-                l.Render.Layer = .2f;
-                l.OnReleased += control => changeStateDelegate();
-
-                l.TabPosition = _lasttabposition;
-                _lasttabposition.Y++;
-
-                if (l.TabPosition == Point.Zero) l.OnFocusGain(l);
-                l.AttachToControlHandler();
-            }
+            if (l.TabPosition == Point.Zero) l.OnFocusGain();
         }
     }
 }

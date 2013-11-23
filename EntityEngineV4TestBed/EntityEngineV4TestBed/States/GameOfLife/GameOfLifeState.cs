@@ -60,47 +60,38 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             _tiles = Cells.CloneTiles();
 
             //GUI
-            LinkLabel startLink = new LinkLabel(this, "StartLink");
+            Page page = new Page(this, "Page");
+            page.Show();
+
+            LinkLabel startLink = new LinkLabel(page, "StartLink", new Point(0,0));
             startLink.Body.Position = new Vector2(Cells.Body.X, 500);
-            startLink.TabPosition = new Point(0,0);
-            startLink.OnFocusGain(startLink);
+            startLink.OnFocusGain();
             startLink.Text = "Start";
             startLink.OnReleased += control => _manager.Start();
-            startLink.AttachToControlHandler();
 
-            LinkLabel stopLink = new LinkLabel(this, "StopLink");
+            LinkLabel stopLink = new LinkLabel(page, "StopLink", new Point(0, 1));
             stopLink.Body.Position = new Vector2(Cells.Body.X, startLink.Body.Bottom);
-            stopLink.TabPosition = new Point(0, 1);
             stopLink.Text = "Stop";
             stopLink.OnReleased += control => _manager.Stop();
-            stopLink.AttachToControlHandler();
 
-            LinkLabel resetLink = new LinkLabel(this, "ResetLink");
+            LinkLabel resetLink = new LinkLabel(page, "ResetLink", new Point(0, 2));
             resetLink.Body.Position = new Vector2(Cells.Body.X, stopLink.Body.Bottom);
-            resetLink.TabPosition = new Point(0, 2);
             resetLink.Text = "Reset";
             resetLink.OnReleased += control => ResetCells();
-            resetLink.AttachToControlHandler();
 
-            LinkLabel downMillisecondsLink = new LinkLabel(this, "downMillisecondsLink");
+            LinkLabel downMillisecondsLink = new LinkLabel(page, "downMillisecondsLink", new Point(1, 0));
             downMillisecondsLink.Body.Position = new Vector2(Cells.Body.X + 100, startLink.Body.Bottom);
-            downMillisecondsLink.TabPosition = new Point(1, 0);
             downMillisecondsLink.Text = "<-";
             downMillisecondsLink.OnDown += control => _manager.UpdateTimer.Milliseconds -= 50;
-            downMillisecondsLink.AttachToControlHandler();
 
-            _millisecondsText = new Label(this, "millisecondsText");
+            _millisecondsText = new Label(page, "millisecondsText", new Point(2, 0));
             _millisecondsText.Body.Position = new Vector2(downMillisecondsLink.Body.Right + 2, startLink.Body.Bottom);
-            _millisecondsText.TabPosition = new Point(2, 0);
             _millisecondsText.Text = _manager.UpdateTimer.Milliseconds.ToString();
-            _millisecondsText.AttachToControlHandler();
 
-            LinkLabel upMillisecondsLink = new LinkLabel(this, "upMillisecondsLink");
+            LinkLabel upMillisecondsLink = new LinkLabel(page, "upMillisecondsLink", new Point(3, 0));
             upMillisecondsLink.Body.Position = new Vector2(_millisecondsText.Body.Right + 25, startLink.Body.Bottom);
-            upMillisecondsLink.TabPosition = new Point(3, 0);
             upMillisecondsLink.Text = "->";
             upMillisecondsLink.OnDown += control => _manager.UpdateTimer.Milliseconds += 50;
-            upMillisecondsLink.AttachToControlHandler();
         }
 
         public void ResetCells()

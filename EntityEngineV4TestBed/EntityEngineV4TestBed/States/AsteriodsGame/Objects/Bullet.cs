@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EntityEngineV4.Collision;
-using EntityEngineV4.Collision.Shapes;
+using EntityEngineV4.CollisionEngine;
+using EntityEngineV4.CollisionEngine.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
@@ -22,16 +22,9 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             get { return true; }
         }
 
-        public override bool Recyclable
-        {
-            get { return true; }
-        }
-
         public ImageRender Render;
         public Circle Shape;
         public Timer DeathTimer;
-
-        private bool _hasLeftPlayerCircle = false;
 
         public Bullet(Node parent, string name) : base(parent, name)
         {
@@ -51,8 +44,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
             Shape.LinkDependency(Circle.DEPENDENCY_BODY, Body);
 
-            Collision.GroupMask.AddMask(1);
-            Collision.PairMask.AddMask(2);
+            Collision.Group.AddMask(1);
+            Collision.Pair.AddMask(2);
             Collision.Immovable = true;
             Collision.CollideEvent += collision => Recycle();
             Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);

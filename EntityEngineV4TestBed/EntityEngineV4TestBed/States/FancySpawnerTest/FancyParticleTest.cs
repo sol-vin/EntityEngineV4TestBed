@@ -116,11 +116,6 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                     get { return true; }
                 }
 
-                public override bool Recyclable
-                {
-                    get { return true; }
-                }
-
                 private int _floor = EntityGame.Viewport.Height - 20;
 
                 public Body Body;
@@ -210,11 +205,6 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                 private class GibSpawn : FadeSpawn
                 {
                     public override bool IsObject
-                    {
-                        get { return true; }
-                    }
-
-                    public override bool Recyclable
                     {
                         get { return true; }
                     }

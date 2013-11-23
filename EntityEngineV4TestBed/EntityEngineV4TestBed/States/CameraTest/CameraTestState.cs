@@ -31,7 +31,7 @@ namespace EntityEngineV4TestBed.States.CameraTest
             var ch = new ControlHandler(this);
 
             //TODO: Add labels to find camera screen space and values
-            var label = new Label(ch, "CamLabel");
+            //var label = new Label(ch, "CamLabel");
 
         }
 

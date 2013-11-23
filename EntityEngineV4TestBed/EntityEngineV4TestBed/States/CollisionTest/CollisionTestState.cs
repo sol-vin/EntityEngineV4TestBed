@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using EntityEngineV4.Collision;
-using EntityEngineV4.Collision.Shapes;
+using EntityEngineV4.CollisionEngine;
+using EntityEngineV4.CollisionEngine.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
@@ -27,22 +27,23 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         {
             base.Initialize();
 
-            CollisionHandler colhand = new CollisionHandler(this);
             ControlHandler ch = new ControlHandler(this);
 
             _collided = new SortedSet<string>();
 
-            _collidedLabel = new Label(ch, "CollidedLabel");
+            Page p = new Page(this, "Page");
+            p.Show();
+
+            _collidedLabel = new Label(p, "CollidedLabel" , new Point(0,0));
             _collidedLabel.Body.Position = new Vector2(10, 500);
-            ch.AddControl(_collidedLabel);
 
             Random rand = new Random();
 
             for (int x = 0; x < 3; x++)
             {
                 AabbNode c = new AabbNode(this, "A" + x);
-                c.Collision.GroupMask.AddMask(0);
-                c.Collision.PairMask.AddMask(0);
+                c.Collision.Group.AddMask(0);
+                c.Collision.Pair.AddMask(0);
                 c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(30, 100 * x + 20);
@@ -50,8 +51,8 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             for (int x = 0; x < 3; x++)
             {
                 AabbNode c = new AabbNode(this, "B" + x);
-                c.Collision.GroupMask.AddMask(1);
-                c.Collision.PairMask.AddMask(0);
+                c.Collision.Group.AddMask(1);
+                c.Collision.Pair.AddMask(0);
                 c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Body.Position = new Vector2(510, 80 * x + 20);
                 c.Color = Color.Orange;
@@ -62,8 +63,8 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             for (int x = 0; x < 3; x++)
             {
                 CircleNode c = new CircleNode(this, "C" + x);
-                c.Collision.GroupMask.AddMask(2);
-                c.Collision.PairMask.AddMask(2);
+                c.Collision.Group.AddMask(2);
+                c.Collision.Pair.AddMask(2);
                 c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name); ;
                 c.Body.Position = new Vector2(80 * x + 20, 300);
                 c.Color = Color.LightBlue;

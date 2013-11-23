@@ -32,19 +32,16 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             base.Initialize();
 
             ControlHandler ch = new ControlHandler(this);
-
+            Page page = new Page(this, "Page");
+            page.Show();
             //Add our labels to the top
-            _drawingtoolsTitle = new Label(ch, "drawingtoolsTitle");
+            _drawingtoolsTitle = new Label(page, "drawingtoolsTitle", new Point(0, 0));
             _drawingtoolsTitle.Text = "DrawingTools.Primitives";
             _drawingtoolsTitle.Body.Position = new Vector2(EntityGame.Viewport.Width / 4 - _drawingtoolsTitle.Render.DrawRect.Width / 2, 15);
-            _drawingtoolsTitle.TabPosition = new Point(0, 0);
-            ch.AddControl(_drawingtoolsTitle);
 
-            _renderTitle = new Label(ch, "renderTitle");
+            _renderTitle = new Label(page, "renderTitle", new Point(1, 0));
             _renderTitle.Text = "Rendering.Primitives";
             _renderTitle.Body.Position = new Vector2(EntityGame.Viewport.Width - (EntityGame.Viewport.Width / 4) - _renderTitle.Render.DrawRect.Width / 2, 15);
-            _renderTitle.TabPosition = new Point(1, 0);
-            ch.AddControl(_renderTitle);
 
             _middleLine = new DrawingTools.Line(new Vector2(EntityGame.Viewport.Width / 2f, 10), new Vector2(EntityGame.Viewport.Width / 2f, EntityGame.Viewport.Height - 10));
 

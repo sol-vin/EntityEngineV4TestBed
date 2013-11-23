@@ -41,81 +41,62 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
             _ptm = new ParticleTestManager(this);
 
-            _screeninfo = new Label(ch, "ScreenInfo");
-            _screeninfo.Body.Position = Vector2.One * 20;
-            _screeninfo.AttachToControlHandler();
 
-            _strengthText = new Label(ch, "StrengthText");
+            var page = new Page(this, "Page");
+            page.Show();
+
+            _screeninfo = new Label(page, "ScreenInfo", new Point(0,0));
+            _screeninfo.Body.Position = Vector2.One * 20;
+
+            _strengthText = new Label(page, "StrengthText", new Point(0, 1));
             _strengthText.Text = "Strength:";
             _strengthText.Body.Position = new Vector2(20, 50);
-            _strengthText.TabPosition = new Point(0, 1);
-            _strengthText.AttachToControlHandler();
 
-            _strengthDown = new LinkLabel(ch, "StrengthDown");
+            _strengthDown = new LinkLabel(page, "StrengthDown", new Point(1, 1));
             _strengthDown.Text = "<-";
-            _strengthDown.TabPosition = new Point(1, 1);
             _strengthDown.Body.Position = new Vector2(_strengthText.Body.BoundingRect.Right + 5, 50);
             _strengthDown.OnDown += control => _ptm.Spawner.Strength -= STRENGTHSTEP;
-            _strengthDown.AttachToControlHandler();
 
-            _strengthValue = new Label(ch, "StrengthValue");
+            _strengthValue = new Label(page, "StrengthValue", new Point(2, 1));
             _strengthValue.Text = _ptm.Spawner.Strength.ToString();
             _strengthValue.Body.Position = new Vector2(_strengthDown.Body.BoundingRect.Right + 5, 50);
-            _strengthValue.TabPosition = new Point(2, 1);
-            _strengthValue.AttachToControlHandler();
 
-            _strengthUp = new LinkLabel(ch, "StrengthUp");
+            _strengthUp = new LinkLabel(page, "StrengthUp", new Point(3,1));
             _strengthUp.Text = "->";
-            _strengthUp.TabPosition = new Point(3, 1);
             _strengthUp.Body.Position = new Vector2(_strengthValue.Body.BoundingRect.Right + 5, 50);
             _strengthUp.OnDown += control => _ptm.Spawner.Strength += STRENGTHSTEP;
-           _strengthUp.AttachToControlHandler();
 
-            _gravityText = new Label(ch, "GravityText");
+            _gravityText = new Label(page, "GravityText", new Point(0, 2));
             _gravityText.Text = "Gravity:";
             _gravityText.Body.Position = new Vector2(20, 80);
-            _gravityText.TabPosition = new Point(0, 2);
-            _gravityText.AttachToControlHandler();
 
-            _gravityXDown = new LinkLabel(ch, "GravityXDown");
+            _gravityXDown = new LinkLabel(page, "GravityXDown", new Point(1, 2));
             _gravityXDown.Text = "<-";
-            _gravityXDown.TabPosition = new Point(1, 2);
             _gravityXDown.Body.Position = new Vector2(_gravityText.Body.BoundingRect.Right + 5, 80);
             _gravityXDown.OnDown += control => _ptm.Spawner.Acceleration.X -= GRAVITYSTEP;
-            _gravityXDown.AttachToControlHandler();
 
-            _gravityXValue = new Label(ch, "GravityXValue");
+            _gravityXValue = new Label(page, "GravityXValue", new Point(2, 2));
             _gravityXValue.Text = "X:" + _ptm.Spawner.Acceleration.X.ToString();
-            _gravityXValue.TabPosition = new Point(2, 2);
             _gravityXValue.Body.Position = new Vector2(_gravityXDown.Body.BoundingRect.Right + 5, 80);
-            _gravityXValue.AttachToControlHandler();
 
-            _gravityXUp = new LinkLabel(ch, "GravityXUp");
+            _gravityXUp = new LinkLabel(page, "GravityXUp", new Point(3, 2));
             _gravityXUp.Text = "->";
-            _gravityXUp.TabPosition = new Point(3, 2);
             _gravityXUp.Body.Position = new Vector2(_gravityXValue.Body.BoundingRect.Right + 5, 80);
             _gravityXUp.OnDown += control => _ptm.Spawner.Acceleration.X += GRAVITYSTEP;
-            _gravityXUp.AttachToControlHandler();
 
-            _gravityYDown = new LinkLabel(ch, "GravityYDown");
+            _gravityYDown = new LinkLabel(page, "GravityYDown", new Point(1, 3));
             _gravityYDown.Text = "<-";
-            _gravityYDown.TabPosition = new Point(1, 3);
             _gravityYDown.Body.Position = new Vector2(_gravityText.Body.BoundingRect.Right + 5, 110);
             _gravityYDown.OnDown += control => _ptm.Spawner.Acceleration.Y -= GRAVITYSTEP;
-            _gravityYDown.AttachToControlHandler();
 
-            _gravityYValue = new Label(ch, "GravityYValue");
+            _gravityYValue = new Label(page, "GravityYValue", new Point(2, 3));
             _gravityYValue.Text = "Y:" + _ptm.Spawner.Acceleration.Y.ToString();
-            _gravityYValue.TabPosition = new Point(2, 3);
             _gravityYValue.Body.Position = new Vector2(_gravityYDown.Body.BoundingRect.Right + 5, 110);
-            _gravityYValue.AttachToControlHandler();
 
-            _gravityYUp = new LinkLabel(ch, "GravityYUp");
+            _gravityYUp = new LinkLabel(page, "GravityYUp", new Point(3, 3));
             _gravityYUp.Text = "->";
-            _gravityYUp.TabPosition = new Point(3, 3);
             _gravityYUp.Body.Position = new Vector2(_gravityYValue.Body.BoundingRect.Right + 5, 110);
             _gravityYUp.OnDown += control => _ptm.Spawner.Acceleration.Y += GRAVITYSTEP;
-            _gravityYUp.AttachToControlHandler();
         }
 
         public override void Update(GameTime gt)
@@ -219,14 +200,6 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     public override bool IsObject
                     {
                         get { return true; }
-                    }
-
-                    public override bool Recyclable
-                    {
-                        get
-                        {
-                            return true;
-                        }
                     }
 
                     public Body Body;

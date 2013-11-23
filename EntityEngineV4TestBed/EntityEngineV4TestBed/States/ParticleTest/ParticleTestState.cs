@@ -17,7 +17,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
     {
         public ParticleTestState() : base("ParticleTestState")
         {
-            EntityGame.DebugInfo.Render.Color = Color.White;
+            EntityGame.DebugInfo.Color = Color.White;
         }
 
         public override void Initialize()
@@ -88,7 +88,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             public override void Destroy(IComponent sender = null)
             {
                 base.Destroy(sender);
-                EntityGame.DebugInfo.Render.Color = Color.Black;
+                EntityGame.DebugInfo.Color = Color.Black;
             }
 
             private class ParticleEmitter : Spawner

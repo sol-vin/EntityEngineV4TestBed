@@ -7,16 +7,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.TestControl
 {
-    public class TestControlManager : Node
+    public class TestControlManager : Page
     {
-        public ControlHandler ControlHandler;
-
         private DoubleInput _upkey, _downkey, _leftkey, _rightkey, _selectkey;
 
-        public TestControlManager(State stateref, ControlHandler controlHandler)
-            : base(stateref, "TestControlManager")
+        public TestControlManager(Node parent)
+            : base(parent, "TestControlManager")
         {
-            ControlHandler = controlHandler;
             _upkey = new DoubleInput(this, "UpKey", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
             _downkey = new DoubleInput(this, "DownKey", Keys.Down, Buttons.DPadDown, PlayerIndex.One);
             _leftkey = new DoubleInput(this, "LeftKey", Keys.Left, Buttons.DPadLeft, PlayerIndex.One);
@@ -27,15 +24,15 @@ namespace EntityEngineV4TestBed.States.TestControl
         public override void Update(GameTime gt)
         {
             if (_upkey.Released())
-                ControlHandler.UpControl();
+                MoveFocusUp();
             else if (_downkey.Released())
-                ControlHandler.DownControl();
+                MoveFocusDown();
             else if (_leftkey.Released())
-                ControlHandler.LeftControl();
+                MoveFocusLeft();
             else if (_rightkey.Released())
-                ControlHandler.RightControl();
+                MoveFocusRight();
             if (_selectkey.Released())
-                ControlHandler.Release();
+                Release();
 
             base.Update(gt);
         }

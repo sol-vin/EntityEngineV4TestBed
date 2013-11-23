@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EntityEngineV4.Collision;
-using EntityEngineV4.Collision.Shapes;
+using EntityEngineV4.CollisionEngine;
+using EntityEngineV4.CollisionEngine.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Components.Rendering.Primitives;
@@ -33,8 +33,6 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
         {
             base.Initialize();
 
-            new CollisionHandler(this);
-
             _currentTest = new CircleTest1(this, "CircleTest1");
             _currentTest.Initialize();
 
@@ -42,11 +40,14 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             _nextTest = new DoubleInput(this, "NextTest", Keys.Right, Buttons.RightShoulder, PlayerIndex.One);
             _lastTest = new DoubleInput(this, "LastTest", Keys.Left, Buttons.LeftShoulder, PlayerIndex.One);
 
-            _titleLabel = new Label(this, "TitleLabel");
+            Page p =new Page(this, "Page");
+            p.Show();
+
+            _titleLabel = new Label(p, "TitleLabel", new Point(0,0));
             _titleLabel.Text = _currentTest.Title;
             _titleLabel.Body.Position = new Vector2(2,2);
 
-            _descriptionLabel =new Label(this, "DescriptionLabel");
+            _descriptionLabel =new Label(p, "DescriptionLabel", new Point(0,1));
             _descriptionLabel.Text = _currentTest.Description;
             _descriptionLabel.Body.Position = new Vector2(2, EntityGame.Viewport.Height - _descriptionLabel.Render.Bounds.Y - 2);
 
@@ -146,9 +147,9 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
                 Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
                 Collision = new Collision(this, "Collision");
-                Collision.GroupMask.AddMask(0);
-                Collision.PairMask.AddMask(0);
-                Collision.ResolutionGroupMask.AddMask(0);
+                Collision.Group.AddMask(0);
+                Collision.Pair.AddMask(0);
+                Collision.ResolutionGroup.AddMask(0);
                 Collision.LinkDependency(Collision.DEPENDENCY_PHYSICS, Physics);
             }
         }
@@ -431,8 +432,8 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             {
                 base.Initialize();
                 //Keep them from colliding with each other
-                Collision.GroupMask.RemoveMask(0);
-                Collision.GroupMask.AddMask(1);
+                Collision.Group.RemoveMask(0);
+                Collision.Group.AddMask(1);
 
                 //Gravity
                 Physics.Acceleration.Y = .1f;

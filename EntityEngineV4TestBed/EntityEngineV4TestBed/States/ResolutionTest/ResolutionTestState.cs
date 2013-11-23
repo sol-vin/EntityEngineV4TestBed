@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using EntityEngineV4.Collision;
-using EntityEngineV4.Collision.Shapes;
+using EntityEngineV4.CollisionEngine;
+using EntityEngineV4.CollisionEngine.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Data;
@@ -26,23 +26,22 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
         {
             base.Initialize();
 
-            new CollisionHandler(this);
-            ControlHandler ch = new ControlHandler(this);
+            new ControlHandler(this);
 
             _collided = new SortedSet<string>();
-
-            _collidedLabel = new Label(ch, "CollidedLabel");
+            Page p = new Page(this, "Page");
+            p.Show();
+            _collidedLabel = new Label(p, "CollidedLabel", new Point(0,0));
             _collidedLabel.Body.Position = new Vector2(10, 560);
-            ch.AddControl(_collidedLabel);
             for (int x = 0; x < 3; x++)
             {
                 ResolutionTestNode c = new ResolutionTestNode(this, "A" + x);
-                c.Collision.GroupMask.AddMask(0);
-                c.Collision.PairMask.AddMask(0);
-                c.Collision.PairMask.AddMask(2);
-                c.Collision.ResolutionGroupMask.AddMask(0);
-                c.Collision.ResolutionGroupMask.AddMask(1);
-                c.Collision.ResolutionGroupMask.AddMask(2);
+                c.Collision.Group.AddMask(0);
+                c.Collision.Pair.AddMask(0);
+                c.Collision.Pair.AddMask(2);
+                c.Collision.ResolutionGroup.AddMask(0);
+                c.Collision.ResolutionGroup.AddMask(1);
+                c.Collision.ResolutionGroup.AddMask(2);
                 c.Collision.CollideEvent +=
                     manifold =>
                         _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
@@ -52,10 +51,10 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             for (int x = 0; x < 3; x++)
             {
                 ResolutionTestNode c = new ResolutionTestNode(this, "B" + x);
-                c.Collision.GroupMask.AddMask(1);
-                c.Collision.PairMask.AddMask(0);
-                c.Collision.PairMask.AddMask(2);
-                c.Collision.ResolutionGroupMask.AddMask(0);
+                c.Collision.Group.AddMask(1);
+                c.Collision.Pair.AddMask(0);
+                c.Collision.Pair.AddMask(2);
+                c.Collision.ResolutionGroup.AddMask(0);
                 c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(510, 80 * x + 20);
@@ -66,11 +65,11 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             for (int x = 0; x < 3; x++)
             {
                 ResolutionTestNode c = new ResolutionTestNode(this, "C" + x);
-                c.Collision.GroupMask.AddMask(2);
-                c.Collision.PairMask.AddMask(0);
-                c.Collision.PairMask.AddMask(1);
-                c.Collision.ResolutionGroupMask.AddMask(0);
-                c.Collision.ResolutionGroupMask.AddMask(1);
+                c.Collision.Group.AddMask(2);
+                c.Collision.Pair.AddMask(0);
+                c.Collision.Pair.AddMask(1);
+                c.Collision.ResolutionGroup.AddMask(0);
+                c.Collision.ResolutionGroup.AddMask(1);
                 c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Collision.Immovable = true;
                 c.Collision.Debug = true;
