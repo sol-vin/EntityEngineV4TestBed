@@ -47,6 +47,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Collision.Debug = true;
                 c.Body.Position = new Vector2(30, 100 * x + 20);
+                c.Shape.Debug = true;
             }
             for (int x = 0; x < 3; x++)
             {
@@ -78,34 +79,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-            Bitmask mask = GetRoot().GetChild<AabbNode>("A0").Collision.CollisionDirection;
-            string text = "Collision Directions (A0): ";
-
-            if (mask.HasMatchingBit(CollisionHandler.LEFT))
-                text += "Left ";
-            if (mask.HasMatchingBit(CollisionHandler.RIGHT))
-                text += "Right ";
-            if (mask.HasMatchingBit(CollisionHandler.UP))
-                text += "Up ";
-            if (mask.HasMatchingBit(CollisionHandler.DOWN))
-                text += "Down ";
-
-            text += '\n';
-
-            mask = GetRoot().GetChild<AabbNode>("A1").Collision.CollisionDirection;
-            text += "Collision Directions (A1): ";
-
-            if (mask.HasMatchingBit(CollisionHandler.LEFT))
-                text += "Left ";
-            if (mask.HasMatchingBit(CollisionHandler.RIGHT))
-                text += "Right ";
-            if (mask.HasMatchingBit(CollisionHandler.UP))
-                text += "Up ";
-            if (mask.HasMatchingBit(CollisionHandler.DOWN))
-                text += "Down ";
-
-            text += '\n';
-
+            string text = "";
             text += "Colliding: ";
             CollisionHandler c = GetService<CollisionHandler>();
             IEnumerable<Collision> list = c.GetColliding();

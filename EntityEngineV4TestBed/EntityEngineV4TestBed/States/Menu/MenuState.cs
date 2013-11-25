@@ -96,7 +96,7 @@ namespace EntityEngineV4TestBed.States.Menu
             var l = new LinkLabel(_page, "MenuItem" + (_lasttabposition.X ^ _lasttabposition.Y), _lasttabposition);
 
             l.Text = label;
-            l.Body.Position = new Vector2(20, (_lasttabposition.Y * l.Body.Height + 5));
+            l.Body.Position = new Vector2(200, (_lasttabposition.Y * l.Body.Height + 100));
             l.Render.Layer = .2f;
             l.OnReleased += control => changeStateDelegate();
             l.OnReleased += control => Destroy(this);

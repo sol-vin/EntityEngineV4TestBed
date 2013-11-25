@@ -60,6 +60,10 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             _tests.Add(new CircleTest6(this, "CirlceTest6"));
             _tests.Add(new CircleTest7(this, "CirlceTest7"));
             _tests.Add(new CircleTest8(this, "CirlceTest8"));
+            _tests.Add(new AABBTest1(this, "AABBTest1"));
+            _tests.Add(new AABBTest2(this, "AABBTest2"));
+            _tests.Add(new AABBTest3(this, "AABBTest3"));
+            _tests.Add(new AABBTest4(this, "AABBTest4"));
 
         }
 
@@ -197,6 +201,40 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
                 Body.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
                 Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Circle);
             }
+        }
+    }
+
+    public class CircleTestMaker : Test
+    {
+        public CircleTester A, B;
+        public Page ControlContainer;
+
+        public CircleTestMaker(Node parent, string name)
+            : base(parent, name)
+        {
+            Title = "Circle Test Maker";
+            Description = @"Use the controls to change the test";
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            ControlContainer = new Page(this, "ControlContainer");
+            ControlContainer.Show();
+
+            A = new CircleTester(this, "A", 30);
+            A.Render.Color = Color.Red;
+            A.Physics.Restitution = 1.5f;
+            A.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - A.Body.Width / 2, 20);
+            A.Physics.Acceleration.Y = .1f;
+
+            B = new CircleTester(this, "B", 30);
+            B.Render.Color = Color.Blue;
+            B.Physics.Restitution = 1.5f;
+            B.Collision.Immovable = true;
+            B.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - B.Body.Width / 2,
+                EntityGame.Viewport.Height - 20 - B.Body.Height);
         }
     }
 
@@ -433,7 +471,6 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
                 base.Initialize();
                 //Keep them from colliding with each other
                 Collision.Group.RemoveMask(0);
-                Collision.Group.AddMask(1);
 
                 //Gravity
                 Physics.Acceleration.Y = .1f;
@@ -459,59 +496,141 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             A = new CircleTester(this, "A", 30);
             A.Render.Color = Color.Red;
             A.Physics.Restitution = 1.5f;
-            A.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - A.Body.Width / 2, 20);
+            A.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - A.Body.Width/2, 20);
             A.Physics.Acceleration.Y = .1f;
 
             C = new CircleTester(this, "C", 30);
             C.Render.Color = Color.Red;
             C.Physics.Restitution = 1.5f;
-            C.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - A.Body.Width / 2, 200);
+            C.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - A.Body.Width/2, 200);
             C.Physics.Acceleration.Y = .1f;
 
             B = new CircleTester(this, "B", 30);
             B.Render.Color = Color.Blue;
             B.Physics.Restitution = 1.5f;
             B.Collision.Immovable = true;
-            B.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - B.Body.Width / 2,
+            B.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - B.Body.Width/2,
                 EntityGame.Viewport.Height - 20 - B.Body.Height);
             //B.Physics.Velocity.X = -1;
         }
+
     }
 
-    public class CircleTest9 : Test
+    public class AABBTest1 : Test
     {
-        public CircleTester A, B, C;
+        public AABBTester A, B;
 
-        public CircleTest9(Node parent, string name)
+        public AABBTest1(Node parent, string name)
             : base(parent, name)
         {
-            Title = "Circle Test 8";
-            Description = @"Collision on Y axis, B is immovable, A has gravity.";
+            Title = "AABB Test 1";
+            Description = @"Collision on X axis, perfect alignment, velocity.";
         }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            A = new CircleTester(this, "A", 30);
+            A = new AABBTester(this, "A");
             A.Render.Color = Color.Red;
             A.Physics.Restitution = 1.5f;
-            A.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - A.Body.Width / 2, 20);
-            A.Physics.Acceleration.Y = .1f;
+            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height/2f - A.Body.Height/2f);
+            A.Physics.Velocity.X = 1;
 
-            C = new CircleTester(this, "C", 30);
-            C.Render.Color = Color.Red;
-            C.Physics.Restitution = 1.5f;
-            C.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - A.Body.Width / 2, 200);
-            C.Physics.Acceleration.Y = .1f;
-
-            B = new CircleTester(this, "B", 30);
+            B = new AABBTester(this, "B");
             B.Render.Color = Color.Blue;
             B.Physics.Restitution = 1.5f;
+            B.Body.Position = new Vector2(EntityGame.Viewport.Width - 20 - B.Body.Width, EntityGame.Viewport.Height / 2f - B.Body.Height / 2f);
+            B.Physics.Velocity.X = -1;
+        }
+    }
+
+    public class AABBTest2 : Test
+    {
+        public AABBTester A, B;
+
+        public AABBTest2(Node parent, string name)
+            : base(parent, name)
+        {
+            Title = "AABB Test 2";
+            Description = @"Collision on X axis, imperfect alignment, velocity.";
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            A = new AABBTester(this, "A");
+            A.Render.Color = Color.Red;
+            A.Physics.Restitution = 1.5f;
+            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height / 2f - A.Body.Height / 2f - 10);
+            A.Physics.Velocity.X = 1;
+
+            B = new AABBTester(this, "B");
+            B.Render.Color = Color.Blue;
+            B.Physics.Restitution = 1.5f;
+            B.Body.Position = new Vector2(EntityGame.Viewport.Width - 20 - B.Body.Width, EntityGame.Viewport.Height / 2f - B.Body.Height / 2f);
+            B.Physics.Velocity.X = -1;
+        }
+    }
+
+    public class AABBTest3 : Test
+    {
+        public AABBTester A, B;
+
+        public AABBTest3(Node parent, string name)
+            : base(parent, name)
+        {
+            Title = "AABB Test 3";
+            Description = @"Collision on X axis, perfect alignment, acceleration.";
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            A = new AABBTester(this, "A");
+            A.Render.Color = Color.Red;
+            A.Physics.Restitution = 0.5f;
+            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height/2f - A.Body.Height/2f);
+            A.Physics.Acceleration.X = .05f;
+
+            B = new AABBTester(this, "B");
+            B.Render.Color = Color.Blue;
+            B.Physics.Restitution = 0.5f;
+            B.Body.Position = new Vector2(EntityGame.Viewport.Width - 20 - B.Body.Width,
+                EntityGame.Viewport.Height/2f - B.Body.Height/2f);
+            B.Physics.Acceleration.X = -.05f;
+        }
+    }
+    public class AABBTest4 : Test
+    {
+        public AABBTester A, B;
+
+        public AABBTest4(Node parent, string name)
+            : base(parent, name)
+        {
+            Title = "AABB Test 4";
+            Description = @"Collision on Y axis, perfect alignment, gravity.";
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            A = new AABBTester(this, "A");
+            A.Render.Color = Color.Red;
+            A.Physics.Restitution = 0.5f;
+            A.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - A.Body.Width / 2f,
+                20);
+            A.Physics.Acceleration.Y = .05f;
+
+            B = new AABBTester(this, "B");
+            B.Render.Color = Color.Blue;
+            B.Physics.Restitution = 0.5f;
+            B.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - B.Body.Width / 2f,
+                EntityGame.Viewport.Height  - 20 - B.Body.Height);
             B.Collision.Immovable = true;
-            B.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - B.Body.Width / 2,
-                EntityGame.Viewport.Height - 20 - B.Body.Height);
-            //B.Physics.Velocity.X = -1;
         }
     }
 }
