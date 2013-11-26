@@ -6,7 +6,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 {
     public class SimpleGun : Gun
     {
-        public const float SPEED = 5f;
+        public const float SPEED = 200f;
 
         public SimpleGun(Node parent, string name) : base(parent, name)
         {

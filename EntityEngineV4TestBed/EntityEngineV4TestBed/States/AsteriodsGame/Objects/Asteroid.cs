@@ -27,7 +27,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Body.Y = RandomHelper.GetFloat() * EntityGame.Viewport.Bottom;
             Body.Angle = MathHelper.TwoPi*RandomHelper.GetFloat();
 
-            Physics.Thrust(RandomHelper.GetFloat(.1f, 1f));
+            Physics.Thrust(RandomHelper.GetFloat(30, 60));
             Physics.Restitution = 1.5f;
 
             Render = new ImageRender(this, "Render");

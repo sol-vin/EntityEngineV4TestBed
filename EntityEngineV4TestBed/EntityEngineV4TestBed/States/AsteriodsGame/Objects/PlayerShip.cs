@@ -89,8 +89,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             UpdateInput();
         }
 
-        private const float _FLYSPEED = 0.3f;
-        private const float _TURNSPEED = 0.01f;
+        private const float _FLYSPEED = 30;
+        private const float _TURNSPEED = 1f;
         private void UpdateInput()
         {
             if(UpButton.Down()) Physics.Thrust(_FLYSPEED);

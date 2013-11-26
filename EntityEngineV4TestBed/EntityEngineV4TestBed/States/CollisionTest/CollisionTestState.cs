@@ -46,7 +46,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.Collision.Pair.AddMask(0);
                 c.Collision.CollideEvent += manifold => _collided.Add(manifold.A != c.Collision ? manifold.A.Parent.Name : manifold.B.Parent.Name);
                 c.Collision.Debug = true;
-                c.Body.Position = new Vector2(30, 100 * x + 20);
+                c.Body.Position = new Vector2(0, 100 * x + 20);
                 c.Shape.Debug = true;
             }
             for (int x = 0; x < 3; x++)
