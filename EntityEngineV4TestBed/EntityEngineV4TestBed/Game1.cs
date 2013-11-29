@@ -13,17 +13,12 @@ namespace EntityEngineV4TestBed
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Game
+    public class Game1 : EntityGame
     {
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-
         private MenuState _menuState;
 
-        public Game1()
+        public Game1(Rectangle viewPort) : base(viewPort)
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
         }
 
         /// <summary>
@@ -38,19 +33,8 @@ namespace EntityEngineV4TestBed
 
             this.IsMouseVisible = false;
 
-            EntityGame.MakeGame(this, graphics, spriteBatch, new Rectangle(0, 0, 600, 600));
             _menuState = new MenuState();
             _menuState.Show();
-        }
-
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
-        {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
         /// <summary>
@@ -63,23 +47,9 @@ namespace EntityEngineV4TestBed
             //Emergency kill key
             if (Keyboard.GetState().IsKeyDown(Keys.Pause))
             {
-                EntityGame.Exit();
+                Exit();
             }
-            EntityGame.Self.Update(gameTime);
             base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
-        {
-            graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            EntityGame.Self.Draw();
-
-            base.Draw(gameTime);
         }
     }
 }

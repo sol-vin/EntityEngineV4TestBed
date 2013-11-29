@@ -1,3 +1,6 @@
+using EntityEngineV4.Engine;
+using Microsoft.Xna.Framework;
+
 namespace EntityEngineV4TestBed
 {
 #if WINDOWS || XBOX
@@ -9,7 +12,7 @@ namespace EntityEngineV4TestBed
         /// </summary>
         private static void Main(string[] args)
         {
-            using (Game1 game = new Game1())
+            using (Game game = new Game1(new Rectangle(0,0, 600, 600)))
             {
                 game.Run();
             }

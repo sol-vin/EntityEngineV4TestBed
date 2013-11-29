@@ -56,7 +56,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
             //Cells = new Tilemap(this, "Cells", EntityGame.Game.Content.Load<Texture2D>(@"GameOfLife\tiles"), new Point(30,30),new Point(16,16));
 
-            Cells = new Tilemap(this, "Cells", EntityGame.Game.Content.Load<Texture2D>(@"GameOfLife\tilesSmall"),
+            Cells = new Tilemap(this, "Cells", EntityGame.Self.Content.Load<Texture2D>(@"GameOfLife\tilesSmall"),
                                 new Point(30, 30), new Point(1, 1));
             Cells.Render.Scale = new Vector2(16, 16);
             Cells.SetAllTiles(new Tile(DEAD) { Color = Color.Red.ToRGBColor() });

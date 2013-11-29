@@ -24,7 +24,7 @@ namespace EntityEngineV4TestBed.States.TilemapTest
         {
             base.Initialize();
 
-            _tm = new Tilemap(this, "Tilemap", EntityGame.Game.Content.Load<Texture2D>(@"TilemapTest/tiles"), MakeTiles(30, 30), new Point(16, 16));
+            _tm = new Tilemap(this, "Tilemap", EntityGame.Self.Content.Load<Texture2D>(@"TilemapTest/tiles"), MakeTiles(30, 30), new Point(16, 16));
             _tm.Render.Scale = new Vector2(1.5f, 1.5f);
             _tm.Render.Layer = .5f;
 

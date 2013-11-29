@@ -161,7 +161,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
                     HSVColor color = Render.Color.ToHSVColor();
                     color.Action = ColorOutOfBoundsAction.WrapAround;
-                    color.H += RandomHelper.GetFloat(-.1f, .1f);
+                    color.H += RandomHelper.GetFloat(-.05f, .05f);
                     Render.Color = color.ToColor();
                 }
             }
