@@ -23,6 +23,7 @@ Content\SuperTownDefence\game\sounds\explode.xnb
 Content\SuperTownDefence\game\sounds\firebomb.xnb
 Content\SuperTownDefence\game\sounds\soldierattack.xnb
 Content\SuperTownDefence\game\sounds\soldierhit.xnb
+Content\CollisionDebugger\collision.xnb
 Content\AsteroidsGame\config.xml
 Content\AsteroidsGame\assets.xml
 States\SourceRectangleTest\standing.xml

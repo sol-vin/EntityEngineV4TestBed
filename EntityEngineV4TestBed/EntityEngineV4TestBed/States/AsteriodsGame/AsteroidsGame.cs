@@ -14,6 +14,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
         private PlayerShip _player;
         private Label _statusLabel;
         private bool _playerDied, _asteroidsDied;
+
         public AsteroidsGame() : base("AsteroidsGame")
         {
         }
@@ -30,7 +31,18 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
             EntityGame.DebugInfo.Color = Color.White;
             _player = new PlayerShip(this, "PlayerShip");
 
-            SpawnAsteroids(5);
+            //SpawnAsteroids(5);
+
+            //TEST ASTEROIDS
+            var a = new Asteroid(this, "Asteroid1");
+            a.Body.Position = new Vector2(-10, 100);
+            a.Physics.AddForce(-a.Physics.Force);
+
+            var b = new Asteroid(this, "Asteroid2");
+            b.Body.Position =new Vector2(100, 100);
+            b.Physics.AddForce(-b.Physics.Force);
+            b.Physics.AddForce(30, 0);
+
             Page p = new Page(this, "Page");
             p.Show();
 

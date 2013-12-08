@@ -33,7 +33,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         {
             base.Update(gt);
 
-            UpdateOutOfBounds();
+            //UpdateOutOfBounds();
         }
 
         private void UpdateOutOfBounds()

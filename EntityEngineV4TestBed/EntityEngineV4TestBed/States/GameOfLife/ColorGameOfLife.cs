@@ -122,7 +122,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             hsv.V = 1;
             RGBColor rgb = hsv.ToRGBColor();
 
-            Button button = new Button(_page, "button" + _lastX.ToString(), _lastTab, new Vector2(_lastX, 539), new Vector2(20,20), rgb);
+            Button button = new Button(_page, "ColorButton" + _lastX.ToString(), _lastTab, new Vector2(_lastX, 539), new Vector2(20,20), rgb);
             button.OnReleased += control => _currentColor = rgb;
             button.OnDown += c => button.RGBColor = Color.White.ToRGBColor();
             button.FocusLost += c => button.RGBColor = rgb;

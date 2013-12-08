@@ -95,15 +95,11 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                 p.Body.Bounds = new Vector2(5, 5);
                 p.Body.Position = _body.Position;
 
-                p.Body.Angle = (float)_rand.NextDouble() * MathHelper.TwoPi;
+                p.Body.Angle = RandomHelper.GetFloat() * MathHelper.TwoPi;
 
-                float thrust = (float)_rand.NextDouble() * 4f;
-                while (Math.Abs(thrust) < .00001f)
-                {
-                    thrust = (float)_rand.NextDouble() * 4f;
-                }
+                float thrust = RandomHelper.GetFloat() * 10f;
                 p.Physics.Thrust(thrust);
-                p.Physics.Acceleration = new Vector2(0, .1f);
+                p.Physics.Acceleration = new Vector2(0, 10f);
                 //p.RectRender.Scale = new Vector2(0);
                 p.RectRender.Color = p.Name == "RecycledExplode" ? Color.Red : Color.Blue;
                 return p;
@@ -174,12 +170,12 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                         p.Body.Bounds = new Vector2(2, 2);
                         p.Body.Position = GetDependency<Body>(DEPENDENCY_BODY).Position;
 
-                        int sign = _rand.Next(0, 2) == 0 ? -1 : 1;
+                        int sign = RandomHelper.GetSign();
                         p.Body.Angle = (float)_rand.NextDouble() * MathHelper.PiOver2 * sign;
 
-                        float thrust = ((float)_rand.NextDouble() + 1f) * (GetDependency<Physics>(DEPENDENCY_PHYSICS).Velocity.Y / 4);
+                        float thrust = ((float)_rand.NextDouble() + 1 ) * (GetDependency<Physics>(DEPENDENCY_PHYSICS).Velocity.Y / 4);
                         p.Physics.Thrust(thrust);
-                        p.Physics.Acceleration = new Vector2(0, .1f);
+                        p.Physics.Acceleration = new Vector2(0, 10f);
                         //p.RectRender.Scale = new Vector2(0);
                         p.RectRender.Color = p.Name == "RecycledGib" ? Color.Red : Color.Blue;
                         return p;
