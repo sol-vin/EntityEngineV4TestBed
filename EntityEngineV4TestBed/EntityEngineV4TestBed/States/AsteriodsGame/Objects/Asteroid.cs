@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EntityEngineV4.CollisionEngine;
+﻿using EntityEngineV4.CollisionEngine;
 using EntityEngineV4.CollisionEngine.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
 using EntityEngineV4.Engine;
 using EntityEngineV4.Engine.Services;
-using EntityEngineV4.GUI;
 using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,11 +17,12 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public Health Health;
         private AsteroidGhoster _ghoster;
 
-        public Asteroid(Node parent, string name) : base(parent, name)
+        public Asteroid(Node parent, string name)
+            : base(parent, name)
         {
             Body.X = RandomHelper.GetFloat() * EntityGame.Viewport.Right;
             Body.Y = RandomHelper.GetFloat() * EntityGame.Viewport.Bottom;
-            Body.Angle = MathHelper.TwoPi*RandomHelper.GetFloat();
+            Body.Angle = MathHelper.TwoPi * RandomHelper.GetFloat();
 
             Physics.Thrust(RandomHelper.GetFloat(30, 60));
             Physics.Restitution = 1.5f;
@@ -45,11 +41,11 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             Health = new Health(this, "Health", 3);
             Health.DiedEvent += entity => Destroy(this);
 
-            Shape = new Circle(this, "Circle", Body.Width/2);
+            Shape = new Circle(this, "Circle", Body.Width / 2);
             Shape.Offset = new Vector2(Body.Width / 2, Body.Height / 2);
             Shape.Debug = true;
             Shape.LinkDependency(Circle.DEPENDENCY_BODY, Body);
-                        
+
             Collision.Pair.AddMask(0);
             Collision.Pair.AddMask(1);
             Collision.Group.AddMask(2);
@@ -64,7 +60,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             _ghoster.LinkDependency(AsteroidGhoster.DEPENDENCY_RENDER, Render);
             _ghoster.LinkDependency(AsteroidGhoster.DEPENDENCY_COLLISION, Collision);
             _ghoster.Initialize();
-            _ghoster.SetOnCollide(OnCollide);    
+            _ghoster.SetOnCollide(OnCollide);
         }
 
         public void OnCollide(Manifold m)
@@ -80,7 +76,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             {
                 //TODO: Asteroids do not resolve with ghosts.
                 //Oncollide was called from a ghost, find which one isn't the ghost
-                otherNode = m.A.Parent.GetType() == typeof (AsteroidGhost) ? m.A : m.B;
+                otherNode = m.A.Parent.GetType() == typeof(AsteroidGhost) ? m.A : m.B;
                 Asteroid a = (otherNode.Parent as AsteroidGhost).GetOriginal();
                 //Use a special resolver to resove the collision
                 Manifold specialresolver = new Manifold(Collision, a.Collision);
@@ -98,7 +94,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         {
             private AsteroidGhost _xGhost, _yGhost, _cornerGhost;
 
-            public AsteroidGhoster(Node parent, string name) : base(parent, name)
+            public AsteroidGhoster(Node parent, string name)
+                : base(parent, name)
             {
             }
 
@@ -175,13 +172,13 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
                         //Orient XGhost
                         if (GetDependency<Body>(DEPENDENCY_BODY).Left < 0)
-                            //If the left side of the real asteroids out of bounds to the left
+                        //If the left side of the real asteroids out of bounds to the left
                         {
                             _xGhost.Body.Position.X = GetDependency<Body>(DEPENDENCY_BODY).X + EntityGame.Viewport.Width;
                             //Move ghost to opposite side.
                         }
                         else if (GetDependency<Body>(DEPENDENCY_BODY).Right > EntityGame.Viewport.Width)
-                            //If the right side is out of bounds to the right
+                        //If the right side is out of bounds to the right
                         {
                             _xGhost.Body.Position.X = GetDependency<Body>(DEPENDENCY_BODY).X - EntityGame.Viewport.Width;
                             //Move ghost to opposite side
@@ -189,13 +186,13 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
                         //Orient YGhost
                         if (GetDependency<Body>(DEPENDENCY_BODY).Top < 0)
-                            //If the top side of the real asteroids out of bounds upwards
+                        //If the top side of the real asteroids out of bounds upwards
                         {
                             _yGhost.Body.Position.Y = GetDependency<Body>(DEPENDENCY_BODY).Y
                                                       + EntityGame.Viewport.Height; //Move ghost to opposite side.
                         }
                         else if (GetDependency<Body>(DEPENDENCY_BODY).Bottom > EntityGame.Viewport.Height)
-                            //If the bottom is out of bounds downwards
+                        //If the bottom is out of bounds downwards
                         {
                             _yGhost.Body.Position.Y = GetDependency<Body>(DEPENDENCY_BODY).Y -
                                                       EntityGame.Viewport.Height; //Move ghost to opposite side
@@ -206,8 +203,9 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
             public Asteroid GetOriginal()
             {
-                return (Asteroid) GetDependency<Body>(DEPENDENCY_BODY).Parent;
+                return (Asteroid)GetDependency<Body>(DEPENDENCY_BODY).Parent;
             }
+
             public void SetOnCollide(Collision.CollisionEventHandler method)
             {
                 _xGhost.Collision.CollideEvent += method;
@@ -217,6 +215,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
             //Dependencies
             public const int DEPENDENCY_BODY = 0;
+
             public const int DEPENDENCY_RENDER = 1;
             public const int DEPENDENCY_COLLISION = 2;
 
@@ -228,7 +227,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
                 AddLinkType(DEPENDENCY_COLLISION, typeof(Collision));
             }
         }
-        
+
         private class AsteroidGhost : Node
         {
             public Body Body;
@@ -236,7 +235,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
             public ImageRender Render;
             public Collision Collision;
 
-            public AsteroidGhost(Node parent, string name) : base(parent, name)
+            public AsteroidGhost(Node parent, string name)
+                : base(parent, name)
             {
                 Body = new Body(this, "Body");
 
@@ -269,7 +269,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
             public Asteroid GetOriginal()
             {
-                return (Asteroid) Parent.Parent;
+                return (Asteroid)Parent.Parent;
             }
         }
     }

@@ -13,7 +13,7 @@ namespace EntityEngineV4TestBed.States.SourceRectangleTest
         public RenderTestState()
             : base("RenderTestState")
         {
-           
+
         }
 
         public override void Initialize()

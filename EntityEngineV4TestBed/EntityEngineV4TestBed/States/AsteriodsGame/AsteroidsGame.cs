@@ -15,7 +15,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
         private Label _statusLabel;
         private bool _playerDied, _asteroidsDied;
 
-        public AsteroidsGame() : base("AsteroidsGame")
+        public AsteroidsGame()
+            : base("AsteroidsGame")
         {
         }
 
@@ -39,14 +40,14 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
             a.Physics.AddForce(-a.Physics.Force);
 
             var b = new Asteroid(this, "Asteroid2");
-            b.Body.Position =new Vector2(100, 100);
+            b.Body.Position = new Vector2(100, 100);
             b.Physics.AddForce(-b.Physics.Force);
             b.Physics.AddForce(30, 0);
 
             Page p = new Page(this, "Page");
             p.Show();
 
-            _statusLabel = new Label(p, "StatusLabel", new Point(0,0));
+            _statusLabel = new Label(p, "StatusLabel", new Point(0, 0));
             _statusLabel.Color = Color.White;
             _statusLabel.Visible = false;
         }
@@ -54,7 +55,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-            if(!_playerDied && !_asteroidsDied)
+            if (!_playerDied && !_asteroidsDied)
             {
                 _playerDied = this.Count(c => c.GetType() == typeof(PlayerShip)) == 0;
                 _asteroidsDied = this.Count(c => c.GetType() == typeof(Asteroid)) == 0;
@@ -64,7 +65,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
             {
                 _statusLabel.Visible = true;
                 _statusLabel.Text = "Good job dipshit.";
-                _statusLabel.Body.X = EntityGame.Viewport.Width/2f - _statusLabel.Body.Width/2f;
+                _statusLabel.Body.X = EntityGame.Viewport.Width / 2f - _statusLabel.Body.Width / 2f;
                 _statusLabel.Body.Y = 100;
 
             }

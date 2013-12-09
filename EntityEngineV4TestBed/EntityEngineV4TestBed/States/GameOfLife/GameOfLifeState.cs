@@ -34,7 +34,8 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
         private GameOfLifeManager _manager;
 
-        public GameOfLifeState() : base ("GameOfLifeState")
+        public GameOfLifeState()
+            : base("GameOfLifeState")
         {
         }
 
@@ -51,10 +52,10 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
             Cells = new Tilemap(this, "Cells", EntityGame.Self.Content.Load<Texture2D>(@"GameOfLife\tilesSmall"),
                                 new Point(30, 30), new Point(1, 1));
-            Cells.Render.Scale = new Vector2(16,16);
-            Cells.SetAllTiles(new Tile(DEAD) {Color = Color.Red.ToRGBColor()});
+            Cells.Render.Scale = new Vector2(16, 16);
+            Cells.SetAllTiles(new Tile(DEAD) { Color = Color.Red.ToRGBColor() });
             //Position Tilemap to center
-            Cells.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - Cells.Width/2f * Cells.Render.Scale.X, 10);
+            Cells.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - Cells.Width / 2f * Cells.Render.Scale.X, 10);
 
             Cells.TileSelected += OnTileSelected;
             _tiles = Cells.CloneTiles();
@@ -63,7 +64,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             Page page = new Page(this, "Page");
             page.Show();
 
-            LinkLabel startLink = new LinkLabel(page, "StartLink", new Point(0,0));
+            LinkLabel startLink = new LinkLabel(page, "StartLink", new Point(0, 0));
             startLink.Body.Position = new Vector2(Cells.Body.X, 500);
             startLink.OnFocusGain();
             startLink.Text = "Start";
@@ -97,13 +98,12 @@ namespace EntityEngineV4TestBed.States.GameOfLife
         public void ResetCells()
         {
             _manager.Stop();
-            Cells.Render.SetAllTiles(new Tile(DEAD) {Color = Color.Red.ToRGBColor()});
+            Cells.Render.SetAllTiles(new Tile(DEAD) { Color = Color.Red.ToRGBColor() });
         }
-
 
         private void OnTileSelected(Tile tile)
         {
-            if(!_manager.RunningSimulation)
+            if (!_manager.RunningSimulation)
                 tile.Index = tile.Index != DEAD ? DEAD : ALIVE;
         }
 
@@ -138,7 +138,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
         public int GetNeighborsCount(int x, int y)
         {
             int answer = 0;
-            if(x==29 || y == 29)
+            if (x == 29 || y == 29)
                 Console.WriteLine("YEAH");
             foreach (var neighbor in _neighbors)
             {
@@ -150,7 +150,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                     //Wrap the edges around
                     if (testx < 0)
                     {
-                        testx += _tiles.GetUpperBound(0)+1;
+                        testx += _tiles.GetUpperBound(0) + 1;
                     }
 
                     if (testy < 0)
@@ -168,12 +168,12 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                     //Wrap the edges around
                     if (testx > _tiles.GetUpperBound(0))
                     {
-                        testx -= _tiles.GetUpperBound(0)+1;
+                        testx -= _tiles.GetUpperBound(0) + 1;
                     }
 
                     if (testy > _tiles.GetUpperBound(1))
                     {
-                        testy -= _tiles.GetUpperBound(1)+1;
+                        testy -= _tiles.GetUpperBound(1) + 1;
                     }
                 }
                 else if ((testx > _tiles.GetUpperBound(0) || testy > _tiles.GetUpperBound(1)) && !WrapEdges)
@@ -183,9 +183,8 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
                 if (_tiles[testx, testy].Index == ALIVE)
                 {
-                    answer++; 
+                    answer++;
                 }
-
             }
 
             return answer;
@@ -196,7 +195,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             //Copy the tiles so we can change the Cell's tiles without screwing up the neighbor detection
             _tiles = Cells.CloneTiles();
 
-            for(int x = 0; x <= _tiles.GetUpperBound(0); x++)
+            for (int x = 0; x <= _tiles.GetUpperBound(0); x++)
             {
                 for (int y = 0; y <= _tiles.GetUpperBound(0); y++)
                 {
@@ -209,7 +208,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                         if (neighborcount < 2) Cells.SetTile(x, y, --index);
                         else if (neighborcount > 3) Cells.SetTile(x, y, --index);
                     }
-                    //Check to see if the cell is not alive or dead, 
+                    //Check to see if the cell is not alive or dead,
                     //subtract its index if not to create the
                     //death map
                     else
@@ -218,7 +217,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                         {
                             index--;
                             if (index < DEAD) index = DEAD;
-                            Cells.SetTile(x,y, index);
+                            Cells.SetTile(x, y, index);
                         }
 
                         //Turn it on if it's alive
@@ -240,7 +239,8 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
             public bool RunningSimulation { get { return UpdateTimer.Alive; } }
 
-            public GameOfLifeManager(Node parent, string name) : base(parent, name)
+            public GameOfLifeManager(Node parent, string name)
+                : base(parent, name)
             {
                 UpdateTimer = new Timer(this, "UpdateTimer");
                 UpdateTimer.Milliseconds = 250;

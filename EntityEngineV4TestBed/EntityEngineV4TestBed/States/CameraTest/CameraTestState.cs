@@ -16,7 +16,7 @@ namespace EntityEngineV4TestBed.States.CameraTest
         public CameraTestState()
             : base("CameraState")
         {
-            
+
         }
 
         public override void Initialize()

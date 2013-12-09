@@ -80,7 +80,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             stopTextButton.OnReleased += control => _manager.Stop();
             stopTextButton.MakeDefault();
 
-            TextButton resetTextButton = new TextButton(_page, "ResetLink",  new Point(0, 2),new Vector2(Cells.Body.X, stopTextButton.Body.Bottom), Color.White.ToRGBColor());
+            TextButton resetTextButton = new TextButton(_page, "ResetLink", new Point(0, 2), new Vector2(Cells.Body.X, stopTextButton.Body.Bottom), Color.White.ToRGBColor());
             resetTextButton.Text = "Reset";
             resetTextButton.OnReleased += control => ResetCells();
             resetTextButton.MakeDefault();
@@ -108,9 +108,8 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             MakeNextColorButton(Color.MediumPurple.ToRGBColor());
         }
 
-
         private int _lastX = 160;
-        private Point _lastTab = new Point(1,1);
+        private Point _lastTab = new Point(1, 1);
         private Page _page;
 
         public void MakeNextColorButton(RGBColor color)
@@ -122,7 +121,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             hsv.V = 1;
             RGBColor rgb = hsv.ToRGBColor();
 
-            Button button = new Button(_page, "ColorButton" + _lastX.ToString(), _lastTab, new Vector2(_lastX, 539), new Vector2(20,20), rgb);
+            Button button = new Button(_page, "ColorButton" + _lastX.ToString(), _lastTab, new Vector2(_lastX, 539), new Vector2(20, 20), rgb);
             button.OnReleased += control => _currentColor = rgb;
             button.OnDown += c => button.RGBColor = Color.White.ToRGBColor();
             button.FocusLost += c => button.RGBColor = rgb;
@@ -137,7 +136,6 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             _manager.Stop();
             Cells.Render.SetAllTiles(new Tile(DEAD) { Color = Color.White.ToRGBColor() });
         }
-
 
         private void OnTileSelected(Tile tile)
         {
@@ -227,7 +225,6 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                 {
                     answer++;
                 }
-
             }
 
             return answer;
@@ -282,7 +279,6 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                 {
                     answer.Add(_tiles[testx, testy].Color);
                 }
-
             }
 
             return answer;
@@ -310,7 +306,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                         if (neighborcount < 2) Cells.SetTile(x, y, --index);
                         else if (neighborcount > 3) Cells.SetTile(x, y, --index);
                     }
-                    //Check to see if the cell is not alive or dead, 
+                    //Check to see if the cell is not alive or dead,
                     //subtract its index if not to create the
                     //death map
                     else
@@ -325,12 +321,11 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                         //Turn it on if it's alive
                         if (neighborcount == 3)
                         {
-                            Cells.SetTile(x, y, new Tile(ALIVE) { Color = new RGBColor(0,0,0,1)});
+                            Cells.SetTile(x, y, new Tile(ALIVE) { Color = new RGBColor(0, 0, 0, 1) });
                         }
-                            
                     }
 
-                    if(Cells.GetTile(x,y).Index == ALIVE)
+                    if (Cells.GetTile(x, y).Index == ALIVE)
                     {
                         //Now we get neighbor colors, mix them by average hue, output a new color.
                         colorsToMix = colorsToMix.Concat(GetNeighborColors(x, y)).ToList();
@@ -348,14 +343,14 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                         }
 
                         //Check if the tile was dead, and now is alive
-                        if (Cells.GetTile(x, y).Index == ALIVE && _tiles[x,y].Index != ALIVE)
+                        if (Cells.GetTile(x, y).Index == ALIVE && _tiles[x, y].Index != ALIVE)
                         {
                             foreach (var color in colorsToMix)
                             {
                                 float colorhue = color.ToHSVColor().H;
 
                                 newhue = colorhue - minhue;
-                                //now that we have that, we will subtract each color from our min, average it, and get our new color. 
+                                //now that we have that, we will subtract each color from our min, average it, and get our new color.
 
                                 newhue /= colorsToMix.Count();
                                 newhue += minhue;
@@ -364,7 +359,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                             newtile.Color = ColorMath.HSVtoRGB(new HSVColor(newhue, 1, 1, 1, ColorOutOfBoundsAction.WrapAround));
                             Cells.SetTile(x, y, newtile);
                         }
-                        else if(Cells.GetTile(x,y).Index == ALIVE)
+                        else if (Cells.GetTile(x, y).Index == ALIVE)
                         {
                             //Get our tile's color
                             HSVColor tilecolor = ColorMath.RGBtoHSV(_tiles[x, y].Color);
@@ -380,7 +375,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                             }
 
                             //TODO: Update color blending with Cie-LCH, for which you need to implment XYZ and Cie-Lab
-                            //now that we have that, we will subtract each color from our min, average it, and get our new color. 
+                            //now that we have that, we will subtract each color from our min, average it, and get our new color.
 
                             newhue /= colorsToMix.Count();
                             newhue += tilecolor.H;
@@ -389,9 +384,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
                             newtile.Color = ColorMath.HSVtoRGB(new HSVColor(newhue, 1, 1, 1));
                             newtile.Color.Action = ColorOutOfBoundsAction.WrapAround;
                             Cells.SetTile(x, y, newtile);
-
                         }
-
                     }
                 }
             }
@@ -433,4 +426,3 @@ namespace EntityEngineV4TestBed.States.GameOfLife
         }
     }
 }
-

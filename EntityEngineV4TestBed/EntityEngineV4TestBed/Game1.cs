@@ -3,7 +3,6 @@
 using EntityEngineV4.Engine;
 using EntityEngineV4TestBed.States.Menu;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 #endregion Using Statements
@@ -17,7 +16,8 @@ namespace EntityEngineV4TestBed
     {
         private MenuState _menuState;
 
-        public Game1(Rectangle viewPort) : base(viewPort)
+        public Game1(Rectangle viewPort)
+            : base(viewPort)
         {
         }
 

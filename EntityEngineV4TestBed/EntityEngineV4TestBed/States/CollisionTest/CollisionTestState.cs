@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using EntityEngineV4.CollisionEngine;
 using EntityEngineV4.CollisionEngine.Shapes;
 using EntityEngineV4.Components;
@@ -34,7 +35,7 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             Page p = new Page(this, "Page");
             p.Show();
 
-            _collidedLabel = new Label(p, "CollidedLabel" , new Point(0,0));
+            _collidedLabel = new Label(p, "CollidedLabel", new Point(0, 0));
             _collidedLabel.Body.Position = new Vector2(10, 500);
 
             Random rand = new Random();
@@ -72,17 +73,12 @@ namespace EntityEngineV4TestBed.States.CollisionTest
                 c.HoverColor = Color.DarkRed;
                 c.Shape.Debug = true;
             }
-
-            
         }
 
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-            string text = "";
-            text += "Colliding: ";
-            CollisionHandler c = GetService<CollisionHandler>();
-            IEnumerable<Collision> list = c.GetColliding();
+            string text = "Colliding: ";
             foreach (var collider in GetService<CollisionHandler>().GetColliding())
             {
                 text += collider.Parent.Name + " ";
@@ -98,9 +94,14 @@ namespace EntityEngineV4TestBed.States.CollisionTest
             _collided.Clear();
         }
 
+        public override void Destroy(IComponent sender = null)
+        {
+            base.Destroy(sender);
+        }
+
         private class CollisionTestNode : Node
         {
-             public Body Body;
+            public Body Body;
 
             /// <summary>
             /// Body used to describe Render's body
@@ -145,7 +146,6 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
                 TextRender = new TextRender(this, "Render");
                 TextRender.LinkDependency(TextRender.DEPENDENCY_BODY, TextBody);
-
             }
 
             public override void Update(GameTime gt)
@@ -182,7 +182,8 @@ namespace EntityEngineV4TestBed.States.CollisionTest
         /// </summary>
         private class AabbNode : CollisionTestNode
         {
-            public AabbNode(State stateref, string name) : base(stateref, name)
+            public AabbNode(State stateref, string name)
+                : base(stateref, name)
             {
                 Body.Bounds = new Vector2(50 + RandomHelper.GetFloat(0, 30), 50 + RandomHelper.GetFloat(0, 30));
 
@@ -192,11 +193,9 @@ namespace EntityEngineV4TestBed.States.CollisionTest
 
                 Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Shape);
 
-               
                 ImageRender.Scale = new Vector2(Body.Width, Body.Height);
                 ImageRender.Layer = .5f;
 
-                
                 TextRender.Color = Color.White;
                 TextRender.Font = Assets.Font;
                 TextRender.Text = Name;

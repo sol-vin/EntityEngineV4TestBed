@@ -31,7 +31,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
             _collided = new SortedSet<string>();
             Page p = new Page(this, "Page");
             p.Show();
-            _collidedLabel = new Label(p, "CollidedLabel", new Point(0,0));
+            _collidedLabel = new Label(p, "CollidedLabel", new Point(0, 0));
             _collidedLabel.Body.Position = new Vector2(10, 560);
             for (int x = 0; x < 3; x++)
             {

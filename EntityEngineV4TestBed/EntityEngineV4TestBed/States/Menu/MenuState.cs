@@ -1,5 +1,4 @@
-﻿using System;
-using EntityEngineV4.Engine;
+﻿using EntityEngineV4.Engine;
 using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4TestBed.States.AsteriodsGame;
@@ -14,7 +13,6 @@ using EntityEngineV4TestBed.States.PrimitiveTest;
 using EntityEngineV4TestBed.States.ResolutionTest;
 using EntityEngineV4TestBed.States.SourceRectangleTest;
 using EntityEngineV4TestBed.States.TestControl;
-using EntityEngineV4TestBed.States.TilemapTest;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -45,7 +43,6 @@ namespace EntityEngineV4TestBed.States.Menu
             //Service init
             new InputService(this);
             new MouseService(this);
-
 
             _upkey = new DoubleInput(this, "UpKey", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
             _downkey = new DoubleInput(this, "DownKey", Keys.Down, Buttons.DPadDown, PlayerIndex.One);
@@ -88,7 +85,6 @@ namespace EntityEngineV4TestBed.States.Menu
                 _page.MoveFocusRight();
             if (_selectkey.Released())
                 _page.Release();
-
         }
 
         private void AddMenuItem(string label, ChangeStateDelegate changeStateDelegate)

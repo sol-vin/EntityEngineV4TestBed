@@ -1,15 +1,19 @@
 ﻿using EntityEngineV4.Engine;
 using EntityEngineV4.Input;
+using EntityEngineV4TestBed.States.Menu;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States
 {
     public abstract class TestBedState : State
     {
+        private DoubleInput _backkey;
+
         protected TestBedState(string name)
             : base(name)
         {
-
+            _backkey = new DoubleInput(this, "BackKey", Keys.Back, Buttons.Back, PlayerIndex.One);
         }
 
         public override void Initialize()
@@ -17,14 +21,18 @@ namespace EntityEngineV4TestBed.States
             base.Initialize();
             new InputService(this);
             new MouseService(this);
-            new TestBedStateManager(this, "TestBedStateManager");
 
             EntityGame.BackgroundColor = Color.LightGray;
         }
 
-        public override void Update(GameTime gt)
+        public override void PostUpdate()
         {
-            base.Update(gt);
+            base.PostUpdate();
+
+            if (_backkey.Released())
+            {
+                EntityGame.SwitchState(new MenuState());
+            }
         }
     }
 }

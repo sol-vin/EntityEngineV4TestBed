@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using EntityEngineV4.Components;
+﻿using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering.Primitives;
 using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
-using EntityEngineV4.Input;
 using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,7 +10,8 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 {
     public class ParticleTestState : TestBedState
     {
-        public ParticleTestState() : base("ParticleTestState")
+        public ParticleTestState()
+            : base("ParticleTestState")
         {
             EntityGame.DebugInfo.Color = Color.White;
         }
@@ -27,7 +22,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
             new ParticleNode(this, "Particle1");
 
-            new ParticleNode(this, "Particle2") {Speed = -5, OffsetY = 50};
+            new ParticleNode(this, "Particle2") { Speed = -5, OffsetY = 50 };
             new ParticleNode(this, "Particle3") { Speed = -5f, OffsetY = 150 };
 
             EntityGame.BackgroundColor = Color.Black;
@@ -50,7 +45,8 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             public ShapeTypes.Rectangle Render;
             private ParticleEmitter _emitter;
 
-            public ParticleNode(Node parent, string name) : base(parent, name)
+            public ParticleNode(Node parent, string name)
+                : base(parent, name)
             {
                 Body = new Body(this, "Body");
                 Body.Width = 10;
@@ -65,21 +61,22 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                 Render.Color = Color.OrangeRed;
 
                 _emitter = new ParticleEmitter(this, "Emitter");
-                _emitter.LinkDependency(ParticleEmitter.DEPENDENCY_BODY,Body);
+                _emitter.LinkDependency(ParticleEmitter.DEPENDENCY_BODY, Body);
             }
 
             private float _angle;
             public float Speed = 5;
             public float OffsetY = 100;
+
             public override void Update(GameTime gt)
             {
                 base.Update(gt);
                 Render.Color = RandomHelper.RandomHue();
-                
+
                 _angle += Speed * (float)gt.ElapsedGameTime.TotalSeconds;
 
                 Body.Position = Physics.RotatePoint(
-                    new Vector2(EntityGame.Viewport.Width/2f, EntityGame.Viewport.Height/2f),
+                    new Vector2(EntityGame.Viewport.Width / 2f, EntityGame.Viewport.Height / 2f),
                     _angle,
                     new Vector2(EntityGame.Viewport.Width / 2f, OffsetY));
                 Body.Angle = _angle;
@@ -95,7 +92,8 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
             private class ParticleEmitter : Spawner
             {
-                public ParticleEmitter(Node parent, string name) : base(parent, name)
+                public ParticleEmitter(Node parent, string name)
+                    : base(parent, name)
                 {
                 }
 
@@ -105,19 +103,17 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     p.Body.Position = Physics.RotatePoint(
                     new Vector2(EntityGame.Viewport.Width / 2f, EntityGame.Viewport.Height / 2f),
                     GetDependency<Body>(DEPENDENCY_BODY).Angle,
-                    new Vector2(EntityGame.Viewport.Width / 2f, (Parent as ParticleNode).OffsetY + GetDependency<Body>(DEPENDENCY_BODY).Bounds.Y/2));
+                    new Vector2(EntityGame.Viewport.Width / 2f, (Parent as ParticleNode).OffsetY + GetDependency<Body>(DEPENDENCY_BODY).Bounds.Y / 2));
                     p.Body.Angle = GetDependency<Body>(DEPENDENCY_BODY).Angle - MathHelper.PiOver2 +
                         RandomHelper.GetFloat(-MathHelper.Pi / 2f, MathHelper.Pi / 2f);
-                    p.Body.Bounds = new Vector2(RandomHelper.NextInt(2,10));
+                    p.Body.Bounds = new Vector2(RandomHelper.NextInt(2, 10));
 
                     p.Physics.Thrust(RandomHelper.GetFloat() * 100);
                     p.Physics.AngularVelocity = RandomHelper.GetFloat() * 10;
 
-                    
-
                     return p;
                 }
-                
+
                 //Dependencies
                 public const int DEPENDENCY_BODY = 0;
 
@@ -140,7 +136,8 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                     get { return true; }
                 }
 
-                public TrailParticle(Node parent, int ttl) : base(parent, ttl)
+                public TrailParticle(Node parent, int ttl)
+                    : base(parent, ttl)
                 {
                     Body = new Body(this, "Body");
                     Body.Origin = new Vector2(.5f, .5f);

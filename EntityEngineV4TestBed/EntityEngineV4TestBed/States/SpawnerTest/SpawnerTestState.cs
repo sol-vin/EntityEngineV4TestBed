@@ -41,11 +41,10 @@ namespace EntityEngineV4TestBed.States.ParticleTest
 
             _ptm = new ParticleTestManager(this);
 
-
             var page = new Page(this, "Page");
             page.Show();
 
-            _screeninfo = new Label(page, "ScreenInfo", new Point(0,0));
+            _screeninfo = new Label(page, "ScreenInfo", new Point(0, 0));
             _screeninfo.Body.Position = Vector2.One * 20;
 
             _strengthText = new Label(page, "StrengthText", new Point(0, 1));
@@ -61,7 +60,7 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             _strengthValue.Text = _ptm.Spawner.Strength.ToString();
             _strengthValue.Body.Position = new Vector2(_strengthDown.Body.BoundingRect.Right + 5, 50);
 
-            _strengthUp = new LinkLabel(page, "StrengthUp", new Point(3,1));
+            _strengthUp = new LinkLabel(page, "StrengthUp", new Point(3, 1));
             _strengthUp.Text = "->";
             _strengthUp.Body.Position = new Vector2(_strengthValue.Body.BoundingRect.Right + 5, 50);
             _strengthUp.OnDown += control => _ptm.Spawner.Strength += STRENGTHSTEP;
@@ -138,14 +137,13 @@ namespace EntityEngineV4TestBed.States.ParticleTest
             public override void Update(GameTime gt)
             {
                 base.Update(gt);
-                MouseService.Cursor.Position = new Vector2(MouseService.Cursor.Position.X + (_moveCursor.Position.X*5),
-                                                           MouseService.Cursor.Position.Y - (_moveCursor.Position.Y*5));
+                MouseService.Cursor.Position = new Vector2(MouseService.Cursor.Position.X + (_moveCursor.Position.X * 5),
+                                                           MouseService.Cursor.Position.Y - (_moveCursor.Position.Y * 5));
 
-                if(MouseService.IsMouseButtonPressed(MouseButton.RightButton) || _emitButton.Pressed())
+                if (MouseService.IsMouseButtonPressed(MouseButton.RightButton) || _emitButton.Pressed())
                     EntityGame.Log.Write("Mouse button pressed, dispensing particles", this, Alert.Info);
                 if (MouseService.IsMouseButtonDown(MouseButton.RightButton) || _emitButton.Down())
                 {
-
                     Spawner.Emit(30);
                 }
                 if (MouseService.IsMouseButtonReleased(MouseButton.RightButton) || _emitButton.Pressed())
@@ -210,14 +208,14 @@ namespace EntityEngineV4TestBed.States.ParticleTest
                         : base(parent, 2000)
                     {
                         Body = new Body(this, "Body");
-                        Body.Origin = new Vector2(.5f,.5f);
+                        Body.Origin = new Vector2(.5f, .5f);
 
                         Physics = new Physics(this, "Physics");
                         Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
 
                         RectRender = new ShapeTypes.Rectangle(this, "RectRender", RandomHelper.RandomBool());
                         RectRender.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);
-                        
+
                         RectRender.Thickness = 1;
                         Render = RectRender;
                         FadeAge = 1000;

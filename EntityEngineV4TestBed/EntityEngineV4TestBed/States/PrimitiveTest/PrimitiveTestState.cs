@@ -70,7 +70,7 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
             _ly3.Thickness = 3;
 
             //Add component based classes
-            new SpinningRect(this, "Spinning", EntityGame.Viewport.Width/2f + 75, 200, 30, 30, false, 3);
+            new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 75, 200, 30, 30, false, 3);
             new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 75, 200, 30, 30, false, 2);
             new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 75, 200, 30, 30, false, 1);
             new SpinningRect(this, "Spinning", EntityGame.Viewport.Width / 2f + 150 + 75, 200, 30, 30, true);
@@ -139,7 +139,7 @@ namespace EntityEngineV4TestBed.States.PrimitiveTest
                 Body.Y = y;
                 Body.Width = width;
                 Body.Height = height;
-                Body.Origin = new Vector2(.5f/thickness, .5f/thickness);
+                Body.Origin = new Vector2(.5f / thickness, .5f / thickness);
 
                 Rectangle = new ShapeTypes.Rectangle(this, "Rectangle", fill);
                 Rectangle.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);

@@ -5,7 +5,6 @@ using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.ColorTest
@@ -42,10 +41,10 @@ namespace EntityEngineV4TestBed.States.ColorTest
             Page p = new Page(this, "Page");
             p.Show();
 
-            _label = new FadeOutLabel(p, "FadeOutLabel", new Point(0,0));
+            _label = new FadeOutLabel(p, "FadeOutLabel", new Point(0, 0));
             _label.Text = "HSV Test";
 
-            _ctm = new ColorTestManager(this,"CTM");
+            _ctm = new ColorTestManager(this, "CTM");
         }
 
         public void NextTest()
@@ -90,9 +89,10 @@ namespace EntityEngineV4TestBed.States.ColorTest
         {
             public DoubleInput NextTestKey;
 
-            public ColorTestManager(Node parent, string name) : base(parent, name)
+            public ColorTestManager(Node parent, string name)
+                : base(parent, name)
             {
-                NextTestKey =  new DoubleInput(this, "NextTestKey", Keys.Space, Buttons.A, PlayerIndex.One);
+                NextTestKey = new DoubleInput(this, "NextTestKey", Keys.Space, Buttons.A, PlayerIndex.One);
             }
         }
 
@@ -101,14 +101,14 @@ namespace EntityEngineV4TestBed.States.ColorTest
             public HSVTilemap(Node parent, string name, Point size)
                 : base(parent, name, Assets.Pixel, size, new Point(1, 1))
             {
-                float huefraction = 1f/(size.X*size.Y);
+                float huefraction = 1f / (size.X * size.Y);
 
                 for (int x = 0; x < size.X; x++)
                 {
                     for (int y = 0; y < size.Y; y++)
                     {
                         Tile t = new Tile(0);
-                        t.Color = new HSVColor(huefraction*((y*size.X) + x), 1, 1, 1).ToRGBColor();
+                        t.Color = new HSVColor(huefraction * ((y * size.X) + x), 1, 1, 1).ToRGBColor();
                         t.Color.Action = ColorOutOfBoundsAction.WrapAround;
 
                         SetTile(x, y, t);
@@ -171,14 +171,15 @@ namespace EntityEngineV4TestBed.States.ColorTest
         {
             private Timer _beginFadeTimer, _fadeStepTimer;
 
-            public FadeOutLabel(Page parent, string name, Point tabPosition) : base(parent, name, tabPosition)
+            public FadeOutLabel(Page parent, string name, Point tabPosition)
+                : base(parent, name, tabPosition)
             {
                 _beginFadeTimer = new Timer(this, "BeginFadeTimer");
                 _beginFadeTimer.Milliseconds = 2000;
                 _beginFadeTimer.LastEvent += StartFade;
                 _beginFadeTimer.LastEvent += _beginFadeTimer.Stop;
                 _beginFadeTimer.Start();
-                
+
                 _fadeStepTimer = new Timer(this, "FadeStepTimer");
                 _fadeStepTimer.Milliseconds = 500;
                 _fadeStepTimer.LastEvent += _fadeStepTimer.Stop;
@@ -204,7 +205,7 @@ namespace EntityEngineV4TestBed.States.ColorTest
                 base.Update(gt);
 
                 //Set position
-                X = EntityGame.Viewport.Width/2f - Width/2f;
+                X = EntityGame.Viewport.Width / 2f - Width / 2f;
                 Y = 30;
 
                 //Set alpha

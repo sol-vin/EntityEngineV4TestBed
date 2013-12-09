@@ -131,7 +131,6 @@
     <Compile Include="States\ResolutionTest\ResolutionTestState.cs" />
     <Compile Include="States\SourceRectangleTest\RenderTestState.cs" />
     <Compile Include="States\TestBedState.cs" />
-    <Compile Include="States\TestBedStateManager.cs" />
     <Compile Include="States\TestControl\TestControlManager.cs" />
     <Compile Include="States\TestControl\ControlTestState.cs" />
     <Compile Include="States\TilemapTest\TilemapTestState.cs" />

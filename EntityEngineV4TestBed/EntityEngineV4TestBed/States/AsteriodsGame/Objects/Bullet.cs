@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EntityEngineV4.CollisionEngine;
+﻿using EntityEngineV4.CollisionEngine;
 using EntityEngineV4.CollisionEngine.Shapes;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering;
-using EntityEngineV4.Data;
 using EntityEngineV4.Engine;
 using EntityEngineV4.Engine.Services;
-using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -26,7 +20,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
         public Circle Shape;
         public Timer DeathTimer;
 
-        public Bullet(Node parent, string name) : base(parent, name)
+        public Bullet(Node parent, string name)
+            : base(parent, name)
         {
 
             Render = new ImageRender(this, "Render");
@@ -38,10 +33,10 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
 
             //Make our collision rectangles the size of the rendered sprite.
             Body.Bounds = Render.Bounds;
-            Body.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
+            Body.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
 
-            Shape = new Circle(this, "Shape", Body.Width/2);
-            Shape.Offset = new Vector2(Body.Width/2, Body.Height/2);
+            Shape = new Circle(this, "Shape", Body.Width / 2);
+            Shape.Offset = new Vector2(Body.Width / 2, Body.Height / 2);
             Shape.LinkDependency(Circle.DEPENDENCY_BODY, Body);
 
             Collision.Group.AddMask(1);

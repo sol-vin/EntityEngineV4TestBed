@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using EntityEngineV4.Components;
 using EntityEngineV4.Components.Rendering.Primitives;
 using EntityEngineV4.Engine;
@@ -7,7 +6,6 @@ using EntityEngineV4.GUI;
 using EntityEngineV4.Input;
 using EntityEngineV4.PowerTools;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace EntityEngineV4TestBed.States.FancySpawnerTest
@@ -166,14 +164,14 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
 
                     protected override Spawn GenerateNewParticle()
                     {
-                        var p = GetRoot<State>().GetNextRecycled<GibSpawn>(GetRoot(), "RecycledGib") ??  new GibSpawn(GetRoot());
+                        var p = GetRoot<State>().GetNextRecycled<GibSpawn>(GetRoot(), "RecycledGib") ?? new GibSpawn(GetRoot());
                         p.Body.Bounds = new Vector2(2, 2);
                         p.Body.Position = GetDependency<Body>(DEPENDENCY_BODY).Position;
 
                         int sign = RandomHelper.GetSign();
                         p.Body.Angle = (float)_rand.NextDouble() * MathHelper.PiOver2 * sign;
 
-                        float thrust = ((float)_rand.NextDouble() + 1 ) * (GetDependency<Physics>(DEPENDENCY_PHYSICS).Velocity.Y / 4);
+                        float thrust = ((float)_rand.NextDouble() + 1) * (GetDependency<Physics>(DEPENDENCY_PHYSICS).Velocity.Y / 4);
                         p.Physics.Thrust(thrust);
                         p.Physics.Acceleration = new Vector2(0, 10f);
                         //p.RectRender.Scale = new Vector2(0);
@@ -188,6 +186,7 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
 
                     //Dependencies
                     public const int DEPENDENCY_BODY = 0;
+
                     public const int DEPENDENCY_PHYSICS = 1;
 
                     public override void CreateDependencyList()
@@ -218,7 +217,6 @@ namespace EntityEngineV4TestBed.States.FancySpawnerTest
                         Body = new Body(this, "Body");
                         Physics = new Physics(this, "Physics");
                         Physics.LinkDependency(Physics.DEPENDENCY_BODY, Body);
-
 
                         RectRender = new ShapeTypes.Rectangle(this, "RectRender", true);
                         RectRender.LinkDependency(ShapeTypes.Rectangle.DEPENDENCY_BODY, Body);

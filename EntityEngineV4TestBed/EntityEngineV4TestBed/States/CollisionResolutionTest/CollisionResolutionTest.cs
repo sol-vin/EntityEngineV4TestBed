@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using EntityEngineV4.CollisionEngine;
 using EntityEngineV4.CollisionEngine.Shapes;
 using EntityEngineV4.Components;
@@ -27,7 +24,8 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
         //Input controls
         private DoubleInput _nextTest, _lastTest, _beginTest, _resetTest;
 
-        public CollisionResolutionTest() : base("CollisionResolutionTest")
+        public CollisionResolutionTest()
+            : base("CollisionResolutionTest")
         {
         }
 
@@ -43,14 +41,14 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             _lastTest = new DoubleInput(this, "LastTest", Keys.Left, Buttons.LeftShoulder, PlayerIndex.One);
             _resetTest = new DoubleInput(this, "ResetLink", Keys.Q, Buttons.X, PlayerIndex.One);
 
-            Page p =new Page(this, "Page");
+            Page p = new Page(this, "Page");
             p.Show();
 
-            _titleLabel = new Label(p, "TitleLabel", new Point(0,0));
+            _titleLabel = new Label(p, "TitleLabel", new Point(0, 0));
             _titleLabel.Text = _currentTest.Title;
-            _titleLabel.Body.Position = new Vector2(2,2);
+            _titleLabel.Body.Position = new Vector2(2, 2);
 
-            _descriptionLabel =new Label(p, "DescriptionLabel", new Point(0,1));
+            _descriptionLabel = new Label(p, "DescriptionLabel", new Point(0, 1));
             _descriptionLabel.Text = _currentTest.Description;
             _descriptionLabel.Body.Position = new Vector2(2, EntityGame.Viewport.Height - _descriptionLabel.Render.Bounds.Y - 2);
 
@@ -66,13 +64,10 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             _tests.Add(new CircleTest9(this, "CirlceTest9"));
             _tests.Add(new CircleTest10(this, "CirlceTest10"));
 
-
-
             _tests.Add(new AABBTest1(this, "AABBTest1"));
             _tests.Add(new AABBTest2(this, "AABBTest2"));
             _tests.Add(new AABBTest3(this, "AABBTest3"));
             _tests.Add(new AABBTest4(this, "AABBTest4"));
-
         }
 
         public void LastTest()
@@ -92,7 +87,7 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             _currentTest.Reset();
 
             ++_currentTestNumber;
-            if (_currentTestNumber > _tests.Count-1) _currentTestNumber = 0;
+            if (_currentTestNumber > _tests.Count - 1) _currentTestNumber = 0;
             _currentTest = _tests[_currentTestNumber];
             _currentTest.Initialize();
         }
@@ -104,10 +99,10 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             _titleLabel.Text = _currentTest.Title;
 
             _descriptionLabel.Text = _currentTest.Description;
-            
+
             if (_beginTest.Released() && !_currentTest.Active)
             {
-                if(!_currentTest.Started)
+                if (!_currentTest.Started)
                     _currentTest.Begin();
                 _currentTest.Active = true;
             }
@@ -122,9 +117,9 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
                 _currentTest.Initialize();
             }
 
-            if(_nextTest.Released())
+            if (_nextTest.Released())
                 NextTest();
-            else if(_lastTest.Released())
+            else if (_lastTest.Released())
                 LastTest();
         }
     }
@@ -133,11 +128,13 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
     {
         public string Title;
         public string Description;
+
         public bool Started { get; private set; }
 
         private Sound _collisionSound;
 
-        public Test(Node parent, string name) : base(parent, name)
+        public Test(Node parent, string name)
+            : base(parent, name)
         {
             Active = false;
             Visible = false;
@@ -151,7 +148,6 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
 
             _collisionSound = new Sound(this, "CollisionSound");
             _collisionSound.LoadSound(@"CollisionDebugger/collision");
-
         }
 
         public virtual void Begin()
@@ -160,21 +156,18 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             Started = true;
         }
 
-
         public override void Reset()
         {
             base.Reset();
             Active = false;
             Visible = false;
             Started = false;
-
-            _collisionSound.Destroy();
         }
 
         public override void Update(GameTime gt)
         {
             base.Update(gt);
-            if(GetRoot<State>().GetService<CollisionHandler>().CollisionsThisFrame > 0)
+            if (GetRoot<State>().GetService<CollisionHandler>().CollisionsThisFrame > 0)
                 _collisionSound.Play();
         }
 
@@ -183,8 +176,9 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             public Body Body;
             public Physics Physics;
             public Collision Collision;
-           
-            public TestEntity(Node parent, string name) : base(parent, name)
+
+            public TestEntity(Node parent, string name)
+                : base(parent, name)
             {
                 Body = new Body(this, "Body");
 
@@ -205,7 +199,7 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             public AABB AABB;
             public ShapeTypes.Rectangle Render;
 
-            public AABBTester(Node parent, string name, float width=20, float height=20)
+            public AABBTester(Node parent, string name, float width = 20, float height = 20)
                 : base(parent, name)
             {
                 AABB = new AABB(this, "AABB");
@@ -228,7 +222,8 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             public Circle Circle;
             public ImageRender Render;
 
-            public CircleTester(Node parent, string name, float radius) : base(parent, name)
+            public CircleTester(Node parent, string name, float radius)
+                : base(parent, name)
             {
                 Circle = new Circle(this, "Circle", radius);
                 Circle.Offset = new Vector2(radius);
@@ -238,10 +233,10 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
                 Body.Bounds = new Vector2(Circle.Diameter);
 
                 Render = new ImageRender(this, "Render", Assets.Circle);
-                Render.Scale = new Vector2(Circle.Diameter/Assets.Circle.Width);
+                Render.Scale = new Vector2(Circle.Diameter / Assets.Circle.Width);
                 Render.LinkDependency(ImageRender.DEPENDENCY_BODY, Body);
-                
-                Body.Origin = new Vector2(Render.Texture.Width/2f, Render.Texture.Height/2f);
+
+                Body.Origin = new Vector2(Render.Texture.Width / 2f, Render.Texture.Height / 2f);
                 Collision.LinkDependency(Collision.DEPENDENCY_SHAPE, Circle);
             }
         }
@@ -285,7 +280,8 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
     {
         public CircleTester A, B;
 
-        public CircleTest1(Node parent, string name) : base(parent, name)
+        public CircleTest1(Node parent, string name)
+            : base(parent, name)
         {
             Title = "Circle Test 1";
             Description = @"Smashes two circles together on the X axis, they are exactly aligned";
@@ -296,21 +292,19 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             base.Initialize();
             A = new CircleTester(this, "A", 30);
             A.Render.Color = Color.Red;
-            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height/2f - A.Body.Height/2f);
+            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height / 2f - A.Body.Height / 2f);
             A.Physics.Velocity.X = 200;
 
             B = new CircleTester(this, "B", 30);
             B.Render.Color = Color.Blue;
             B.Body.Position = new Vector2(EntityGame.Viewport.Width - 20 - B.Body.Width,
-                EntityGame.Viewport.Height/2f - B.Body.Height/2f);
+                EntityGame.Viewport.Height / 2f - B.Body.Height / 2f);
             B.Physics.Velocity.X = -200;
         }
 
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
 
@@ -318,7 +312,8 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
     {
         public CircleTester A, B;
 
-        public CircleTest2(Node parent, string name) : base(parent, name)
+        public CircleTest2(Node parent, string name)
+            : base(parent, name)
         {
             Title = "Circle Test 2";
             Description = @"Smashes two circles together on the X axis, they are misaligned";
@@ -329,21 +324,19 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             base.Initialize();
             A = new CircleTester(this, "A", 30);
             A.Render.Color = Color.Red;
-            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height/2f - A.Body.Height/2f - 5);
+            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height / 2f - A.Body.Height / 2f - 5);
             A.Physics.Velocity.X = 200;
 
             B = new CircleTester(this, "B", 30);
             B.Render.Color = Color.Blue;
             B.Body.Position = new Vector2(EntityGame.Viewport.Width - 20 - B.Body.Width,
-                EntityGame.Viewport.Height/2f - B.Body.Height/2f + 5);
+                EntityGame.Viewport.Height / 2f - B.Body.Height / 2f + 5);
             B.Physics.Velocity.X = -200;
         }
 
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
 
@@ -376,8 +369,6 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
 
@@ -410,8 +401,6 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
 
@@ -433,9 +422,9 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             A.Render.Color = Color.Red;
             A.Physics.Restitution = 2f;
 
-            A.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - A.Body.Width/2, 20);
+            A.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - A.Body.Width / 2, 20);
             A.Physics.Acceleration.Y = 25f;
-            
+
             B = new CircleTester(this, "B", 30);
             B.Render.Color = Color.Blue;
             B.Physics.Restitution = 2f;
@@ -448,8 +437,6 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
 
@@ -486,8 +473,6 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
 
@@ -515,7 +500,7 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             B.Render.Color = Color.Blue;
             B.Physics.Restitution = 2f;
             B.Collision.Immovable = true;
-            B.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - B.Body.Width/2,
+            B.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - B.Body.Width / 2,
                 EntityGame.Viewport.Height - 20 - B.Body.Height);
             B.Debug = true;
             //B.Physics.Velocity.X = -1;
@@ -535,7 +520,7 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
         public void EmitParticle()
         {
             var c = new CircleParticle(this, "CircleParticle", RandomHelper.GetFloat(3, 10));
-            c.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - c.Body.Width/2f, -20);
+            c.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - c.Body.Width / 2f, -20);
             c.Body.Angle = RandomHelper.GetFloat(0, MathHelper.TwoPi);
             c.Physics.Thrust(10f);
             c.Physics.Restitution = RandomHelper.GetFloat(1f, 2f);
@@ -545,7 +530,8 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
 
         private class CircleParticle : CircleTester
         {
-            public CircleParticle(Node parent, string name, float radius) : base(parent, name, radius)
+            public CircleParticle(Node parent, string name, float radius)
+                : base(parent, name, radius)
             {
             }
 
@@ -587,20 +573,20 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             A = new CircleTester(this, "A", 30);
             A.Render.Color = Color.Red;
             A.Physics.Restitution = 1.5f;
-            A.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - A.Body.Width/2, 20);
+            A.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - A.Body.Width / 2, 20);
             A.Physics.Acceleration.Y = 10f;
 
             C = new CircleTester(this, "C", 30);
             C.Render.Color = Color.Red;
             C.Physics.Restitution = 1.5f;
-            C.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - A.Body.Width/2, 200);
+            C.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - A.Body.Width / 2, 200);
             C.Physics.Acceleration.Y = 10f;
 
             B = new CircleTester(this, "B", 30);
             B.Render.Color = Color.Blue;
             B.Physics.Restitution = 1.5f;
             B.Collision.Immovable = true;
-            B.Body.Position = new Vector2(EntityGame.Viewport.Width/2f - B.Body.Width/2,
+            B.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - B.Body.Width / 2,
                 EntityGame.Viewport.Height - 20 - B.Body.Height);
             //B.Physics.Velocity.X = -1;
         }
@@ -608,11 +594,7 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
-            C.Destroy(this);
         }
-
     }
 
     public class CircleTest9 : Test
@@ -641,14 +623,11 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
                 EntityGame.Viewport.Height / 2f - B.Body.Height / 2f);
             B.Physics.Acceleration.X = -3f;
             B.Physics.Restitution = .8f;
-
         }
 
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
 
@@ -670,14 +649,14 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             base.Initialize();
             A = new CircleTester(this, "A", 30);
             A.Render.Color = Color.Red;
-            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height/2f - A.Body.Height/2f);
+            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height / 2f - A.Body.Height / 2f);
             A.Physics.Acceleration.X = 3;
             A.Physics.Restitution = .3f;
 
             B = new CircleTester(this, "B", 30);
             B.Render.Color = Color.Blue;
             B.Body.Position = new Vector2(EntityGame.Viewport.Width - 20 - B.Body.Width,
-                EntityGame.Viewport.Height/2f - B.Body.Height/2f);
+                EntityGame.Viewport.Height / 2f - B.Body.Height / 2f);
             B.Physics.Acceleration.X = -3f;
             B.Physics.Restitution = .3f;
 
@@ -693,18 +672,12 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
                 EntityGame.Viewport.Height / 2f - D.Body.Height / 2f);
             D.Physics.Acceleration.X = -3f;
             D.Physics.Restitution = .3f;
-
         }
 
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
-            C.Destroy(this);
-            D.Destroy(this);
         }
-
     }
 
     public class AABBTest1 : Test
@@ -725,7 +698,7 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             A = new AABBTester(this, "A");
             A.Render.Color = Color.Red;
             A.Physics.Restitution = .1f;
-            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height/2f - A.Body.Height/2f);
+            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height / 2f - A.Body.Height / 2f);
             A.Physics.Velocity.X = 200;
 
             B = new AABBTester(this, "B");
@@ -738,8 +711,6 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
 
@@ -774,8 +745,6 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
 
@@ -797,24 +766,23 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             A = new AABBTester(this, "A");
             A.Render.Color = Color.Red;
             A.Physics.Restitution = 0.1f;
-            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height/2f - A.Body.Height/2f);
+            A.Body.Position = new Vector2(20, EntityGame.Viewport.Height / 2f - A.Body.Height / 2f);
             A.Physics.Acceleration.X = 10f;
 
             B = new AABBTester(this, "B");
             B.Render.Color = Color.Blue;
             B.Physics.Restitution = 0.1f;
             B.Body.Position = new Vector2(EntityGame.Viewport.Width - 20 - B.Body.Width,
-                EntityGame.Viewport.Height/2f - B.Body.Height/2f);
+                EntityGame.Viewport.Height / 2f - B.Body.Height / 2f);
             B.Physics.Acceleration.X = -10f;
         }
 
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
+
     public class AABBTest4 : Test
     {
         public AABBTester A, B;
@@ -841,15 +809,13 @@ namespace EntityEngineV4TestBed.States.CollisionResolution
             B.Render.Color = Color.Blue;
             B.Physics.Restitution = 0.1f;
             B.Body.Position = new Vector2(EntityGame.Viewport.Width / 2f - B.Body.Width / 2f,
-                EntityGame.Viewport.Height  - 20 - B.Body.Height);
+                EntityGame.Viewport.Height - 20 - B.Body.Height);
             B.Collision.Immovable = true;
         }
 
         public override void Reset()
         {
             base.Reset();
-            A.Destroy(this);
-            B.Destroy(this);
         }
     }
 }
