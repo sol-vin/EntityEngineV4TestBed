@@ -14,7 +14,6 @@ namespace EntityEngineV4TestBed
     /// </summary>
     public class Game1 : EntityGame
     {
-        private MenuState _menuState;
 
         public Game1(Rectangle viewPort)
             : base(viewPort)
@@ -33,8 +32,7 @@ namespace EntityEngineV4TestBed
 
             this.IsMouseVisible = false;
 
-            _menuState = new MenuState();
-            _menuState.Show();
+            (new MenuState()).Show();
         }
 
         /// <summary>

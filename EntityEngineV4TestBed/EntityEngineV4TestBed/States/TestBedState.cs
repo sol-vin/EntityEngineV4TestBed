@@ -19,7 +19,6 @@ namespace EntityEngineV4TestBed.States
         public override void Initialize()
         {
             base.Initialize();
-            new InputService(this);
             new MouseService(this);
 
             EntityGame.BackgroundColor = Color.LightGray;
@@ -31,7 +30,7 @@ namespace EntityEngineV4TestBed.States
 
             if (_backkey.Released())
             {
-                EntityGame.SwitchState(new MenuState());
+                (new MenuState()).Show(); 
             }
         }
     }

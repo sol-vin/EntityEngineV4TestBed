@@ -134,6 +134,7 @@
     <Compile Include="States\TestControl\TestControlManager.cs" />
     <Compile Include="States\TestControl\ControlTestState.cs" />
     <Compile Include="States\TilemapTest\TilemapTestState.cs" />
+    <Compile Include="States\TowerDefence\TowerDefenceMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

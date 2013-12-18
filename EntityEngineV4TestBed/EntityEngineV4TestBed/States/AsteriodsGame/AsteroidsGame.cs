@@ -36,7 +36,7 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame
 
             //TEST ASTEROIDS
             var a = new Asteroid(this, "Asteroid1");
-            a.Body.Position = new Vector2(-10, 100);
+            a.Body.Position = new Vector2(300, 100);
             a.Physics.AddForce(-a.Physics.Force);
 
             var b = new Asteroid(this, "Asteroid2");

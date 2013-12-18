@@ -187,7 +187,7 @@ namespace EntityEngineV4TestBed.States.ResolutionTest
                     Collision.Immovable = _lastImmovable;
                 }
 
-                //Reset our position if it goes off screen.
+                //ResetTimer our position if it goes off screen.
                 if (Body.Right < 0)
                     Body.X = EntityGame.Viewport.Width;
                 else if (Body.Left > EntityGame.Viewport.Width)

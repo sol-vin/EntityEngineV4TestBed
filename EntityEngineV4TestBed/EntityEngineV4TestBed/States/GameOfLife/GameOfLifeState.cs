@@ -77,7 +77,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
 
             LinkLabel resetLink = new LinkLabel(page, "ResetLink", new Point(0, 2));
             resetLink.Body.Position = new Vector2(Cells.Body.X, stopLink.Body.Bottom);
-            resetLink.Text = "Reset";
+            resetLink.Text = "ResetTimer";
             resetLink.OnReleased += control => ResetCells();
 
             LinkLabel downMillisecondsLink = new LinkLabel(page, "downMillisecondsLink", new Point(1, 0));

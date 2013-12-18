@@ -194,8 +194,8 @@ namespace EntityEngineV4TestBed.States.ColorTest
             public override void Reset()
             {
                 base.Reset();
-                _beginFadeTimer.Reset();
-                _fadeStepTimer.Reset();
+                _beginFadeTimer.ResetTimer();
+                _fadeStepTimer.ResetTimer();
                 _beginFadeTimer.Start();
                 Render.Alpha = 1;
             }

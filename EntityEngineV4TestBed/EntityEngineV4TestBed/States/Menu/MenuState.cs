@@ -13,6 +13,7 @@ using EntityEngineV4TestBed.States.PrimitiveTest;
 using EntityEngineV4TestBed.States.ResolutionTest;
 using EntityEngineV4TestBed.States.SourceRectangleTest;
 using EntityEngineV4TestBed.States.TestControl;
+using EntityEngineV4TestBed.States.TowerDefence;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -41,7 +42,6 @@ namespace EntityEngineV4TestBed.States.Menu
             EntityGame.BackgroundColor = Color.Gray;
 
             //Service init
-            new InputService(this);
             new MouseService(this);
 
             _upkey = new DoubleInput(this, "UpKey", Keys.Up, Buttons.DPadUp, PlayerIndex.One);
@@ -50,13 +50,13 @@ namespace EntityEngineV4TestBed.States.Menu
             _rightkey = new DoubleInput(this, "RightKey", Keys.Right, Buttons.DPadRight, PlayerIndex.One);
             _selectkey = new DoubleInput(this, "SelectKey", Keys.Space, Buttons.A, PlayerIndex.One);
 
-            var ch = new ControlHandler(this);
             _page = new Page(this, "Page");
             _page.Show();
 
             AddMenuItem("Game of Life", () => (new GameOfLifeState()).Show());
             AddMenuItem("Color Game of Life", () => (new ColorGameOfLifeState()).Show());
             AddMenuItem("Asteroids Game", () => (new AsteroidsGame()).Show());
+            AddMenuItem("Tower Defence", () => (new TowerDefenceMenu()).Show());
             AddMenuItem("Particle Test State", () => (new ParticleTestState()).Show());
             AddMenuItem("Camera Test State", () => (new CameraTestState()).Show());
             AddMenuItem("Control Test State", () => (new ControlTestState()).Show());
@@ -92,7 +92,7 @@ namespace EntityEngineV4TestBed.States.Menu
             var l = new LinkLabel(_page, "MenuItem" + (_lasttabposition.X ^ _lasttabposition.Y), _lasttabposition);
 
             l.Text = label;
-            l.Body.Position = new Vector2(200, (_lasttabposition.Y * l.Body.Height + 100));
+            l.Body.Position = new Vector2(100, (_lasttabposition.Y * (l.Body.Height + 10) + 100));
             l.Render.Layer = .2f;
             l.OnReleased += control => changeStateDelegate();
             l.OnReleased += control => Destroy(this);

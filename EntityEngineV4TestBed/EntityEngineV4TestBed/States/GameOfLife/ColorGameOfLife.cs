@@ -81,7 +81,7 @@ namespace EntityEngineV4TestBed.States.GameOfLife
             stopTextButton.MakeDefault();
 
             TextButton resetTextButton = new TextButton(_page, "ResetLink", new Point(0, 2), new Vector2(Cells.Body.X, stopTextButton.Body.Bottom), Color.White.ToRGBColor());
-            resetTextButton.Text = "Reset";
+            resetTextButton.Text = "ResetTimer";
             resetTextButton.OnReleased += control => ResetCells();
             resetTextButton.MakeDefault();
 

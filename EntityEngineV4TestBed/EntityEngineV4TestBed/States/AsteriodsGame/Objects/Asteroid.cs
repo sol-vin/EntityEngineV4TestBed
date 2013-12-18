@@ -171,39 +171,28 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
                         _yGhost.Visible = true;
 
                         //Orient XGhost
-                        if (GetDependency<Body>(DEPENDENCY_BODY).Left < 0)
-                        //If the left side of the real asteroids out of bounds to the left
+                        if (GetDependency<Body>(DEPENDENCY_BODY).Left < 0)//If the left side of the real asteroids out of bounds to the left
                         {
                             _xGhost.Body.Position.X = GetDependency<Body>(DEPENDENCY_BODY).X + EntityGame.Viewport.Width;
                             //Move ghost to opposite side.
                         }
-                        else if (GetDependency<Body>(DEPENDENCY_BODY).Right > EntityGame.Viewport.Width)
-                        //If the right side is out of bounds to the right
+                        else if (GetDependency<Body>(DEPENDENCY_BODY).Right > EntityGame.Viewport.Width) //If the right side is out of bounds to the right
                         {
                             _xGhost.Body.Position.X = GetDependency<Body>(DEPENDENCY_BODY).X - EntityGame.Viewport.Width;
                             //Move ghost to opposite side
                         }
 
                         //Orient YGhost
-                        if (GetDependency<Body>(DEPENDENCY_BODY).Top < 0)
-                        //If the top side of the real asteroids out of bounds upwards
+                        if (GetDependency<Body>(DEPENDENCY_BODY).Top < 0) //If the top side of the real asteroids out of bounds upwards
                         {
-                            _yGhost.Body.Position.Y = GetDependency<Body>(DEPENDENCY_BODY).Y
-                                                      + EntityGame.Viewport.Height; //Move ghost to opposite side.
+                            _yGhost.Body.Position.Y = GetDependency<Body>(DEPENDENCY_BODY).Y + EntityGame.Viewport.Height; //Move ghost to opposite side.
                         }
-                        else if (GetDependency<Body>(DEPENDENCY_BODY).Bottom > EntityGame.Viewport.Height)
-                        //If the bottom is out of bounds downwards
+                        else if (GetDependency<Body>(DEPENDENCY_BODY).Bottom > EntityGame.Viewport.Height) //If the bottom is out of bounds downwards
                         {
-                            _yGhost.Body.Position.Y = GetDependency<Body>(DEPENDENCY_BODY).Y -
-                                                      EntityGame.Viewport.Height; //Move ghost to opposite side
+                            _yGhost.Body.Position.Y = GetDependency<Body>(DEPENDENCY_BODY).Y - EntityGame.Viewport.Height; //Move ghost to opposite side
                         }
                     }
                 }
-            }
-
-            public Asteroid GetOriginal()
-            {
-                return (Asteroid)GetDependency<Body>(DEPENDENCY_BODY).Parent;
             }
 
             public void SetOnCollide(Collision.CollisionEventHandler method)
@@ -247,8 +236,8 @@ namespace EntityEngineV4TestBed.States.AsteriodsGame.Objects
                 Collision = new Collision(this, "Collision");
                 Collision.Pair.AddMask(0);
                 Collision.Pair.AddMask(1);
-                Collision.Group.AddMask(2);
                 Collision.Pair.AddMask(2);
+                Collision.Group.AddMask(3);
             }
 
             public override void Initialize()
